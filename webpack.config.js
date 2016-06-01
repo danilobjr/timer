@@ -14,7 +14,7 @@ module.exports = {
         publicPath: 'http://localhost:8080/built/'
     },
     resolve: {
-        extensions: ['', '.js', '.jsx']
+        extensions: ['', '.js', '.jsx', '.sass', '.scss']
     },
     module: {
         loaders: [
@@ -22,6 +22,11 @@ module.exports = {
                 test: /\.jsx?$/,
                 include: /src/,
                 loader: 'babel',
+            },
+            {
+                test: /\.s(a|c)ss$/,
+                exclude: /node_modules/,
+                loader: 'style!css!sass'
             }
         ]
     },
