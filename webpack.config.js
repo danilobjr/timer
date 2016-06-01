@@ -1,8 +1,17 @@
+const webpack = require('webpack');
+
 module.exports = {
-    entry: './src/app.jsx',
+    entry: {
+        app: ['webpack/hot/dev-server', './src/app.jsx']
+    },
     output: {
-        path: './build',
-        filename: 'bundle.js'
+        path: './public/built',
+        filename: 'bundle.js',
+        publicPath: 'http://localhost:8080/built/'
+    },
+    devServer: {
+        contentBase: './public',
+        publicPath: 'http://localhost:8080/built/'
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
@@ -15,5 +24,8 @@ module.exports = {
                 loader: 'babel',
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()
+    ]
 };
