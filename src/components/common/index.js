@@ -1,7 +1,5 @@
-import { CommandBar } from './CommandBar';
-import { NavigationBar } from './NavigationBar';
+import { NavigationBar } from './Navigation';
 
 export {
-    CommandBar,
     NavigationBar
 }

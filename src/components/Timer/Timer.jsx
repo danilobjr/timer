@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavigationBar, CommandBar } from 'components/common';
+import { NavigationBar } from 'components/common';
 
 export class Timer extends Component {
     render() {
@@ -7,7 +7,7 @@ export class Timer extends Component {
             <div>
                 <NavigationBar />
                 <div>content here</div>
-                <CommandBar />
+                {/*<CommandBar />*/}
             </div>
         );
     }
