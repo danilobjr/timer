@@ -6,8 +6,8 @@ export class NavigationBar extends Component {
         return (
             <div className="command-bar">
                 <ul>
-                    <NavigationBarItem text="Timer" />
-                    <NavigationBarItem text="Chronometer" />
+                    <NavigationBarItem href="/timer" text="Timer" />
+                    <NavigationBarItem href="/chronometer" text="Chronometer" />
                 </ul>
             </div>
         );
