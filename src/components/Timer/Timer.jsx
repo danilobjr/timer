@@ -6,8 +6,7 @@ export class Timer extends Component {
         return (
             <div>
                 <NavigationBar />
-                <div>content here</div>
-                {/*<CommandBar />*/}
+                <div>Timer content</div>
             </div>
         );
     }
