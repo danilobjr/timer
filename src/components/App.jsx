@@ -3,7 +3,7 @@ import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
-import { Timer } from './Timer';
+import { Timer } from 'components/Timer';
 
 const store = createStore(
     combineReducers({
