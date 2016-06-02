@@ -6,8 +6,16 @@ export class NavigationBar extends Component {
         return (
             <div className="navigation-bar">
                 <ul>
-                    <NavigationBarItem href="/timer" text="Timer" />
-                    <NavigationBarItem href="/chronometer" text="Chronometer" />
+                    <NavigationBarItem 
+                        href="/timer" 
+                        text="Timer" 
+                        iconClassName="ion-md-time" 
+                    />
+                    <NavigationBarItem 
+                        href="/chronometer" 
+                        text="Chronometer" 
+                        iconClassName="ion-md-stopwatch" 
+                    />
                 </ul>
             </div>
         );
