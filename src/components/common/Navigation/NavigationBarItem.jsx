@@ -18,6 +18,6 @@ export class NavigationBarItem extends Component {
 }
 
 NavigationBarItem.propTypes = {
-    iconClassName: PropTypes.string,
-    text: PropTypes.string
+    iconClassName: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired
 };
