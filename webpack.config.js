@@ -32,6 +32,10 @@ module.exports = {
                 test: /\.s(a|c)ss$/,
                 exclude: /node_modules/,
                 loader: 'style!css!sass'
+            },
+            {
+                test: /\.(eot|svg|ttf|woff2?)(\?\S*)?$/,
+                loader: 'file'
             }
         ]
     },
