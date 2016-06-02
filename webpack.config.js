@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
     entry: {
@@ -14,6 +15,10 @@ module.exports = {
         publicPath: 'http://localhost:8080/built/'
     },
     resolve: {
+        root: path.resolve(__dirname),
+        alias: {
+            components: 'src/components'
+        },
         extensions: ['', '.js', '.jsx', '.sass', '.scss']
     },
     module: {
