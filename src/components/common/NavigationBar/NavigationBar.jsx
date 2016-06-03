@@ -18,14 +18,15 @@ class NavigationBarComponent extends Component {
     renderNavigationBarItems() {
         const { currentActiveItem, changeActiveItem } = this.props;
         
-        return items.map(item => <NavigationBarItem
-                                    key={item.text}
-                                    href={item.href} 
-                                    text={item.text} 
-                                    iconClassName={item.iconClassName}
-                                    isActive={currentActiveItem === item.text}
-                                    onItemClick={changeActiveItem} 
-                                />
+        return items.map(item => 
+            <NavigationBarItem
+                key={item.text}
+                href={item.href} 
+                text={item.text} 
+                iconClassName={item.iconClassName}
+                isActive={currentActiveItem === item.text}
+                onItemClick={changeActiveItem} 
+            />
         );
     }
 }
