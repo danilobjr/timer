@@ -15,17 +15,17 @@ export class NavigationBarItem extends Component {
     }
     
     renderLiClassNames() {
-        const result = ['navigation-bar-item'];
-        const { className, isActive } = this.props;
-        
-        className && result.push(className);
-        isActive && result.push('-active');
-        
-        return result.join(' ');
+        return [
+            'navigation-bar-item',
+            this.props.isActive && '-active'
+        ].join(' ');
     }
     
     renderIconClassNames() {
-        return `icon ${this.props.iconClassName}`.trim();
+        return [
+            'icon',
+            this.props.iconClassName
+        ].join(' ');
     }
     
     handleOnClick() {
