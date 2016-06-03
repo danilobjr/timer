@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 
-export const CommandBarItem = (props) => 
-    <li className="command-bar-item">
+const renderHref = (href) => href ? `#${href}` : '#' 
+
+export const CommandBarItem = (props) =>
+    <a className="command-bar-item" href={renderHref(props.href)}>
         <span className={`icon ${props.icon}`}></span>
-    </li>
+    </a>
 
 CommandBarItem.propTypes = {
     icon: PropTypes.string.isRequired

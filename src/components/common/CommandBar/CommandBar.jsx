@@ -3,11 +3,7 @@ import { CommandBarItem } from './CommandBarItem';
 
 export class CommandBar extends Component {
     render() {
-        return (
-            <div className="command-bar">
-                <ul className="list">{this.props.children}</ul>
-            </div>
-        );
+        return <div className="command-bar">{this.props.children}</div>;
     }
 }
 
