@@ -7,7 +7,7 @@ export class NavigationBarItem extends Component {
                 {...this.props} 
                 className={this.renderLiClassNames()} 
                 onClick={this.handleOnClick.bind(this)}>
-                <a href={`#${this.props.href}`}>
+                <a className="link" href={`#${this.props.href}`}>
                     <span className={this.renderIconClassNames()}></span>
                     <span className="text">{this.props.text}</span>
                 </a>
@@ -16,11 +16,11 @@ export class NavigationBarItem extends Component {
     }
     
     renderLiClassNames() {
-        const result = [];        
+        const result = ['navigation-bar-item'];
         const { className, isActive } = this.props;
         
         className && result.push(className);
-        isActive && result.push('active');
+        isActive && result.push('-active');
         
         return result.join(' ');
     }

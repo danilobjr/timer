@@ -7,9 +7,11 @@ import { items } from './items';
 class NavigationBarComponent extends Component {    
     render() {
         return (
-            <div className="navigation-bar">
-                <ul>{this.renderNavigationBarItems()}</ul>
-            </div>
+            <nav className="navigation-bar">
+                <ul className="list">
+                    {this.renderNavigationBarItems()}
+                </ul>
+            </nav>
         );
     }
     
