@@ -1,0 +1,10 @@
+.flex-box {
+    & {
+        display: flex;
+        height: 100vh;
+    }
+    
+    &.-column {
+        flex-direction: column;
+    }
+}
