@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
-import { CommandBar, CommandBarItem, NavigationBar } from 'components/common';
+import { 
+    CommandBar, CommandBarItem, 
+    FlexBox, FlexItem,
+    NavigationBar 
+} from 'components/common';
 
 export class Timer extends Component {
     render() {
         return (
-            <div>
+            <FlexBox column>
                 <NavigationBar />
-                <div>Timer content</div>
+                <FlexItem grow={1}>Timer content</FlexItem>
                 <CommandBar>
                     <CommandBarItem icon="ion-md-add" />
                     <CommandBarItem icon="ion-md-trash" />
                     <CommandBarItem icon="ion-md-more" />
                 </CommandBar>
-            </div>
+            </FlexBox>
         );
     }
 }
