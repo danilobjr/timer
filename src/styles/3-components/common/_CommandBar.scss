@@ -1,0 +1,11 @@
+.command-bar {
+    & {
+        display: flex;
+        justify-content: flex-end;
+        background-color: $bg-gray;
+    }
+    
+    > .list {
+        display: flex;
+    }
+}
