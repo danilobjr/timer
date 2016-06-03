@@ -1,4 +1,4 @@
-import { NavigationBar } from './Navigation';
+import { NavigationBar } from './NavigationBar';
 
 export {
     NavigationBar
