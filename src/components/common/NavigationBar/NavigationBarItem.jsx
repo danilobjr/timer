@@ -4,7 +4,6 @@ export class NavigationBarItem extends Component {
     render() {
         return (
             <li 
-                {...this.props} 
                 className={this.renderLiClassNames()} 
                 onClick={this.handleOnClick.bind(this)}>
                 <a className="link" href={`#${this.props.href}`}>
