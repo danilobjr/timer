@@ -2,19 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { NavigationBarItem } from './NavigationBarItem';
 import { changeActiveNavigationBarItem } from './actions';
-
-const items = [
-    {
-        text: 'Timer',
-        href: '/timer',
-        iconClassName: 'ion-md-time'
-    },
-    {
-        text: 'Chronometer',
-        href: '/chronometer',
-        iconClassName: 'ion-md-stopwatch'
-    }
-];
+import { items } from './items';
 
 class NavigationBarComponent extends Component {    
     render() {
