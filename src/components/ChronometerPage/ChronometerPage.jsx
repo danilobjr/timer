@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavigationBar } from 'components/common';
 
-export class Chronometer extends Component {
+export class ChronometerPage extends Component {
     render() {
         return (
             <div>

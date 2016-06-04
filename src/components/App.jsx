@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { Router, Route, hashHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import { TimerPage } from 'components/TimerPage';
-import { Chronometer } from 'components/Chronometer';
+import { ChronometerPage } from 'components/ChronometerPage';
 import { appReducers } from './appReducers';
 
 const store = createStore(appReducers);
@@ -18,7 +18,7 @@ export class App extends Component {
                 <Router history={history}>
                     <Route path="/" component={TimerPage} />
                     <Route path="/timer" component={TimerPage} />
-                    <Route path="/chronometer" component={Chronometer} />
+                    <Route path="/chronometer" component={ChronometerPage} />
                 </Router>
             </Provider>
         );
