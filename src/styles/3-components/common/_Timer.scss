@@ -11,12 +11,19 @@
         border: 2px solid $bg-gray;
     }
     
-    &:hover {
-    }
-    
-    > .counter {
+    > .counter-watch {
         color: $darker-gray;
         font-size: 2.7rem;
+    }
+    
+    > .commands {
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+    }
+    
+    > .commands > #start-pause-button {
+        margin: 0 42px;
     }
     
     > .commands > button {
@@ -55,23 +62,4 @@
         color: $darkest-gray;
         font-size: 0.95rem;
     }
-}
-
-.counter {
-    display: flex;
-    justify-content: space-between;
-    color: $darkest-gray;
-    font-weight: 700;
-}
-
-.counter > .unit.active {
-    color: black;
-}
-
-.counter > .unit:not(:last-of-type):after {
-    content: ':';
-    position: relative;
-    top: -0.15em;
-    margin: 0 0.09em;
-    font-size: 0.82em;
 }
