@@ -1,0 +1,85 @@
+#start-pause-button {
+    & {        
+        position: relative;
+        width: 60px;
+        height: 60px;
+        padding: 0;
+    }
+    
+    &:hover,
+    &:active {
+        background: none;
+    }
+    
+    &:active {
+        transform: scale(0.97);
+    }
+    
+    > .start,
+    > .pause {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+    }
+    
+    > .start {
+        width: 14px;
+        height: 18px;
+        margin-left: -5px;
+        margin-top: -9px;        
+    }
+    
+    > .pause {
+        width: 8px;
+        height: 16px;
+        margin-left: -3px;
+        margin-top: -8px;
+    }
+    
+    > .start > polygon,
+    > .pause > polygon {
+        fill: transparent;
+        stroke: $darkester-gray;
+        stroke-width: 1.2px;
+    }
+    
+    > .border {
+        width: 100%;
+        height: 100%;
+    }
+    
+    > .border > circle {
+        cx: 30px;
+        cy: 30px;
+        r: 29px;
+        fill: transparent;
+        stroke: $bg-gray;
+        stroke-width: 2px;
+    }
+    
+    &:hover .border > circle {
+        fill: $bg-gray;
+        stroke: $bg-dark-gray;
+    }
+    
+    &:active .border > circle {
+        fill: $bg-dark-gray;
+        stroke: hsl(0, 0%, 71%); /* ??? */
+    }
+}
+
+#start-pause-button[disabled] {
+    &:active {
+        transform: none;
+    }
+    
+    > .start > polygon {
+        stroke: $bg-dark-gray;
+    }
+    
+    &:hover .border > circle,
+    &:active .border > circle {
+        fill: transparent;
+        stroke: $bg-gray;
+    }
+}
