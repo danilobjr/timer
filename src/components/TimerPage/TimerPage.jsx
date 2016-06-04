@@ -5,7 +5,7 @@ import {
     NavigationBar 
 } from 'components/common';
 
-export class Timer extends Component {
+export class TimerPage extends Component {
     render() {
         // back use for FlexBox n FlexItem when done with new Timer/Counter component
         return (
