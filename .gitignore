@@ -1,3 +1,4 @@
 node_modules
 *.log
 build/bundle.js
+*.txt
