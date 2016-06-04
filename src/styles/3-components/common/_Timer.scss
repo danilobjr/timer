@@ -1,0 +1,77 @@
+.timer {
+    & {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 344px;
+        height: 205px;
+        box-sizing: border-box;
+        
+        border: 2px solid $bg-gray;
+    }
+    
+    &:hover {
+    }
+    
+    > .counter {
+        color: $darker-gray;
+        font-size: 2.7rem;
+    }
+    
+    > .commands > button {
+        width: 48px;
+        height: 48px;
+        color: $darkester-gray;
+        font-size: 1.8rem;
+        background-color: transparent;
+        border: none;
+    }
+    
+    > .commands > button:hover {
+        background-color: $bg-gray;
+    }
+    
+    > .commands > button:active {
+        background-color: $bg-dark-gray;
+    }
+    
+    > .commands > button:focus {
+        outline: none;
+    }
+    
+    > .commands > button > span:before {
+        position: relative;
+        top: -1px;
+    }
+    
+    > .info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    > .info > .name {
+        color: $darkest-gray;
+        font-size: 0.95rem;
+    }
+}
+
+.counter {
+    display: flex;
+    justify-content: space-between;
+    color: $darkest-gray;
+    font-weight: 700;
+}
+
+.counter > .unit.active {
+    color: black;
+}
+
+.counter > .unit:not(:last-of-type):after {
+    content: ':';
+    position: relative;
+    top: -0.15em;
+    margin: 0 0.09em;
+    font-size: 0.82em;
+}
