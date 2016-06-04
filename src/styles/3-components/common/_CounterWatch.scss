@@ -1,0 +1,20 @@
+.counter-watch {
+    & {
+        display: flex;
+        justify-content: space-between;
+        color: $darkest-gray;
+        font-weight: 700;
+    }
+    
+    > .unit.active {
+        color: black;
+    }
+    
+    > .unit:not(:last-of-type):after {
+        content: ':';
+        position: relative;
+        top: -0.15em;
+        margin: 0 0.09em;
+        font-size: 0.82em;
+    }
+}
