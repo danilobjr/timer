@@ -10,14 +10,11 @@ module.exports = {
         filename: 'bundle.js',
         publicPath: 'http://localhost:8080/built/'
     },
-    devServer: {
-        contentBase: './public',
-        publicPath: 'http://localhost:8080/built/'
-    },
     resolve: {
         root: path.resolve(__dirname),
         alias: {
-            components: 'src/components'
+            components: 'src/components',
+            helpers: 'src/helpers'
         },
         extensions: ['', '.js', '.jsx', '.sass', '.scss']
     },
@@ -38,6 +35,11 @@ module.exports = {
                 loader: 'file'
             }
         ]
+    },
+    devtool: 'source-map',
+    devServer: {
+        contentBase: './public',
+        publicPath: 'http://localhost:8080/built/'
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin()
