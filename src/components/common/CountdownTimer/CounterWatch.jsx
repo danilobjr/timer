@@ -10,13 +10,13 @@ export class CounterWatch extends Component {
         
         return (
             <div className="counter-watch">
-                <span className={`unit ${this.renderActiveClass(oneHour)}`}>
+                <span className={`unit ${this.renderActiveClass(oneHour)}`} title="Hours">
                     {this.padLeftWithZero(hours)}
                 </span>
-                <span className={`unit ${this.renderActiveClass(oneMinute)}`}>
+                <span className={`unit ${this.renderActiveClass(oneMinute)}`} title="Minutes">
                     {this.padLeftWithZero(minutes)}
                 </span>
-                <span className={`unit ${this.renderActiveClass(oneSecond)}`}>
+                <span className={`unit ${this.renderActiveClass(oneSecond)}`} title="Seconds">
                     {this.padLeftWithZero(seconds)}
                 </span>
             </div>

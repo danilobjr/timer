@@ -9,7 +9,7 @@ export const StartPauseButton = (props) => {
     const { showPause, onClick } = props;
     
     return (
-        <button {...props} id="start-pause-button">
+        <button {...props} id="start-pause-button" title="Start/Pause">
             <svg 
                 className="border"
                 version="1.1" 
