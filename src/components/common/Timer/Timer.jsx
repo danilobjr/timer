@@ -42,7 +42,7 @@ export class Timer extends Component {
                     showPause={!paused}
                     percentageProgress={this.calculatePercentageProgress()}
                     onClickStartPauseButton={this.togglePaused.bind(this)}
-                    onClickResetButton={() => console.log('Reset clicked')}
+                    onClickResetButton={this.resetCounter.bind(this)}
                     onClickExpandButton={() => console.log('Expand clicked')}
                 />
                 <div className="info">
@@ -66,6 +66,10 @@ export class Timer extends Component {
     
     togglePaused() {
         this.setState({ paused: !this.state.paused });
+    }
+    
+    resetCounter() {
+        this.setState({ counter: 0 });
     }
 }
 
