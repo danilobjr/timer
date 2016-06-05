@@ -6,7 +6,7 @@
         height: 100%;
         min-width: 64px;
         padding: 6px;
-        color: $darkest-gray;
+        color: $scorpion;
         box-sizing: border-box;
         cursor: default;
     }
@@ -20,14 +20,14 @@
     } 
     
     &:hover {
-        background-color: $bg-dark-gray;
+        background-color: $silver;
     }
     
     &.-active {
-        border-bottom: 2px solid $blue;
+        border-bottom: 2px solid $mariner;
     }
     
     &.-active > .link {
-        color: $blue;
+        color: $mariner;
     }
 }

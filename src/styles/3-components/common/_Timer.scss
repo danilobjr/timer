@@ -10,11 +10,11 @@
     }
     
     &:hover {
-        border: 2px solid $bg-gray;        
+        border: 2px solid $alto;        
     }
     
     > .counter-watch {
-        color: $darker-gray;
+        color: $dusty-gray;
         font-size: 2.7rem;
     }
     
@@ -25,7 +25,7 @@
     }
     
     > .info > .name {
-        color: $darkest-gray;
+        color: $scorpion;
         font-size: 0.95rem;
     }
 }

@@ -6,13 +6,13 @@
         align-items: center;
         min-height: 48px;
         padding-bottom: 4px;
-        color: $darkest-gray;
+        color: $scorpion;
         font-size: 1.4rem;
         box-sizing: border-box;
         cursor: default;
     }
     
     &:hover {
-        background-color: $bg-dark-gray;
+        background-color: $silver;
     }
 }

@@ -37,12 +37,12 @@
     
     > .start > polygon {
         fill: transparent;
-        stroke: $darkester-gray;
+        stroke: $mine-shaft;
         stroke-width: 1.2px;
     }
     
     > .pause > line {
-        stroke: $darkester-gray;
+        stroke: $mine-shaft;
         stroke-width: 1.5px;
         stroke-linecap: round;
     }
@@ -59,7 +59,7 @@
     }
     
     > .border > circle {
-        stroke: $bg-gray;
+        stroke: $alto;
     }
     
     > .time-progress {
@@ -70,7 +70,7 @@
     }
     
     > .time-progress > circle {
-        stroke: $blue;
+        stroke: $mariner;
         stroke-dasharray: 182px;        
         transform: rotateZ(-90deg);
         transform-origin: center center;
@@ -79,12 +79,12 @@
     }
     
     &:hover .border > circle {
-        fill: $bg-gray;
-        stroke: $bg-dark-gray;
+        fill: $alto;
+        stroke: $silver;
     }
     
     &:active .border > circle {
-        fill: $bg-dark-gray;
+        fill: $silver;
         stroke: hsl(0, 0%, 71%); /* ??? */
     }
 }
@@ -95,12 +95,12 @@
     }
     
     > .start > polygon {
-        stroke: $bg-dark-gray;
+        stroke: $silver;
     }
     
     &:hover .border > circle,
     &:active .border > circle {
         fill: transparent;
-        stroke: $bg-gray;
+        stroke: $alto;
     }
 }
