@@ -1,0 +1,37 @@
+.timer-commands {
+    & {
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+    }
+    
+    > #start-pause-button {
+        margin: 0 42px;
+    }
+    
+    > button {
+        width: 48px;
+        height: 48px;
+        color: $darkester-gray;
+        font-size: 1.8rem;
+        background-color: transparent;
+        border: none;
+    }
+    
+    > button:hover {
+        background-color: $bg-gray;
+    }
+    
+    > button:active {
+        background-color: $bg-dark-gray;
+    }
+    
+    > button:focus {
+        outline: none;
+    }
+    
+    > button > span:before {
+        position: relative;
+        top: -1px;
+    }
+}
