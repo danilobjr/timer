@@ -6,7 +6,7 @@ const calculateStrokeDashoffsetSize = (percentageProgress) =>
     ((1 - percentageProgress) * 100) * 182 / 100 + 'px'
 
 export const StartPauseButton = (props) => { 
-    const { showPause } = props;
+    const { showPause, onClick } = props;
     
     return (
         <button {...props} id="start-pause-button">
@@ -64,5 +64,6 @@ const validatePercentageProgressProp = (props, propName, componentName) => {
 
 StartPauseButton.propTypes = {
     showPause: PropTypes.bool,
-    percentageProgress: validatePercentageProgressProp 
+    percentageProgress: validatePercentageProgressProp ,
+    onClick: PropTypes.func.isRequired
 };
