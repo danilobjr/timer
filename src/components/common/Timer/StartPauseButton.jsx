@@ -7,14 +7,29 @@ export const StartPauseButton = (props) => {
     
     return (
         <button {...props} id="start-pause-button">
-            <svg className="border">
+            <svg 
+                className="border"
+                version="1.1" 
+                xmlns="http://www.w3.org/2000/svg"
+            >
                 <circle cx="35" cy="35" r="35" />
             </svg>
-            <svg className={`start icon ${renderHiddenClassWhen(isPlaying)}`}>
+            
+            <svg 
+                className={`start icon ${renderHiddenClassWhen(isPlaying)}`}
+                version="1.1" 
+                xmlns="http://www.w3.org/2000/svg"
+            >
                 <polygon points="1,1 13,9 1,17" />
             </svg>
-            <svg className={`pause icon ${renderHiddenClassWhen(!isPlaying)}`}>
-                <polygon points="1,1 1,16 7,1 7,16" />
+            
+            <svg 
+                className={`pause icon ${renderHiddenClassWhen(!isPlaying)}`} 
+                version="1.1" 
+                xmlns="http://www.w3.org/2000/svg"
+            >        
+                <line x1="1" y1="0.7" x2="1" y2="15.3"/>
+                <line x1="7" y1="0.7" x2="7" y2="15.3" />
             </svg>
         </button>
     );

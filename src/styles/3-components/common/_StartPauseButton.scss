@@ -15,8 +15,7 @@
         transform: scale(0.97);
     }
     
-    > .start,
-    > .pause {
+    > .icon {
         position: absolute;
         left: 50%;
         top: 50%;
@@ -32,15 +31,20 @@
     > .pause {
         width: 8px;
         height: 16px;
-        margin-left: -3px;
+        margin-left: -4px;
         margin-top: -8px;
     }
     
-    > .start > polygon,
-    > .pause > polygon {
+    > .start > polygon {
         fill: transparent;
         stroke: $darkester-gray;
         stroke-width: 1.2px;
+    }
+    
+    > .pause > line {
+        stroke: $darkester-gray;
+        stroke-width: 1.5px;
+        stroke-linecap: round;
     }
     
     > .border {
