@@ -19,11 +19,13 @@ export class Timer extends Component {
         const oneSecond = 1000;
         
         this.interval = setInterval(() => {
-            const { paused, counter } = this.state;
+            const { paused, counter } = this.state;            
             
             if (!paused) {
                 this.setState({ counter: counter + oneSecond });
             }
+            
+            this.stopIfTimeIsOver();
         }, oneSecond);
     }
     
@@ -62,6 +64,10 @@ export class Timer extends Component {
         
         const remainingTime = this.props.time - this.state.counter;
         return remainingTime / this.props.time
+    }
+    
+    stopIfTimeIsOver() {
+        this.props.time === this.state.counter && this.setState({ paused: true });
     }
     
     togglePaused() {
