@@ -72,6 +72,8 @@
         stroke-dasharray: 182px;        
         transform: rotateZ(-90deg);
         transform-origin: center center;
+        
+        @include make-transition(stroke-dashoffset);
     }
     
     &:hover .border > circle {
