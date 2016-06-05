@@ -7,8 +7,10 @@
         width: 344px;
         height: 205px;
         box-sizing: border-box;
-        
-        border: 2px solid $bg-gray;
+    }
+    
+    &:hover {
+        border: 2px solid $bg-gray;        
     }
     
     > .counter-watch {
