@@ -26,3 +26,9 @@ button:active {
 span {
     cursor: default;
 }
+
+* {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
