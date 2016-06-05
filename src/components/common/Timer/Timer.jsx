@@ -42,6 +42,7 @@ export class Timer extends Component {
                 <CounterWatch currentTime={counter} totalTime={time} />
                 <TimerCommands 
                     showPause={!paused}
+                    showResetButton={this.shouldShowResetButton()}
                     percentageProgress={this.calculatePercentageProgress()}
                     onClickStartPauseButton={this.togglePaused.bind(this)}
                     onClickResetButton={this.resetCounter.bind(this)}
@@ -53,6 +54,11 @@ export class Timer extends Component {
                 </div>
             </div>
         );
+    }
+    
+    shouldShowResetButton() {
+        const { paused, counter } = this.state;        
+        return !(paused && counter === 0);
     }
     
     calculatePercentageProgress() {
