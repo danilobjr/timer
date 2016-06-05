@@ -1,26 +1,38 @@
 import React, { Component, PropTypes } from 'react';
-import { compose, time, replace, padLeft } from 'helpers';
+import { compose, time, milliseconds, replace, padLeft } from 'helpers';
 
 export class CounterWatch extends Component {
     render() {
-        const [ hours, minutes, seconds ] = this.getRemainingTime();
+        const [ hours, minutes, seconds ] = time(this.getRemainingTime());
+        const oneSecond = milliseconds(0,0,1);
+        const oneMinute = milliseconds(0,1);
+        const oneHour = milliseconds(1);
         
         return (
             <div className="counter-watch">
-                <span className="unit">{this.padLeftWithZero(hours)}</span>
-                <span className="unit active">{this.padLeftWithZero(minutes)}</span>
-                <span className="unit active">{this.padLeftWithZero(seconds)}</span>
+                <span className={`unit ${this.renderActiveClass(oneHour)}`}>
+                    {this.padLeftWithZero(hours)}
+                </span>
+                <span className={`unit ${this.renderActiveClass(oneMinute)}`}>
+                    {this.padLeftWithZero(minutes)}
+                </span>
+                <span className={`unit ${this.renderActiveClass(oneSecond)}`}>
+                    {this.padLeftWithZero(seconds)}
+                </span>
             </div>
         );
     }
     
+    renderActiveClass(value) {
+        console.log(this.getRemainingTime(),value);
+        return this.getRemainingTime() >= value ? '-active' : '';
+    }
+    
     getRemainingTime() {
-        console.log(time(this.props.totalTime - this.props.currentTime));
-        return time(this.props.totalTime - this.props.currentTime);
+        return this.props.totalTime - this.props.currentTime;
     }
     
     padLeftWithZero(value) {
-        console.log(compose(replace(' ', '0'), padLeft(2))(value));
         return compose(replace(' ')('0'), padLeft(2))(value);
     }
 }
