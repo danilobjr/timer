@@ -1,10 +1,12 @@
 .flex-box {
     & {
         display: flex;
-        height: 100vh;
     }
     
-    &.-column {
-        flex-direction: column;
-    }
+    &.-column { flex-direction: column; }    
+    &.-flex-start { justify-content: flex-start; }
+    &.-flex-end { justify-content: flex-end; }
+    &.-center { justify-content: center; }
+    &.-space-around { justify-content: space-around; }
+    &.-space-between { justify-content: space-between; }
 }
