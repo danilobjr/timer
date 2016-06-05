@@ -2,6 +2,9 @@ import React, { Component, PropTypes } from 'react';
 
 const renderHiddenClassWhen = (isHidden) => isHidden ? 'h-hidden' : '';
 
+const calculateStrokeDashoffsetSize = (percentageProgress) =>
+    ((1 - percentageProgress) * 100) * 182 / 100 + 'px'
+
 export const StartPauseButton = (props) => { 
     const { isPlaying } = props;
     
@@ -20,7 +23,9 @@ export const StartPauseButton = (props) => {
                 version="1.1" 
                 xmlns="http://www.w3.org/2000/svg"
             >
-                <circle cx="30" cy="30" r="29" style={{ strokeDashoffset: '182px' }} />
+                <circle cx="30" cy="30" r="29" 
+                    style={{ strokeDashoffset: calculateStrokeDashoffsetSize(props.percentageProgress) }} 
+                />
             </svg>
             
             <svg 
