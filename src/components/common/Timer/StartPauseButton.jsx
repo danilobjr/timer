@@ -12,7 +12,15 @@ export const StartPauseButton = (props) => {
                 version="1.1" 
                 xmlns="http://www.w3.org/2000/svg"
             >
-                <circle cx="35" cy="35" r="35" />
+                <circle cx="30" cy="30" r="29" />
+            </svg>
+            
+            <svg 
+                className="time-progress"
+                version="1.1" 
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <circle cx="30" cy="30" r="29" style={{ strokeDashoffset: '182px' }} />
             </svg>
             
             <svg 

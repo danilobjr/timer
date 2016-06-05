@@ -52,13 +52,26 @@
         height: 100%;
     }
     
-    > .border > circle {
-        cx: 30px;
-        cy: 30px;
-        r: 29px;
+    > .border > circle,
+    > .time-progress > circle {
         fill: transparent;
-        stroke: $bg-gray;
         stroke-width: 2px;
+    }
+    
+    > .border > circle {
+        stroke: $bg-gray;
+    }
+    
+    > .time-progress {
+        position: absolute;
+        left: 0;
+    }
+    
+    > .time-progress > circle {
+        stroke: $blue;
+        stroke-dasharray: 182px;        
+        transform: rotateZ(-90deg);
+        transform-origin: center center;
     }
     
     &:hover .border > circle {
