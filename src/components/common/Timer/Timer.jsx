@@ -44,6 +44,7 @@ export class Timer extends Component {
                     showPause={!paused}
                     showResetButton={this.shouldShowResetButton()}
                     percentageProgress={this.calculatePercentageProgress()}
+                    disableStartPauseButton={this.shouldDisableStartPauseButton()}
                     onClickStartPauseButton={this.togglePaused.bind(this)}
                     onClickResetButton={this.resetCounter.bind(this)}
                     onClickExpandButton={() => console.log('Expand clicked')}
@@ -59,6 +60,11 @@ export class Timer extends Component {
     shouldShowResetButton() {
         const { paused, counter } = this.state;        
         return !(paused && counter === 0);
+    }
+    
+    shouldDisableStartPauseButton() {
+        const { paused, counter } = this.state;
+        return paused && counter === this.props.time;
     }
     
     calculatePercentageProgress() {
