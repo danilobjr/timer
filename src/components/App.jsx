@@ -4,8 +4,7 @@ import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
-import { TimerPage } from 'components/TimerPage';
-import { ChronometerPage } from 'components/ChronometerPage';
+import { ChronometerPage, TimerPage } from 'components/pages';
 import { appReducers } from './appReducers';
 
 const store = createStore(appReducers);
