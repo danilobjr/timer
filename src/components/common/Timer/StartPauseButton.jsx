@@ -6,7 +6,7 @@ const calculateStrokeDashoffsetSize = (percentageProgress) =>
     ((1 - percentageProgress) * 100) * 182 / 100 + 'px'
 
 export const StartPauseButton = (props) => { 
-    const { isCounting } = props;
+    const { showPause } = props;
     
     return (
         <button {...props} id="start-pause-button">
@@ -29,7 +29,7 @@ export const StartPauseButton = (props) => {
             </svg>
             
             <svg 
-                className={`start icon ${renderHiddenClassWhen(isCounting)}`}
+                className={`start icon ${renderHiddenClassWhen(showPause)}`}
                 version="1.1" 
                 xmlns="http://www.w3.org/2000/svg"
             >
@@ -37,7 +37,7 @@ export const StartPauseButton = (props) => {
             </svg>
             
             <svg 
-                className={`pause icon ${renderHiddenClassWhen(!isCounting)}`} 
+                className={`pause icon ${renderHiddenClassWhen(!showPause)}`} 
                 version="1.1" 
                 xmlns="http://www.w3.org/2000/svg"
             >        
@@ -63,6 +63,6 @@ const validatePercentageProgressProp = (props, propName, componentName) => {
 }
 
 StartPauseButton.propTypes = {
-    isCounting: PropTypes.bool,
+    showPause: PropTypes.bool,
     percentageProgress: validatePercentageProgressProp 
 };
