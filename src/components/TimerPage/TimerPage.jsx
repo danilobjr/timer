@@ -2,26 +2,27 @@ import React, { Component } from 'react';
 import { 
     CommandBar, CommandBarItem, 
     FlexBox, FlexItem,
-    NavigationBar,
-    Timer
+    NavigationBar, PageView, 
+    CountdownTimer
 } from 'components/common';
 
 export class TimerPage extends Component {
     render() {
-        // back use for FlexBox n FlexItem when done with new Timer/Counter component
         return (
-            <div>
+            <PageView className="timer-page">
                 <NavigationBar />
-                <div style={{display: 'flex', justifyContent: 'center', paddingTop: '12px'}}>
-                    <Timer name="My interval" time={5000} />
-                    <Timer name="Time to lunch" time={720000} />
-                </div>
+                <FlexItem className="timers-list" grow={1}>
+                    <FlexBox justify='center'>
+                        <CountdownTimer name="My interval" time={5000} />
+                        <CountdownTimer name="Time to lunch" time={720000} />
+                    </FlexBox>
+                </FlexItem>
                 <CommandBar>
                     <CommandBarItem icon="ion-md-add" />
                     <CommandBarItem icon="ion-md-trash" />
                     <CommandBarItem icon="ion-md-more" />
                 </CommandBar>
-            </div>
+            </PageView>
         );
     }
 }

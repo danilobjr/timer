@@ -3,7 +3,7 @@ import { CounterWatch } from './CounterWatch';
 import { StartPauseButton } from './StartPauseButton';
 import { TimerCommands } from './TimerCommands';
 
-export class Timer extends Component {
+export class CountdownTimer extends Component {
     constructor(props) {
         super(props);
     
@@ -38,7 +38,7 @@ export class Timer extends Component {
         const { name, time } = this.props;
         
         return (
-            <div className="timer">
+            <div className="countdown-timer">
                 <CounterWatch currentTime={counter} totalTime={time} />
                 <TimerCommands 
                     showPause={!paused}
@@ -91,11 +91,11 @@ export class Timer extends Component {
     }
 }
 
-Timer.propTypes = {
+CountdownTimer.propTypes = {
     name: PropTypes.string,
     time: PropTypes.number.isRequired
 };
 
-Timer.defaultProps = {
+CountdownTimer.defaultProps = {
     name: 'Timer'
 };
