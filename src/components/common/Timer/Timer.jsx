@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { CounterWatch } from './CounterWatch';
 import { StartPauseButton } from './StartPauseButton';
+import { TimerCommands } from './TimerCommands';
 
 export class Timer extends Component {
     constructor(props) {
@@ -37,19 +38,13 @@ export class Timer extends Component {
         return (
             <div className="timer">
                 <CounterWatch currentTime={counter} totalTime={time} />
-                <div className="commands">
-                    <button className="reset">
-                        <span className="icon ion-md-refresh"></span>
-                    </button>
-                    <StartPauseButton 
-                        showPause={!paused}
-                        percentageProgress={this.calculatePercentageProgress()}
-                        onClick={this.togglePaused.bind(this)}
-                    />
-                    <button className="expand">
-                        <span className="icon ion-md-expand"></span>
-                    </button>
-                </div>
+                <TimerCommands 
+                    showPause={!paused}
+                    percentageProgress={this.calculatePercentageProgress()}
+                    onClickStartPauseButton={this.togglePaused.bind(this)}
+                    onClickResetButton={() => console.log('Reset clicked')}
+                    onClickExpandButton={() => console.log('Expand clicked')}
+                />
                 <div className="info">
                     <span className="name">{name}</span>
                     <CounterWatch totalTime={time} />
