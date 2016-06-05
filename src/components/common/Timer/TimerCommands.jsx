@@ -3,16 +3,18 @@ import { StartPauseButton } from './StartPauseButton';
 
 export class TimerCommands extends Component {
     render() {
-        const { showPause, percentageProgress, 
+        const { disablePlayPauseButton, showPause, 
+                showResetButton, percentageProgress, 
                 onClickStartPauseButton, onClickResetButton,
                 onClickExpandButton } = this.props;
         
         return (
             <div className="timer-commands">
-                <button className="reset" onClick={onClickResetButton}>
+                <button className={`reset ${!showResetButton ? 'h-hidden' : ''}`} onClick={onClickResetButton}>
                     <span className="icon ion-md-refresh"></span>
                 </button>
                 <StartPauseButton 
+                    disabled={disablePlayPauseButton}
                     showPause={showPause}
                     percentageProgress={percentageProgress}
                     onClick={onClickStartPauseButton}
@@ -40,7 +42,9 @@ const validatePercentageProgressProp = (props, propName, componentName) => {
 }
 
 TimerCommands.propTypes = {
+    disablePlayPauseButton: PropTypes.bool,
     showPause: PropTypes.bool,
+    showResetButton: PropTypes.bool,
     percentageProgress: validatePercentageProgressProp,
     onClickStartPauseButton: PropTypes.func.isRequired,
     onClickResetButton: PropTypes.func,
