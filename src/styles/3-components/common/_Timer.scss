@@ -18,42 +18,6 @@
         font-size: 2.7rem;
     }
     
-    > .commands {
-        display: flex;
-        align-items: center;
-        margin: 10px 0;
-    }
-    
-    > .commands > #start-pause-button {
-        margin: 0 42px;
-    }
-    
-    > .commands > button {
-        width: 48px;
-        height: 48px;
-        color: $darkester-gray;
-        font-size: 1.8rem;
-        background-color: transparent;
-        border: none;
-    }
-    
-    > .commands > button:hover {
-        background-color: $bg-gray;
-    }
-    
-    > .commands > button:active {
-        background-color: $bg-dark-gray;
-    }
-    
-    > .commands > button:focus {
-        outline: none;
-    }
-    
-    > .commands > button > span:before {
-        position: relative;
-        top: -1px;
-    }
-    
     > .info {
         display: flex;
         flex-direction: column;
