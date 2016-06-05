@@ -24,7 +24,6 @@ export class CounterWatch extends Component {
     }
     
     renderActiveClass(value) {
-        console.log(this.getRemainingTime(),value);
         return this.getRemainingTime() >= value ? '-active' : '';
     }
     
