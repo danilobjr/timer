@@ -13,7 +13,8 @@ export class TimerPage extends Component {
             <div>
                 <NavigationBar />
                 <div style={{display: 'flex', justifyContent: 'center', paddingTop: '12px'}}>
-                    <Timer />
+                    <Timer name="My interval" time={5000} />
+                    <Timer name="Time to lunch" time={720000} />
                 </div>
                 <CommandBar>
                     <CommandBarItem icon="ion-md-add" />
