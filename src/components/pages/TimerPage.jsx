@@ -12,7 +12,7 @@ export class TimerPage extends Component {
             <PageView className="timer-page">
                 <NavigationBar />
                 <FlexItem className="timers-list" grow={1}>
-                    <FlexBox justify='center'>
+                    <FlexBox wrap justify='center'>
                         <CountdownTimer name="My interval" time={5000} />
                         <CountdownTimer name="Time to lunch" time={720000} />
                     </FlexBox>
