@@ -9,7 +9,8 @@ export class CountdownTimer extends Component {
     
         this.state = {
             paused: true,
-            counter: 0
+            counter: 0,
+            expanded: false
         };
         
         this.interval = null;
@@ -34,12 +35,12 @@ export class CountdownTimer extends Component {
     }
     
     render() {
-        const { paused, counter } = this.state;
+        const { paused, counter, expanded } = this.state;
         const { name, time } = this.props;
         
         return (
-            <div className="countdown-timer">
-                <CounterWatch currentTime={counter} totalTime={time} />
+            <div className={this.renderCountdownTimerCssClasses()}>
+                <CounterWatch currentTime={counter} totalTime={time} lightTheme={expanded} />
                 <TimerCommands 
                     showPause={!paused}
                     showResetButton={this.shouldShowResetButton()}
@@ -47,7 +48,7 @@ export class CountdownTimer extends Component {
                     disableStartPauseButton={this.shouldDisableStartPauseButton()}
                     onClickStartPauseButton={this.togglePaused.bind(this)}
                     onClickResetButton={this.resetCounter.bind(this)}
-                    onClickExpandButton={() => console.log('Expand clicked')}
+                    onClickExpandButton={this.toggleExpanded.bind(this)}
                 />
                 <div className="info">
                     <span className="name">{name}</span>
@@ -55,6 +56,10 @@ export class CountdownTimer extends Component {
                 </div>
             </div>
         );
+    }
+    
+    renderCountdownTimerCssClasses() {
+        return `countdown-timer ${this.state.expanded ? '-expanded' : ''}`;
     }
     
     shouldShowResetButton() {
@@ -82,12 +87,16 @@ export class CountdownTimer extends Component {
         this.props.time === this.state.counter && this.setState({ paused: true });
     }
     
+    resetCounter() {
+        this.setState({ counter: 0 });
+    }
+    
     togglePaused() {
         this.setState({ paused: !this.state.paused });
     }
     
-    resetCounter() {
-        this.setState({ counter: 0 });
+    toggleExpanded() {
+        this.setState({ expanded: !this.state.expanded });
     }
 }
 
