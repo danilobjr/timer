@@ -20,8 +20,15 @@ a {
     text-decoration: none;
 }
 
-button:active {
-    transform: scale(0.98);
+button {
+    & {
+        background-color: transparent;
+        border: none;
+    }
+    
+    &.-reactive:active {        
+        transform: scale(0.98);
+    }
 }
 
 span {

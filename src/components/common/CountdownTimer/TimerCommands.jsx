@@ -11,7 +11,7 @@ export class TimerCommands extends Component {
         return (
             <div className="timer-commands">
                 <button 
-                    className={`reset ${!showResetButton ? 'h-hidden' : ''}`} 
+                    className={`reset -reactive ${!showResetButton ? 'h-hidden' : ''}`} 
                     onClick={onClickResetButton}
                     title="Reset"
                 >
@@ -23,7 +23,7 @@ export class TimerCommands extends Component {
                     percentageProgress={percentageProgress}
                     onClick={onClickStartPauseButton}
                 />
-                <button className="expand" onClick={onClickExpandButton} title="Expand">
+                <button className="expand -reactive" onClick={onClickExpandButton} title="Expand">
                     <span className="icon ion-md-expand"></span>
                 </button>
             </div>
