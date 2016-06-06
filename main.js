@@ -5,9 +5,13 @@ const BrowserWindow = electron.BrowserWindow;
 let mainWindow;
 
 const createMainWindow = () => {
-    mainWindow = new BrowserWindow({ width: 1366, height: 768 });
+    mainWindow = new BrowserWindow({ 
+        width: 1366, height: 768, 
+        minWidth: 354, minHeight: 540 
+    });
+    
     mainWindow.loadURL(`file://${__dirname}/public/index.html`);
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
     mainWindow.on('closed', () => {
         mainWindow = null;
     });    
