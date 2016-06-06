@@ -17,4 +17,12 @@
         margin: 0 0.09em;
         font-size: 0.82em;
     }
+    
+    &.-lighttheme > .unit {
+        color: $corn-flower-blue;
+    }
+    
+    &.-lighttheme > .unit.-active {
+        color: $white;
+    }
 }

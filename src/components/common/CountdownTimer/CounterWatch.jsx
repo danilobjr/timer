@@ -9,7 +9,7 @@ export class CounterWatch extends Component {
         const oneHour = milliseconds(1);
         
         return (
-            <div className="counter-watch">
+            <div className={this.renderCounterWatchCssClasses()}>
                 <span className={`unit ${this.renderActiveClass(oneHour)}`} title="Hours">
                     {this.padLeftWithZero(hours)}
                 </span>
@@ -21,6 +21,10 @@ export class CounterWatch extends Component {
                 </span>
             </div>
         );
+    }
+    
+    renderCounterWatchCssClasses() {
+        return `counter-watch ${this.props.lightTheme ? '-lighttheme' : ''}`.trim();
     }
     
     renderActiveClass(value) {
@@ -38,7 +42,8 @@ export class CounterWatch extends Component {
 
 CounterWatch.propTypes = {
     currentTime: PropTypes.number,
-    totalTime: PropTypes.number
+    totalTime: PropTypes.number,
+    lightTheme: PropTypes.bool
 };
 
 CounterWatch.defaultProps = {
