@@ -1,0 +1,64 @@
+.title-bar {
+    & {
+        display: flex;
+        height: 31px;
+        background-color: $alto;
+        
+        // -webkit-app-region: drag;
+    }
+    
+    > .title {
+        flex: 1;
+        padding: 6px 0 0 12px;
+        margin: 0;
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+    
+    > .window-controls {
+        display: flex;
+        flex-basis: 138px;
+    }
+    
+    > .window-controls > button {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    > .window-controls > button:hover {
+        background-color: $gainsboro;
+    }
+    
+    > .window-controls > button:active {
+        background-color: $light-gray;
+    }
+    
+    > .window-controls > button.-red:hover {
+        background-color: $crimson;
+    }
+    
+    > .window-controls > button.-red:active {
+        background-color: $light-coral;
+    }
+    
+    > .window-controls > button > svg {
+        width: 10px;
+        height: 10px;
+    }
+
+    > .window-controls > button > svg > * {
+        fill: transparent;
+        stroke: $black;
+        stroke-width: 1px;
+    }
+
+    > .window-controls > button.-red:hover > svg > * {
+        stroke: $white;
+    }
+    
+    > .window-controls > button.-red:active > svg > * {
+        stroke: $black;
+    }
+}
