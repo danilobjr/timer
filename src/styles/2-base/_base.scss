@@ -16,6 +16,7 @@ a {
 
 button {
     & {
+        padding: 0;
         background-color: transparent;
         border: none;
     }
@@ -29,6 +30,7 @@ button {
     }
 }
 
+h5, 
 span {
     cursor: default;
 }
