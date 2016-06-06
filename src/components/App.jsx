@@ -4,6 +4,7 @@ import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
+import { TitleBar } from 'components/common';
 import { ChronometerPage, TimerPage } from 'components/pages';
 import { appReducers } from './appReducers';
 
@@ -14,11 +15,14 @@ export class App extends Component {
     render() {
         return (
             <Provider store={store}>
-                <Router history={history}>
-                    <Route path="/" component={TimerPage} />
-                    <Route path="/timer" component={TimerPage} />
-                    <Route path="/chronometer" component={ChronometerPage} />
-                </Router>
+                <div>    
+                    <TitleBar />        
+                    <Router history={history}>
+                        <Route path="/" component={TimerPage} />
+                        <Route path="/timer" component={TimerPage} />
+                        <Route path="/chronometer" component={ChronometerPage} />
+                    </Router>                
+                </div>
             </Provider>
         );
     }
