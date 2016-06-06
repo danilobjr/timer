@@ -7,7 +7,7 @@ body,
 body {
     font-family: $font-family;
     background-color: $gallery;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 ul {
@@ -30,6 +30,4 @@ span {
 
 * {
     -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
 }
