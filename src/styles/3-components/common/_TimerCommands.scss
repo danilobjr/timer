@@ -24,10 +24,6 @@
         background-color: $silver;
     }
     
-    > button:focus {
-        outline: none;
-    }
-    
     > button > span:before {
         position: relative;
         top: -1px;

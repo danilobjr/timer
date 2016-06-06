@@ -23,6 +23,10 @@ button {
     &.-reactive:active {        
         transform: scale(0.98);
     }
+    
+    &:focus {
+        outline: none;
+    }
 }
 
 span {
