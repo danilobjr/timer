@@ -10,6 +10,7 @@ const createMainWindow = () => {
         minWidth: 354, minHeight: 540 
     });
     
+    mainWindow.setMenu(null);
     mainWindow.loadURL(`file://${__dirname}/public/index.html`);
     // mainWindow.webContents.openDevTools();
     mainWindow.on('closed', () => {
