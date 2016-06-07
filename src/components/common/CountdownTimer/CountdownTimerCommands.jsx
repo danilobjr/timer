@@ -3,7 +3,7 @@ import { BaseComponent } from 'BaseComponent';
 import { connect } from 'react-redux';
 import { StartPauseButton } from './StartPauseButton';
 
-export class TimerCommands extends BaseComponent {
+export class CountdownTimerCommands extends BaseComponent {
     render() {
         const { lightTheme, disableStartPauseButton, showPause, 
                 showResetButton, percentageProgress, 
@@ -11,7 +11,7 @@ export class TimerCommands extends BaseComponent {
                 onClickExpandButton } = this.props;
         
         return (
-            <div className="timer-commands">
+            <div className="countdown-timer-commands">
                 <button 
                     className={this.renderResetButtonCssClasses()} 
                     onClick={onClickResetButton}
@@ -67,7 +67,7 @@ const validatePercentageProgressProp = (props, propName, componentName) => {
     return null;
 }
 
-TimerCommands.propTypes = {
+CountdownTimerCommands.propTypes = {
     lightTheme: PropTypes.bool,
     disableStartPauseButton: PropTypes.bool,
     showPause: PropTypes.bool,

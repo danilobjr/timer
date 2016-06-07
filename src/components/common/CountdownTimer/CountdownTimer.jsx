@@ -3,7 +3,7 @@ import { BaseComponent } from 'BaseComponent';
 import { connect } from 'react-redux';
 import { CounterWatch } from './CounterWatch';
 import { StartPauseButton } from './StartPauseButton';
-import { TimerCommands } from './TimerCommands';
+import { CountdownTimerCommands } from './CountdownTimerCommands';
 import { turnOnLightTheme, turnOffLightTheme } from './actions';
 
 export class CountdownTimerComponent extends BaseComponent {
@@ -44,7 +44,7 @@ export class CountdownTimerComponent extends BaseComponent {
         return (
             <div className={this.renderCountdownTimerCssClasses()}>
                 <CounterWatch currentTime={counter} totalTime={time} lightTheme={expanded} />
-                <TimerCommands 
+                <CountdownTimerCommands 
                     lightTheme={expanded}
                     showPause={!paused}
                     showResetButton={this.shouldShowResetButton()}
