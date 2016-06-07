@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { BaseComponent } from 'BaseComponent';
 import { connect } from 'react-redux';
 import { StartPauseButton } from './StartPauseButton';
+import { CountdownCommandButton } from './CountdownCommandButton';
 
 export class CountdownTimerCommands extends BaseComponent {
     render() {
@@ -12,13 +13,14 @@ export class CountdownTimerCommands extends BaseComponent {
         
         return (
             <div className="countdown-timer-commands">
-                <button 
-                    className={this.renderResetButtonCssClasses()} 
-                    onClick={onClickResetButton}
+                <CountdownCommandButton
+                    className="reset"
+                    icon="ion-md-refresh"
                     title="Reset"
-                >
-                    <span className="icon ion-md-refresh"></span>
-                </button>
+                    showButton={showResetButton} 
+                    lightTheme={lightTheme}
+                    onClick={onClickResetButton}
+                /> 
                 <StartPauseButton 
                     lightTheme={lightTheme}
                     disabled={disableStartPauseButton}
@@ -26,13 +28,13 @@ export class CountdownTimerCommands extends BaseComponent {
                     percentageProgress={percentageProgress}
                     onClick={onClickStartPauseButton}
                 />
-                <button 
-                    className={this.renderCommonButtonCssClasses()} 
-                    onClick={onClickExpandButton} 
+                <CountdownCommandButton
+                    className="expand"
+                    icon="ion-md-expand"
                     title="Expand"
-                >
-                    <span className="icon ion-md-expand"></span>
-                </button>
+                    lightTheme={lightTheme}
+                    onClick={onClickExpandButton}
+                /> 
             </div>
         );
     }
