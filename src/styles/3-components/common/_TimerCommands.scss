@@ -28,4 +28,16 @@
         position: relative;
         top: -1px;
     }
+
+    & > button.-lightTheme {
+        color: $white;
+    }
+
+    & > button.-lightTheme:hover {
+        background-color: $steel-blue;
+    }
+
+    & > button.-lightTheme:active {
+        background-color: $corn-flower-blue;
+    }
 }
