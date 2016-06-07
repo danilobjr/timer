@@ -30,12 +30,11 @@
     }
     
     &.-expanded {
-        position: absolute;
-        width: 100vw;
-        height: 100vh;
-        left: 0;
-        top: 0;
         background-color: $mariner;
-        z-index: 1;
+        border: none;
+    }
+
+    &.-expanded > .info > .name {
+        color: $light-blue;
     }
 }
