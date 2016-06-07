@@ -36,6 +36,7 @@ export class NavigationBarItem extends BaseComponent {
 }
 
 NavigationBarItem.propTypes = {
+    href: PropTypes.string.isRequired,
     isActive: PropTypes.bool,
     iconClassName: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
