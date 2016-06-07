@@ -34,6 +34,19 @@
         border: none;
     }
 
+    &.-expanded > .counter-watch {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        margin-top: 14vh;
+        font-size: 15vw;
+    }
+
+    &.-expanded > .timer-commands {
+        order: 1;
+        margin: 0 0 7vh 0;
+    }
+
     &.-expanded > .info > .name {
         color: $light-blue;
     }
