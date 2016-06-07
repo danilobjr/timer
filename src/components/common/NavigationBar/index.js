@@ -1,7 +1,6 @@
-import { NavigationBar } from './NavigationBar';
+export * from './NavigationBar';
 import * as navigationBarReducers from './reducers';
 
 export {
-    NavigationBar,
     navigationBarReducers
 }

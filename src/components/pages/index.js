@@ -1,7 +1,2 @@
-import { ChronometerPage } from './ChronometerPage';
-import { TimerPage } from './TimerPage';
-
-export {
-    ChronometerPage,
-    TimerPage
-}
+export * from './ChronometerPage';
+export * from './TimerPage';

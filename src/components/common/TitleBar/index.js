@@ -1,5 +1,1 @@
-import { TitleBar } from './TitleBar';
-
-export {
-    TitleBar
-}
+export * from './TitleBar';

@@ -1,7 +1,2 @@
-import { CommandBar } from './CommandBar';
-import { CommandBarItem } from './CommandBarItem';
-
-export {
-    CommandBar,
-    CommandBarItem
-}
+export * from './CommandBar';
+export * from './CommandBarItem';

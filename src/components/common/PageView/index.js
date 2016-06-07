@@ -1,7 +1,2 @@
-import { PageView } from './PageView';
-import { PageContent } from './PageContent';
-
-export {
-    PageView,
-    PageContent
-}
+export * from './PageView';
+export * from './PageContent';
