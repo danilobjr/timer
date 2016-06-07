@@ -42,6 +42,7 @@ export class CountdownTimer extends Component {
             <div className={this.renderCountdownTimerCssClasses()}>
                 <CounterWatch currentTime={counter} totalTime={time} lightTheme={expanded} />
                 <TimerCommands 
+                    lightTheme={expanded}
                     showPause={!paused}
                     showResetButton={this.shouldShowResetButton()}
                     percentageProgress={this.calculatePercentageProgress()}
@@ -52,7 +53,7 @@ export class CountdownTimer extends Component {
                 />
                 <div className="info">
                     <span className="name">{name}</span>
-                    <CounterWatch totalTime={time} />
+                    <CounterWatch className={`${expanded ? 'h-hidden' : ''}`} totalTime={time} />
                 </div>
             </div>
         );

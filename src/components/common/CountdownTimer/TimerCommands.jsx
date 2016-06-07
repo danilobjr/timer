@@ -3,7 +3,7 @@ import { StartPauseButton } from './StartPauseButton';
 
 export class TimerCommands extends Component {
     render() {
-        const { disableStartPauseButton, showPause, 
+        const { lightTheme, disableStartPauseButton, showPause, 
                 showResetButton, percentageProgress, 
                 onClickStartPauseButton, onClickResetButton,
                 onClickExpandButton } = this.props;
@@ -11,19 +11,20 @@ export class TimerCommands extends Component {
         return (
             <div className="timer-commands">
                 <button 
-                    className={`reset -reactive ${!showResetButton ? 'h-hidden' : ''}`} 
+                    className={`reset -reactive ${lightTheme ? '-lightTheme' : ''} ${!showResetButton ? 'h-hidden' : ''}`} 
                     onClick={onClickResetButton}
                     title="Reset"
                 >
                     <span className="icon ion-md-refresh"></span>
                 </button>
                 <StartPauseButton 
+                    lightTheme={lightTheme}
                     disabled={disableStartPauseButton}
                     showPause={showPause}
                     percentageProgress={percentageProgress}
                     onClick={onClickStartPauseButton}
                 />
-                <button className="expand -reactive" onClick={onClickExpandButton} title="Expand">
+                <button className={`expand -reactive ${lightTheme ? '-lightTheme' : ''}`} onClick={onClickExpandButton} title="Expand">
                     <span className="icon ion-md-expand"></span>
                 </button>
             </div>
@@ -46,6 +47,7 @@ const validatePercentageProgressProp = (props, propName, componentName) => {
 }
 
 TimerCommands.propTypes = {
+    lightTheme: PropTypes.bool,
     disableStartPauseButton: PropTypes.bool,
     showPause: PropTypes.bool,
     showResetButton: PropTypes.bool,
