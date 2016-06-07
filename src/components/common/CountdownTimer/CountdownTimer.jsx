@@ -103,7 +103,6 @@ export class CountdownTimerComponent extends BaseComponent {
     }
     
     toggleExpanded() {
-        console.log('hi');
         const { expanded } = this.state;
         const { turnOnLightTheme, turnOffLightTheme } = this.props;
 
