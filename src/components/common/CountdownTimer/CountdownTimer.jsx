@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import { CounterWatch } from './CounterWatch';
 import { StartPauseButton } from './StartPauseButton';
 import { TimerCommands } from './TimerCommands';
+import { turnOnLightTheme, turnOffLightTheme } from './actions';
 
-export class CountdownTimer extends Component {
+export class CountdownTimerComponent extends Component {
     constructor(props) {
         super(props);
     
@@ -97,15 +99,28 @@ export class CountdownTimer extends Component {
     }
     
     toggleExpanded() {
-        this.setState({ expanded: !this.state.expanded });
+        console.log('hi');
+        const { expanded } = this.state;
+        const { turnOnLightTheme, turnOffLightTheme } = this.props;
+
+        expanded ? turnOffLightTheme() : turnOnLightTheme();
+
+        this.setState({ expanded: !expanded });
     }
 }
 
-CountdownTimer.propTypes = {
+CountdownTimerComponent.propTypes = {
     name: PropTypes.string,
     time: PropTypes.number.isRequired
 };
 
-CountdownTimer.defaultProps = {
+CountdownTimerComponent.defaultProps = {
     name: 'Timer'
 };
+
+const mapDispatchToProps = (dispatch) => ({
+    turnOnLightTheme: () => dispatch(turnOnLightTheme()),
+    turnOffLightTheme: () => dispatch(turnOffLightTheme()),
+})
+
+export const CountdownTimer = connect(null, mapDispatchToProps)(CountdownTimerComponent);

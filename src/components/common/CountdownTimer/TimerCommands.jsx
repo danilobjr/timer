@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { StartPauseButton } from './StartPauseButton';
-import { turnOnLightTheme } from './actions';
 
-class TimerCommandsComponent extends Component {
+export class TimerCommands extends Component {
     render() {
         const { lightTheme, disableStartPauseButton, showPause, 
                 showResetButton, percentageProgress, 
-                onClickStartPauseButton, onClickResetButton } = this.props;
+                onClickStartPauseButton, onClickResetButton,
+                onClickExpandButton } = this.props;
         
         return (
             <div className="timer-commands">
@@ -27,20 +27,13 @@ class TimerCommandsComponent extends Component {
                 />
                 <button 
                     className={`expand -reactive ${lightTheme ? '-lightTheme' : ''}`} 
-                    onClick={this.hendleClickExpandButton.bind(this)} 
+                    onClick={onClickExpandButton} 
                     title="Expand"
                 >
                     <span className="icon ion-md-expand"></span>
                 </button>
             </div>
         );
-    }
-
-    hendleClickExpandButton() {
-        const { onClickExpandButton, turnOnLightTheme } = this.props;
-
-        onClickExpandButton();
-        turnOnLightTheme();
     }
 }
 
@@ -58,7 +51,7 @@ const validatePercentageProgressProp = (props, propName, componentName) => {
     return null;
 }
 
-TimerCommandsComponent.propTypes = {
+TimerCommands.propTypes = {
     lightTheme: PropTypes.bool,
     disableStartPauseButton: PropTypes.bool,
     showPause: PropTypes.bool,
@@ -68,9 +61,3 @@ TimerCommandsComponent.propTypes = {
     onClickResetButton: PropTypes.func,
     onClickExpandButton: PropTypes.func
 };
-
-const mapDispatchToProps = (dispatch) => ({
-    turnOnLightTheme: () => dispatch(turnOnLightTheme())
-})
-
-export const TimerCommands = connect(null, mapDispatchToProps)(TimerCommandsComponent);
