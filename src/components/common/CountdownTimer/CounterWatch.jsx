@@ -24,7 +24,8 @@ export class CounterWatch extends Component {
     }
     
     renderCounterWatchCssClasses() {
-        return `counter-watch ${this.props.lightTheme ? '-lighttheme' : ''}`.trim();
+        const { className, lightTheme } = this.props;
+        return `counter-watch ${lightTheme ? '-lighttheme' : ''} ${className}`.trim();
     }
     
     renderActiveClass(value) {
