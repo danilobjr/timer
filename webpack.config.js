@@ -13,6 +13,7 @@ module.exports = {
     resolve: {
         root: path.resolve(__dirname),
         alias: {
+            config: 'src/config',
             components: 'src/components',
             helpers: 'src/helpers'
         },
