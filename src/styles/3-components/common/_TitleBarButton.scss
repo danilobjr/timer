@@ -1,0 +1,32 @@
+.title-bar-button {
+    & {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 46px;
+    }
+    
+    &:hover {
+        background-color: $gainsboro;
+    }
+    
+    &:active {
+        background-color: $light-gray;
+    }
+    
+    &.-red:hover {
+        background-color: $crimson;
+    }
+    
+    &.-red:active {
+        background-color: $light-coral;
+    }
+
+    &.-red:hover > svg > * {
+        stroke: $white;
+    }
+    
+    &.-red:active > svg > * {
+        stroke: $black;
+    }
+}
