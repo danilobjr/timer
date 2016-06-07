@@ -20,6 +20,7 @@
   "author": "Danilo Barros <danilobjr@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "classnames": "^2.2.5",
     "electron-prebuilt": "^1.2.0",
     "ionicons": "^3.0.0",
     "react": "^15.1.0",
