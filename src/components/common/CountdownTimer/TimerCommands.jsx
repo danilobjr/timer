@@ -1,8 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
+import { BaseComponent } from 'BaseComponent';
 import { connect } from 'react-redux';
 import { StartPauseButton } from './StartPauseButton';
 
-export class TimerCommands extends Component {
+export class TimerCommands extends BaseComponent {
     render() {
         const { lightTheme, disableStartPauseButton, showPause, 
                 showResetButton, percentageProgress, 
@@ -12,7 +13,7 @@ export class TimerCommands extends Component {
         return (
             <div className="timer-commands">
                 <button 
-                    className={`reset -reactive ${lightTheme ? '-lightTheme' : ''} ${!showResetButton ? 'h-hidden' : ''}`} 
+                    className={this.renderResetButtonCssClasses()} 
                     onClick={onClickResetButton}
                     title="Reset"
                 >
@@ -26,13 +27,28 @@ export class TimerCommands extends Component {
                     onClick={onClickStartPauseButton}
                 />
                 <button 
-                    className={`expand -reactive ${lightTheme ? '-lightTheme' : ''}`} 
+                    className={this.renderCommonButtonCssClasses()} 
                     onClick={onClickExpandButton} 
                     title="Expand"
                 >
                     <span className="icon ion-md-expand"></span>
                 </button>
             </div>
+        );
+    }
+
+    renderCommonButtonCssClasses(buttonClass) {
+        return this.classNames(
+            buttonClass,
+            '-reactive',
+            { '-lightTheme': this.props.lightTheme }
+        );
+    }
+
+    renderResetButtonCssClasses() {
+        return this.classNames(
+            this.renderCommonButtonCssClasses('reset'),
+            { 'h-hidden': !this.props.showResetButton }
         );
     }
 }

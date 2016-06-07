@@ -1,7 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
+import { BaseComponent } from 'BaseComponent';
 import { compose, time, milliseconds, replace, padLeft } from 'helpers';
 
-export class CounterWatch extends Component {
+export class CounterWatch extends BaseComponent {
     render() {
         const [ hours, minutes, seconds ] = time(this.getRemainingTime());
         const oneSecond = milliseconds(0,0,1);
@@ -10,13 +11,13 @@ export class CounterWatch extends Component {
         
         return (
             <div className={this.renderCounterWatchCssClasses()}>
-                <span className={`unit ${this.renderActiveClass(oneHour)}`} title="Hours">
+                <span className={this.renderUnitCssClasses(oneHour)} title="Hours">
                     {this.padLeftWithZero(hours)}
                 </span>
-                <span className={`unit ${this.renderActiveClass(oneMinute)}`} title="Minutes">
+                <span className={this.renderUnitCssClasses(oneMinute)} title="Minutes">
                     {this.padLeftWithZero(minutes)}
                 </span>
-                <span className={`unit ${this.renderActiveClass(oneSecond)}`} title="Seconds">
+                <span className={this.renderUnitCssClasses(oneSecond)} title="Seconds">
                     {this.padLeftWithZero(seconds)}
                 </span>
             </div>
@@ -25,11 +26,21 @@ export class CounterWatch extends Component {
     
     renderCounterWatchCssClasses() {
         const { className, lightTheme } = this.props;
-        return `counter-watch ${lightTheme ? '-lighttheme' : ''} ${className}`.trim();
+
+        return this.classNames(
+            'counter-watch',
+            className,
+            { 
+                '-lighttheme': lightTheme, 
+            }
+        );
     }
     
-    renderActiveClass(value) {
-        return this.getRemainingTime() >= value ? '-active' : '';
+    renderUnitCssClasses(value) {
+        return this.classNames(
+            'unit',
+            { '-active': this.getRemainingTime() >= value }
+        );
     }
     
     getRemainingTime() {

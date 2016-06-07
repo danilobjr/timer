@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react';
+import classNames from 'classnames';
 
 const renderClassNames = (props) => {
-    return [
+    return classNames(
         props.className,
         'flex-item',
         props.grow && `-grow${props.grow}`
-    ].join(' ');
+    );
 }
 
 export const FlexItem = (props) => <div className={renderClassNames(props)}>{props.children}</div>;

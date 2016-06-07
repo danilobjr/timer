@@ -1,11 +1,12 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
+import { BaseComponent } from 'BaseComponent';
 import { connect } from 'react-redux';
 import { CounterWatch } from './CounterWatch';
 import { StartPauseButton } from './StartPauseButton';
 import { TimerCommands } from './TimerCommands';
 import { turnOnLightTheme, turnOffLightTheme } from './actions';
 
-export class CountdownTimerComponent extends Component {
+export class CountdownTimerComponent extends BaseComponent {
     constructor(props) {
         super(props);
     
@@ -55,14 +56,17 @@ export class CountdownTimerComponent extends Component {
                 />
                 <div className="info">
                     <span className="name">{name}</span>
-                    <CounterWatch className={`${expanded ? 'h-hidden' : ''}`} totalTime={time} />
+                    <CounterWatch className={this.classNames({ 'h-hidden': expanded })} totalTime={time} />
                 </div>
             </div>
         );
     }
     
     renderCountdownTimerCssClasses() {
-        return `countdown-timer ${this.state.expanded ? '-expanded' : ''}`;
+        return this.classNames(
+            'countdown-timer',
+            { '-expanded': this.state.expanded }
+        );
     }
     
     shouldShowResetButton() {

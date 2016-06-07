@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+import classNames from 'classnames';
 import { IconMinus, IconSquare, IconRemove } from 'components/common';
 
 const Icons = {
@@ -8,15 +9,21 @@ const Icons = {
     remove: IconRemove
 };
 
+const renderCssClasses = (props) =>
+    classNames(
+        'title-bar-button',
+        props.className,
+        { 
+            '-red': props.red,
+            '-lighttheme': props.lightTheme
+        }        
+    )
+
 export const TitleBarButton = (props) => {
     const icon = props.icon ? React.createElement(Icons[props.icon]) : null;
     const lightTheme = props.lightTheme ? '-lighttheme' : '';
 
-    return (
-        <button className={`title-bar-button ${props.className} ${props.red ? '-red' : ''} ${lightTheme}`}>
-            {icon}
-        </button>
-    );
+    return <button className={renderCssClasses(props)}>{icon}</button>;
 }
 
 TitleBarButton.propTypes = {

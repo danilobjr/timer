@@ -1,13 +1,14 @@
 import React, { Component, PropTypes } from 'react';
+import classNames from 'classnames';
 
 const renderClassNames = (props) => {
-    return [
+    return classNames(
         props.className,
         'flex-box',
         props.column && '-column',
         props.wrap && '-wrap',
         `-${props.justify}`
-    ].join(' ');
+    );
 }
 
 export const FlexBox = (props) => <div className={renderClassNames(props)}>{props.children}</div>

@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { BaseComponent } from 'BaseComponent';
 import { connect } from 'react-redux';
 import { TitleBarButton } from './TitleBarButton';
 
-class TitleBarComponent extends Component {
+class TitleBarComponent extends BaseComponent {
     render() {
         const { isLightThemeOn } = this.props;
 
         return (
-            <div className={`title-bar ${isLightThemeOn ? '-lighttheme' : ''}`}>
+            <div className={this.renderCssClasses()}>
                 <h5 className="title">Timers</h5>
                 <div className="buttons">
                     <TitleBarButton className="btn-minimize" icon="minus" lightTheme={isLightThemeOn} />
@@ -15,6 +16,13 @@ class TitleBarComponent extends Component {
                     <TitleBarButton className="btn-close" icon="remove" red lightTheme={isLightThemeOn} />
                 </div>
             </div>
+        );
+    }
+
+    renderCssClasses() {
+        return this.classNames(
+            'title-bar',
+            { '-lighttheme': this.props.isLightThemeOn }
         );
     }
 }

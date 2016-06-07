@@ -1,6 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
+import { BaseComponent } from 'BaseComponent';
 
-export class NavigationBarItem extends Component {
+export class NavigationBarItem extends BaseComponent {
     render() {
         return (
             <li 
@@ -15,17 +16,17 @@ export class NavigationBarItem extends Component {
     }
     
     renderLiClassNames() {
-        return [
+        return this.classNames(
             'navigation-bar-item',
             this.props.isActive && '-active'
-        ].join(' ');
+        );
     }
     
     renderIconClassNames() {
-        return [
+        return this.classNames(
             'icon',
             this.props.iconClassName
-        ].join(' ');
+        );
     }
     
     handleOnClick() {
