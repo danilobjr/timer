@@ -8,36 +8,4 @@
     > #start-pause-button {
         margin: 0 42px;
     }
-    
-    > button {
-        width: 48px;
-        height: 48px;
-        color: $mine-shaft;
-        font-size: 1.8rem;
-    }
-    
-    > button:hover {
-        background-color: $alto;
-    }
-    
-    > button:active {
-        background-color: $silver;
-    }
-    
-    > button > span:before {
-        position: relative;
-        top: -1px;
-    }
-
-    & > button.-lightTheme {
-        color: $white;
-    }
-
-    & > button.-lightTheme:hover {
-        background-color: $steel-blue;
-    }
-
-    & > button.-lightTheme:active {
-        background-color: $corn-flower-blue;
-    }
 }
