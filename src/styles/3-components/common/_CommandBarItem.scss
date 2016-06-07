@@ -15,4 +15,8 @@
     &:hover {
         background-color: $silver;
     }
+
+    &:active {
+        background-color: $dark-gray;
+    }
 }
