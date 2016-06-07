@@ -1,12 +1,13 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import { StartPauseButton } from './StartPauseButton';
+import { turnOnLightTheme } from './actions';
 
-export class TimerCommands extends Component {
+class TimerCommandsComponent extends Component {
     render() {
         const { lightTheme, disableStartPauseButton, showPause, 
                 showResetButton, percentageProgress, 
-                onClickStartPauseButton, onClickResetButton,
-                onClickExpandButton } = this.props;
+                onClickStartPauseButton, onClickResetButton } = this.props;
         
         return (
             <div className="timer-commands">
@@ -24,11 +25,22 @@ export class TimerCommands extends Component {
                     percentageProgress={percentageProgress}
                     onClick={onClickStartPauseButton}
                 />
-                <button className={`expand -reactive ${lightTheme ? '-lightTheme' : ''}`} onClick={onClickExpandButton} title="Expand">
+                <button 
+                    className={`expand -reactive ${lightTheme ? '-lightTheme' : ''}`} 
+                    onClick={this.hendleClickExpandButton.bind(this)} 
+                    title="Expand"
+                >
                     <span className="icon ion-md-expand"></span>
                 </button>
             </div>
         );
+    }
+
+    hendleClickExpandButton() {
+        const { onClickExpandButton, turnOnLightTheme } = this.props;
+
+        onClickExpandButton();
+        turnOnLightTheme();
     }
 }
 
@@ -46,7 +58,7 @@ const validatePercentageProgressProp = (props, propName, componentName) => {
     return null;
 }
 
-TimerCommands.propTypes = {
+TimerCommandsComponent.propTypes = {
     lightTheme: PropTypes.bool,
     disableStartPauseButton: PropTypes.bool,
     showPause: PropTypes.bool,
@@ -56,3 +68,9 @@ TimerCommands.propTypes = {
     onClickResetButton: PropTypes.func,
     onClickExpandButton: PropTypes.func
 };
+
+const mapDispatchToProps = (dispatch) => ({
+    turnOnLightTheme: () => dispatch(turnOnLightTheme())
+})
+
+export const TimerCommands = connect(null, mapDispatchToProps)(TimerCommandsComponent);

@@ -10,9 +10,10 @@ const Icons = {
 
 export const TitleBarButton = (props) => {
     const icon = props.icon ? React.createElement(Icons[props.icon]) : null;
+    const lightTheme = props.lightTheme ? '-lighttheme' : '';
 
     return (
-        <button className={`title-bar-button ${props.className} ${props.red ? '-red' : ''}`}>
+        <button className={`title-bar-button ${props.className} ${props.red ? '-red' : ''} ${lightTheme}`}>
             {icon}
         </button>
     );
@@ -20,5 +21,6 @@ export const TitleBarButton = (props) => {
 
 TitleBarButton.propTypes = {
     icon: PropTypes.oneOf(Object.keys(Icons)).isRequired,
-    red: PropTypes.bool
+    red: PropTypes.bool,
+    lightTheme: PropTypes.bool
 };
