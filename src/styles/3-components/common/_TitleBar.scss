@@ -19,4 +19,9 @@
         display: flex;
         flex-basis: 138px;
     }
+
+    &.-lighttheme {
+        color: $white;
+        background-color: $mariner;
+    }
 }

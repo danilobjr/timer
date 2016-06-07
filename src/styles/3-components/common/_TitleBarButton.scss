@@ -29,4 +29,16 @@
     &.-red:active > svg > * {
         stroke: $black;
     }
+
+    &.-lighttheme > svg > * {
+        stroke: $white;
+    }
+
+    &.-lighttheme:hover > svg > * {
+        stroke: $black;
+    }
+
+    &.-lighttheme.-red:hover > svg > * {
+        stroke: $white;
+    }
 }
