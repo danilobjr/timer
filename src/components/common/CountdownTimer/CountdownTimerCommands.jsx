@@ -15,7 +15,7 @@ export class CountdownTimerCommands extends BaseComponent {
             <div className="countdown-timer-commands">
                 <CountdownCommandButton
                     className="reset"
-                    icon="ion-md-refresh"
+                    icon="reset"
                     title="Reset"
                     showButton={showResetButton} 
                     lightTheme={lightTheme}
@@ -30,7 +30,7 @@ export class CountdownTimerCommands extends BaseComponent {
                 />
                 <CountdownCommandButton
                     className="expand"
-                    icon="ion-md-expand"
+                    icon="expand"
                     title="Expand"
                     lightTheme={lightTheme}
                     onClick={onClickExpandButton}
