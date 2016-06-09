@@ -22,23 +22,27 @@
         background-color: $light-coral;
     }
 
-    &.-red:hover > svg > * {
-        stroke: $white;
+    &.-red:hover > .icon  {
+        stroke: $white !important;
     }
     
-    &.-red:active > svg > * {
-        stroke: $black;
+    &.-red:active > .icon  {
+        stroke: $black !important;
     }
 
-    &.-lighttheme > svg > * {
-        stroke: $white;
+    &.-lighttheme > .icon  {
+        stroke: $white !important;
     }
 
-    &.-lighttheme:hover > svg > * {
-        stroke: $black;
+    &.-lighttheme:hover > .icon  {
+        stroke: $black !important;
     }
 
-    &.-lighttheme.-red:hover > svg > * {
-        stroke: $white;
+    &.-lighttheme.-red:hover > .icon  {
+        stroke: $white !important;
+    }
+
+    &.-lighttheme.-red:active > .icon  {
+        stroke: $black !important;
     }
 }

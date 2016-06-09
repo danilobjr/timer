@@ -1,5 +1,7 @@
 .countdown-command-button {
     & {
+        display: flex;
+        justify-content: center;
         width: 48px;
         height: 48px;
         color: $mine-shaft;
@@ -13,14 +15,9 @@
     &:active {
         background-color: $silver;
     }
-    
-    & > span:before {
-        position: relative;
-        top: -1px;
-    }
 
-    &.-lightTheme {
-        color: $white;
+    &.-lightTheme > .icon {
+        stroke: $white !important;
     }
 
     &.-lightTheme:hover {
