@@ -1,13 +1,21 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { IconExpand, IconReset } from './../Icons';
 
-export const CountdownCommandButton = (props) =>
-    <button 
-        className={renderCommonButtonCssClasses(props)}
-        onClick={props.onClick} 
-    >
-        <span className={classNames('icon', props.icon)}></span>
-    </button>
+const Icons = {
+    expand: IconExpand,
+    reset: IconReset,
+};
+
+export const CountdownCommandButton = (props) => {
+    const icon = props.icon ? React.createElement(Icons[props.icon]) : null;
+
+    return (
+        <button className={renderCommonButtonCssClasses(props)} onClick={props.onClick}>
+            {icon}
+        </button>
+    );
+}
 
 const renderCommonButtonCssClasses = (props) => {
     return classNames(
