@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Svg } from './Svg';
+import { Icon } from './Icon';
 
 export const IconMinus = () => 
-    <Svg width={10} height={10}>
-        <line x1="0" y1="5" x2="10" y2="5" stroke="black" stroke-width="1" />
-    </Svg>
+    <Icon name="minus" width={10} height={10}>
+        <line x1="0" y1="5" x2="10" y2="5" />
+    </Icon>

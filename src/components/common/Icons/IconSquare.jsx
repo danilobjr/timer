@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Svg } from './Svg';
+import { Icon } from './Icon';
 
 export const IconSquare = () => 
-    <Svg width={10} height={10}>
-        <rect x="0" y="0" width="10" height="10" fill="transparent" stroke="black" stroke-width="1" />
-    </Svg>
+    <Icon name="square" width={10} height={10} stroke-width="1">
+        <rect x="0.5" y="0.5" width="9" height="9" fill="none" />
+    </Icon>
