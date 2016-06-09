@@ -22,7 +22,6 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "electron-prebuilt": "^1.2.0",
-    "ionicons": "^3.0.0",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-redux": "^4.4.5",
