@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { 
-    CommandBar, CommandBarItem, FlexBox, 
-    NavigationBar, PageView, PageContent,
-    CountdownTimer
+    CommandBar, CommandBarItem, NavigationBar, 
+    PageView, PageHeader, PageContent
+    //FlexBox,
 } from 'components/common';
 
 export class TimerNewPage extends Component {
@@ -10,9 +10,11 @@ export class TimerNewPage extends Component {
         return (
             <PageView className="timer-new-page">
                 <PageContent grow={1}>
-                    <h3>New Timer</h3>
+                    <PageHeader>New Timer</PageHeader>
+                    {/*
                     <FlexBox wrap justify='center'>
                     </FlexBox>
+                    */}
                 </PageContent>
                 <CommandBar>
                     <CommandBarItem icon="moreHorizontal" title="More" />
