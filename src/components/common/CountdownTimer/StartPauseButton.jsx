@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { BaseComponent } from 'BaseComponent';
+import { IconPlay, IconPause } from 'components/common/Icons';
 
 export class StartPauseButton extends BaseComponent {
     render() {        
@@ -30,22 +31,8 @@ export class StartPauseButton extends BaseComponent {
                     />
                 </svg>
                 
-                <svg 
-                    className={`start icon ${this.renderHiddenClassWhen(showPause)}`}
-                    version="1.1" 
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <polygon points="1,1 13,9 1,17" />
-                </svg>
-                
-                <svg 
-                    className={`pause icon ${this.renderHiddenClassWhen(!showPause)}`} 
-                    version="1.1" 
-                    xmlns="http://www.w3.org/2000/svg"
-                >        
-                    <line x1="1" y1="0.7" x2="1" y2="15.3"/>
-                    <line x1="7" y1="0.7" x2="7" y2="15.3" />
-                </svg>
+                <IconPlay className={this.renderHiddenClassWhen(showPause)} />
+                <IconPause className={this.renderHiddenClassWhen(!showPause)} />
             </button>
         );
     } 

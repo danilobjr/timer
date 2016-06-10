@@ -21,21 +21,17 @@
         top: 50%;
     }
     
-    > .start {
-        width: 14px;
-        height: 18px;
+    > .play {
         margin-left: -5px;
         margin-top: -9px;        
     }
     
     > .pause {
-        width: 8px;
-        height: 16px;
         margin-left: -4px;
         margin-top: -8px;
     }
     
-    > .start > polygon {
+    > .play > polygon {
         fill: transparent;
         stroke: $mine-shaft;
         stroke-width: 1.2px;
@@ -88,7 +84,7 @@
         stroke: hsl(0, 0%, 71%); /* ??? */
     }
 
-    &.-lighttheme > .start > polygon,
+    &.-lighttheme > .play > polygon,
     &.-lighttheme > .pause > line { 
         stroke: $lavender;
     }
@@ -117,7 +113,7 @@
         transform: none;
     }
     
-    > .start > polygon {
+    > .play > polygon {
         stroke: $silver;
     }
     
@@ -127,7 +123,7 @@
         stroke: $alto;
     }
 
-    &.-lighttheme > .start > polygon,
+    &.-lighttheme > .play > polygon,
     &.-lighttheme:hover .border > circle,
     &.-lighttheme:active .border > circle {
         stroke: $havelock-blue;
