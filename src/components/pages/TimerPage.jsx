@@ -17,7 +17,7 @@ export class TimerPage extends Component {
                     </FlexBox>
                 </PageContent>
                 <CommandBar>
-                    <CommandBarItem icon="plus" title="New" />
+                    <CommandBarItem to="/timer/new" icon="plus" title="New" />
                     <CommandBarItem icon="checklist" title="Edit" />
                     <CommandBarItem icon="moreHorizontal" title="More" />
                 </CommandBar>

@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import { IconChecklist, IconMoreHorizontal, IconPlus } from 'components/common/Icons';
 
 const icons = {
@@ -7,13 +8,14 @@ const icons = {
     plus: IconPlus
 };
 
-const renderHref = (href) => href ? `#${href}` : '#' 
+const renderTo = (to) => to || '#' 
 
 export const CommandBarItem = (props) =>
-    <a {...props} className="command-bar-item" href={renderHref(props.href)}>
+    <Link {...props} className="command-bar-item" to={renderTo(props.to)}>
         {React.createElement(icons[props.icon])}
-    </a>
+    </Link>
 
 CommandBarItem.propTypes = {
+    to: PropTypes.string,
     icon: PropTypes.string.isRequired
 };

@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import * as _ from 'lodash';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-import { Router, Route, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import { TitleBar } from 'components/common';
-import { ChronometerPage, TimerPage } from 'components/pages';
+import { ChronometerPage, TimerPage, TimerNewPage } from 'components/pages';
 import { appReducers } from './appReducers';
 
 const store = createStore(appReducers);
@@ -18,9 +18,12 @@ export class App extends Component {
                 <div>    
                     <TitleBar />        
                     <Router history={history}>
-                        <Route path="/" component={TimerPage} />
-                        <Route path="/timer" component={TimerPage} />
-                        <Route path="/chronometer" component={ChronometerPage} />
+                        <Route path="/">
+                            <IndexRoute component={TimerPage} />
+                            <Route path="timer" component={TimerPage} />
+                            <Route path="timer/new" component={TimerNewPage} />
+                            <Route path="chronometer" component={ChronometerPage} />
+                        </Route>
                     </Router>                
                 </div>
             </Provider>
