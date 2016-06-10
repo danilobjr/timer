@@ -5,7 +5,7 @@ import { iconStyles } from './styles';
 
 export const Icon = (props) => 
     <Svg 
-        className={classNames('icon', { [props.name]: props.name })} 
+        className={classNames('icon', { [props.name]: props.name, [props.className]: props.className })} 
         width={props.width} 
         height={props.height}
         style={iconStyles.base}
