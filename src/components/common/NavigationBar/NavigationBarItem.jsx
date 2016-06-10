@@ -1,5 +1,11 @@
 import React, { PropTypes } from 'react';
 import { BaseComponent } from 'BaseComponent';
+import { IconStopwatch, IconTimer } from 'components/common';
+
+const icons = {
+    stopwatch: IconStopwatch,
+    timer: IconTimer
+};
 
 export class NavigationBarItem extends BaseComponent {
     render() {
@@ -8,7 +14,7 @@ export class NavigationBarItem extends BaseComponent {
                 className={this.renderLiClassNames()} 
                 onClick={this.handleOnClick.bind(this)}>
                 <a className="link" href={`#${this.props.href}`}>
-                    <span className={this.renderIconClassNames()}></span>
+                    {React.createElement(icons[this.props.icon])}
                     <span className="text">{this.props.text}</span>
                 </a>
             </li>
@@ -22,10 +28,10 @@ export class NavigationBarItem extends BaseComponent {
         );
     }
     
-    renderIconClassNames() {
+    rendericons() {
         return this.classNames(
             'icon',
-            this.props.iconClassName
+            this.props.icon
         );
     }
     
@@ -37,8 +43,8 @@ export class NavigationBarItem extends BaseComponent {
 
 NavigationBarItem.propTypes = {
     href: PropTypes.string.isRequired,
-    isActive: PropTypes.bool,
-    iconClassName: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
+    icon: PropTypes.string.isRequired,
+    isActive: PropTypes.bool,
     onItemClick: PropTypes.func
 };

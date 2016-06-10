@@ -23,7 +23,7 @@ class NavigationBarComponent extends Component {
                 key={item.text}
                 href={item.href} 
                 text={item.text} 
-                iconClassName={item.iconClassName}
+                icon={item.icon}
                 isActive={currentActiveItem === item.text}
                 onItemClick={changeActiveItem} 
             />

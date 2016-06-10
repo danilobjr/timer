@@ -11,10 +11,6 @@
         cursor: default;
     }
     
-    > .link > .icon {
-        font-size: 1.1rem;
-    } 
-    
     > .link > .text {
         font-size: 0.75rem;
     } 
@@ -29,5 +25,9 @@
     
     &.-active > .link {
         color: $mariner;
+    }
+
+    &.-active > .link > .icon {
+        stroke: $mariner !important;
     }
 }
