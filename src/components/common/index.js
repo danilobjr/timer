@@ -3,5 +3,5 @@ export * from './CountdownTimer';
 export * from './FlexBox';
 export * from './Icons';
 export * from './NavigationBar';
-export * from './PageView';
+export * from './Page';
 export * from './TitleBar';
