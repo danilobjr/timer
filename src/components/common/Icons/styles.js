@@ -12,5 +12,8 @@ export const iconStyles = {
             transform: 'rotateZ(-159deg)',
             transformOrigin: '50%'
         }
+    },
+    crispEdges: {
+        shapeRendering: 'crispEdges'
     }
 };
