@@ -1,11 +1,10 @@
 .command-bar-item {
     & {
         display: flex;
-        flex-basis: 48px;
+        flex-basis: 68px;
         justify-content: center;
         align-items: center;
         min-height: 48px;
-        padding-bottom: 4px;
         color: $scorpion;
         font-size: 1.4rem;
         box-sizing: border-box;

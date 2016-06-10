@@ -17,9 +17,9 @@ export class TimerPage extends Component {
                     </FlexBox>
                 </PageContent>
                 <CommandBar>
-                    <CommandBarItem icon="ion-md-add" title="New" />
-                    <CommandBarItem icon="ion-md-trash" title="Remove" />
-                    <CommandBarItem icon="ion-md-more" title="More" />
+                    <CommandBarItem icon="plus" title="New" />
+                    <CommandBarItem icon="checklist" title="Edit" />
+                    <CommandBarItem icon="moreHorizontal" title="More" />
                 </CommandBar>
             </PageView>
         );
