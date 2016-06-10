@@ -15,8 +15,6 @@ const styles = Object.assign({},
     }
 );
 
-console.log(styles);
-
 export const IconStopwatch = (props) => 
     <Icon {...props} name="stopwatch" width={14} height={16}>
         <g fill="none">
