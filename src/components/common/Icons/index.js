@@ -5,3 +5,5 @@ export * from './IconPause';
 export * from './IconRemove';
 export * from './IconReset';
 export * from './IconSquare';
+export * from './IconStopwatch';
+export * from './IconTimer';
