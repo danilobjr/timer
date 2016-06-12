@@ -1,37 +1,32 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { IconAngleUp, IconAngleDown } from 'components/common';
+import { 
+    compose, range, splitAt, reverse, map, flatten,
+    padLeft, replace, inc
+} from 'helpers';
+
+const formatNumbers = map(compose(replace(' ')('0'), padLeft(2)));
 
 export class NumberSelector extends Component {
+    constructor(props) {
+        super(props);
+    
+        const from = 0;
+        const until = this.props.fromZeroUntil;
+
+        this.state = {
+            numbers: compose(flatten, reverse, splitAt(inc(until - NumberSelector.splitAt)), formatNumbers, range(from), inc)(until),
+            selected: 0
+        };
+    }
+
     render() {
         return (
             <div className="number-selector">
                 <div className="slider">
                     <div className="scroller">
                         <ul className="numbers">
-                            <li className="number">00</li>
-                            <li className="number">01</li>
-                            <li className="number">02</li>
-                            <li className="number">03</li>
-                            <li className="number">04</li>
-                            <li className="number">05</li>
-                            <li className="number">06</li>
-                            <li className="number">07</li>
-                            <li className="number">08</li>
-                            <li className="number">09</li>
-                            <li className="number">10</li>
-                            <li className="number">11</li>
-                            <li className="number">12</li>
-                            <li className="number">13</li>
-                            <li className="number">14</li>
-                            <li className="number">15</li>
-                            <li className="number">16</li>
-                            <li className="number">17</li>
-                            <li className="number">18</li>
-                            <li className="number">19</li>
-                            <li className="number">20</li>
-                            <li className="number">21</li>
-                            <li className="number">22</li>
-                            <li className="number">23</li>
+                            {this.renderNumbers()}
                         </ul>
                     </div>
                     <button className="btn -up"><IconAngleUp /></button>
@@ -41,4 +36,20 @@ export class NumberSelector extends Component {
             </div>
         );
     }
+
+    renderNumbers() {
+        const toListItem = map(n => <li key={n} className="number">{n}</li>);
+        return toListItem(this.state.numbers);
+    }
 }
+
+NumberSelector.propTypes = {
+    fromZeroUntil: PropTypes.number.isRequired,
+    label: PropTypes.string
+};
+
+NumberSelector.defaultProps = {
+    label: 'numbers'
+};
+
+NumberSelector.splitAt = 5;
