@@ -4,4 +4,5 @@ export * from './FlexBox';
 export * from './Icons';
 export * from './NavigationBar';
 export * from './Page';
+export * from './TimeSelector';
 export * from './TitleBar';
