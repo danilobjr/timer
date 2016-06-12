@@ -5,9 +5,9 @@ export class TimeSelector extends Component {
     render() {
         return (
             <div className="time-selector">
-                <NumberSelector />
-                <NumberSelector />
-                <NumberSelector />
+                <NumberSelector fromZeroUntil={23} />
+                <NumberSelector fromZeroUntil={59} />
+                <NumberSelector fromZeroUntil={59} />
             </div>
         );
     }
