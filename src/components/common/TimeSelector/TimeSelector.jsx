@@ -24,21 +24,35 @@ export class TimeSelector extends Component {
                     lastNumber={23} 
                     onSelectNext={() => this.updateStateByProperty('hours', 23, inc)}
                     onSelectPrevious={() => this.updateStateByProperty('hours', 23, dec)} 
+                    onSelectExactly={(number) => this.updateState('hours', number)}
                 />
                 <NumberSelector 
                     selected={minutes} 
                     lastNumber={59} 
                     onSelectNext={() => this.updateStateByProperty('minutes', 59, inc)}
                     onSelectPrevious={() => this.updateStateByProperty('minutes', 59, dec)} 
+                    onSelectExactly={(number) => this.updateState('minutes', number)}
                 />
                 <NumberSelector 
                     selected={seconds} 
                     lastNumber={59} 
                     onSelectNext={() => this.updateStateByProperty('seconds', 59, inc)}
                     onSelectPrevious={() => this.updateStateByProperty('seconds', 59, dec)} 
+                    onSelectExactly={(number) => this.updateState('seconds', number)}
                 />
             </div>
         );
+    }
+
+    updateState(property, number) {
+        console.log(property, number);
+        const newState = Object.assign(
+            {}, 
+            this.state, 
+            { [property]: number }
+        );
+
+        this.setState(newState);
     }
 
     updateStateByProperty(property, lastNumber, operation) {

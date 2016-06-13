@@ -4,7 +4,6 @@ import { compose, range, map, flatten, reverse, replace, padLeft, inc, dec, last
 export const createArrayOfNumbersOf = (startsWith) => compose(range(startsWith), inc);
 export const formatNumbers = map(compose(replace(' ')('0'), padLeft(2)));
 export const rearrangeNumbers = compose(flatten, reverse);
-export const toListItem = map(n => <li key={n} className="number">{n}</li>);
 
 export const select = (array, selected, operation) => {
     const indexOfSelected = array.indexOf(selected);

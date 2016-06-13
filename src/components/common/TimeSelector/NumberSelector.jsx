@@ -4,10 +4,7 @@ import {
     compose, range, splitAt, reverse, map, flatten,
     padLeft, replace, inc
 } from 'helpers';
-import { 
-    createArrayOfNumbersOf, formatNumbers, 
-    rearrangeNumbers, toListItem 
-} from './localHelpers';
+import { createArrayOfNumbersOf, formatNumbers, rearrangeNumbers } from './localHelpers';
 
 export class NumberSelector extends Component {
     constructor(props) {
@@ -40,10 +37,22 @@ export class NumberSelector extends Component {
 
     renderNumbers() {
         return compose(
-            toListItem,
+            this.renderListItems.bind(this),
             rearrangeNumbers, 
             splitAt(this.props.selected - NumberSelector.offset)
         )(this.numbers);
+    }
+
+    renderListItems(numbers) {
+        return map(function(n) { 
+            return <li 
+                key={n} 
+                className="number" 
+                onClick={() => this.selectExactly(n)}
+            >
+                {n}
+            </li>;
+        }.bind(this))(numbers);
     }
 
     selectNext() {
@@ -53,6 +62,10 @@ export class NumberSelector extends Component {
     selectPrevious() {
         this.props.onSelectPrevious();
     }
+
+    selectExactly(number) {
+        this.props.onSelectExactly(Number(number));
+    }
 }
 
 NumberSelector.propTypes = {
@@ -60,7 +73,8 @@ NumberSelector.propTypes = {
     selected: PropTypes.number,
     lastNumber: PropTypes.number.isRequired,
     onSelectNext: PropTypes.func.isRequired,
-    onSelectPrevious: PropTypes.func.isRequired
+    onSelectPrevious: PropTypes.func.isRequired,
+    onSelectExactly: PropTypes.func.isRequired
 };
 
 NumberSelector.defaultProps = {
