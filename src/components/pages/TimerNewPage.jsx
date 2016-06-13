@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { 
     CommandBar, CommandBarItem, NavigationBar, 
     PageView, PageHeader, PageContent,
-    //FlexBox,
-    TimeSelector,
-    FieldText
+    FieldText, TimeSelector
 } from 'components/common';
 
 export class TimerNewPage extends Component {
