@@ -6,8 +6,6 @@ export class FieldText extends BaseComponent {
     constructor(props) {
         super(props);
     
-        this.input = null;
-
         this.state = {
             inputIsVisible: false
         };
@@ -19,7 +17,7 @@ export class FieldText extends BaseComponent {
 
     render() {
         const { inputIsVisible } = this.state;
-        const { label, value, defaultValue, onChange } = this.props;
+        const { label, value, onChange } = this.props;
 
         return (
             <Field 
@@ -32,7 +30,7 @@ export class FieldText extends BaseComponent {
                 <input 
                     className={this.classNames({ 'h-display-none': !inputIsVisible })} 
                     type="text"
-                    defaultValue={defaultValue}
+                    value={value}
                     placeholder="Input"
                     ref="input"
                     onBlur={this.hideInput.bind(this)}
@@ -54,6 +52,5 @@ export class FieldText extends BaseComponent {
 FieldText.propTypes = {
     label: PropTypes.string.isRequired,
     value: PropTypes.string,
-    defaultValue: PropTypes.string,
     onChange: PropTypes.func
 };

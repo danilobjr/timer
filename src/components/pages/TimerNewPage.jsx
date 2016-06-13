@@ -37,7 +37,7 @@ export class TimerNewPage extends Component {
 
                     <FieldText 
                         label="Timer name" 
-                        defaultValue={name} 
+                        value={name} 
                         onChange={(value) => this.updateName(value)} 
                     />
                 </PageContent>
