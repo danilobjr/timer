@@ -24,21 +24,24 @@ export class TimeSelector extends Component {
 
         return (
             <div className="time-selector">
-                <NumberSelector 
+                <NumberSelector
+                    label="hours" 
                     selected={hours} 
                     lastNumber={23} 
                     onSelectNext={() => this.updateDataByProperty('hours', 23, inc)}
                     onSelectPrevious={() => this.updateDataByProperty('hours', 23, dec)} 
                     onSelectExactly={(number) => this.updateData('hours', number)}
                 />
-                <NumberSelector 
+                <NumberSelector
+                    label="minutes" 
                     selected={minutes} 
                     lastNumber={59} 
                     onSelectNext={() => this.updateDataByProperty('minutes', 59, inc)}
                     onSelectPrevious={() => this.updateDataByProperty('minutes', 59, dec)} 
                     onSelectExactly={(number) => this.updateData('minutes', number)}
                 />
-                <NumberSelector 
+                <NumberSelector
+                    label="seconds" 
                     selected={seconds} 
                     lastNumber={59} 
                     onSelectNext={() => this.updateDataByProperty('seconds', 59, inc)}

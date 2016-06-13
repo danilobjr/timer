@@ -31,7 +31,7 @@ export class NumberSelector extends BaseComponent {
                     <button className="btn -up" onClick={this.selectPrevious.bind(this)}><IconAngleUp /></button>
                     <button className="btn -down" onClick={this.selectNext.bind(this)}><IconAngleDown /></button>
                 </div>
-                <span className="label">hours</span>
+                <span className="label">{this.props.label}</span>
             </div>
         );
     }
