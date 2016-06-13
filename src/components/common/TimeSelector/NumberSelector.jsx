@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
+import { BaseComponent } from 'BaseComponent';
 import { IconAngleUp, IconAngleDown } from 'components/common';
 import { 
     compose, range, splitAt, reverse, map, flatten,
@@ -6,7 +7,7 @@ import {
 } from 'helpers';
 import { createArrayOfNumbersOf, formatNumbers, rearrangeNumbers } from './localHelpers';
 
-export class NumberSelector extends Component {
+export class NumberSelector extends BaseComponent {
     constructor(props) {
         super(props);
     
@@ -47,7 +48,7 @@ export class NumberSelector extends Component {
         return map(function(n) { 
             return <li 
                 key={n} 
-                className="number" 
+                className={this.classNames('number', { 'selected': Number(n) === this.props.selected })} 
                 onClick={() => this.selectExactly(n)}
             >
                 {n}

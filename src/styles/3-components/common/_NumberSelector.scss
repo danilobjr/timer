@@ -23,7 +23,7 @@
         overflow: hidden;
     }
     
-    > .slider:after {
+    > .slider:before {
         content: '';
         position: absolute;
         top: 50%;
@@ -74,10 +74,16 @@
         justify-content: center;
         align-items: center;
         flex-basis: 32px;
+        padding-bottom: 2px;
+        box-sizing: border-box;
     }
 
     > .slider > .btn:hover,
     > .slider > .scroller > .numbers > .number:hover {
         background-color: $alto;
+    }
+
+    > .slider > .scroller > .numbers > .number.selected:hover {
+        background-color: $light-blue;
     }
 }
