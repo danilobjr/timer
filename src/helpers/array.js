@@ -7,3 +7,5 @@ export const splitAt = (atIndex) => (array) => [array.slice(0, atIndex), array.s
 export const reverse = (array) => array.reverse()
 
 export const flatten = (array) => array.reduce((accu, curr) => accu.concat(curr), [])
+
+export const last = (array) => array[array.length - 1]
