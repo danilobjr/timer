@@ -4,20 +4,21 @@ import {
     compose, range, splitAt, reverse, map, flatten,
     padLeft, replace, inc
 } from 'helpers';
-
-const formatNumbers = map(compose(replace(' ')('0'), padLeft(2)));
+import { 
+    createArrayOfNumbersOf, formatNumbers, 
+    rearrangeNumbers, toListItem 
+} from './localHelpers';
 
 export class NumberSelector extends Component {
     constructor(props) {
         super(props);
     
-        const from = 0;
-        const until = this.props.fromZeroUntil;
+        const { selected, lastNumber } = this.props;
 
-        this.state = {
-            numbers: compose(flatten, reverse, splitAt(inc(until - NumberSelector.splitAt)), formatNumbers, range(from), inc)(until),
-            selected: 0
-        };
+        this.numbers = compose(
+            formatNumbers, 
+            createArrayOfNumbersOf(NumberSelector.listOfNumbersStartsWith)
+        )(lastNumber);
     }
 
     render() {
@@ -29,8 +30,8 @@ export class NumberSelector extends Component {
                             {this.renderNumbers()}
                         </ul>
                     </div>
-                    <button className="btn -up"><IconAngleUp /></button>
-                    <button className="btn -down"><IconAngleDown /></button>
+                    <button className="btn -up" onClick={this.selectPrevious.bind(this)}><IconAngleUp /></button>
+                    <button className="btn -down" onClick={this.selectNext.bind(this)}><IconAngleDown /></button>
                 </div>
                 <span className="label">hours</span>
             </div>
@@ -38,18 +39,34 @@ export class NumberSelector extends Component {
     }
 
     renderNumbers() {
-        const toListItem = map(n => <li key={n} className="number">{n}</li>);
-        return toListItem(this.state.numbers);
+        return compose(
+            toListItem,
+            rearrangeNumbers, 
+            splitAt(this.props.selected - NumberSelector.offset)
+        )(this.numbers);
+    }
+
+    selectNext() {
+        this.props.onSelectNext();
+    }
+
+    selectPrevious() {
+        this.props.onSelectPrevious();
     }
 }
 
 NumberSelector.propTypes = {
-    fromZeroUntil: PropTypes.number.isRequired,
-    label: PropTypes.string
+    label: PropTypes.string,
+    selected: PropTypes.number,
+    lastNumber: PropTypes.number.isRequired,
+    onSelectNext: PropTypes.func.isRequired,
+    onSelectPrevious: PropTypes.func.isRequired
 };
 
 NumberSelector.defaultProps = {
-    label: 'numbers'
+    label: 'numbers',
+    selected: 0
 };
 
-NumberSelector.splitAt = 5;
+NumberSelector.listOfNumbersStartsWith = 0;
+NumberSelector.offset = 5;
