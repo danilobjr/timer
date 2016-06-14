@@ -1,0 +1,1 @@
+export const equals = x => y => x === y
