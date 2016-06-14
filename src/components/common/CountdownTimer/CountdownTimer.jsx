@@ -5,6 +5,8 @@ import { CounterWatch } from './CounterWatch';
 import { StartPauseButton } from './StartPauseButton';
 import { CountdownTimerCommands } from './CountdownTimerCommands';
 import { turnOnLightTheme, turnOffLightTheme } from './actions';
+import { notify } from 'native';
+import { timeToString } from './localHelpers';
 
 export class CountdownTimerComponent extends BaseComponent {
     constructor(props) {
@@ -82,6 +84,7 @@ export class CountdownTimerComponent extends BaseComponent {
 
         if (timeIsOver) {
             clearInterval(this.interval);
+            notify(this.props.name, { body: timeToString(this.props.time) })
         }
     }
     
