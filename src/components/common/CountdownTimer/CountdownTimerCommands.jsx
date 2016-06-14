@@ -3,6 +3,7 @@ import { BaseComponent } from 'BaseComponent';
 import { connect } from 'react-redux';
 import { StartPauseButton } from './StartPauseButton';
 import { CountdownCommandButton } from './CountdownCommandButton';
+import { validatePercentageProgressProp } from './propValidations';
 
 export class CountdownTimerCommands extends BaseComponent {
     render() {
@@ -53,20 +54,6 @@ export class CountdownTimerCommands extends BaseComponent {
             { 'h-hidden': !this.props.showResetButton }
         );
     }
-}
-
-const validatePercentageProgressProp = (props, propName, componentName) => {
-    const percentageValue = props[propName];
-    
-    if (percentageValue < 0 || percentageValue > 1) {
-        return new Error(
-            "Invalid prop '" + propName + "' supplied to" +
-            " '" + componentName + "'. Validation failed. " +
-            propName + " value must be between 0 and 1."
-        );
-    }
-    
-    return null;
 }
 
 CountdownTimerCommands.propTypes = {
