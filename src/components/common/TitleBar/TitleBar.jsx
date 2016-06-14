@@ -5,7 +5,7 @@ import { TitleBarButton } from './TitleBarButton';
 
 class TitleBarComponent extends BaseComponent {
     render() {
-        const { isLightThemeOn, backButtonEnabled } = this.props;
+        const { isLightThemeOn, backButtonEnabled, backButtonCallback } = this.props;
 
         return (
             <div className={this.renderCssClasses()}>
@@ -13,6 +13,7 @@ class TitleBarComponent extends BaseComponent {
                     className={this.classNames('-back', { 'h-display-none': !backButtonEnabled })} 
                     icon="arrowLeft" 
                     lightTheme={isLightThemeOn} 
+                    onClick={backButtonCallback}
                 />
                 <h5 className="title">Timers</h5>
                 <div className="buttons">
@@ -34,7 +35,8 @@ class TitleBarComponent extends BaseComponent {
 
 const mapStateToProps = (state) => ({
     isLightThemeOn: state.isLightThemeOn,
-    backButtonEnabled: state.backButtonEnabled
+    backButtonEnabled: state.backButtonEnabled,
+    backButtonCallback: state.backButtonCallback
 })
 
 export const TitleBar = connect(mapStateToProps)(TitleBarComponent);
