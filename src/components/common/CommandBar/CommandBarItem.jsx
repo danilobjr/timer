@@ -1,14 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import { IconChecklist, IconMoreHorizontal, IconPlus } from 'components/common/Icons';
+import { IconChecklist, IconMoreHorizontal, IconPlus, 
+    IconFloppy } from 'components/common/Icons';
 
 const icons = {
     checklist: IconChecklist,
     moreHorizontal: IconMoreHorizontal,
-    plus: IconPlus
+    plus: IconPlus,
+    floppy: IconFloppy
 };
 
-const renderTo = (to) => to || '#' 
+const renderTo = (to) => to || '' 
 
 export const CommandBarItem = (props) =>
     <Link {...props} className="command-bar-item" to={renderTo(props.to)}>
