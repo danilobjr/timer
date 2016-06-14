@@ -9,3 +9,5 @@ export const reverse = (array) => array.reverse()
 export const flatten = (array) => array.reduce((accu, curr) => accu.concat(curr), [])
 
 export const last = (array) => array[array.length - 1]
+
+export const all = (predicate) => (array) => array.every(predicate)
