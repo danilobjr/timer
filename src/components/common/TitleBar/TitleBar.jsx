@@ -5,10 +5,15 @@ import { TitleBarButton } from './TitleBarButton';
 
 class TitleBarComponent extends BaseComponent {
     render() {
-        const { isLightThemeOn } = this.props;
+        const { isLightThemeOn, backButtonEnabled } = this.props;
 
         return (
             <div className={this.renderCssClasses()}>
+                <TitleBarButton 
+                    className={this.classNames('-back', { 'h-display-none': !backButtonEnabled })} 
+                    icon="arrowLeft" 
+                    lightTheme={isLightThemeOn} 
+                />
                 <h5 className="title">Timers</h5>
                 <div className="buttons">
                     <TitleBarButton className="btn-minimize" icon="minus" lightTheme={isLightThemeOn} />
@@ -28,7 +33,8 @@ class TitleBarComponent extends BaseComponent {
 }
 
 const mapStateToProps = (state) => ({
-    isLightThemeOn: state.isLightThemeOn
+    isLightThemeOn: state.isLightThemeOn,
+    backButtonEnabled: state.backButtonEnabled
 })
 
 export const TitleBar = connect(mapStateToProps)(TitleBarComponent);
