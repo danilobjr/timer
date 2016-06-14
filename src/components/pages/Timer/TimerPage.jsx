@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { 
     CommandBar, CommandBarItem, FlexBox, 
     NavigationBar, PageView, PageContent,
     CountdownTimer
 } from 'components/common';
+import { milliseconds } from 'helpers';
 
-export class TimerPage extends Component {
+class TimerPageComponent extends Component {
     render() {
+        console.log(this.props.timers);
+
         return (
             <PageView className="timer-page">
                 <NavigationBar />
                 <PageContent grow={1}>
                     <FlexBox wrap justify='center'>
-                        <CountdownTimer name="My interval" time={5000} />
-                        <CountdownTimer name="Time to lunch" time={720000} />
+                        {this.renderCountdownTimers()}
                     </FlexBox>
                 </PageContent>
                 <CommandBar>
@@ -24,4 +27,17 @@ export class TimerPage extends Component {
             </PageView>
         );
     }
+
+    renderCountdownTimers() {
+        return this.props.timers.map(timer => {
+            const { id, name, hours, minutes, seconds } = timer;
+            return <CountdownTimer key={id} name={name} time={milliseconds(hours, minutes, seconds)} />;
+        });
+    }
 }
+
+const mapStateToProps = (state) => ({
+    timers: state.timers
+});
+
+export const TimerPage = connect(mapStateToProps)(TimerPageComponent);

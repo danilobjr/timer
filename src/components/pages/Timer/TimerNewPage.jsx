@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { 
     CommandBar, CommandBarItem, NavigationBar, 
     PageView, PageHeader, PageContent,
     FieldText, TimeSelector
 } from 'components/common';
+import { compose, omit, values, all, equals, not } from 'helpers';
+import { createTimer } from './actions';
 
-export class TimerNewPage extends Component {
+class TimerNewPageComponent extends Component {
     constructor(props) {
         super(props);
     
@@ -40,6 +43,7 @@ export class TimerNewPage extends Component {
                     />
                 </PageContent>
                 <CommandBar>
+                    <CommandBarItem icon="floppy" title="Save" disabled={!this.isTimeSet()} onClick={this.createNewTimer.bind(this)} />
                     <CommandBarItem icon="moreHorizontal" title="More" />
                 </CommandBar>
             </PageView>
@@ -55,4 +59,23 @@ export class TimerNewPage extends Component {
         const newState = Object.assign({}, this.state, { name: value });
         this.setState(newState);
     }
+
+    createNewTimer() {
+        this.props.createTimer(this.state);
+    }
+
+    isTimeSet() {
+        return compose(
+            not,
+            all(equals(0)),
+            values, 
+            omit(['name'])
+        )(this.state);
+    }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+    createTimer: (data) => dispatch(createTimer(data))
+})
+
+export const TimerNewPage = connect(null, mapDispatchToProps)(TimerNewPageComponent);
