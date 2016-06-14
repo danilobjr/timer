@@ -21,6 +21,14 @@ export class CountdownTimerComponent extends BaseComponent {
         this.interval = null;
     }
     
+    componentDidUpdate() {
+        if (this.state.expanded) {
+            this.props.onExpand();
+        } else {
+            this.props.onShrink();
+        }
+    }
+
     componentWillUnmount() {
         clearInterval(this.interval);
     }
@@ -118,7 +126,7 @@ export class CountdownTimerComponent extends BaseComponent {
         const { expanded } = this.state;
         const { turnOnLightTheme, turnOffLightTheme } = this.props;
 
-        expanded ? turnOffLightTheme() : turnOnLightTheme();
+        expanded ? turnOffLightTheme() : turnOnLightTheme();        
 
         this.setState({ expanded: !expanded });
     }
@@ -126,7 +134,9 @@ export class CountdownTimerComponent extends BaseComponent {
 
 CountdownTimerComponent.propTypes = {
     name: PropTypes.string,
-    time: PropTypes.number.isRequired
+    time: PropTypes.number.isRequired,
+    onExpand: PropTypes.func,
+    onShrink: PropTypes.func
 };
 
 CountdownTimerComponent.defaultProps = {
