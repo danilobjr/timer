@@ -16,7 +16,8 @@ module.exports = {
             BaseComponent: 'src/components/BaseComponent.jsx',
             config: 'src/config',
             components: 'src/components',
-            helpers: 'src/helpers'
+            helpers: 'src/helpers',
+            native: 'src/native'
         },
         extensions: ['', '.js', '.jsx', '.sass', '.scss']
     },
