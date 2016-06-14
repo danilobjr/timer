@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
-import { IconExpand, IconReset } from './../Icons';
+import { IconCompress, IconExpand, IconReset } from './../Icons';
 
 const Icons = {
+    compress: IconCompress,
     expand: IconExpand,
     reset: IconReset,
 };
@@ -11,7 +12,11 @@ export const CountdownCommandButton = (props) => {
     const icon = props.icon ? React.createElement(Icons[props.icon]) : null;
 
     return (
-        <button className={renderCommonButtonCssClasses(props)} onClick={props.onClick}>
+        <button 
+            className={renderCommonButtonCssClasses(props)} 
+            onClick={props.onClick} 
+            title={props.title}
+        >
             {icon}
         </button>
     );
