@@ -30,9 +30,16 @@ export class CountdownTimerCommands extends BaseComponent {
                     onClick={onClickStartPauseButton}
                 />
                 <CountdownCommandButton
-                    className="expand"
+                    className={this.classNames('expand', { 'h-display-none': lightTheme })}
                     icon="expand"
                     title="Expand"
+                    lightTheme={lightTheme}
+                    onClick={onClickExpandButton}
+                /> 
+                <CountdownCommandButton
+                    className={this.classNames('shrink', { 'h-display-none': !lightTheme })}
+                    icon="compress"
+                    title="Shrink"
                     lightTheme={lightTheme}
                     onClick={onClickExpandButton}
                 /> 
