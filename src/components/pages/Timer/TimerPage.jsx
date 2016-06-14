@@ -9,8 +9,6 @@ import { milliseconds } from 'helpers';
 
 class TimerPageComponent extends Component {
     render() {
-        console.log(this.props.timers);
-
         return (
             <PageView className="timer-page">
                 <NavigationBar />
