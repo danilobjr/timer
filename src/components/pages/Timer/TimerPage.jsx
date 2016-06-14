@@ -6,7 +6,7 @@ import {
     CountdownTimer
 } from 'components/common';
 import { milliseconds } from 'helpers';
-import { enableBackButton, disableBackButton } from 'components/common';
+import { enableBackButton, disableBackButton, setBackButtonCallback } from 'components/common';
 
 class TimerPageComponent extends Component {
     render() {
@@ -34,17 +34,18 @@ class TimerPageComponent extends Component {
                         key={id} 
                         name={name} 
                         time={milliseconds(hours, minutes, seconds)} 
-                        onExpand={this.onTimerExpanded.bind(this)}
-                        onShrink={this.onTimerShrunken.bind(this)}
+                        onExpand={(timer) => this.onTimerExpanded(timer)}
+                        onShrink={(timer) => this.onTimerShrunken(timer)}
                     />;
         });
     }
 
-    onTimerExpanded() {
+    onTimerExpanded(timer) {
+        this.props.setBackButtonCallback(() => timer.shrink());
         this.props.enableBackButton();
     }
 
-    onTimerShrunken() {
+    onTimerShrunken(timer) {
         this.props.disableBackButton();
     }
 }
@@ -55,7 +56,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     enableBackButton: () => dispatch(enableBackButton()),
-    disableBackButton: () => dispatch(disableBackButton())
+    disableBackButton: () => dispatch(disableBackButton()),
+    setBackButtonCallback: (callback) => dispatch(setBackButtonCallback(callback))
 })
 
 export const TimerPage = connect(mapStateToProps, mapDispatchToProps)(TimerPageComponent);
