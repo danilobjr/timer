@@ -38,6 +38,7 @@ module.exports = {
             }
         ]
     },
+    target: 'electron',
     devtool: 'source-map',
     devServer: {
         contentBase: './public',
