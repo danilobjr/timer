@@ -7,8 +7,9 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import { TitleBar } from 'components/common';
 import { ChronometerPage, TimerPage, TimerNewPage } from 'components/pages';
 import { appReducers } from './appReducers';
+import { initialState } from 'config/initialState';
 
-const store = createStore(appReducers);
+const store = createStore(appReducers, initialState);
 const history = syncHistoryWithStore(hashHistory, store);
 
 export class App extends Component {
