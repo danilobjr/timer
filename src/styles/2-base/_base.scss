@@ -36,7 +36,13 @@ ul {
 }
 
 a {
-    text-decoration: none;
+    & {
+        text-decoration: none;
+    }
+
+    &[disabled] {
+        pointer-events: none;
+    }
 }
 
 input:focus {
