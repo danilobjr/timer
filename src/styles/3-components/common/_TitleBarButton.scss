@@ -30,6 +30,18 @@
         stroke: $black !important;
     }
 
+    &.-back:hover {
+        background-color: $fun-blue;
+    }
+
+    &.-back:active {
+        background-color: $astral;
+    }
+
+    &.-back:hover > .icon {
+        stroke: $white !important;
+    }
+
     &.-lighttheme > .icon  {
         stroke: $white !important;
     }
@@ -44,5 +56,9 @@
 
     &.-lighttheme.-red:active > .icon  {
         stroke: $black !important;
+    }
+
+    &.-lighttheme.-back:hover > .icon  {
+        stroke: $white !important;
     }
 }
