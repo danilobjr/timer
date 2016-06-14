@@ -23,9 +23,9 @@ export class CountdownTimerComponent extends BaseComponent {
     
     componentDidUpdate() {
         if (this.state.expanded) {
-            this.props.onExpand();
+            this.props.onExpand(this);
         } else {
-            this.props.onShrink();
+            this.props.onShrink(this);
         }
     }
 
@@ -123,12 +123,17 @@ export class CountdownTimerComponent extends BaseComponent {
     }
 
     toggleExpanded() {
-        const { expanded } = this.state;
-        const { turnOnLightTheme, turnOffLightTheme } = this.props;
+        this.state.expanded ? this.shrink() : this.expand();
+    }
 
-        expanded ? turnOffLightTheme() : turnOnLightTheme();        
+    expand() {
+        this.props.turnOnLightTheme();
+        this.setState({ expanded: true });
+    }
 
-        this.setState({ expanded: !expanded });
+    shrink() {
+        this.props.turnOffLightTheme();
+        this.setState({ expanded: false });        
     }
 }
 
