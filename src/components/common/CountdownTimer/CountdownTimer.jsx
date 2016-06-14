@@ -19,20 +19,6 @@ export class CountdownTimerComponent extends BaseComponent {
         this.interval = null;
     }
     
-    componentDidMount() {
-        const oneSecond = 1000;
-        
-        this.interval = setInterval(() => {
-            const { paused, counter } = this.state;            
-            
-            if (!paused) {
-                this.setState({ counter: counter + oneSecond });
-            }
-            
-            this.stopIfTimeIsOver();
-        }, oneSecond);
-    }
-    
     componentWillUnmount() {
         clearInterval(this.interval);
     }
@@ -91,17 +77,40 @@ export class CountdownTimerComponent extends BaseComponent {
     }
     
     stopIfTimeIsOver() {
-        this.props.time === this.state.counter && this.setState({ paused: true });
+        const timeIsOver = this.props.time === this.state.counter;
+        timeIsOver && this.setState({ paused: true });
+
+        if (timeIsOver) {
+            clearInterval(this.interval);
+        }
     }
     
     resetCounter() {
         this.setState({ counter: 0 });
     }
     
-    togglePaused() {
-        this.setState({ paused: !this.state.paused });
+    startCounting() {
+        const oneSecond = 1000;
+
+        this.interval = setInterval(() => {
+            const { paused, counter } = this.state;            
+            
+            if (!paused) {
+                this.setState({ counter: counter + oneSecond });
+            }
+
+            this.stopIfTimeIsOver();
+        }, oneSecond);
     }
     
+    togglePaused() {
+        if(this.state.paused) {
+            this.startCounting();
+        }
+
+        this.setState({ paused: !this.state.paused });
+    }
+
     toggleExpanded() {
         const { expanded } = this.state;
         const { turnOnLightTheme, turnOffLightTheme } = this.props;
