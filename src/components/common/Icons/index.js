@@ -1,5 +1,6 @@
 export * from './IconAngleDown';
 export * from './IconAngleUp';
+export * from './IconArrowLeft';
 export * from './IconChecklist';
 export * from './IconExpand';
 export * from './IconFloppy';
