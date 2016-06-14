@@ -1,0 +1,1 @@
+export const notify = (title, settings) => new Notification(title, settings)
