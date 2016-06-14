@@ -18,4 +18,8 @@
     &:active {
         background-color: $dark-gray;
     }
+
+    &[disabled] > svg > g {
+        stroke: $dove-gray !important;
+    }
 }
