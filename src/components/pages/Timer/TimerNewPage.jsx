@@ -7,6 +7,7 @@ import {
 } from 'components/common';
 import { compose, omit, values, all, equals, not } from 'helpers';
 import { createTimer } from './actions';
+import { enableBackButton, disableBackButton, setBackButtonCallback } from 'components/common';
 
 class TimerNewPageComponent extends Component {
     constructor(props) {
@@ -18,6 +19,17 @@ class TimerNewPageComponent extends Component {
             minutes: 0,
             seconds: 0
         };
+    }
+
+    componentWillMount() {
+        const { enableBackButton, setBackButtonCallback, history } = this.props;
+
+        enableBackButton();
+        setBackButtonCallback(() => history.goBack());
+    }
+
+    componentWillUnmount() {
+        this.props.disableBackButton();
     }
 
     render() {
@@ -75,7 +87,10 @@ class TimerNewPageComponent extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    createTimer: (data) => dispatch(createTimer(data))
+    createTimer: (data) => dispatch(createTimer(data)),
+    enableBackButton: () => dispatch(enableBackButton()),
+    disableBackButton: () => dispatch(disableBackButton()),
+    setBackButtonCallback: (callback) => dispatch(setBackButtonCallback(callback))
 })
 
 export const TimerNewPage = connect(null, mapDispatchToProps)(TimerNewPageComponent);
