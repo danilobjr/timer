@@ -1,3 +1,4 @@
+export * from './Animation';
 export * from './CommandBar';
 export * from './CountdownTimer';
 export * from './FlexBox';
