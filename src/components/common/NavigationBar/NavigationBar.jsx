@@ -4,7 +4,7 @@ import { NavigationBarItem } from './NavigationBarItem';
 import { changeActiveNavigationBarItem } from './actions';
 import { items } from './items';
 
-class NavigationBarComponent extends Component {    
+class NavigationBarComponent extends Component {
     render() {
         return (
             <nav className="navigation-bar">
@@ -16,16 +16,17 @@ class NavigationBarComponent extends Component {
     }
     
     renderNavigationBarItems() {
-        const { currentActiveItem, changeActiveItem } = this.props;
+        const { currentActiveItemId, changeActiveItemId } = this.props;
         
         return items.map(item => 
             <NavigationBarItem
-                key={item.text}
+                key={item.id}
+                id={item.id}
                 href={item.href} 
                 text={item.text} 
                 icon={item.icon}
-                isActive={currentActiveItem === item.text}
-                onItemClick={changeActiveItem} 
+                isActive={currentActiveItemId === item.id}
+                onItemClick={(id) => changeActiveItemId(id)} 
             />
         );
     }
@@ -33,12 +34,12 @@ class NavigationBarComponent extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        currentActiveItem: state.currentActiveNavigationBarItem
+        currentActiveItemId: state.currentActiveNavigationBarItemId
     };
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    changeActiveItem: (text) => dispatch(changeActiveNavigationBarItem(text))
+    changeActiveItemId: (id) => dispatch(changeActiveNavigationBarItem(id))
 })
 
 export const NavigationBar = connect(mapStateToProps, mapDispatchToProps)(NavigationBarComponent);

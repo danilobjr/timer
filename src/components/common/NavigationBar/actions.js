@@ -1,6 +1,6 @@
-export const CHANGE_ACTIVE_NAVIGATION_BAR_ITEM = 'CHANGE_ACTIVE_NAVIGATION_BAR_ITEM';
+export const CHANGE_ACTIVE_NAVIGATION_BAR_ITEM_ID = 'CHANGE_ACTIVE_NAVIGATION_BAR_ITEM_ID';
 
-export const changeActiveNavigationBarItem = (text) => ({
-    type: CHANGE_ACTIVE_NAVIGATION_BAR_ITEM,
-    text
+export const changeActiveNavigationBarItem = (id) => ({
+    type: CHANGE_ACTIVE_NAVIGATION_BAR_ITEM_ID,
+    id
 })

@@ -1,9 +1,9 @@
-import { CHANGE_ACTIVE_NAVIGATION_BAR_ITEM } from './actions';
+import { CHANGE_ACTIVE_NAVIGATION_BAR_ITEM_ID } from './actions';
 
-export const currentActiveNavigationBarItem = (state = 'Timer', action) => {
+export const currentActiveNavigationBarItemId = (state = 0, action) => {
     switch (action.type) {
-        case CHANGE_ACTIVE_NAVIGATION_BAR_ITEM:
-            return action.text;
+        case CHANGE_ACTIVE_NAVIGATION_BAR_ITEM_ID:
+            return action.id;
         default:
             return state;
     }

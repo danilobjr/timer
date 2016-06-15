@@ -36,12 +36,13 @@ export class NavigationBarItem extends BaseComponent {
     }
     
     handleOnClick() {
-        const { text, onItemClick } = this.props;
-        onItemClick(text);
+        const { id, onItemClick } = this.props;
+        onItemClick(id);
     }
 }
 
 NavigationBarItem.propTypes = {
+    id: PropTypes.number.isRequired,
     href: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
