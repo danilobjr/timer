@@ -1,13 +1,15 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import { IconArrowLeft, IconMinus, IconRemove, IconSquare } from 'components/common';
+import { IconArrowLeft, IconMinus, IconRemove, 
+    IconSquare, IconSquareDouble } from 'components/common';
 
 const Icons = {
     arrowLeft: IconArrowLeft,
     minus: IconMinus,
     remove: IconRemove,
-    square: IconSquare
+    square: IconSquare,
+    squareDouble: IconSquareDouble
 };
 
 const renderCssClasses = (props) =>

@@ -1,7 +1,19 @@
 const remote = require('electron').remote;
+import { store } from './store';
+import * as actions from './actions';
 
 const minimizeWindow = (window) => window.minimize()
-const toggleWindowSize = (window) => window.isMaximized() ? window.unmaximize() : window.maximize()
+
+const toggleWindowSize = (window) => {
+    if (window.isMaximized()) {
+        store.dispatch(actions.minimizeWindow());
+        window.unmaximize();
+    } else {
+        store.dispatch(actions.maximizeWindow());
+        window.maximize();
+    }
+}
+
 const closeWindow = (window) => window.close()
 
 document.addEventListener('DOMContentLoaded', () => {
