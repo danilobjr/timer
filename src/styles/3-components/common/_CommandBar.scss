@@ -6,7 +6,7 @@
         background-color: $alto;
     }
     
-    > .list {
-        display: flex;
+    > a:last-of-type {
+        flex-basis: 48px;
     }
 }
