@@ -1,10 +1,10 @@
-import { MAXIMIZE_WINDOW, MINIMIZE_WINDOW } from './actions';
+import { SET_WINDOW_IS_MAXIMIZED, SET_WINDOW_IS_NOT_MAXIMIZED } from './actions';
 
 export const windowIsMaximized = (state = false, action) => {
     switch (action.type) {
-        case MAXIMIZE_WINDOW:
+        case SET_WINDOW_IS_MAXIMIZED:
             return true;
-        case MINIMIZE_WINDOW:
+        case SET_WINDOW_IS_NOT_MAXIMIZED:
             return false;
         default:
             return state;

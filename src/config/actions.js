@@ -1,10 +1,10 @@
-export const MAXIMIZE_WINDOW = 'MAXIMIZE_WINDOW';
-export const MINIMIZE_WINDOW = 'MINIMIZE_WINDOW';
+export const SET_WINDOW_IS_MAXIMIZED = 'SET_WINDOW_IS_MAXIMIZED';
+export const SET_WINDOW_IS_NOT_MAXIMIZED = 'SET_WINDOW_IS_NOT_MAXIMIZED';
 
-export const maximizeWindow = () => ({
-    type: MAXIMIZE_WINDOW
+export const setWindowIsMaximized = () => ({
+    type: SET_WINDOW_IS_MAXIMIZED
 })
 
-export const minimizeWindow = () => ({
-    type: MINIMIZE_WINDOW
+export const setWindowIsMinimized = () => ({
+    type: SET_WINDOW_IS_NOT_MAXIMIZED
 })
