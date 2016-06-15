@@ -7,13 +7,13 @@ let mainWindow;
 const createMainWindow = () => {
     mainWindow = new BrowserWindow({ 
         frame: false,
-        width: 1366, height: 768, 
+        width: 380, height: 640, 
         minWidth: 354, minHeight: 540 
     });
     
     mainWindow.setMenu(null);
     mainWindow.loadURL(`file://${__dirname}/public/index.html`);
-    // mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
     mainWindow.on('closed', () => {
         mainWindow = null;
     });    
