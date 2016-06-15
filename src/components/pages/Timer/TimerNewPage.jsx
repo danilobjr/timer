@@ -7,7 +7,7 @@ import {
 } from 'components/common';
 import { compose, omit, values, all, equals, not } from 'helpers';
 import { createTimer } from './actions';
-import { enableBackButton, disableBackButton, setBackButtonCallback } from 'components/common';
+import { Animation, enableBackButton, disableBackButton, setBackButtonCallback } from 'components/common';
 
 class TimerNewPageComponent extends Component {
     constructor(props) {
@@ -39,20 +39,23 @@ class TimerNewPageComponent extends Component {
             <PageView className="timer-new-page">
                 <PageContent grow={1}>
                     <PageHeader>New Timer</PageHeader>
-                    <div className="field">
-                        <TimeSelector
-                            hours={hours} 
-                            minutes={minutes} 
-                            seconds={seconds} 
-                            onChange={(value) => this.updateTime(value)} 
-                        />
-                    </div>
+                    
+                    <Animation type="slideUp">
+                        <div className="field">
+                            <TimeSelector
+                                hours={hours} 
+                                minutes={minutes} 
+                                seconds={seconds} 
+                                onChange={(value) => this.updateTime(value)} 
+                            />
+                        </div>
 
-                    <FieldText 
-                        label="Timer name" 
-                        value={name} 
-                        onChange={(value) => this.updateName(value)} 
-                    />
+                        <FieldText 
+                            label="Timer name" 
+                            value={name} 
+                            onChange={(value) => this.updateName(value)} 
+                        />
+                    </Animation>
                 </PageContent>
                 <CommandBar>
                     <CommandBarItem icon="floppy" title="Save" disabled={!this.isTimeSet()} onClick={this.createNewTimer.bind(this)} />
