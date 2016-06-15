@@ -1,0 +1,9 @@
+.animation {
+    & {
+        @include make-transition(transform);
+    }
+
+    &.-slide-up {
+        @include animation(slideUp);
+    }
+}
