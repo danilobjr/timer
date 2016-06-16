@@ -115,10 +115,7 @@ export class CountdownTimerComponent extends BaseComponent {
     }
     
     togglePaused() {
-        if(this.state.paused) {
-            this.startCounting();
-        }
-
+        this.state.paused ? this.startCounting() : clearInterval(this.interval);
         this.setState({ paused: !this.state.paused });
     }
 
