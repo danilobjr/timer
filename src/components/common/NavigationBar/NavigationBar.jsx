@@ -17,7 +17,7 @@ class NavigationBarComponent extends Component {
     
     renderNavigationBarItems() {
         const { currentActiveItemId, changeActiveItemId } = this.props;
-        
+
         return items.map(item => 
             <NavigationBarItem
                 key={item.id}
@@ -32,11 +32,9 @@ class NavigationBarComponent extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        currentActiveItemId: state.currentActiveNavigationBarItemId
-    };
-}
+const mapStateToProps = (state) => ({
+    currentActiveItemId: state.activeNavigationBarItemIdHistory[0]
+})
 
 const mapDispatchToProps = (dispatch) => ({
     changeActiveItemId: (id) => dispatch(changeActiveNavigationBarItem(id))
