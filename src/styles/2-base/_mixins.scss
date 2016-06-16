@@ -9,7 +9,3 @@
     
     transition: $property $speed $ease $delay;
 }
-
-@mixin animation($name) {
-    animation: $name .3s $ease-out;
-}

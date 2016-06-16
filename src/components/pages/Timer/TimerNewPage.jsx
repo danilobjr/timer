@@ -7,7 +7,7 @@ import {
 } from 'components/common';
 import { compose, omit, values, all, equals, not } from 'helpers';
 import { createTimer } from './actions';
-import { Animation, enableBackButton, disableBackButton, setBackButtonCallback } from 'components/common';
+import { enableBackButton, disableBackButton, setBackButtonCallback } from 'components/common';
 
 class TimerNewPageComponent extends Component {
     constructor(props) {
