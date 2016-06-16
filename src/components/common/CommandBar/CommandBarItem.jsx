@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import { IconChecklist, IconMoreHorizontal, IconPlus, 
+import { IconCheck, IconChecklist, IconMoreHorizontal, IconPlus, 
     IconFloppy } from 'components/common/Icons';
 
 const icons = {
+    check: IconCheck,
     checklist: IconChecklist,
     moreHorizontal: IconMoreHorizontal,
     plus: IconPlus,
