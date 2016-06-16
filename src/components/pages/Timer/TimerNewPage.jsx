@@ -40,22 +40,20 @@ class TimerNewPageComponent extends Component {
                 <PageContent grow={1}>
                     <PageHeader>New Timer</PageHeader>
                     
-                    <Animation type="slideUp">
-                        <div className="field">
-                            <TimeSelector
-                                hours={hours} 
-                                minutes={minutes} 
-                                seconds={seconds} 
-                                onChange={(value) => this.updateTime(value)} 
-                            />
-                        </div>
-
-                        <FieldText 
-                            label="Timer name" 
-                            value={name} 
-                            onChange={(value) => this.updateName(value)} 
+                    <div className="field">
+                        <TimeSelector
+                            hours={hours} 
+                            minutes={minutes} 
+                            seconds={seconds} 
+                            onChange={(value) => this.updateTime(value)} 
                         />
-                    </Animation>
+                    </div>
+
+                    <FieldText 
+                        label="Timer name" 
+                        value={name} 
+                        onChange={(value) => this.updateName(value)} 
+                    />
                 </PageContent>
                 <CommandBar>
                     <CommandBarItem icon="floppy" title="Save" disabled={!this.isTimeSet()} onClick={this.createNewTimer.bind(this)} />
