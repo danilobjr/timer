@@ -12,7 +12,8 @@ export class NavigationBarItem extends BaseComponent {
         return (
             <li 
                 className={this.renderLiClassNames()} 
-                onClick={this.handleOnClick.bind(this)}>
+                onClick={this.handleOnClick.bind(this)}
+            >
                 <a className="link" href={`#${this.props.href}`}>
                     {React.createElement(icons[this.props.icon])}
                     <span className="text">{this.props.text}</span>
