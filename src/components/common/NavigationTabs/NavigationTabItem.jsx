@@ -7,42 +7,33 @@ const icons = {
     timer: IconTimer
 };
 
-export class NavigationBarItem extends BaseComponent {
+export class NavigationTabItem extends BaseComponent {
     render() {
         return (
             <li 
                 className={this.renderLiClassNames()} 
-                onClick={this.handleOnClick.bind(this)}
+                onClick={this.onClick.bind(this)}
             >
-                <a className="link" href={`#${this.props.href}`}>
-                    {React.createElement(icons[this.props.icon])}
-                    <span className="text">{this.props.text}</span>
-                </a>
+                {React.createElement(icons[this.props.icon])}
+                <span className="text">{this.props.text}</span>
             </li>
         );
     }
     
     renderLiClassNames() {
         return this.classNames(
-            'navigation-bar-item',
+            'navigation-tab-item',
             this.props.isActive && '-active'
         );
     }
     
-    rendericons() {
-        return this.classNames(
-            'icon',
-            this.props.icon
-        );
-    }
-    
-    handleOnClick() {
+    onClick() {
         const { id, onItemClick } = this.props;
         onItemClick(id);
     }
 }
 
-NavigationBarItem.propTypes = {
+NavigationTabItem.propTypes = {
     id: PropTypes.number.isRequired,
     href: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,

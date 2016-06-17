@@ -3,7 +3,7 @@ export * from './CountdownTimer';
 export * from './FlexBox';
 export * from './Form';
 export * from './Icons';
-export * from './NavigationBar';
+export * from './NavigationTabs';
 export * from './Page';
 export * from './TimeSelector';
 export * from './TitleBar';

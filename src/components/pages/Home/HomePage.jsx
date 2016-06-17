@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { 
     CommandBar, CommandBarItem, FlexBox, 
-    NavigationBar, PageView, PageContent,
+    NavigationTabs, PageView, PageContent,
     CountdownTimer
 } from 'components/common';
 
 export class HomePage extends Component {
     render() {
         return (
-            <PageView className="home-page">
-                <NavigationBar />
+            <PageView>
+                <NavigationTabs />
                 {/* 
                 <PageContent grow={1}>
                     <FlexBox wrap justify='center'>

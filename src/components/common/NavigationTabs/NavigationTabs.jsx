@@ -1,25 +1,25 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { NavigationBarItem } from './NavigationBarItem';
-import { changeActiveNavigationBarItem } from './actions';
+import { NavigationTabItem } from './NavigationTabItem';
+import { changeActiveNavigationTabItem } from './actions';
 import { items } from './items';
 
-class NavigationBarComponent extends Component {
+class NavigationTabsComponent extends Component {
     render() {
         return (
-            <nav className="navigation-bar">
+            <nav className="navigation-tabs">
                 <ul className="list">
-                    {this.renderNavigationBarItems()}
+                    {this.renderNavigationTabItems()}
                 </ul>
             </nav>
         );
     }
     
-    renderNavigationBarItems() {
+    renderNavigationTabItems() {
         const { currentActiveItemId, changeActiveItemId } = this.props;
 
         return items.map(item => 
-            <NavigationBarItem
+            <NavigationTabItem
                 key={item.id}
                 id={item.id}
                 href={item.href} 
@@ -33,11 +33,11 @@ class NavigationBarComponent extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    currentActiveItemId: state.activeNavigationBarItemIdHistory[0]
+    currentActiveItemId: state.activeNavigationTabItemIdHistory[0]
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    changeActiveItemId: (id) => dispatch(changeActiveNavigationBarItem(id))
+    changeActiveItemId: (id) => dispatch(changeActiveNavigationTabItem(id))
 })
 
-export const NavigationBar = connect(mapStateToProps, mapDispatchToProps)(NavigationBarComponent);
+export const NavigationTabs = connect(mapStateToProps, mapDispatchToProps)(NavigationTabsComponent);
