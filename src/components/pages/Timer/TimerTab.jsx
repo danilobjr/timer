@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { 
-    CommandBar, CommandBarItem, FlexBox, 
-    NavigationBar, PageView, PageContent,
+    FlexBox, FlexItem, Tab, TabContent,
+    CommandBar, CommandBarItem, 
     CountdownTimer
 } from 'components/common';
 import { milliseconds } from 'helpers';
@@ -11,18 +11,18 @@ import { enableBackButton, disableBackButton, setBackButtonCallback } from 'comp
 class TimerTabComponent extends Component {
     render() {
         return (
-            <div>
-                <PageContent grow={1}>
+            <Tab>
+                <TabContent>
                     <FlexBox wrap justify='center'>
                         {this.renderCountdownTimers()}
                     </FlexBox>
-                </PageContent>
+                </TabContent>
                 <CommandBar>
                     <CommandBarItem to="/timer/new" icon="plus" title="New" />
                     <CommandBarItem icon="checklist" title="Edit" />
                     <CommandBarItem icon="moreHorizontal" title="More" />
                 </CommandBar>
-            </div>
+            </Tab>
         );
     }
 
