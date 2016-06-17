@@ -38,10 +38,12 @@ class TimerTabComponent extends Component {
     renderCountdownTimers() {
         return this.props.timers.map(timer => {
             const { id, name, hours, minutes, seconds } = timer;
+
             return <CountdownTimer 
                         key={id} 
                         name={name} 
                         time={milliseconds(hours, minutes, seconds)} 
+                        isEditionEnabled={this.state.isEditionEnabled}
                         onExpand={(timer) => this.onTimerExpanded(timer)}
                         onShrink={(timer) => this.onTimerShrunken(timer)}
                     />;

@@ -8,14 +8,20 @@ import { validatePercentageProgressProp } from './propValidations';
 export class CountdownTimerCommands extends BaseComponent {
     render() {
         const { lightTheme, disableStartPauseButton, showPause, 
-                showResetButton, percentageProgress, 
+                showResetButton, percentageProgress, isEditionEnabled,
                 onClickStartPauseButton, onClickResetButton,
-                onClickExpandButton } = this.props;
-        
+                onClickExpandButton, onClickRemoveButton } = this.props;
+
         return (
             <div className="countdown-timer-commands">
                 <CountdownCommandButton
-                    className="reset"
+                    className={this.classNames('remove', { 'h-display-none': !isEditionEnabled })}
+                    icon="trash"
+                    title="Remove" 
+                    onClick={onClickRemoveButton}
+                />
+                <CountdownCommandButton
+                    className={this.classNames('reset', { 'h-display-none': isEditionEnabled })}
                     icon="reset"
                     title="Reset"
                     showButton={showResetButton} 
@@ -24,7 +30,7 @@ export class CountdownTimerCommands extends BaseComponent {
                 /> 
                 <StartPauseButton 
                     lightTheme={lightTheme}
-                    disabled={disableStartPauseButton}
+                    disabled={disableStartPauseButton || isEditionEnabled}
                     showPause={showPause}
                     percentageProgress={percentageProgress}
                     onClick={onClickStartPauseButton}
@@ -33,6 +39,7 @@ export class CountdownTimerCommands extends BaseComponent {
                     className={this.classNames('expand', { 'h-display-none': lightTheme })}
                     icon="expand"
                     title="Expand"
+                    showButton={!isEditionEnabled}
                     lightTheme={lightTheme}
                     onClick={onClickExpandButton}
                 /> 
@@ -65,11 +72,21 @@ export class CountdownTimerCommands extends BaseComponent {
 
 CountdownTimerCommands.propTypes = {
     lightTheme: PropTypes.bool,
+    isEditionEnabled: PropTypes.bool,
     disableStartPauseButton: PropTypes.bool,
     showPause: PropTypes.bool,
     showResetButton: PropTypes.bool,
     percentageProgress: validatePercentageProgressProp,
     onClickStartPauseButton: PropTypes.func.isRequired,
     onClickResetButton: PropTypes.func,
-    onClickExpandButton: PropTypes.func
+    onClickExpandButton: PropTypes.func,
+    onClickRemoveButton: PropTypes.func
+};
+
+CountdownTimerCommands.defaultProps = {
+    lightTheme: false,
+    isEditionEnabled: false,
+    disableStartPauseButton: false,
+    showPause: false,
+    showResetButton: false
 };

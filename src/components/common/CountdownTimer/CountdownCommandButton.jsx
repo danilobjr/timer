@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
-import { IconCompress, IconExpand, IconReset } from './../Icons';
+import { IconCompress, IconExpand, IconReset, IconTrash } from './../Icons';
 
 const Icons = {
     compress: IconCompress,
     expand: IconExpand,
     reset: IconReset,
+    trash: IconTrash
 };
 
 export const CountdownCommandButton = (props) => {

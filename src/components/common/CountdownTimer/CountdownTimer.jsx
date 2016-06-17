@@ -35,13 +35,14 @@ export class CountdownTimerComponent extends BaseComponent {
     
     render() {
         const { paused, counter, expanded } = this.state;
-        const { name, time } = this.props;
+        const { name, time, isEditionEnabled } = this.props;
         
         return (
             <div className={this.renderCountdownTimerCssClasses()}>
                 <CounterWatch currentTime={counter} totalTime={time} lightTheme={expanded} />
                 <CountdownTimerCommands 
                     lightTheme={expanded}
+                    isEditionEnabled={isEditionEnabled}
                     showPause={!paused}
                     showResetButton={this.shouldShowResetButton()}
                     percentageProgress={this.calculatePercentageProgress()}
@@ -137,6 +138,7 @@ export class CountdownTimerComponent extends BaseComponent {
 CountdownTimerComponent.propTypes = {
     name: PropTypes.string,
     time: PropTypes.number.isRequired,
+    isEditionEnabled: PropTypes.bool,
     onExpand: PropTypes.func,
     onShrink: PropTypes.func
 };
