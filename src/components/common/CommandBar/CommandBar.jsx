@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { CommandBarItem } from './CommandBarItem';
+import { flatten } from 'helpers';
 
 export class CommandBar extends Component {
     render() {
@@ -8,7 +9,7 @@ export class CommandBar extends Component {
 }
 
 const validateChildren = (props, propName, componentName) => {
-    const children = props[propName];
+    const children = flatten(props[propName]);
     
     if (!children) {
         return new Error(
@@ -17,9 +18,9 @@ const validateChildren = (props, propName, componentName) => {
         );
     }
     
-    const isSomeChildrenNotCommandBarItem = [].concat(children).some(c => c.type !== CommandBarItem);
+    const isSomeChildrenNotTypeOfCommandBarItem = children.some(c => c.type !== CommandBarItem);
     
-    if (isSomeChildrenNotCommandBarItem) {        
+    if (isSomeChildrenNotTypeOfCommandBarItem) {        
         return new Error(
             "Invalid prop '" + propName + "' supplied to" +
             " '" + componentName + "'. Validation failed. All children must be of type CommandBarItem."
