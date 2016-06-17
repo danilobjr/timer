@@ -8,11 +8,10 @@ import {
 import { milliseconds } from 'helpers';
 import { enableBackButton, disableBackButton, setBackButtonCallback } from 'components/common';
 
-class TimerPageComponent extends Component {
+class TimerTabComponent extends Component {
     render() {
         return (
-            <PageView className="timer-page">
-                <NavigationBar />
+            <div>
                 <PageContent grow={1}>
                     <FlexBox wrap justify='center'>
                         {this.renderCountdownTimers()}
@@ -23,7 +22,7 @@ class TimerPageComponent extends Component {
                     <CommandBarItem icon="checklist" title="Edit" />
                     <CommandBarItem icon="moreHorizontal" title="More" />
                 </CommandBar>
-            </PageView>
+            </div>
         );
     }
 
@@ -60,4 +59,4 @@ const mapDispatchToProps = (dispatch) => ({
     setBackButtonCallback: (callback) => dispatch(setBackButtonCallback(callback))
 })
 
-export const TimerPage = connect(mapStateToProps, mapDispatchToProps)(TimerPageComponent);
+export const TimerTab = connect(mapStateToProps, mapDispatchToProps)(TimerTabComponent);
