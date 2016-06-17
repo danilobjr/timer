@@ -12,7 +12,7 @@ export class NavigationTabItem extends BaseComponent {
         return (
             <li 
                 className={this.renderLiClassNames()} 
-                onClick={this.onClick.bind(this)}
+                onClick={this.props.onItemClick}
             >
                 {React.createElement(icons[this.props.icon])}
                 <span className="text">{this.props.text}</span>
@@ -26,16 +26,9 @@ export class NavigationTabItem extends BaseComponent {
             this.props.isActive && '-active'
         );
     }
-    
-    onClick() {
-        const { id, onItemClick } = this.props;
-        onItemClick(id);
-    }
 }
 
 NavigationTabItem.propTypes = {
-    id: PropTypes.number.isRequired,
-    href: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
     isActive: PropTypes.bool,

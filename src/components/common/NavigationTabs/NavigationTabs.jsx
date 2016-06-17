@@ -16,28 +16,26 @@ class NavigationTabsComponent extends Component {
     }
     
     renderNavigationTabItems() {
-        const { currentActiveItemId, changeActiveItemId } = this.props;
+        const { currentActiveItemIndex, changeActiveItemIndex } = this.props;
 
-        return items.map(item => 
+        return items.map((item, index) => 
             <NavigationTabItem
-                key={item.id}
-                id={item.id}
-                href={item.href} 
+                key={index}
                 text={item.text} 
                 icon={item.icon}
-                isActive={currentActiveItemId === item.id}
-                onItemClick={(id) => changeActiveItemId(id)} 
+                isActive={currentActiveItemIndex === index}
+                onItemClick={() => changeActiveItemIndex(index)} 
             />
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    currentActiveItemId: state.activeNavigationTabItemIdHistory[0]
+    currentActiveItemIndex: state.activeNavigationTabItemIndexHistory[0]
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    changeActiveItemId: (id) => dispatch(changeActiveNavigationTabItem(id))
+    changeActiveItemIndex: (id) => dispatch(changeActiveNavigationTabItem(id))
 })
 
 export const NavigationTabs = connect(mapStateToProps, mapDispatchToProps)(NavigationTabsComponent);
