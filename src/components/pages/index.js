@@ -1,2 +1,1 @@
-export * from './ChronometerPage';
-export * from './Timer';
+export * from './Home';
