@@ -17,3 +17,4 @@ export * from './IconSquare';
 export * from './IconSquareDouble';
 export * from './IconStopwatch';
 export * from './IconTimer';
+export * from './IconTrash';
