@@ -5,5 +5,6 @@ export * from './Form';
 export * from './Icons';
 export * from './NavigationTabs';
 export * from './Page';
+export * from './Tab';
 export * from './TimeSelector';
 export * from './TitleBar';
