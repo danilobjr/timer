@@ -11,8 +11,6 @@ const tabs = [
 
 class HomePageComponent extends Component {
     render() {
-        console.log(this.props.activeTabIndex);
-
         return (
             <PageView>
                 <NavigationTabs />
