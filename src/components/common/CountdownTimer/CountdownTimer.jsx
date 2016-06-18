@@ -35,7 +35,7 @@ export class CountdownTimerComponent extends BaseComponent {
     
     render() {
         const { paused, counter, expanded } = this.state;
-        const { name, time, isEditionEnabled } = this.props;
+        const { name, time, isEditionEnabled, onClickRemoveButton } = this.props;
         
         return (
             <div className={this.renderCountdownTimerCssClasses()}>
@@ -50,6 +50,7 @@ export class CountdownTimerComponent extends BaseComponent {
                     onClickStartPauseButton={this.togglePaused.bind(this)}
                     onClickResetButton={this.resetCounter.bind(this)}
                     onClickExpandButton={this.toggleExpanded.bind(this)}
+                    onClickRemoveButton={onClickRemoveButton}
                 />
                 <div className="info">
                     <span className="name">{name}</span>
@@ -140,7 +141,8 @@ CountdownTimerComponent.propTypes = {
     time: PropTypes.number.isRequired,
     isEditionEnabled: PropTypes.bool,
     onExpand: PropTypes.func,
-    onShrink: PropTypes.func
+    onShrink: PropTypes.func,
+    onClickRemoveButton: PropTypes.func
 };
 
 CountdownTimerComponent.defaultProps = {

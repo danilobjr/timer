@@ -8,6 +8,7 @@ import {
 import { TimerTabCommandBar } from './TimerTabCommandBar';
 import { milliseconds } from 'helpers';
 import { enableBackButton, disableBackButton, setBackButtonCallback } from 'components/common';
+import { removeTimer } from './actions';
 
 class TimerTabComponent extends Component {
     constructor(props) {
@@ -46,6 +47,7 @@ class TimerTabComponent extends Component {
                         isEditionEnabled={this.state.isEditionEnabled}
                         onExpand={(timer) => this.onTimerExpanded(timer)}
                         onShrink={(timer) => this.onTimerShrunken(timer)}
+                        onClickRemoveButton={() => this.removeTimer(id)}
                     />;
         });
     }
@@ -66,6 +68,10 @@ class TimerTabComponent extends Component {
     disableEdition() {
         this.setState({ isEditionEnabled: false });
     }
+
+    removeTimer(id) {
+        this.props.removeTimer(id);
+    }
 }
 
 const mapStateToProps = (state) => ({
@@ -75,7 +81,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     enableBackButton: () => dispatch(enableBackButton()),
     disableBackButton: () => dispatch(disableBackButton()),
-    setBackButtonCallback: (callback) => dispatch(setBackButtonCallback(callback))
+    setBackButtonCallback: (callback) => dispatch(setBackButtonCallback(callback)),
+    removeTimer: (id) => dispatch(removeTimer(id))
 })
 
 export const TimerTab = connect(mapStateToProps, mapDispatchToProps)(TimerTabComponent);
