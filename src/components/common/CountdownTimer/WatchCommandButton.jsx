@@ -25,7 +25,7 @@ export const WatchCommandButton = (props) => {
 
 const renderCommonButtonCssClasses = (props) => {
     return classNames(
-        'countdown-command-button',
+        'watch-command-button',
         props.className,
         '-reactive',
         { 
