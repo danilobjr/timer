@@ -42,14 +42,17 @@ export class CountdownTimerComponent extends BaseComponent {
                 <CountdownWatch currentTime={counter} totalTime={time} lightTheme={expanded} />
                 <CountdownTimerCommands 
                     lightTheme={expanded}
-                    isEditionEnabled={isEditionEnabled}
-                    showPause={!paused}
-                    showResetButton={this.shouldShowResetButton()}
-                    percentageProgress={this.calculatePercentageProgress()}
                     disableStartPauseButton={this.shouldDisableStartPauseButton()}
+                    showPauseIcon={!paused}
+                    showResetButton={this.shouldShowResetButton()}
+                    showRemoveButton={isEditionEnabled}
+                    showExpandButton={!expanded && !isEditionEnabled}
+                    showShrinkButton={expanded}
+                    percentageProgress={this.calculatePercentageProgress()}
                     onClickStartPauseButton={this.togglePaused.bind(this)}
                     onClickResetButton={this.resetCounter.bind(this)}
                     onClickExpandButton={this.toggleExpanded.bind(this)}
+                    onClickShrinkButton={this.toggleExpanded.bind(this)}
                     onClickRemoveButton={onClickRemoveButton}
                 />
                 <div className="info">
@@ -69,12 +72,12 @@ export class CountdownTimerComponent extends BaseComponent {
     
     shouldShowResetButton() {
         const { paused, counter } = this.state;        
-        return !(paused && counter === 0);
+        return !(paused && counter === 0) && !this.props.isEditionEnabled;
     }
     
     shouldDisableStartPauseButton() {
         const { paused, counter } = this.state;
-        return paused && counter === this.props.time;
+        return (paused && counter === this.props.time) || this.props.isEditionEnabled;
     }
     
     calculatePercentageProgress() {
