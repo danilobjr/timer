@@ -29,7 +29,7 @@ export class Watch extends BaseComponent {
         const { className, lightTheme } = this.props;
 
         return this.classNames(
-            'counter-watch',
+            'watch',
             className,
             { 
                 '-lighttheme': lightTheme, 

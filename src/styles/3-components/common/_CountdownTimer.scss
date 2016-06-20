@@ -13,7 +13,7 @@
         border: 2px solid $alto;        
     }
     
-    > .counter-watch {
+    > .watch {
         color: $dusty-gray;
         font-size: 2.7rem;
     }
@@ -34,7 +34,7 @@
         border: none;
     }
 
-    &.-expanded > .counter-watch {
+    &.-expanded > .watch {
         flex: 1;
         display: flex;
         align-items: center;
