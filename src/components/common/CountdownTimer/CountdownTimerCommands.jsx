@@ -1,77 +1,66 @@
 import React, { PropTypes } from 'react';
 import { BaseComponent } from 'BaseComponent';
 import { connect } from 'react-redux';
+import { WatchCommands } from './WatchCommands';
 import { StartPauseButton } from './StartPauseButton';
 import { CountdownCommandButton } from './CountdownCommandButton';
 import { validatePercentageProgressProp } from './propValidations';
 
 export class CountdownTimerCommands extends BaseComponent {
     render() {
-        const { lightTheme, disableStartPauseButton, showPause, 
-                showResetButton, percentageProgress, isEditionEnabled,
-                onClickStartPauseButton, onClickResetButton,
-                onClickExpandButton, onClickRemoveButton } = this.props;
+        const { lightTheme, disableStartPauseButton, showPauseIcon, 
+                showResetButton, showExpandButton, showShrinkButton, showRemoveButton,
+                percentageProgress, onClickStartPauseButton, onClickResetButton,
+                onClickExpandButton, onClickShrinkButton, onClickRemoveButton } = this.props;
 
         return (
-            <div className="countdown-timer-commands">
+            <WatchCommands
+                lightTheme={lightTheme}
+                disableStartPauseButton={disableStartPauseButton}
+                showPauseIcon={showPauseIcon}
+                showExpandButton={showExpandButton}
+                showShrinkButton={showShrinkButton}
+                percentageProgress={percentageProgress}
+                onClickStartPauseButton={onClickStartPauseButton}
+                onClickExpandButton={onClickExpandButton}
+                onClickShrinkButton={onClickShrinkButton}
+            >
                 <CountdownCommandButton
-                    className={this.classNames('remove', { 'h-display-none': !isEditionEnabled })}
+                    className="remove"
                     icon="trash"
                     title="Remove" 
+                    showButton={showRemoveButton}
                     onClick={onClickRemoveButton}
                 />
                 <CountdownCommandButton
-                    className={this.classNames('reset', { 'h-display-none': isEditionEnabled })}
+                    className="reset"
                     icon="reset"
                     title="Reset"
                     showButton={showResetButton} 
                     lightTheme={lightTheme}
                     onClick={onClickResetButton}
                 /> 
-                <StartPauseButton 
-                    lightTheme={lightTheme}
-                    disabled={disableStartPauseButton || isEditionEnabled}
-                    showPause={showPause}
-                    percentageProgress={percentageProgress}
-                    onClick={onClickStartPauseButton}
-                />
-                <CountdownCommandButton
-                    className={this.classNames('expand', { 'h-display-none': lightTheme })}
-                    icon="expand"
-                    title="Expand"
-                    showButton={!isEditionEnabled}
-                    lightTheme={lightTheme}
-                    onClick={onClickExpandButton}
-                /> 
-                <CountdownCommandButton
-                    className={this.classNames('shrink', { 'h-display-none': !lightTheme })}
-                    icon="compress"
-                    title="Shrink"
-                    lightTheme={lightTheme}
-                    onClick={onClickExpandButton}
-                /> 
-            </div>
+            </WatchCommands>
         );
     }
 }
 
 CountdownTimerCommands.propTypes = {
     lightTheme: PropTypes.bool,
-    isEditionEnabled: PropTypes.bool,
     disableStartPauseButton: PropTypes.bool,
-    showPause: PropTypes.bool,
+    showPauseIcon: PropTypes.bool,
     showResetButton: PropTypes.bool,
+    showRemoveButton: PropTypes.bool,
+    showExpandButton: PropTypes.bool,
+    showShrinkButton: PropTypes.bool,
     percentageProgress: validatePercentageProgressProp,
     onClickStartPauseButton: PropTypes.func.isRequired,
     onClickResetButton: PropTypes.func,
     onClickExpandButton: PropTypes.func,
+    onClickShrinkButton: PropTypes.func,
     onClickRemoveButton: PropTypes.func
 };
 
 CountdownTimerCommands.defaultProps = {
-    lightTheme: false,
-    isEditionEnabled: false,
-    disableStartPauseButton: false,
-    showPause: false,
     showResetButton: false
 };
