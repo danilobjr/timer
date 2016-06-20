@@ -17,7 +17,7 @@ export const WatchCommands = (props) =>
             className="expand"
             icon="expand"
             title="Expand"
-            showButton={props.showExpandButton}
+            hideButton={props.hideExpandButton}
             position="right"
             lightTheme={props.lightTheme}
             onClick={props.onClickExpandButton}
@@ -26,7 +26,7 @@ export const WatchCommands = (props) =>
             className="shrink"
             icon="compress"
             title="Shrink"
-            showButton={props.showShrinkButton}
+            hideButton={props.hideShrinkButton}
             position="right"
             lightTheme={props.lightTheme}
             onClick={props.onClickShrinkButton}
@@ -37,8 +37,8 @@ WatchCommands.propTypes = {
     lightTheme: PropTypes.bool,
     disableStartPauseButton: PropTypes.bool,
     showPauseIcon: PropTypes.bool,
-    showExpandButton: PropTypes.bool,
-    showShrinkButton: PropTypes.bool,
+    hideExpandButton: PropTypes.bool,
+    hideShrinkButton: PropTypes.bool,
     percentageProgress: validatePercentageProgressProp,
     onClickStartPauseButton: PropTypes.func.isRequired,
     onClickExpandButton: PropTypes.func.isRequired,
@@ -49,7 +49,7 @@ WatchCommands.defaultProps = {
     lightTheme: false,
     disableStartPauseButton: false,
     showPauseIcon: false,
-    showExpandButton: true,
-    showShrinkButton: false,
+    hideExpandButton: false,
+    hideShrinkButton: true,
     percentageProgress: 0
 };

@@ -30,7 +30,7 @@ const renderCommonButtonCssClasses = (props) => {
         '-reactive',
         { 
             '-lightTheme': props.lightTheme, 
-            'h-display-none': !props.showButton,
+            'h-display-none': props.hideButton,
             'h-pull-left': props.position === 'left',
             'h-pull-right': props.position === 'right'
         }
@@ -40,13 +40,13 @@ const renderCommonButtonCssClasses = (props) => {
 WatchCommandButton.propTypes = {
     title: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
-    showButton: PropTypes.bool,
+    hideButton: PropTypes.bool,
     lightThene: PropTypes.bool,
     position: PropTypes.oneOf(['left', 'right'])
 };
 
 WatchCommandButton.defaultProps = {
-    showButton: true,
+    hideButton: false,
     lightTheme: false,
     position: 'left'
 };

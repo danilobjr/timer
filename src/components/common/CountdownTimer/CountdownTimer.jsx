@@ -44,10 +44,10 @@ export class CountdownTimerComponent extends BaseComponent {
                     lightTheme={expanded}
                     disableStartPauseButton={this.shouldDisableStartPauseButton()}
                     showPauseIcon={!paused}
-                    showResetButton={this.shouldShowResetButton()}
-                    showRemoveButton={isEditionEnabled}
-                    showExpandButton={!expanded && !isEditionEnabled}
-                    showShrinkButton={expanded}
+                    hideResetButton={this.shouldHideResetButton()}
+                    hideRemoveButton={!isEditionEnabled}
+                    hideExpandButton={expanded || isEditionEnabled}
+                    hideShrinkButton={!expanded}
                     percentageProgress={this.calculatePercentageProgress()}
                     onClickStartPauseButton={this.togglePaused.bind(this)}
                     onClickResetButton={this.resetCounter.bind(this)}
@@ -70,9 +70,9 @@ export class CountdownTimerComponent extends BaseComponent {
         );
     }
     
-    shouldShowResetButton() {
+    shouldHideResetButton() {
         const { paused, counter } = this.state;        
-        return !(paused && counter === 0) && !this.props.isEditionEnabled;
+        return (paused && counter === 0) || this.props.isEditionEnabled;
     }
     
     shouldDisableStartPauseButton() {

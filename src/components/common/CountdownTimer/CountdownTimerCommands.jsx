@@ -9,7 +9,7 @@ import { validatePercentageProgressProp } from './propValidations';
 export class CountdownTimerCommands extends BaseComponent {
     render() {
         const { lightTheme, disableStartPauseButton, showPauseIcon, 
-                showResetButton, showExpandButton, showShrinkButton, showRemoveButton,
+                hideResetButton, hideExpandButton, hideShrinkButton, hideRemoveButton,
                 percentageProgress, onClickStartPauseButton, onClickResetButton,
                 onClickExpandButton, onClickShrinkButton, onClickRemoveButton } = this.props;
 
@@ -18,8 +18,8 @@ export class CountdownTimerCommands extends BaseComponent {
                 lightTheme={lightTheme}
                 disableStartPauseButton={disableStartPauseButton}
                 showPauseIcon={showPauseIcon}
-                showExpandButton={showExpandButton}
-                showShrinkButton={showShrinkButton}
+                hideExpandButton={hideExpandButton}
+                hideShrinkButton={hideShrinkButton}
                 percentageProgress={percentageProgress}
                 onClickStartPauseButton={onClickStartPauseButton}
                 onClickExpandButton={onClickExpandButton}
@@ -29,14 +29,14 @@ export class CountdownTimerCommands extends BaseComponent {
                     className="remove"
                     icon="trash"
                     title="Remove" 
-                    showButton={showRemoveButton}
+                    hideButton={hideRemoveButton}
                     onClick={onClickRemoveButton}
                 />
                 <WatchCommandButton
                     className="reset"
                     icon="reset"
                     title="Reset"
-                    showButton={showResetButton} 
+                    hideButton={hideResetButton} 
                     lightTheme={lightTheme}
                     onClick={onClickResetButton}
                 /> 
@@ -49,10 +49,10 @@ CountdownTimerCommands.propTypes = {
     lightTheme: PropTypes.bool,
     disableStartPauseButton: PropTypes.bool,
     showPauseIcon: PropTypes.bool,
-    showResetButton: PropTypes.bool,
-    showRemoveButton: PropTypes.bool,
-    showExpandButton: PropTypes.bool,
-    showShrinkButton: PropTypes.bool,
+    hideResetButton: PropTypes.bool,
+    hideRemoveButton: PropTypes.bool,
+    hideExpandButton: PropTypes.bool,
+    hideShrinkButton: PropTypes.bool,
     percentageProgress: validatePercentageProgressProp,
     onClickStartPauseButton: PropTypes.func.isRequired,
     onClickResetButton: PropTypes.func,
@@ -62,5 +62,5 @@ CountdownTimerCommands.propTypes = {
 };
 
 CountdownTimerCommands.defaultProps = {
-    showResetButton: false
+    hideResetButton: true
 };
