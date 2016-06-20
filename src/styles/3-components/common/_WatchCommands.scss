@@ -1,11 +1,14 @@
 .watch-commands {
     & {
-        display: flex;
-        align-items: center;
+        position: relative;
+        width: 240px;
+        height: 60px;
         margin: 10px 0;
     }
     
     > #start-pause-button {
-        margin: 0 42px;
+        position: absolute;
+        left: 50%;
+        margin-left: -30px;
     }
 }
