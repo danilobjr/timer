@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { StartPauseButton } from './StartPauseButton';
-import { CountdownCommandButton } from './CountDownCommandButton';
+import { WatchCommandButton } from './WatchCommandButton';
 import { validatePercentageProgressProp } from './propValidations';
 
 export const WatchCommands = (props) => 
@@ -13,7 +13,7 @@ export const WatchCommands = (props) =>
             percentageProgress={props.percentageProgress}
             onClick={props.onClickStartPauseButton}
         />
-        <CountdownCommandButton
+        <WatchCommandButton
             className="expand"
             icon="expand"
             title="Expand"
@@ -22,7 +22,7 @@ export const WatchCommands = (props) =>
             lightTheme={props.lightTheme}
             onClick={props.onClickExpandButton}
         /> 
-        <CountdownCommandButton
+        <WatchCommandButton
             className="shrink"
             icon="compress"
             title="Shrink"

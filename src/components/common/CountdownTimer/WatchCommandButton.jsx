@@ -9,7 +9,7 @@ const Icons = {
     trash: IconTrash
 };
 
-export const CountdownCommandButton = (props) => {
+export const WatchCommandButton = (props) => {
     const icon = props.icon ? React.createElement(Icons[props.icon]) : null;
 
     return (
@@ -37,7 +37,7 @@ const renderCommonButtonCssClasses = (props) => {
     );
 }
 
-CountdownCommandButton.propTypes = {
+WatchCommandButton.propTypes = {
     title: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
     showButton: PropTypes.bool,
@@ -45,7 +45,7 @@ CountdownCommandButton.propTypes = {
     position: PropTypes.oneOf(['left', 'right'])
 };
 
-CountdownCommandButton.defaultProps = {
+WatchCommandButton.defaultProps = {
     showButton: true,
     lightTheme: false,
     position: 'left'

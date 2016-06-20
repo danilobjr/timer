@@ -3,7 +3,7 @@ import { BaseComponent } from 'BaseComponent';
 import { connect } from 'react-redux';
 import { WatchCommands } from './WatchCommands';
 import { StartPauseButton } from './StartPauseButton';
-import { CountdownCommandButton } from './CountdownCommandButton';
+import { WatchCommandButton } from './WatchCommandButton';
 import { validatePercentageProgressProp } from './propValidations';
 
 export class CountdownTimerCommands extends BaseComponent {
@@ -25,14 +25,14 @@ export class CountdownTimerCommands extends BaseComponent {
                 onClickExpandButton={onClickExpandButton}
                 onClickShrinkButton={onClickShrinkButton}
             >
-                <CountdownCommandButton
+                <WatchCommandButton
                     className="remove"
                     icon="trash"
                     title="Remove" 
                     showButton={showRemoveButton}
                     onClick={onClickRemoveButton}
                 />
-                <CountdownCommandButton
+                <WatchCommandButton
                     className="reset"
                     icon="reset"
                     title="Reset"
