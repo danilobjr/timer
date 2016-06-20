@@ -5,7 +5,7 @@ import { padLeftWithZero } from './localHelpers';
 
 export class Watch extends BaseComponent {
     render() {
-        const [ hours, minutes, seconds ] = time(this.getRemainingTime());
+        const [ hours, minutes, seconds ] = time(this.props.time);
         const oneSecond = milliseconds(0,0,1);
         const oneMinute = milliseconds(0,1);
         const oneHour = milliseconds(1);
@@ -40,22 +40,16 @@ export class Watch extends BaseComponent {
     renderUnitCssClasses(value) {
         return this.classNames(
             'unit',
-            { '-active': this.getRemainingTime() >= value }
+            { '-active': this.props.time >= value }
         );
-    }
-    
-    getRemainingTime() {
-        return this.props.totalTime - this.props.currentTime;
     }
 }
 
 Watch.propTypes = {
-    currentTime: PropTypes.number,
-    totalTime: PropTypes.number,
+    time: PropTypes.number,
     lightTheme: PropTypes.bool
 };
 
 Watch.defaultProps = {
-    currentTime: 0,
-    totalTime: 0
+    time: 0
 };
