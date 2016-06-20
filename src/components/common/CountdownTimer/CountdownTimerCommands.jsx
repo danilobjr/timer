@@ -53,21 +53,6 @@ export class CountdownTimerCommands extends BaseComponent {
             </div>
         );
     }
-
-    renderCommonButtonCssClasses(buttonClass) {
-        return this.classNames(
-            buttonClass,
-            '-reactive',
-            { '-lightTheme': this.props.lightTheme }
-        );
-    }
-
-    renderResetButtonCssClasses() {
-        return this.classNames(
-            this.renderCommonButtonCssClasses('reset'),
-            { 'h-hidden': !this.props.showResetButton }
-        );
-    }
 }
 
 CountdownTimerCommands.propTypes = {
