@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { BaseComponent } from 'BaseComponent';
 import { connect } from 'react-redux';
-import { CounterWatch } from './CounterWatch';
+import { Watch } from './Watch';
 import { StartPauseButton } from './StartPauseButton';
 import { CountdownTimerCommands } from './CountdownTimerCommands';
 import { turnOnLightTheme, turnOffLightTheme } from './actions';
@@ -39,7 +39,7 @@ export class CountdownTimerComponent extends BaseComponent {
         
         return (
             <div className={this.renderCountdownTimerCssClasses()}>
-                <CounterWatch currentTime={counter} totalTime={time} lightTheme={expanded} />
+                <Watch currentTime={counter} totalTime={time} lightTheme={expanded} />
                 <CountdownTimerCommands 
                     lightTheme={expanded}
                     isEditionEnabled={isEditionEnabled}
@@ -54,7 +54,7 @@ export class CountdownTimerComponent extends BaseComponent {
                 />
                 <div className="info">
                     <span className="name">{name}</span>
-                    <CounterWatch className={this.classNames({ 'h-hidden': expanded })} totalTime={time} />
+                    <Watch className={this.classNames({ 'h-hidden': expanded })} totalTime={time} />
                 </div>
             </div>
         );

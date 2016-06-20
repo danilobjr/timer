@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
 import { BaseComponent } from 'BaseComponent';
-import { compose, time, milliseconds, replace, padLeft } from 'helpers';
+import { time, milliseconds } from 'helpers';
+import { padLeftWithZero } from './localHelpers';
 
-export class CounterWatch extends BaseComponent {
+export class Watch extends BaseComponent {
     render() {
         const [ hours, minutes, seconds ] = time(this.getRemainingTime());
         const oneSecond = milliseconds(0,0,1);
@@ -10,21 +11,21 @@ export class CounterWatch extends BaseComponent {
         const oneHour = milliseconds(1);
         
         return (
-            <div className={this.renderCounterWatchCssClasses()}>
+            <div className={this.renderWatchCssClasses()}>
                 <span className={this.renderUnitCssClasses(oneHour)} title="Hours">
-                    {this.padLeftWithZero(hours)}
+                    {padLeftWithZero(hours)}
                 </span>
                 <span className={this.renderUnitCssClasses(oneMinute)} title="Minutes">
-                    {this.padLeftWithZero(minutes)}
+                    {padLeftWithZero(minutes)}
                 </span>
                 <span className={this.renderUnitCssClasses(oneSecond)} title="Seconds">
-                    {this.padLeftWithZero(seconds)}
+                    {padLeftWithZero(seconds)}
                 </span>
             </div>
         );
     }
     
-    renderCounterWatchCssClasses() {
+    renderWatchCssClasses() {
         const { className, lightTheme } = this.props;
 
         return this.classNames(
@@ -46,19 +47,15 @@ export class CounterWatch extends BaseComponent {
     getRemainingTime() {
         return this.props.totalTime - this.props.currentTime;
     }
-    
-    padLeftWithZero(value) {
-        return compose(replace(' ')('0'), padLeft(2))(value);
-    }
 }
 
-CounterWatch.propTypes = {
+Watch.propTypes = {
     currentTime: PropTypes.number,
     totalTime: PropTypes.number,
     lightTheme: PropTypes.bool
 };
 
-CounterWatch.defaultProps = {
+Watch.defaultProps = {
     currentTime: 0,
     totalTime: 0
 };
