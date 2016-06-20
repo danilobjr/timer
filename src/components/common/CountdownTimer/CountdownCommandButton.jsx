@@ -28,8 +28,12 @@ const renderCommonButtonCssClasses = (props) => {
         'countdown-command-button',
         props.className,
         '-reactive',
-        { '-lightTheme': props.lightTheme },
-        { 'h-hidden': !props.showButton }
+        { 
+            '-lightTheme': props.lightTheme, 
+            'h-display-none': !props.showButton,
+            'h-pull-left': props.position === 'left',
+            'h-pull-right': props.position === 'right'
+        }
     );
 }
 
@@ -37,9 +41,12 @@ CountdownCommandButton.propTypes = {
     title: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
     showButton: PropTypes.bool,
-    lightThene: PropTypes.bool
+    lightThene: PropTypes.bool,
+    position: PropTypes.oneOf(['left', 'right'])
 };
 
 CountdownCommandButton.defaultProps = {
-    showButton: true
+    showButton: true,
+    lightTheme: false,
+    position: 'left'
 };
