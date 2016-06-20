@@ -18,6 +18,7 @@ export const WatchCommands = (props) =>
             icon="expand"
             title="Expand"
             showButton={props.showExpandButton}
+            position="right"
             lightTheme={props.lightTheme}
             onClick={props.onClickExpandButton}
         /> 
@@ -26,6 +27,7 @@ export const WatchCommands = (props) =>
             icon="compress"
             title="Shrink"
             showButton={props.showShrinkButton}
+            position="right"
             lightTheme={props.lightTheme}
             onClick={props.onClickShrinkButton}
         /> 
