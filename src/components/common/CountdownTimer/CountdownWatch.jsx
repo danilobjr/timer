@@ -1,12 +1,15 @@
-import React, { PropTypes } from 'react';
-import { BaseComponent } from 'BaseComponent';
+import React, { PropTypes, Component } from 'react';
 import { Watch } from './Watch';
 import { time, milliseconds } from 'helpers';
 import { padLeftWithZero } from './localHelpers';
 
-export class CountdownWatch extends BaseComponent {
+export class CountdownWatch extends Component {
     render() {
-        return <Watch time={this.getRemainingTime()} lightTheme={this.props.lightTheme} />;
+        return <Watch 
+                    className={this.props.className} 
+                    time={this.getRemainingTime()} 
+                    lightTheme={this.props.lightTheme} 
+                />;
     }
     
     getRemainingTime() {
