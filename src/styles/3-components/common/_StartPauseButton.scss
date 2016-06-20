@@ -113,8 +113,13 @@
         transform: none;
     }
     
-    > .play > polygon {
+    > .play > polygon,
+    > .pause > line {
         stroke: $silver;
+    }
+
+    > .time-progress > circle {
+        stroke: transparent;
     }
     
     &:hover .border > circle,
