@@ -19,16 +19,25 @@ class TimerTabComponent extends Component {
         };
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.timers.length === 0 && this.state.isEditionEnabled) {
+            this.setState({ isEditionEnabled: false });
+        }
+    }
+
     render() {
+        const timers = this.renderCountdownTimers();
+
         return (
             <Tab>
                 <TabContent>
                     <FlexBox wrap justify='center'>
-                        {this.renderCountdownTimers()}
+                        {timers.length ? timers : <p>Click + add a timer</p>}
                     </FlexBox>
                 </TabContent>
                 <TimerTabCommandBar 
                     isEditionEnabled={this.state.isEditionEnabled}
+                    hideEditButton={timers.length === 0}
                     onClickEdit={this.enableEdition.bind(this)}
                     onClickDone={this.disableEdition.bind(this)} 
                 />
