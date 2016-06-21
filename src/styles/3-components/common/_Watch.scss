@@ -7,7 +7,7 @@
     }
     
     > .unit.-active {
-        color: black;
+        color: black !important;
     }
     
     > .unit:not(:last-of-type):after {
