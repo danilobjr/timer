@@ -7,154 +7,78 @@ import { CountdownTimerCommands } from './CountdownTimerCommands';
 import { turnOnLightTheme, turnOffLightTheme } from './actions';
 import { notify } from 'native';
 import { timeToString } from './localHelpers';
+import { Timer } from './Timer';
+import { WatchCommandButton } from './WatchCommandButton';
 
-export class CountdownTimerComponent extends BaseComponent {
+export class CountdownTimer extends BaseComponent {
     constructor(props) {
         super(props);
     
         this.state = {
-            paused: true,
-            counter: 0,
-            expanded: false
+            hideResetButton: true
         };
-        
-        this.interval = null;
-    }
-    
-    componentDidUpdate() {
-        if (this.state.expanded) {
-            this.props.onExpand(this);
-        } else {
-            this.props.onShrink(this);
-        }
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.interval);
     }
     
     render() {
-        const { paused, counter, expanded } = this.state;
-        const { name, time, isEditionEnabled, onClickRemoveButton } = this.props;
-        
+        const { name, time, isEditionModeEnabled, onClickRemoveButton, onExpand, onShrink } = this.props;        
+        const { hideResetButton } = this.state;
+
         return (
-            <div className={this.renderCountdownTimerCssClasses()}>
-                <CountdownWatch currentTime={counter} totalTime={time} lightTheme={expanded} />
-                <CountdownTimerCommands 
-                    lightTheme={expanded}
-                    disableStartPauseButton={this.shouldDisableStartPauseButton()}
-                    showPauseIcon={!paused}
-                    hideResetButton={this.shouldHideResetButton()}
-                    hideRemoveButton={!isEditionEnabled}
-                    hideExpandButton={expanded || isEditionEnabled}
-                    hideShrinkButton={!expanded}
-                    percentageProgress={this.calculatePercentageProgress()}
-                    onClickStartPauseButton={this.togglePaused.bind(this)}
-                    onClickResetButton={this.resetCounter.bind(this)}
-                    onClickExpandButton={this.toggleExpanded.bind(this)}
-                    onClickShrinkButton={this.toggleExpanded.bind(this)}
-                    onClickRemoveButton={onClickRemoveButton}
+            <Timer
+                ref="timer"
+                name={name}
+                isRegressive
+                startTime={time}
+                disableStartPauseButton={isEditionModeEnabled}
+                hideExpandButton={isEditionModeEnabled}
+                onExpand={onExpand}
+                onShrink={onShrink}
+                onStartCounting={this.showResetButton.bind(this)}
+                onReset={this.hideResetButton.bind(this)}
+            >
+                <WatchCommandButton
+                    className="remove"
+                    icon="trash"
+                    title="Remove" 
+                    hideButton={!isEditionModeEnabled}
+                    onClick={onClickRemoveButton}
                 />
-                <div className="info">
-                    <span className="name">{name}</span>
-                    <CountdownWatch className={this.classNames({ 'h-hidden': expanded })} totalTime={time} />
-                </div>
-            </div>
+                <WatchCommandButton
+                    className="reset"
+                    icon="reset"
+                    title="Reset"
+                    hideButton={hideResetButton || isEditionModeEnabled} 
+                    onClick={this.resetTimer.bind(this)}
+                /> 
+            </Timer>
         );
     }
-    
-    renderCountdownTimerCssClasses() {
-        return this.classNames(
-            'countdown-timer',
-            { '-expanded': this.state.expanded }
-        );
-    }
-    
-    shouldHideResetButton() {
-        const { paused, counter } = this.state;        
-        return (paused && counter === 0) || this.props.isEditionEnabled;
-    }
-    
-    shouldDisableStartPauseButton() {
-        const { paused, counter } = this.state;
-        return (paused && counter === this.props.time) || this.props.isEditionEnabled;
-    }
-    
-    calculatePercentageProgress() {
-        const { paused, counter } = this.state;
-        
-        if (paused && counter === 0) {
-            return 0;
-        }
-        
-        const remainingTime = this.props.time - this.state.counter;
-        return remainingTime / this.props.time
-    }
-    
-    stopIfTimeIsOver() {
-        const timeIsOver = this.props.time === this.state.counter;
-        timeIsOver && this.setState({ paused: true });
 
-        if (timeIsOver) {
-            clearInterval(this.interval);
-            notify(this.props.name, { body: timeToString(this.props.time) })
-        }
-    }
-    
-    resetCounter() {
-        this.setState({ counter: 0 });
-    }
-    
-    startCounting() {
-        const oneSecond = 1000;
-
-        this.interval = setInterval(() => {
-            const { paused, counter } = this.state;            
-            
-            if (!paused) {
-                this.setState({ counter: counter + oneSecond });
-            }
-
-            this.stopIfTimeIsOver();
-        }, oneSecond);
-    }
-    
-    togglePaused() {
-        this.state.paused ? this.startCounting() : clearInterval(this.interval);
-        this.setState({ paused: !this.state.paused });
+    showResetButton() {
+        this.setState({ hideResetButton: false });
     }
 
-    toggleExpanded() {
-        this.state.expanded ? this.shrink() : this.expand();
+    hideResetButton() {
+        this.setState({ hideResetButton: true });
     }
 
-    expand() {
-        this.props.turnOnLightTheme();
-        this.setState({ expanded: true });
-    }
-
-    shrink() {
-        this.props.turnOffLightTheme();
-        this.setState({ expanded: false });        
+    resetTimer() {
+        this.refs.timer.getWrappedInstance().reset();
     }
 }
 
-CountdownTimerComponent.propTypes = {
+CountdownTimer.propTypes = {
     name: PropTypes.string,
     time: PropTypes.number.isRequired,
-    isEditionEnabled: PropTypes.bool,
+    isEditionModeEnabled: PropTypes.bool,
     onExpand: PropTypes.func,
     onShrink: PropTypes.func,
     onClickRemoveButton: PropTypes.func
 };
 
-CountdownTimerComponent.defaultProps = {
-    name: 'Timer'
+CountdownTimer.defaultProps = {
+    name: 'Timer',
+    isEditionModeEnabled: false,
+    hideRemoveButton: true,
+    hideResetButton: true
 };
-
-const mapDispatchToProps = (dispatch) => ({
-    turnOnLightTheme: () => dispatch(turnOnLightTheme()),
-    turnOffLightTheme: () => dispatch(turnOffLightTheme()),
-})
-
-export const CountdownTimer = connect(null, mapDispatchToProps)(CountdownTimerComponent);
