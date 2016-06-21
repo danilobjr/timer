@@ -7,7 +7,7 @@ export class ChronometerTab extends Component {
         return (
             <Tab className="chronometer-tab">
                 <TabContent>
-                    <Timer />
+                    <Timer showHundredths />
                     <ChronometerResults />
                 </TabContent>
             </Tab>
