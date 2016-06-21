@@ -21,23 +21,23 @@
         top: 50%;
     }
     
-    > .play {
+    > .icon-play {
         margin-left: -5px;
-        margin-top: -9px;        
+        margin-top: -9px;
     }
     
-    > .pause {
+    > .icon-pause {
         margin-left: -4px;
         margin-top: -8px;
     }
     
-    > .play > polygon {
+    > .icon-play > polygon {
         fill: transparent;
         stroke: $mine-shaft;
         stroke-width: 1.2px;
     }
     
-    > .pause > line {
+    > .icon-pause > line {
         stroke: $mine-shaft;
         stroke-width: 1.5px;
         stroke-linecap: round;
@@ -84,8 +84,8 @@
         stroke: hsl(0, 0%, 71%); /* ??? */
     }
 
-    &.-lighttheme > .play > polygon,
-    &.-lighttheme > .pause > line { 
+    &.-lighttheme > .icon-play > polygon,
+    &.-lighttheme > .icon-pause > line { 
         stroke: $lavender;
     }
 
@@ -108,13 +108,13 @@
     }
 }
 
-#start-pause-button[disabled] {
+#start-icon-pause-button[disabled] {
     &:active {
         transform: none;
     }
     
-    > .play > polygon,
-    > .pause > line {
+    > .icon-play > polygon,
+    > .icon-pause > line {
         stroke: $silver;
     }
 
@@ -128,7 +128,7 @@
         stroke: $alto;
     }
 
-    &.-lighttheme > .play > polygon,
+    &.-lighttheme > .icon-play > polygon,
     &.-lighttheme:hover .border > circle,
     &.-lighttheme:active .border > circle {
         stroke: $havelock-blue;
