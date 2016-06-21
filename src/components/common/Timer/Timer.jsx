@@ -154,6 +154,7 @@ export class TimerComponent extends BaseComponent {
     
     togglePaused() {
         this.state.paused ? this.startCounting() : clearInterval(this.interval);
+        !this.state.paused && this.props.onPause && this.props.onPause();
         this.setState({ paused: !this.state.paused });
     }
 
@@ -196,6 +197,7 @@ TimerComponent.propTypes = {
     onExpand: PropTypes.func,
     onShrink: PropTypes.func,
     onStartCounting: PropTypes.func,
+    onPause: PropTypes.func,
     onReset: PropTypes.func
 };
 
