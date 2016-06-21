@@ -5,6 +5,7 @@ export const time = (milliseconds) => {
     const oneHourInMilliseconds = 60 * 60 * 1000;
     const oneMinuteInMilliseconds = 60 * 1000;
     const oneSecondInMilliseconds = 1000;
+    const oneHundredthInMilliseconds = 10;
     
     const hoursResult = Math.floor(milliseconds / oneHourInMilliseconds);
     
@@ -16,11 +17,17 @@ export const time = (milliseconds) => {
     const remainingMillisecondsAfterCalculateMinutes = 
         remainingMillisecondsAfterCalculateHours - oneMinuteInMilliseconds * minutesResult;
         
-    const secondsResult = remainingMillisecondsAfterCalculateMinutes / oneSecondInMilliseconds;
+    const secondsResult = Math.floor(remainingMillisecondsAfterCalculateMinutes / oneSecondInMilliseconds);
+
+    const remainingMillisecondsAfterCalculateSeconds = 
+        remainingMillisecondsAfterCalculateMinutes - oneSecondInMilliseconds * secondsResult;
+
+    const hundredthsResult = Math.floor(remainingMillisecondsAfterCalculateSeconds / oneHundredthInMilliseconds);
     
     return [
         hoursResult,
         minutesResult,
-        secondsResult
+        secondsResult,
+        hundredthsResult
     ];
 }
