@@ -1,14 +1,9 @@
 import React, { PropTypes } from 'react';
 import { BaseComponent } from 'BaseComponent';
 import { connect } from 'react-redux';
-import { CountdownWatch } from './CountdownWatch';
-import { StartPauseButton } from './StartPauseButton';
-import { CountdownTimerCommands } from './CountdownTimerCommands';
+import { CountdownWatch, StartPauseButton, Timer, WatchCommandButton } from 'components/common';
 import { turnOnLightTheme, turnOffLightTheme } from './actions';
 import { notify } from 'native';
-import { timeToString } from './localHelpers';
-import { Timer } from './Timer';
-import { WatchCommandButton } from './WatchCommandButton';
 
 export class CountdownTimer extends BaseComponent {
     constructor(props) {

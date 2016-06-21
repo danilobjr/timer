@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { 
     FlexBox, FlexItem, Tab, TabContent,
-    CommandBar, CommandBarItem, 
-    CountdownTimer
+    CommandBar, CommandBarItem 
 } from 'components/common';
+import { CountdownTimer } from './CountdownTimer';
 import { TimerTabCommandBar } from './TimerTabCommandBar';
 import { milliseconds } from 'helpers';
 import { enableBackButton, disableBackButton, setBackButtonCallback } from 'components/common';
