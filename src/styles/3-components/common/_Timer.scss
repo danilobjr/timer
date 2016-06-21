@@ -29,6 +29,10 @@
         font-size: 0.95rem;
     }
     
+    &.-no-info {
+        height: 170px;
+    }
+
     &.-expanded {
         background-color: $mariner;
         border: none;
