@@ -7,6 +7,6 @@ const styles = Object.assign({},
 );
 
 export const IconPlay = (props) => 
-    <Icon {...props} name="play" width={14} height={18}>
+    <Icon {...props} name="icon-play" width={14} height={18}>
         <polygon points="1,1 13,9 1,17" />
     </Icon>

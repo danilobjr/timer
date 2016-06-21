@@ -3,7 +3,7 @@ import { Icon } from './Icon';
 import { iconStyles } from './styles';
 
 export const IconExpand = () => 
-    <Icon name="expand" width={18} height={18}>
+    <Icon name="icon-expand" width={18} height={18}>
         <g style={iconStyles.timerCommandButton.base}>
             <line x1="0" y1="18" x2="18" y2="0" />
             <line x1="0.6" y1="11" x2="0.6" y2="18"  />

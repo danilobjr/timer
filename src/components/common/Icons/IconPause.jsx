@@ -7,7 +7,7 @@ const styles = Object.assign({},
 );
 
 export const IconPause = (props) => 
-    <Icon {...props} name="pause" width={8} height={16}>
+    <Icon {...props} name="icon-pause" width={8} height={16}>
         <line x1="1" y1="0.7" x2="1" y2="15.3"/>
         <line x1="7" y1="0.7" x2="7" y2="15.3" />
     </Icon>

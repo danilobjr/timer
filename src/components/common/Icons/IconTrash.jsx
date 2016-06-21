@@ -7,7 +7,7 @@ const styles = {
 };
 
 export const IconTrash = (props) => 
-    <Icon {...props} name="timer" width={17} height={20}>
+    <Icon {...props} name="icon-trash" width={17} height={20}>
         <g fill="none" >
             <rect x="5.2" y="0.65" rx="1.3" ry="1.3" width="6.6" height="2.6" />
             <line x1="0" y1="3.25" x2="17" y2="3.25" />

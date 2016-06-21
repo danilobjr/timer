@@ -3,7 +3,7 @@ import { Icon } from './Icon';
 import { iconStyles } from './styles';
 
 export const IconCompress = () => 
-    <Icon name="compress" width={18} height={18}>
+    <Icon name="icon-compress" width={18} height={18}>
         <g style={iconStyles.timerCommandButton.base}>
             <line x1="0" y1="18" x2="8" y2="10" />
             <line x1="10" y1="8" x2="18" y2="0" />

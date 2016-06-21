@@ -15,7 +15,7 @@ const styles = {
 };
 
 export const IconChecklist = () => 
-    <Icon name="checklist" width={20} height={15}>
+    <Icon name="icon-checklist" width={20} height={15}>
         <defs>
             <polyline id="checkmark" points="0.5,5 3,5 3,1" style={styles.checkmark} />
             <line id="phrase" x1="1" y1="0.5" x2="14" y2="0.5" style={styles.phrase} />

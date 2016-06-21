@@ -10,6 +10,6 @@ const styles = {
 };
 
 export const IconCheck = () => 
-    <Icon name="check" width={20} height={16}>
+    <Icon name="icon-check" width={20} height={16}>
         <polyline points="0,18 8,18 8,0" style={styles} />
     </Icon>

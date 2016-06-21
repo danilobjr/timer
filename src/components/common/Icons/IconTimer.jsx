@@ -16,7 +16,7 @@ const styles = Object.assign({},
 );
 
 export const IconTimer = (props) => 
-    <Icon {...props} name="timer" width={14} height={16}>
+    <Icon {...props} name="icon-timer" width={14} height={16}>
         <g fill="none">
             <line x1="4.5" y1="0.5" x2="9.5" y2="0.5" />
             <line x1="7" y1="0" x2="7" y2="2" />

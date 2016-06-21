@@ -8,7 +8,7 @@ const styles = Object.assign({},
 );
 
 export const IconPlus = () => 
-    <Icon name="plus" width={20} height={20}>
+    <Icon name="icon-plus" width={20} height={20}>
         <g style={styles}>
             <line x1="10" y1="0" x2="10" y2="20" />
             <line x1="0" y1="10" x2="20" y2="10" />

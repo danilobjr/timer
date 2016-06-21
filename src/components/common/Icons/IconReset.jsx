@@ -8,7 +8,7 @@ const styles = Object.assign({},
 );
 
 export const IconReset = () => 
-    <Icon name="reset" width={20} height={20}>
+    <Icon name="icon-reset" width={20} height={20}>
         <g>
             <circle className="arc" cx="10" cy="10" r="9.4" style={styles} />
             <g>

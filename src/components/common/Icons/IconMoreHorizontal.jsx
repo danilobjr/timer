@@ -6,7 +6,7 @@ const styles = {
 };
 
 export const IconMoreHorizontal = () => 
-    <Icon name="more-horizontal" width={14} height={2}>
+    <Icon name="icon-more-horizontal" width={14} height={2}>
         <defs>
             <rect id="dot" x="0" y="0" width="2" height="2" style={styles} />
         </defs>

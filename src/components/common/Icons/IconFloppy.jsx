@@ -12,7 +12,7 @@ const styles = Object.assign(
 );
 
 export const IconFloppy = () => 
-    <Icon name="floppy" width={18} height={18}>
+    <Icon name="icon-floppy" width={18} height={18}>
         <g style={styles}>
             <rect x="0.5" y="0.5" width="17" height="17" rx="2" ry="2" />
             <g style={{strokeWidth: 1}}>
