@@ -5,12 +5,10 @@ import { ChronometerResults } from './ChronometerResults';
 export class ChronometerTab extends Component {
     render() {
         return (
-            <Tab>
+            <Tab className="chronometer-tab">
                 <TabContent>
-                    <FlexBox column alignItems='center'>
-                        <Timer />
-                        <ChronometerResults />
-                    </FlexBox>
+                    <Timer />
+                    <ChronometerResults />
                 </TabContent>
             </Tab>
         );
