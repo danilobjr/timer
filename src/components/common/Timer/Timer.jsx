@@ -55,7 +55,10 @@ export class TimerComponent extends BaseComponent {
     renderTimerCssClasses() {
         return this.classNames(
             'timer',
-            { '-expanded': this.state.expanded }
+            { 
+                '-no-info': !this.props.isRegressive,
+                '-expanded': this.state.expanded 
+            }
         );
     }
 
@@ -74,16 +77,14 @@ export class TimerComponent extends BaseComponent {
         const { expanded } = this.state;
         const { name, startTime, isRegressive } = this.props;
 
-        if (!isRegressive) {
-            return null;
-        }
-
-        return (
+        if (isRegressive) {
             <div className="info">
                 <span className="name">{name}</span>
                 <CountdownWatch className={this.classNames({ 'h-hidden': expanded })} totalTime={startTime} />
             </div>
-        );
+        }
+
+        return null;
     }
     
     shouldHideResetButton() {
