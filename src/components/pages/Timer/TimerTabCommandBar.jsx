@@ -12,9 +12,9 @@ export class TimerTabCommandBar extends Component {
     }
 
     renderItems() {
-        const { isEditionEnabled, onClickEdit, onClickDone } = this.props;
+        const { isEditionModeEnabled, onClickEdit, onClickDone } = this.props;
 
-        if (isEditionEnabled) {
+        if (isEditionModeEnabled) {
             return [<CommandBarItem key="0" icon="check" title="Done" onClick={onClickDone} />];
         } else {
             const items = [<CommandBarItem key="0" to="/timer/new" icon="plus" title="New" />];
@@ -25,13 +25,13 @@ export class TimerTabCommandBar extends Component {
 }
 
 TimerTabCommandBar.propTypes = {
-    isEditionEnabled: PropTypes.bool.isRequired,
+    isEditionModeEnabled: PropTypes.bool.isRequired,
     hideEditButton: PropTypes.bool,
     onClickEdit: PropTypes.func.isRequired,
     onClickDone: PropTypes.func.isRequired
 };
 
 TimerTabCommandBar.defaultProps = {
-    isEditionEnabled: false,
+    isEditionModeEnabled: false,
     hideEditButton: true
 };

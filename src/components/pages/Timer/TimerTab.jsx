@@ -15,13 +15,13 @@ class TimerTabComponent extends Component {
         super(props);
     
         this.state = {
-            isEditionEnabled: false
+            isEditionModeEnabled: false
         };
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.timers.length === 0 && this.state.isEditionEnabled) {
-            this.setState({ isEditionEnabled: false });
+        if (nextProps.timers.length === 0 && this.state.isEditionModeEnabled) {
+            this.setState({ isEditionModeEnabled: false });
         }
     }
 
@@ -36,7 +36,7 @@ class TimerTabComponent extends Component {
                     </FlexBox>
                 </TabContent>
                 <TimerTabCommandBar 
-                    isEditionEnabled={this.state.isEditionEnabled}
+                    isEditionModeEnabled={this.state.isEditionModeEnabled}
                     hideEditButton={timers.length === 0}
                     onClickEdit={this.enableEdition.bind(this)}
                     onClickDone={this.disableEdition.bind(this)} 
@@ -53,7 +53,7 @@ class TimerTabComponent extends Component {
                         key={id} 
                         name={name} 
                         time={milliseconds(hours, minutes, seconds)} 
-                        isEditionEnabled={this.state.isEditionEnabled}
+                        isEditionModeEnabled={this.state.isEditionModeEnabled}
                         onExpand={(timer) => this.onTimerExpanded(timer)}
                         onShrink={(timer) => this.onTimerShrunken(timer)}
                         onClickRemoveButton={() => this.removeTimer(id)}
@@ -71,11 +71,11 @@ class TimerTabComponent extends Component {
     }
 
     enableEdition() {
-        this.setState({ isEditionEnabled: true });
+        this.setState({ isEditionModeEnabled: true });
     }
 
     disableEdition() {
-        this.setState({ isEditionEnabled: false });
+        this.setState({ isEditionModeEnabled: false });
     }
 
     removeTimer(id) {
