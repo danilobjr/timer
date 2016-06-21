@@ -138,7 +138,7 @@ export class TimerComponent extends BaseComponent {
             this.stopIfTimeIsOver();
         }, this.oneSecond);
 
-        this.props.onStartCounting();
+        this.props.onStartCounting && this.props.onStartCounting();
     }
 
     updateCounter() {
@@ -160,14 +160,18 @@ export class TimerComponent extends BaseComponent {
     }
 
     expand() {
-        this.props.onExpand(this);
-        this.props.turnOnLightTheme();
+        const { onExpand, turnOnLightTheme } = this.props;
+
+        onExpand && onExpand(this);
+        turnOnLightTheme();
         this.setState({ expanded: true });
     }
 
     shrink() {
-        this.props.onShrink(this);        
-        this.props.turnOffLightTheme();
+        const { onShrink, turnOffLightTheme } = this.props;
+
+        onShrink && onShrink(this);        
+        turnOffLightTheme();
         this.setState({ expanded: false });
     }
 
