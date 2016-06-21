@@ -92,8 +92,14 @@ export class TimerComponent extends BaseComponent {
     }
     
     shouldDisableStartPauseButton() {
+        const { startTime, disableStartPauseButton, isRegressive } = this.props;
         const { paused, counter } = this.state;
-        return (paused && counter === this.props.startTime) || this.props.disableStartPauseButton;
+
+        if (isRegressive) {
+            return (paused && counter === startTime) || disableStartPauseButton;
+        }
+
+        return disableStartPauseButton;
     }
     
     calculatePercentageProgress() {
