@@ -29,6 +29,15 @@ h3 {
     line-height: 1.2rem;
 }
 
+ol {
+    counter-reset: item;
+
+    > li:before {
+        counter-increment: item;
+        content: counter(item);
+    }
+}
+
 ul {
     padding: 0;
     margin: 0;
