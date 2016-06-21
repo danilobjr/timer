@@ -13,34 +13,34 @@ export class ChronometerResults extends Component {
                     <ol className="laps">
                         <li className="lap">
                             <div className="partial">
-                                <Watch time={6123} />
+                                <Watch time={6153} showHundredths />
                             </div>
                             <div className="total">
-                                <Watch time={6123} />
+                                <Watch time={6123} showHundredths />
                             </div>
                         </li>
                         <li className="lap">
                             <div className="partial">
-                                <Watch time={6123} />
+                                <Watch time={6123} showHundredths />
                             </div>
                             <div className="total">
-                                <Watch time={6123} />
+                                <Watch time={6123} showHundredths />
                             </div>
                         </li>
                         <li className="lap">
                             <div className="partial">
-                                <Watch time={6123} />
+                                <Watch time={6123} showHundredths />
                             </div>
                             <div className="total">
-                                <Watch time={6123} />
+                                <Watch time={6123} showHundredths />
                             </div>
                         </li>
                         <li className="lap">
                             <div className="partial">
-                                <Watch time={6123} />
+                                <Watch time={6123} showHundredths />
                             </div>
                             <div className="total">
-                                <Watch time={6123} />
+                                <Watch time={6123} showHundredths />
                             </div>
                         </li>
                         <li className="lap">
