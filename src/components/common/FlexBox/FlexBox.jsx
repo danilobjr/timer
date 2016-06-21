@@ -7,7 +7,8 @@ const renderClassNames = (props) => {
         'flex-box',
         props.column && '-column',
         props.wrap && '-wrap',
-        `-${props.justify}`
+        `-justify-content-${props.justify}`,
+        `-align-items-${props.alignItems}`
     );
 }
 
@@ -16,9 +17,11 @@ export const FlexBox = (props) => <div className={renderClassNames(props)}>{prop
 FlexBox.propTypes = {
     column: PropTypes.bool,
     wrap: PropTypes.bool,
+    alignItems: PropTypes.oneOf(['flex-start', 'flex-end', 'center', 'stretch', 'baseline']),
     justify: PropTypes.oneOf(['flex-start', 'flex-end', 'center', 'space-around', 'space-between'])
 };
 
 FlexBox.defaultProps = {
+    alignItems: 'stretch',
     justify: 'flex-start'
 };
