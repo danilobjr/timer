@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
-import { BaseComponent } from 'BaseComponent';
 import { connect } from 'react-redux';
+import { BaseComponent } from 'BaseComponent';
 import { CountdownWatch, StartPauseButton, Timer, WatchCommandButton } from 'components/common';
 import { turnOnLightTheme, turnOffLightTheme } from './actions';
 import { notify } from 'native';
 
-export class CountdownTimer extends BaseComponent {
+class CountdownTimerComponent extends BaseComponent {
     constructor(props) {
         super(props);
     
@@ -15,7 +15,8 @@ export class CountdownTimer extends BaseComponent {
     }
     
     render() {
-        const { name, time, isEditionModeEnabled, onClickRemoveButton, onExpand, onShrink } = this.props;        
+        const { name, time, isEditionModeEnabled, isLightThemeOn,
+            onClickRemoveButton, onExpand, onShrink } = this.props;        
         const { hideResetButton } = this.state;
 
         return (
@@ -39,6 +40,7 @@ export class CountdownTimer extends BaseComponent {
                     onClick={onClickRemoveButton}
                 />
                 <WatchCommandButton
+                    lightTheme={isLightThemeOn}
                     className="reset"
                     icon="reset"
                     title="Reset"
@@ -62,7 +64,7 @@ export class CountdownTimer extends BaseComponent {
     }
 }
 
-CountdownTimer.propTypes = {
+CountdownTimerComponent.propTypes = {
     name: PropTypes.string,
     time: PropTypes.number.isRequired,
     isEditionModeEnabled: PropTypes.bool,
@@ -71,9 +73,15 @@ CountdownTimer.propTypes = {
     onClickRemoveButton: PropTypes.func
 };
 
-CountdownTimer.defaultProps = {
+CountdownTimerComponent.defaultProps = {
     name: 'Timer',
     isEditionModeEnabled: false,
     hideRemoveButton: true,
     hideResetButton: true
 };
+
+const mapStateToProps = (state) => ({
+    isLightThemeOn: state.isLightThemeOn
+})
+
+export const CountdownTimer = connect(mapStateToProps)(CountdownTimerComponent);
