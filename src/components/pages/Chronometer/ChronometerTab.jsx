@@ -8,13 +8,14 @@ class ChronometerTabComponent extends Component {
         super(props);
     
         this.state = {
-            isResetButtonHide: true
+            isResetButtonHidden: true,
+            isLapsButtonHidden: true
         };
     }
 
     render() {
         const { isLightThemeOn } = this.props;
-        const { isResetButtonHide } = this.state;
+        const { isResetButtonHidden, isLapsButtonHidden } = this.state;
 
         return (
             <Tab className="chronometer-tab">
@@ -28,7 +29,14 @@ class ChronometerTabComponent extends Component {
                         <WatchCommandButton
                             icon="reset"
                             title="Reset" 
-                            hideButton={isResetButtonHide}
+                            hideButton={isResetButtonHidden}
+                            lightTheme={isLightThemeOn}
+                            onClick={this.resetTimer.bind(this)}
+                        />
+                        <WatchCommandButton
+                            icon="trash"
+                            title="Laps" 
+                            hideButton={isLapsButtonHidden}
                             lightTheme={isLightThemeOn}
                             onClick={this.resetTimer.bind(this)}
                         />
@@ -44,11 +52,11 @@ class ChronometerTabComponent extends Component {
     }
 
     showResetButton() {
-        this.setState({ isResetButtonHide: false });
+        this.setState({ isResetButtonHidden: false });
     }
 
     hideResetButton() {
-        this.setState({ isResetButtonHide: true });
+        this.setState({ isResetButtonHidden: true });
     }
 }
 
