@@ -64,13 +64,13 @@ export class TimerComponent extends BaseComponent {
 
     renderWatch() {
         const { counter, expanded } = this.state;
-        const { startTime } = this.props;
+        const { startTime, showHundredths } = this.props;
 
         if (this.props.isRegressive) {
             return <CountdownWatch currentTime={counter} totalTime={startTime} lightTheme={expanded} />;
         } 
         
-        return <Watch time={counter} lightTheme={expanded} />;
+        return <Watch time={counter} showHundredths={showHundredths} lightTheme={expanded} />;
     }
 
     renderInfo() {
@@ -191,6 +191,7 @@ TimerComponent.propTypes = {
     startTime: PropTypes.number,
     disableStartPauseButton: PropTypes.bool,
     hideExpandButton: PropTypes.bool,
+    showHundredths: PropTypes.bool,
     onExpand: PropTypes.func,
     onShrink: PropTypes.func,
     onStartCounting: PropTypes.func,
@@ -201,7 +202,8 @@ TimerComponent.defaultProps = {
     name: 'Timer',
     isRegressive: false,
     startTime: 0,
-    disableStartPauseButton: false
+    disableStartPauseButton: false,
+    showHundredths: false
 };
 
 const mapDispatchToProps = (dispatch) => ({
