@@ -10,12 +10,16 @@
         color: black !important;
     }
     
-    > .unit:not(:last-of-type):after {
+    > .unit:nth-child(-n+2):after {
         content: ':';
         position: relative;
         top: -0.15em;
         margin: 0 0.09em;
         font-size: 0.82em;
+    }
+
+    > .unit.-hundredths:before {
+        content: ',';
     }
     
     &.-lighttheme > .unit {
