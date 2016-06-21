@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
-import { FlexBox, FlexItem } from 'components/common';
+import classNames from 'classnames';
 
-export const Tab = (props) => <div className="tab">{props.children}</div>
+export const Tab = (props) => 
+    <div className={classNames('tab', props.className)}>{props.children}</div>
