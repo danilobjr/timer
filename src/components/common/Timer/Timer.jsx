@@ -21,6 +21,7 @@ export class TimerComponent extends BaseComponent {
         
         this.interval = null;
         this.oneSecond = 1000;
+        this.oneHundredth = 10;
     }
     
     componentWillUnmount() {
@@ -137,7 +138,7 @@ export class TimerComponent extends BaseComponent {
         this.interval = setInterval(() => {
             this.updateCounter();
             this.stopIfTimeIsOver();
-        }, this.oneSecond);
+        }, this.oneHundredth);
 
         this.props.onStartCounting && this.props.onStartCounting();
     }
@@ -147,7 +148,7 @@ export class TimerComponent extends BaseComponent {
         let updateCounter = this.props.isRegressive ? subtract(counter) : add(counter);
         
         if (!paused) {
-            this.setState({ counter: add(counter)(this.oneSecond) });
+            this.setState({ counter: add(counter)(this.oneHundredth) });
         }        
     }
     
