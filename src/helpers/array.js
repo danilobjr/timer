@@ -4,11 +4,11 @@ export const range = (from) => (to) => new Array(to).join(',').split(',').map((i
 
 export const splitAt = (atIndex) => (array) => [array.slice(0, atIndex), array.slice(atIndex)]
 
-export const reverse = (array) => array.reverse()
+export const reverse = (array) => [...array].reverse()
 
 export const flatten = (array) => array.reduce((accu, curr) => accu.concat(curr), [])
 
-export const last = (array) => array[array.length - 1]
+export const last = (array) => [...array][array.length - 1]
 
 export const all = (predicate) => (array) => array.every(predicate)
 
