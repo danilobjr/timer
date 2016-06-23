@@ -23,7 +23,8 @@ class ChronometerTabComponent extends Component {
                     <Timer
                         ref="timer" 
                         showHundredths
-                        onPause={this.showResetButton.bind(this)}
+                        onStartCounting={this.handleTimerStart.bind(this)}
+                        onPause={this.handleTimerPause.bind(this)}
                         onReset={this.hideResetButton.bind(this)}
                     >
                         <WatchCommandButton
@@ -38,7 +39,7 @@ class ChronometerTabComponent extends Component {
                             title="Laps" 
                             hideButton={isLapsButtonHidden}
                             lightTheme={isLightThemeOn}
-                            onClick={this.resetTimer.bind(this)}
+                            onClick={() => console.log('checkpoint!')}
                         />
                     </Timer>
                     <ChronometerResults />
@@ -47,12 +48,22 @@ class ChronometerTabComponent extends Component {
         );
     }
 
-    resetTimer() {
-        this.refs.timer.getWrappedInstance().reset();
+    handleTimerStart() {
+        this.setState({ 
+            isResetButtonHidden: true,
+            isLapsButtonHidden: false,
+        });        
     }
 
-    showResetButton() {
-        this.setState({ isResetButtonHidden: false });
+    handleTimerPause() {
+        this.setState({ 
+            isResetButtonHidden: false,
+            isLapsButtonHidden: true 
+        });
+    }
+
+    resetTimer() {
+        this.refs.timer.getWrappedInstance().reset();
     }
 
     hideResetButton() {
