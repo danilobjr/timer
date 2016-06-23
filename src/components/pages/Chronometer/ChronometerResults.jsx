@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Watch } from 'components/common';
+import { compose, prepend, head } from 'helpers';
+import { differenceBetweenResults, mapResults } from './localHelpers';
 
 export class ChronometerResults extends Component {
     render() {
@@ -25,14 +27,19 @@ export class ChronometerResults extends Component {
     }
 
     renderLaps() {
-        return this.props.results.map(result => {
+        const { results } = this.props;
+
+        const partials = compose(prepend(head(results)), differenceBetweenResults)(results);
+        const mappedResults = mapResults(results)(partials);
+
+        return mappedResults.map(result => {
             return (
-                <li key={result} className="lap">
+                <li key={result.total} className="lap">
                     <div className="partial">
-                        <Watch time={6153} showHundredths />
+                        <Watch time={result.partial} showHundredths />
                     </div>
                     <div className="total">
-                        <Watch time={result} showHundredths />
+                        <Watch time={result.total} showHundredths />
                     </div>
                 </li>
             );
