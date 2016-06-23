@@ -13,3 +13,27 @@ export const last = (array) => array[array.length - 1]
 export const all = (predicate) => (array) => array.every(predicate)
 
 export const join = (character) => (array) => array.join(character)
+
+export const head = (array) => [...array].shift()
+
+export const prepend = value => array => [value, ...array];
+
+export const zipWith = func => firstArray => secondArray => {
+    const result = [];
+
+    for (var i = 0; i < firstArray.length; i++) {
+        result.push(func(firstArray[i], secondArray[i]));        
+    }
+
+    return result;
+}
+
+export const aperture = howMany => array => {
+    const result = [];
+
+    for (var i = 0; i <= array.length - howMany; i++) {
+        result.push([...array].splice(i, howMany));        
+    }
+
+    return result;
+}
