@@ -5,6 +5,10 @@
         align-items: center;
     }
 
+    > .tab-content > .timer {
+        flex-shrink: 0;
+    }
+
     > .tab-content > .timer:hover {
         border: none;
     }
