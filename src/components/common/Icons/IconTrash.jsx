@@ -1,10 +1,5 @@
 import * as React from 'react';
 import { Icon } from './Icon';
-import { iconStyles } from './styles';
-
-const styles = {
-    strokeWidth: 1.3
-};
 
 export const IconTrash = (props) => 
     <Icon {...props} name="icon-trash" width={17} height={20}>
