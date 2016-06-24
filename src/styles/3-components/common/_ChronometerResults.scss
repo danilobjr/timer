@@ -66,4 +66,27 @@
         margin-left: -50px;
         z-index: 1;
     }
+
+    &.-lighttheme > .scroller > .laps > .lap:before {
+        top: 2px;
+        font-size: 0.9rem;
+        font-weight: 700;
+    }
+
+    &.-lighttheme > .scroller > .laps > .lap > .partial {
+        font-size: 1.3rem;
+    }
+
+    &.-lighttheme > .scroller > .laps > .lap > .total {
+        font-size: 1.1rem;
+    }
+
+    &.-lighttheme > .scroller > .laps > .lap:before,
+    &.-lighttheme > .scroller > .laps .watch > .unit {
+        color: $corn-flower-blue;
+    }
+
+    &.-lighttheme > .scroller > .laps .watch > .unit.-active {
+        color: $white !important;
+    }
 }
