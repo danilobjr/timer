@@ -3,7 +3,7 @@ import { Watch } from 'components/common';
 
 export class ChronometerResults extends Component {
     render() {
-        if (!this.props.partials || this.props.partials.length === 0) {
+        if (!this.props.results || this.props.results.length === 0) {
             return null;
         }
 
@@ -23,14 +23,14 @@ export class ChronometerResults extends Component {
     }
 
     renderLaps() {
-        return this.props.partials.map(partial => {
+        return this.props.results.map(result => {
             return (
-                <li key={partial} className="lap">
+                <li key={result} className="lap">
                     <div className="partial">
                         <Watch time={6153} showHundredths />
                     </div>
                     <div className="total">
-                        <Watch time={partial} showHundredths />
+                        <Watch time={result} showHundredths />
                     </div>
                 </li>
             );
@@ -39,5 +39,5 @@ export class ChronometerResults extends Component {
 }
 
 ChronometerResults.propTypes = {
-    partials: PropTypes.arrayOf(PropTypes.number)
+    results: PropTypes.arrayOf(PropTypes.number)
 };

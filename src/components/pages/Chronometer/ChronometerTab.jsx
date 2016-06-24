@@ -10,7 +10,7 @@ class ChronometerTabComponent extends Component {
         this.state = {
             isResetButtonHidden: true,
             isLapsButtonHidden: true,
-            partials: []
+            results: []
         };
 
         this.timer = null;
@@ -22,7 +22,7 @@ class ChronometerTabComponent extends Component {
 
     render() {
         const { isLightThemeOn } = this.props;
-        const { isResetButtonHidden, isLapsButtonHidden, partials } = this.state;
+        const { isResetButtonHidden, isLapsButtonHidden, results } = this.state;
 
         return (
             <Tab className="chronometer-tab">
@@ -49,7 +49,7 @@ class ChronometerTabComponent extends Component {
                             onClick={this.registerLapTime.bind(this)}
                         />
                     </Timer>
-                    <ChronometerResults partials={partials} />
+                    <ChronometerResults results={results} />
                 </TabContent>
             </Tab>
         );
@@ -71,10 +71,10 @@ class ChronometerTabComponent extends Component {
 
     restartChronometer() {
         this.timer.reset();
-        
+
         const newState = Object.assign({},
             this.state,
-            { partials: [] }
+            { results: [] }
         );
 
         this.setState(newState);
@@ -85,10 +85,10 @@ class ChronometerTabComponent extends Component {
     }
 
     registerLapTime() {
-        const { partials } = this.state;
+        const { results } = this.state;
         const newState = Object.assign({}, 
             this.state, 
-            { partials: [...partials, this.timer.getCurrentTime()] }
+            { results: [...results, this.timer.getCurrentTime()] }
         );
 
         this.setState(newState);
