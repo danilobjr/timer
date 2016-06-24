@@ -9,8 +9,15 @@ class ChronometerTabComponent extends Component {
     
         this.state = {
             isResetButtonHidden: true,
-            isLapsButtonHidden: true
+            isLapsButtonHidden: true,
+            partials: []
         };
+
+        this.timer = null;
+    }
+
+    componentDidUpdate() {
+        this.timer = this.refs.timer.getWrappedInstance();
     }
 
     render() {
@@ -39,7 +46,7 @@ class ChronometerTabComponent extends Component {
                             title="Laps" 
                             hideButton={isLapsButtonHidden}
                             lightTheme={isLightThemeOn}
-                            onClick={() => console.log('checkpoint!')}
+                            onClick={this.registerLapTime.bind(this)}
                         />
                     </Timer>
                     <ChronometerResults />
@@ -63,11 +70,21 @@ class ChronometerTabComponent extends Component {
     }
 
     resetTimer() {
-        this.refs.timer.getWrappedInstance().reset();
+        this.timer.reset();
     }
 
     hideResetButton() {
         this.setState({ isResetButtonHidden: true });
+    }
+
+    registerLapTime() {
+        const { partials } = this.state;
+        const newState = Object.assign({}, 
+            this.state, 
+            { partials: [...partials, this.timer.getCurrentTime()] }
+        );
+
+        this.setState(newState);
     }
 }
 
