@@ -22,7 +22,7 @@ class ChronometerTabComponent extends Component {
 
     render() {
         const { isLightThemeOn } = this.props;
-        const { isResetButtonHidden, isLapsButtonHidden } = this.state;
+        const { isResetButtonHidden, isLapsButtonHidden, partials } = this.state;
 
         return (
             <Tab className="chronometer-tab">
@@ -49,7 +49,7 @@ class ChronometerTabComponent extends Component {
                             onClick={this.registerLapTime.bind(this)}
                         />
                     </Timer>
-                    <ChronometerResults />
+                    <ChronometerResults partials={partials} />
                 </TabContent>
             </Tab>
         );
