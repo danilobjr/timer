@@ -5,6 +5,7 @@ export * from './IconCheck';
 export * from './IconChecklist';
 export * from './IconCompress';
 export * from './IconExpand';
+export * from './IconFlag';
 export * from './IconFloppy';
 export * from './IconMinus';
 export * from './IconMoreHorizontal';
