@@ -54,20 +54,9 @@ class TimerTabComponent extends Component {
                         name={name} 
                         time={milliseconds(hours, minutes, seconds)} 
                         isEditionModeEnabled={this.state.isEditionModeEnabled}
-                        onExpand={(timer) => this.onTimerExpanded(timer)}
-                        onShrink={(timer) => this.onTimerShrunken(timer)}
                         onClickRemoveButton={() => this.removeTimer(id)}
                     />;
         });
-    }
-
-    onTimerExpanded(timer) {
-        this.props.setBackButtonCallback(() => timer.shrink());
-        this.props.enableBackButton();
-    }
-
-    onTimerShrunken(timer) {
-        this.props.disableBackButton();
     }
 
     enableEdition() {
@@ -88,9 +77,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    enableBackButton: () => dispatch(enableBackButton()),
-    disableBackButton: () => dispatch(disableBackButton()),
-    setBackButtonCallback: (callback) => dispatch(setBackButtonCallback(callback)),
     removeTimer: (id) => dispatch(removeTimer(id))
 })
 

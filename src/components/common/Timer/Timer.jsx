@@ -5,6 +5,7 @@ import { Watch } from './Watch';
 import { CountdownWatch } from './CountdownWatch';
 import { WatchCommands } from './WatchCommands';
 import { turnOnLightTheme, turnOffLightTheme } from './actions';
+import { enableBackButton, disableBackButton, setBackButtonCallback } from 'components/common';
 import { notify } from 'native';
 import { add, subtract } from 'helpers';
 import { timeToString } from './localHelpers';
@@ -165,17 +166,18 @@ export class TimerComponent extends BaseComponent {
     }
 
     expand() {
-        const { onExpand, turnOnLightTheme } = this.props;
+        const { turnOnLightTheme, enableBackButton, setBackButtonCallback } = this.props;
 
-        onExpand && onExpand(this);
         turnOnLightTheme();
+        enableBackButton();
+        setBackButtonCallback(this.shrink.bind(this));
         this.setState({ expanded: true });
     }
 
     shrink() {
-        const { onShrink, turnOffLightTheme } = this.props;
+        const { turnOffLightTheme, disableBackButton } = this.props;
 
-        onShrink && onShrink(this);        
+        disableBackButton();
         turnOffLightTheme();
         this.setState({ expanded: false });
     }
@@ -200,8 +202,6 @@ TimerComponent.propTypes = {
     disableStartPauseButton: PropTypes.bool,
     hideExpandButton: PropTypes.bool,
     showHundredths: PropTypes.bool,
-    onExpand: PropTypes.func,
-    onShrink: PropTypes.func,
     onStartCounting: PropTypes.func,
     onPause: PropTypes.func,
     onReset: PropTypes.func
@@ -218,6 +218,9 @@ TimerComponent.defaultProps = {
 const mapDispatchToProps = (dispatch) => ({
     turnOnLightTheme: () => dispatch(turnOnLightTheme()),
     turnOffLightTheme: () => dispatch(turnOffLightTheme()),
+    enableBackButton: () => dispatch(enableBackButton()),
+    disableBackButton: () => dispatch(disableBackButton()),
+    setBackButtonCallback: (callback) => dispatch(setBackButtonCallback(callback))
 })
 
 export const Timer = connect(null, mapDispatchToProps, null, { withRef: true })(TimerComponent);

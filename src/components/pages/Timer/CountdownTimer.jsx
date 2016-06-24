@@ -16,7 +16,7 @@ class CountdownTimerComponent extends BaseComponent {
     
     render() {
         const { name, time, isEditionModeEnabled, isLightThemeOn,
-            onClickRemoveButton, onExpand, onShrink } = this.props;        
+            onClickRemoveButton } = this.props;        
         const { hideResetButton } = this.state;
 
         return (
@@ -27,8 +27,6 @@ class CountdownTimerComponent extends BaseComponent {
                 startTime={time}
                 disableStartPauseButton={isEditionModeEnabled}
                 hideExpandButton={isEditionModeEnabled}
-                onExpand={onExpand}
-                onShrink={onShrink}
                 onStartCounting={this.showResetButton.bind(this)}
                 onReset={this.hideResetButton.bind(this)}
             >
@@ -68,8 +66,6 @@ CountdownTimerComponent.propTypes = {
     name: PropTypes.string,
     time: PropTypes.number.isRequired,
     isEditionModeEnabled: PropTypes.bool,
-    onExpand: PropTypes.func,
-    onShrink: PropTypes.func,
     onClickRemoveButton: PropTypes.func
 };
 
