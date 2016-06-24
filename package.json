@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://fake.com"
+    "url": "https://github.com/danilojrr/ElectronTimer.git"
   },
   "keywords": [
     "electron",
