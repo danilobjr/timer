@@ -58,4 +58,12 @@
     > .scroller > .laps > .lap .watch > .unit {
         color: $dusty-gray;
     }
+
+    &.-lighttheme > .scroller > .laps > .lap:last-of-type {
+        position: absolute;
+        left: 50%;
+        bottom: 20vh;
+        margin-left: -50px;
+        z-index: 1;
+    }
 }

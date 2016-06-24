@@ -1,18 +1,20 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { BaseComponent } from 'BaseComponent';
 import { Watch } from 'components/common';
 import { compose, prepend, head } from 'helpers';
 import { differenceBetweenResults, mapResults } from './localHelpers';
 
-export class ChronometerResults extends Component {
+export class ChronometerResultsComponent extends BaseComponent {
     render() {
-        const { results } = this.props;
+        const { results, isLightThemeOn } = this.props;
         const hasNoResults = !results || results.length === 0;
         if (hasNoResults) { 
             return null; 
         }
 
         return (
-            <div className="chronometer-results">
+            <div className={this.classNames('chronometer-results', { '-lighttheme': isLightThemeOn })}>
                 <header className="header">
                     <h4 className="title">Laps</h4>
                     <span>Partials</span>
@@ -47,6 +49,12 @@ export class ChronometerResults extends Component {
     }
 }
 
-ChronometerResults.propTypes = {
+ChronometerResultsComponent.propTypes = {
     results: PropTypes.arrayOf(PropTypes.number)
 };
+
+const mapStateToProps = (state) => ({
+    isLightThemeOn: state.isLightThemeOn
+})
+
+export const ChronometerResults = connect(mapStateToProps)(ChronometerResultsComponent);
