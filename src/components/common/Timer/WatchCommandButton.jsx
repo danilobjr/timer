@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
-import { IconCompress, IconExpand, IconReset, IconTrash } from './../Icons';
+import { IconCompress, IconExpand, IconFlag, 
+    IconReset, IconTrash } from './../Icons';
 
 const Icons = {
     compress: IconCompress,
     expand: IconExpand,
+    flag: IconFlag,
     reset: IconReset,
     trash: IconTrash
 };

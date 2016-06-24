@@ -35,7 +35,7 @@ class ChronometerTabComponent extends Component {
                             onClick={this.resetTimer.bind(this)}
                         />
                         <WatchCommandButton
-                            icon="trash"
+                            icon="flag"
                             title="Laps" 
                             hideButton={isLapsButtonHidden}
                             lightTheme={isLightThemeOn}
