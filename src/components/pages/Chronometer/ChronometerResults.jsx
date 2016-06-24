@@ -3,8 +3,10 @@ import { Watch } from 'components/common';
 
 export class ChronometerResults extends Component {
     render() {
-        if (!this.props.results || this.props.results.length === 0) {
-            return null;
+        const { results } = this.props;
+        const hasNoResults = !results || results.length === 0;
+        if (hasNoResults) { 
+            return null; 
         }
 
         return (
