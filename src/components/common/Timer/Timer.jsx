@@ -77,12 +77,14 @@ export class TimerComponent extends BaseComponent {
     renderInfo() {
         const { expanded } = this.state;
         const { name, startTime, isRegressive } = this.props;
-
+        
         if (isRegressive) {
-            <div className="info">
-                <span className="name">{name}</span>
-                <CountdownWatch className={this.classNames({ 'h-hidden': expanded })} totalTime={startTime} />
-            </div>
+            return (
+                <div className="info">
+                    <span className="name">{name}</span>
+                    <CountdownWatch className={this.classNames({ 'h-hidden': expanded })} totalTime={startTime} />
+                </div>
+            );
         }
 
         return null;
