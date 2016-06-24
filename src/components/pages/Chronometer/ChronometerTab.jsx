@@ -39,7 +39,7 @@ class ChronometerTabComponent extends Component {
                             title="Reset" 
                             hideButton={isResetButtonHidden}
                             lightTheme={isLightThemeOn}
-                            onClick={this.resetTimer.bind(this)}
+                            onClick={this.restartChronometer.bind(this)}
                         />
                         <WatchCommandButton
                             icon="flag"
@@ -69,8 +69,15 @@ class ChronometerTabComponent extends Component {
         });
     }
 
-    resetTimer() {
+    restartChronometer() {
         this.timer.reset();
+        
+        const newState = Object.assign({},
+            this.state,
+            { partials: [] }
+        );
+
+        this.setState(newState);
     }
 
     hideResetButton() {
