@@ -185,6 +185,10 @@ export class TimerComponent extends BaseComponent {
             this.props.onReset();
         }
     }
+
+    getCurrentTime() {
+        return this.state.counter;
+    }
 }
 
 TimerComponent.propTypes = {
