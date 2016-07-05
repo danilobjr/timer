@@ -1,4 +1,5 @@
 node_modules
+public/built
 public/bundle.js
 public/*.png
 *.log
