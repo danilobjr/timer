@@ -12,7 +12,7 @@ const createMainWindow = () => {
     
     mainWindow.setMenu(null);
     mainWindow.loadURL(`file://${__dirname}/public/index.html`);
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
     mainWindow.on('closed', () => {
         mainWindow = null;
     });    
