@@ -1,6 +1,5 @@
 {
   "name": "pomodoro-timer",
-  "productName": "Pomodoro Timer",
   "version": "0.1.0",
   "description": "",
   "main": "main.js",
