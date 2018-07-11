@@ -38,8 +38,10 @@
     "@types/react-dom": "16.0.6",
     "@types/react-redux": "6.0.4",
     "@types/uuid": "3.4.3",
+    "@zeit/next-sass": "0.2.0",
     "@zeit/next-typescript": "1.1.0",
     "chalk": "2.4.1",
+    "node-sass": "4.9.2",
     "normalize.css": "8.0.0",
     "tslib": "1.9.3",
     "typescript": "2.9.2"

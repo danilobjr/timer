@@ -1,3 +1,5 @@
+import 'styles';
+
 import * as React from 'react';
 import App from 'next/app';
 import { AppComponentContext, Container } from 'next/app';
