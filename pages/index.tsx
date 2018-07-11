@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Component } from 'react';
+import { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { FlexBox, Tab, TabContent } from 'components/common';
+import { FlexBox, TabContent } from 'components/common';
 import { CountdownTimer, TimerTabCommandBar } from 'components/pages/timer';
 import { removeTimer } from 'components/pages/timer/actions';
 import { milliseconds, StringKeyValuePair } from 'helpers';
@@ -34,7 +34,7 @@ class TimerPage extends Component<any, TimerTabComponentState> {
     const timers = this.renderCountdownTimers();
 
     return (
-      <Tab>
+      <Fragment>
         <TabContent>
           <FlexBox wrap justify='center'>
             {timers.length ? timers : <p>Click + add a timer</p>}
@@ -46,7 +46,7 @@ class TimerPage extends Component<any, TimerTabComponentState> {
           onClickEdit={this.enableEdition.bind(this)}
           onClickDone={this.disableEdition.bind(this)}
         />
-      </Tab>
+      </Fragment>
     );
   }
 
@@ -60,7 +60,7 @@ class TimerPage extends Component<any, TimerTabComponentState> {
           name={name}
           time={milliseconds(hours, minutes, seconds)}
           isEditionModeEnabled={this.state.isEditionModeEnabled}
-          onClickRemoveButton={() => this.removeTimer(id)}
+          onClickRemoveButton={this.removeTimer(id)}
         />
       )
     });
@@ -74,9 +74,7 @@ class TimerPage extends Component<any, TimerTabComponentState> {
     this.setState({ isEditionModeEnabled: false });
   }
 
-  removeTimer(id: number) {
-    this.props.removeTimer(id);
-  }
+  removeTimer = (id: number) => () => this.props.removeTimer(id);
 }
 
 const mapStateToProps = (state: any) => ({
