@@ -1,35 +1,34 @@
 import * as React from 'react';
 import { Component, Fragment } from 'react';
+import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { FlexBox, TabContent } from 'components/common';
 import { CountdownTimer, TimersPageCommandBar } from 'components/pages/timer';
-import { removeTimer } from 'components/pages/timer/actions';
 import { milliseconds, StringKeyValuePair } from 'helpers';
+import { State } from 'src/redux';
+import { TimerState, actions } from 'src/redux/modules/timer';
 
-interface TimerTabComponentInternalProps {
-  timers: StringKeyValuePair[];
-  removeTimer: (id: number) => void;
-}
+type TimerPageProps = StateToProps & DispatchToProps;
 
-interface TimerTabComponentState {
-  isEditionModeEnabled: boolean;
-}
+type TimerTabComponentState = {
+  isEditionMode: boolean;
+};
 
 // TODO: move this page to pages/timer.tsx file and try to redirect to it from index.tsx
 
-class TimerPage extends Component<any, TimerTabComponentState> {
-  constructor(props: TimerTabComponentInternalProps) {
+class TimerPage extends Component<TimerPageProps, TimerTabComponentState> {
+  constructor(props: TimerPageProps) {
     super(props);
 
     this.state = {
-      isEditionModeEnabled: false,
+      isEditionMode: false,
     };
   }
 
   // TODO: remove this?
-  componentWillReceiveProps(nextProps: TimerTabComponentInternalProps) {
-    if (nextProps.timers.length === 0 && this.state.isEditionModeEnabled) {
-      this.setState({ isEditionModeEnabled: false });
+  componentWillReceiveProps(nextProps: TimerPageProps) {
+    if (nextProps.timers.length === 0 && this.state.isEditionMode) {
+      this.setState({ isEditionMode: false });
     }
   }
 
@@ -51,7 +50,7 @@ class TimerPage extends Component<any, TimerTabComponentState> {
           )}
 
         <TimersPageCommandBar
-          isEditionMode={this.state.isEditionModeEnabled}
+          isEditionMode={this.state.isEditionMode}
           hideEditButton={noTimers}
           onClickEdit={this.enableEdition}
           onClickDone={this.disableEdition}
@@ -69,24 +68,22 @@ class TimerPage extends Component<any, TimerTabComponentState> {
           key={id}
           name={name}
           time={milliseconds(hours, minutes, seconds)}
-          isEditionModeEnabled={this.state.isEditionModeEnabled}
+          isEditionModeEnabled={this.state.isEditionMode}
           onClickRemoveButton={this.removeTimer(id)}
         />
       );
     });
   }
 
-  private enableEdition = () => this.setState({ isEditionModeEnabled: true });
-  private disableEdition = () => this.setState({ isEditionModeEnabled: false });
-  private removeTimer = (id: number) => () => this.props.removeTimer(id);
+  private enableEdition = () => this.setState({ isEditionMode: true });
+  private disableEdition = () => this.setState({ isEditionMode: false });
+  private removeTimer = (id: string) => () => this.props.removeTimer(id);
 }
 
-const mapStateToProps = (state: any) => {
-  return { ...state.timer };
-};
+type StateToProps = TimerState;
+type DispatchToProps = typeof actions;
 
-const mapDispatchToProps = (dispatch: any) => ({
-  removeTimer: (id: number) => dispatch(removeTimer(id)),
-});
+const mapStateToProps = (state: State) => ({ ...state.timer } as TimerState);
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(actions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(TimerPage);

@@ -1,6 +1,7 @@
 import { createAction, createReducer } from 'redux-act';
 import { Timer } from 'models';
 import { combineReducers } from 'redux';
+import { remove } from 'helpers';
 
 const actionType = (name: string) => `timers/${name}`;
 
@@ -8,7 +9,7 @@ const actionType = (name: string) => `timers/${name}`;
 
 export const actions = {
   createTimer: createAction<Timer>(actionType('CREATE')),
-  removeTimer: createAction<Timer>(actionType('REMOVE')),
+  removeTimer: createAction<string>(actionType('REMOVE')),
 };
 
 // STATE
@@ -23,14 +24,18 @@ const initialState = {
   ] as Timer[],
 };
 
-export type State = typeof initialState;
+export type TimerState = typeof initialState;
 
 // REDUCERS
 
 const timers = createReducer({}, initialState.timers)
   .on(actions.createTimer, (state, payload) =>
     [...state, payload],
-  );
+  )
+  .on(actions.removeTimer, (timers, id) => {
+    const timerToRemove = timers.find(timer => timer.id === id);
+    return remove(timerToRemove)(timers);
+  });
 
 export default combineReducers({
   timers,
