@@ -15,6 +15,8 @@ interface TimerTabComponentState {
   isEditionModeEnabled: boolean;
 }
 
+// TODO: move this page to pages/timer.tsx file and try to redirect to it from index.tsx
+
 class TimerPage extends Component<any, TimerTabComponentState> {
   constructor(props: TimerTabComponentInternalProps) {
     super(props);
