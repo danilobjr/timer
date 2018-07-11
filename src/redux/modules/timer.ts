@@ -10,6 +10,7 @@ const actionType = (name: string) => `timers/${name}`;
 export const actions = {
   createTimer: createAction<Timer>(actionType('CREATE')),
   removeTimer: createAction<string>(actionType('REMOVE')),
+  toggleEdition: createAction(actionType('TOGGLE_EDITION')),
 };
 
 // STATE
@@ -22,21 +23,24 @@ const initialState = {
       seconds: 3,
     },
   ] as Timer[],
+  isEdition: false,
 };
 
 export type TimerState = typeof initialState;
 
 // REDUCERS
 
+const isEdition = createReducer({}, initialState.isEdition)
+  .on(actions.toggleEdition, state => !state);
+
 const timers = createReducer({}, initialState.timers)
-  .on(actions.createTimer, (state, payload) =>
-    [...state, payload],
-  )
+  .on(actions.createTimer, (state, payload) => [...state, payload])
   .on(actions.removeTimer, (timers, id) => {
     const timerToRemove = timers.find(timer => timer.id === id);
     return remove(timerToRemove)(timers);
   });
 
 export default combineReducers({
+  isEdition,
   timers,
 });

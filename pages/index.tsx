@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Component, Fragment } from 'react';
+import { SFC, Fragment } from 'react';
 import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { FlexBox, TabContent } from 'components/common';
@@ -10,75 +10,53 @@ import { TimerState, actions } from 'src/redux/modules/timer';
 
 type TimerPageProps = StateToProps & DispatchToProps;
 
-type TimerTabComponentState = {
-  isEdition: boolean;
-};
-
 // TODO: move this page to pages/timer.tsx file and try to redirect to it from index.tsx
 
-class TimerPage extends Component<TimerPageProps, TimerTabComponentState> {
-  constructor(props: TimerPageProps) {
-    super(props);
+const TimerPage: SFC<TimerPageProps> = (props) => {
+  const { isEdition, timers, toggleEdition } = props;
+  const noTimers = !timers || !timers.length;
 
-    this.state = {
-      isEdition: false,
-    };
-  }
+  return (
+    <Fragment>
+      {noTimers ? (
+        // TODO: change this class name for RSCSS pattern
+        <p className="timers__no-timers-text">Click + to add a timer</p>
+      ) : (
+          <TabContent>
+            {/* TODO: move this style to SASS */}
+            <FlexBox wrap justify="center">
+              {renderCountdownTimers(props)}
+            </FlexBox>
+          </TabContent>
+        )}
 
-  // TODO: remove this?
-  componentWillReceiveProps(nextProps: TimerPageProps) {
-    if (nextProps.timers.length === 0 && this.state.isEdition) {
-      this.setState({ isEdition: false });
-    }
-  }
+      <TimersPageCommandBar
+        isEdition={isEdition}
+        hideEditButton={noTimers}
+        onClickEdit={toggleEdition}
+        onClickDone={toggleEdition}
+      />
+    </Fragment>
+  );
+};
 
-  render() {
-    const { timers } = this.props;
-    const noTimers = !timers || !timers.length;
+const renderCountdownTimers = ({ isEdition, timers, removeTimer }: TimerPageProps) => {
+  const remove = (id: string) => () => removeTimer(id);
+
+  return timers.map((timer: StringKeyValuePair) => {
+    const { id, name, hours, minutes, seconds } = timer;
 
     return (
-      <Fragment>
-        {noTimers ? (
-          <p className="timers__no-timers-text">Click + to add a timer</p>
-        ) : (
-            <TabContent>
-              {/* TODO: move this style to SASS */}
-              <FlexBox wrap justify="center">
-                {this.renderCountdownTimers()}
-              </FlexBox>
-            </TabContent>
-          )}
-
-        <TimersPageCommandBar
-          isEdition={this.state.isEdition}
-          hideEditButton={noTimers}
-          onClickEdit={this.enableEdition}
-          onClickDone={this.disableEdition}
-        />
-      </Fragment>
+      <CountdownTimer
+        key={id}
+        name={name}
+        time={milliseconds(hours, minutes, seconds)}
+        isEditionModeEnabled={isEdition}
+        onClickRemoveButton={remove(id)}
+      />
     );
-  }
-
-  renderCountdownTimers() {
-    return this.props.timers.map((timer: StringKeyValuePair) => {
-      const { id, name, hours, minutes, seconds } = timer;
-
-      return (
-        <CountdownTimer
-          key={id}
-          name={name}
-          time={milliseconds(hours, minutes, seconds)}
-          isEditionModeEnabled={this.state.isEdition}
-          onClickRemoveButton={this.removeTimer(id)}
-        />
-      );
-    });
-  }
-
-  private enableEdition = () => this.setState({ isEdition: true });
-  private disableEdition = () => this.setState({ isEdition: false });
-  private removeTimer = (id: string) => () => this.props.removeTimer(id);
-}
+  });
+};
 
 type StateToProps = TimerState;
 type DispatchToProps = typeof actions;
