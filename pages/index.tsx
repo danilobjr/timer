@@ -35,11 +35,16 @@ class TimerPage extends Component<any, TimerTabComponentState> {
 
     return (
       <Fragment>
-        <TabContent>
-          <FlexBox wrap justify='center'>
-            {timers.length ? timers : <p>Click + add a timer</p>}
-          </FlexBox>
-        </TabContent>
+        {!timers || !timers.length ? (
+          <p>Click + add a timer</p>
+        ) : (
+          <TabContent>
+            <FlexBox wrap justify='center'>
+              {this.renderCountdownTimers()}
+            </FlexBox>
+          </TabContent>
+        )}
+
         <TimerTabCommandBar
           isEditionModeEnabled={this.state.isEditionModeEnabled}
           hideEditButton={timers.length === 0}
