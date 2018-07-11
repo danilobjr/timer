@@ -36,7 +36,7 @@ class TimerPage extends Component<any, TimerTabComponentState> {
     return (
       <Fragment>
          {!timers || !timers.length ? (
-          <p className="timers__no-timers-text">Click + add a timer</p>
+          <p className="timers__no-timers-text">Click + to add a timer</p>
         ) : (
           <TabContent>
             <FlexBox wrap justify='center'>
