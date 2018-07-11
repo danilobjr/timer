@@ -47,7 +47,7 @@ class TimersPage extends Component<any, TimerTabComponentState> {
           )}
 
         <TimerTabCommandBar
-          isEditionModeEnabled={this.state.isEditionModeEnabled}
+          isEditionMode={this.state.isEditionModeEnabled}
           hideEditButton={timers.length === 0}
           onClickEdit={this.enableEdition}
           onClickDone={this.disableEdition}
