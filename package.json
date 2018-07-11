@@ -1,49 +1,56 @@
 {
-  "name": "pomodoro-timer",
-  "version": "0.1.0",
-  "description": "",
+  "name": "timer",
+  "version": "1.0.0",
+  "description": "PWA version of Timer (Windows 10 clone)",
   "main": "main.js",
-  "scripts": {
-    "start": "electron main.js",
-    "watch": "webpack-dev-server",
-    "dist:win64": "electron-packager . --platform=win32 --arch=x64 --ignore=\"(node_modules|src|mockups|demo)\" --out=dist"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/danilojrr/ElectronTimer.git"
   },
   "keywords": [
-    "electron",
     "react",
-    "webpack",
-    "es6"
+    "timer"
   ],
-  "author": "Danilo Barros <danilobjr@gmail.com>",
+  "author": {
+    "name": "Danilo Barros",
+    "email": "danilobjr@gmail.com"
+  },
   "license": "MIT",
+  "scripts": {
+    "dev": "webpack-serve"
+  },
   "dependencies": {
-    "classnames": "^2.2.5",
-    "electron-prebuilt": "^1.2.0",
-    "node-uuid": "^1.4.7",
-    "react": "^15.1.0",
-    "react-dom": "^15.1.0",
-    "react-redux": "^4.4.5",
-    "react-router": "^2.4.1",
-    "react-router-redux": "^4.0.4",
-    "redux": "^3.5.2"
+    "classnames": "2.2.6",
+    "history": "4.7.2",
+    "html-webpack-plugin": "3.2.0",
+    "lodash-es": "4.17.10",
+    "react": "16.4.1",
+    "react-dom": "16.4.1",
+    "react-redux": "5.0.7",
+    "react-router-dom": "4.3.1",
+    "react-router-redux": "5.0.0-alpha.9",
+    "redux": "4.0.0",
+    "uuid": "3.3.2"
   },
   "devDependencies": {
-    "babel-core": "^6.9.1",
-    "babel-loader": "^6.2.4",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-preset-react": "^6.5.0",
-    "css-loader": "^0.23.1",
-    "electron-packager": "^7.2.0",
-    "file-loader": "^0.8.5",
-    "node-sass": "^3.7.0",
-    "normalize.css": "^4.1.1",
-    "sass-loader": "^3.2.0",
-    "style-loader": "^0.13.1",
-    "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1"
+    "@types/lodash-es": "4.17.0",
+    "@types/react": "16.4.6",
+    "@types/react-dom": "16.0.6",
+    "@types/react-redux": "6.0.4",
+    "@types/react-router-dom": "4.2.7",
+    "@types/react-router-redux": "5.0.15",
+    "@types/uuid": "3.4.3",
+    "chalk": "2.4.1",
+    "css-loader": "1.0.0",
+    "file-loader": "1.1.11",
+    "node-sass": "4.9.2",
+    "normalize.css": "8.0.0",
+    "sass-loader": "7.0.3",
+    "style-loader": "0.21.0",
+    "ts-loader": "4.4.2",
+    "tslib": "1.9.3",
+    "typescript": "2.9.2",
+    "webpack": "4.15.1",
+    "webpack-serve": "2.0.2"
   }
 }
