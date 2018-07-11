@@ -3,7 +3,7 @@ import * as configReducers from 'config/reducers';
 import * as timerReducers from 'components/common/Timer/reducers';
 import * as navigationTabsReducers from 'components/common/NavigationTabs/reducers';
 import * as titleBarReducers from 'components/common/TitleBar/reducers';
-import * as timerPageReducers from 'components/pages/Timer/reducers';
+import * as timerPageReducers from 'components/pages/timer/reducers';
 import { combineReducers } from 'redux';
 
 const reducers = _.assign(

@@ -1,2 +1,2 @@
 export * from './Chronometer';
-export * from './Timer';
+export * from './timer';
