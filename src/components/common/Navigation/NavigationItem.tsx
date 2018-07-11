@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
-import { SFC } from 'react';
+import { SFC, HTMLProps } from 'react';
 import { IconStopwatch, IconTimer } from 'components/common';
 
 export const icons = {
@@ -11,29 +11,30 @@ export const icons = {
 const renderLiClassNames = (isActive: boolean) => {
   return classNames(
     'navigation-tab-item',
-    isActive && '-active'
+    isActive && '-active',
   );
-}
+};
 
-interface NavigationTabItemProps {
+type NavigationItemProps = {
   icon: keyof typeof icons;
-  isActive?: boolean;
+  active?: boolean;
   text: string;
-  onItemClick: () => void;
-}
+} & HTMLProps<HTMLLIElement>;
 
-export const NavigationTabItem: SFC<NavigationTabItemProps> =
-  ({ icon, isActive, text, onItemClick }) => (
+export const NavigationItem: SFC<NavigationItemProps> = ({
+  icon,
+  active,
+  text,
+  ...otherProps }) => (
     <li
-      className={renderLiClassNames(isActive)}
-      onClick={onItemClick}
+      className={renderLiClassNames(active)}
+      {...otherProps}
     >
       {React.createElement(icons[icon])}
       <span className="text">{text}</span>
     </li>
-  )
+  );
 
-NavigationTabItem.defaultProps = {
-  isActive: false,
-  onItemClick: () => null,
+NavigationItem.defaultProps = {
+  active: false,
 };

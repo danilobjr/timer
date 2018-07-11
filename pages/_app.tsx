@@ -5,8 +5,8 @@ import App from 'next/app';
 import { AppComponentContext, Container } from 'next/app';
 import { Provider } from 'react-redux';
 // TODO: fix alias for config folder
-import { store } from '../src/config';
-import { Page, NavigationTabs } from 'components';
+import { store } from 'src/redux';
+import { Page, Navigation } from 'components';
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, ctx }: AppComponentContext) {
@@ -26,7 +26,7 @@ export default class MyApp extends App {
       <Container>
         <Provider store={store}>
           <Page>
-            <NavigationTabs />
+            <Navigation />
             <Component {...pageProps} />
           </Page>
         </Provider>

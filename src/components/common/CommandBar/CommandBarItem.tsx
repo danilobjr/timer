@@ -28,7 +28,7 @@ export const CommandBarItem: SFC<Partial<CommandBarItemProps>> = ({ href, icon, 
     <a
       className={classNames(
         'command-bar-item',
-        { '-narrow': narrow },
+        narrow && '-narrow',
       )}
       {...otherProps}
     >

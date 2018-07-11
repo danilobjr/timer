@@ -79,9 +79,9 @@ class TimersPage extends Component<any, TimerTabComponentState> {
   private removeTimer = (id: number) => () => this.props.removeTimer(id);
 }
 
-const mapStateToProps = (state: any) => ({
-  timers: state.timers,
-});
+const mapStateToProps = (state: any) => {
+  return { ...state.timers };
+};
 
 const mapDispatchToProps = (dispatch: any) => ({
   removeTimer: (id: number) => dispatch(removeTimer(id)),

@@ -11,8 +11,9 @@ module.exports = withTypescript(withSass({
       resolve: {
         alias: {
           components: resolvePath('src/components'),
-          config: resolvePath('src/config'),
           helpers: resolvePath('src/helpers'),
+          models: resolvePath('src/models'),
+          src: resolvePath('src'),
           styles: resolvePath('src/styles'),
         },
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.sass', '.scss'],
