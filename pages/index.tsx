@@ -24,6 +24,7 @@ class TimersPage extends Component<any, TimerTabComponentState> {
     };
   }
 
+  // TODO: remove this?
   componentWillReceiveProps(nextProps: TimerTabComponentInternalProps) {
     if (nextProps.timers.length === 0 && this.state.isEditionModeEnabled) {
       this.setState({ isEditionModeEnabled: false });
@@ -48,8 +49,8 @@ class TimersPage extends Component<any, TimerTabComponentState> {
         <TimerTabCommandBar
           isEditionModeEnabled={this.state.isEditionModeEnabled}
           hideEditButton={timers.length === 0}
-          onClickEdit={this.enableEdition.bind(this)}
-          onClickDone={this.disableEdition.bind(this)}
+          onClickEdit={this.enableEdition}
+          onClickDone={this.disableEdition}
         />
       </Fragment>
     );
@@ -71,15 +72,9 @@ class TimersPage extends Component<any, TimerTabComponentState> {
     });
   }
 
-  enableEdition() {
-    this.setState({ isEditionModeEnabled: true });
-  }
-
-  disableEdition() {
-    this.setState({ isEditionModeEnabled: false });
-  }
-
-  removeTimer = (id: number) => () => this.props.removeTimer(id);
+  private enableEdition = () => this.setState({ isEditionModeEnabled: true });
+  private disableEdition = () => this.setState({ isEditionModeEnabled: false });
+  private removeTimer = (id: number) => () => this.props.removeTimer(id);
 }
 
 const mapStateToProps = (state: any) => ({
