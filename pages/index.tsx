@@ -33,10 +33,11 @@ class TimersPage extends Component<any, TimerTabComponentState> {
 
   render() {
     const { timers } = this.props;
+    const noTimers = !timers || !timers.length;
 
     return (
       <Fragment>
-        {!timers || !timers.length ? (
+        {noTimers ? (
           <p className="timers__no-timers-text">Click + to add a timer</p>
         ) : (
             <TabContent>
@@ -48,7 +49,7 @@ class TimersPage extends Component<any, TimerTabComponentState> {
 
         <TimerTabCommandBar
           isEditionMode={this.state.isEditionModeEnabled}
-          hideEditButton={timers.length === 0}
+          hideEditButton={noTimers}
           onClickEdit={this.enableEdition}
           onClickDone={this.disableEdition}
         />
