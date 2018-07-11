@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SFC } from 'react';
 import { Watch, WatchProps } from './Watch';
-import { time, milliseconds } from 'helpers';
-import { padLeftWithZero } from './localHelpers';
+// import { time, milliseconds } from 'helpers';
+// import { padLeftWithZero } from './localHelpers';
 
 const getRemainingTime = (props: CountdownWatchProps) => {
   return props.totalTime - props.currentTime;

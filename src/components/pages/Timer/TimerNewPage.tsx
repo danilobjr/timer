@@ -2,9 +2,9 @@ import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  CommandBar, CommandBarItem, 
+  CommandBar, CommandBarItem,
   // NavigationBar,
-  PageView, PageHeader, PageContent,
+  Page, PageHeader, PageContent,
   FieldText, TimeSelector
 } from 'components/common';
 import { compose, omit, values, all, equals, not } from 'helpers';
@@ -52,7 +52,7 @@ class TimerNewPageComponent extends Component<any, TimerNewPageComponentState> {
     const { name, hours, minutes, seconds } = this.state;
 
     return (
-      <PageView className="timer-new-page">
+      <Page className="timer-new-page">
         <PageContent grow={1}>
           <PageHeader>New Timer</PageHeader>
 
@@ -80,7 +80,7 @@ class TimerNewPageComponent extends Component<any, TimerNewPageComponentState> {
           />
           <CommandBarItem icon="moreHorizontal" title="More" />
         </CommandBar>
-      </PageView>
+      </Page>
     );
   }
 

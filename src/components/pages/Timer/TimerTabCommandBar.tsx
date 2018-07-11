@@ -20,7 +20,7 @@ const renderItems = ({ hideEditButton, isEditionModeEnabled, onClickEdit, onClic
   if (isEditionModeEnabled) {
     return [<CommandBarItem key="0" icon="check" title="Done" onClick={onClickDone} />];
   } else {
-    const items = [<CommandBarItem key="0" to="/timer/new" icon="plus" title="New" />];
+    const items = [<CommandBarItem key="0" href="/timer/new" icon="plus" title="New" />];
     hideEditButton || items.push(<CommandBarItem key="1" icon="checklist" title="Edit" onClick={onClickEdit} />);
     return items;
   }

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { compose, range, map, flatten, reverse, replace, padLeft, inc, dec, last } from 'helpers';
 
 export const createArrayOfNumbersOf = (startsWith: number) => compose(range(startsWith), inc);

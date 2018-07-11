@@ -5,15 +5,8 @@ import * as navigationTabsReducers from 'components/common/NavigationTabs/reduce
 import * as titleBarReducers from 'components/common/TitleBar/reducers';
 import * as timerPageReducers from 'components/pages/Timer/reducers';
 import { combineReducers } from 'redux';
-import { routerReducer, routerMiddleware } from 'react-router-redux';
-import { history } from 'config/history';
-
-const middleware = routerMiddleware(history);
 
 const reducers = _.assign(
-  {
-    router: routerReducer
-  },
   configReducers,
   timerReducers,
   navigationTabsReducers,

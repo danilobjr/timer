@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { CountdownWatch, StartPauseButton, Timer, WatchCommandButton } from 'components/common';
-import { turnOnLightTheme, turnOffLightTheme } from './actions';
+// import { turnOnLightTheme, turnOffLightTheme } from './actions';
 // import { notify } from 'native';
 
 interface ExternalProps {

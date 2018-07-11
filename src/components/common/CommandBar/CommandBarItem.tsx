@@ -1,9 +1,12 @@
 import * as React from 'react';
-import { HTMLProps, SFC } from 'react';
-import { Link, LinkProps } from 'react-router-dom';
+import { SFC } from 'react';
+import Link, { LinkProps } from 'next/link';
 import {
-  IconCheck, IconChecklist, IconMoreHorizontal, IconPlus,
-  IconFloppy
+  IconCheck,
+  IconChecklist,
+  IconMoreHorizontal,
+  IconPlus,
+  IconFloppy,
 } from 'components/common/Icons';
 
 const icons = {
@@ -14,15 +17,24 @@ const icons = {
   floppy: IconFloppy
 };
 
-const renderTo = (to: string) => to || ''
-
-interface CommandBarItemProps extends LinkProps {
+// TODO: refactor for use HTMLProps
+type CommandBarItemProps = {
+  disabled?: boolean;
   icon: keyof typeof icons;
-  to: string;
-}
+  title?: string;
+  onClick?: () => void;
+} & LinkProps;
 
-export const CommandBarItem: SFC<Partial<CommandBarItemProps>> = (props) => (
-  <Link {...props} className="command-bar-item" to={renderTo(props.to)}>
-    {React.createElement(icons[props.icon])}
+export const CommandBarItem: SFC<Partial<CommandBarItemProps>> = ({ icon, title, onClick, ...otherProps }) => (
+  <Link {...otherProps}>
+    <a className="command-bar-item" title={title} onClick={onClick}>
+      {React.createElement(icons[icon])}
+    </a>
   </Link>
-)
+);
+
+CommandBarItem.defaultProps = {
+  disabled: false,
+  title: '',
+  onClick: () => null,
+};

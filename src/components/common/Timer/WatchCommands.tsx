@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SFC } from 'react';
 import { StartPauseButton } from './StartPauseButton';
 import { WatchCommandButton } from './WatchCommandButton';
-import { validatePercentageProgressProp } from './propValidations';
+// import { validatePercentageProgressProp } from './propValidations';
 
 interface WatchCommandsProps {
   disableStartPauseButton?: boolean;

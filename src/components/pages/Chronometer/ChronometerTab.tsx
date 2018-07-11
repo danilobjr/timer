@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { connect, Store } from 'react-redux';
+import { connect } from 'react-redux';
 import { Tab, TabContent, Timer, WatchCommandButton } from 'components';
 import { ChronometerResults } from './ChronometerResults';
 
