@@ -27,11 +27,11 @@ export type State = typeof initialState;
 
 // REDUCERS
 
-const timers = createReducer({}, initialState.timers)
+const timer = createReducer({}, initialState.timers)
   .on(actions.createTimer, (state, payload) =>
     [...state, payload],
   );
 
 export default combineReducers({
-  timers,
+  timer,
 });

@@ -15,7 +15,7 @@ interface TimerTabComponentState {
   isEditionModeEnabled: boolean;
 }
 
-class TimersPage extends Component<any, TimerTabComponentState> {
+class TimerPage extends Component<any, TimerTabComponentState> {
   constructor(props: TimerTabComponentInternalProps) {
     super(props);
 
@@ -80,11 +80,11 @@ class TimersPage extends Component<any, TimerTabComponentState> {
 }
 
 const mapStateToProps = (state: any) => {
-  return { ...state.timers };
+  return { ...state.timer };
 };
 
 const mapDispatchToProps = (dispatch: any) => ({
   removeTimer: (id: number) => dispatch(removeTimer(id)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TimersPage);
+export default connect(mapStateToProps, mapDispatchToProps)(TimerPage);

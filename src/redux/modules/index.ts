@@ -1,1 +1,1 @@
-export * from './timers';
+export * from './timer';
