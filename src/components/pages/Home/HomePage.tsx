@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavigationTabs, PageView } from 'components/common';
+import { NavigationTabs, Page } from 'components/common';
 import { ChronometerTab } from 'components/pages/Chronometer';
 import { TimerTab } from 'components/pages/Timer';
 
@@ -13,10 +13,10 @@ const tabs = [
 class HomePageComponent extends Component<any> {
   render() {
     return (
-      <PageView>
+      <Page className="home-page">
         <NavigationTabs />
         {this.renderTab()}
-      </PageView>
+      </Page>
     );
   }
 

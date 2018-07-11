@@ -1,75 +1,79 @@
+html, body, #app {
+  height: 100%;
+}
+
 body {
-    font-family: $font-family;
-    background-color: $gallery;
-    overflow: hidden;
+  font-family: $font-family;
+  background-color: $gallery;
+  overflow: hidden;
 }
 
 * {
-    & {
-        -webkit-user-select: none;
-    }
+  & {
+    -webkit-user-select: none;
+  }
 
-    &.-expanded {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100vw !important;
-        height: calc(100vh - 31px) !important;
-        margin-top: 31px;
-        z-index: 1;
-    }
+  &.-expanded {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw !important;
+    height: calc(100vh - 31px) !important;
+    margin-top: 31px;
+    z-index: 1;
+  }
 
-    &:not(input) {
-        cursor: default;
-    }
+  &:not(input) {
+    cursor: default;
+  }
 }
 
 h3 {
-    font-size: 1rem;
-    line-height: 1.2rem;
+  font-size: 1rem;
+  line-height: 1.2rem;
 }
 
 ol {
-    counter-reset: item;
+  counter-reset: item;
 
-    > li:before {
-        counter-increment: item;
-        content: counter(item);
-    }
+  > li:before {
+    counter-increment: item;
+    content: counter(item);
+  }
 }
 
 ul {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
 }
 
 a {
-    & {
-        text-decoration: none;
-    }
+  & {
+    text-decoration: none;
+  }
 
-    &[disabled] {
-        pointer-events: none;
-    }
+  &[disabled] {
+    pointer-events: none;
+  }
 }
 
 input:focus {
-    outline: none;
+  outline: none;
 }
 
 button {
-    & {
-        padding: 0;
-        background-color: transparent;
-        border: none;
-    }
-    
-    &.-reactive:active {        
-        transform: scale(0.96);
-    }
-    
-    &:focus {
-        outline: none;
-    }
+  & {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+  }
+
+  &.-reactive:active {
+    transform: scale(0.96);
+  }
+
+  &:focus {
+    outline: none;
+  }
 }
