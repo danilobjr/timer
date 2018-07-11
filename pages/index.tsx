@@ -41,6 +41,7 @@ class TimersPage extends Component<any, TimerTabComponentState> {
           <p className="timers__no-timers-text">Click + to add a timer</p>
         ) : (
             <TabContent>
+              {/* TODO: move this style to SASS */}
               <FlexBox wrap justify='center'>
                 {this.renderCountdownTimers()}
               </FlexBox>
