@@ -37,7 +37,6 @@ export const TimersPageCommandBar: SFC<TimersPageCommandBarProps> = ({
             />
           )}
 
-          {/* TODO: put a className and set it as last item with minor width in SASS. Instead of a:last-of-type */}
           <CommandBarItem
             icon="moreHorizontal"
             narrow
