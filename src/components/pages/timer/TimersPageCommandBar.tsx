@@ -4,18 +4,18 @@ import { CommandBar, CommandBarItem } from 'components/common';
 
 type TimersPageCommandBarProps = {
   hideEditButton?: boolean;
-  isEditionMode: boolean;
+  isEdition: boolean;
   onClickEdit?: () => void;
   onClickDone?: () => void;
 };
 
 export const TimersPageCommandBar: SFC<TimersPageCommandBarProps> = ({
   hideEditButton,
-  isEditionMode,
+  isEdition,
   onClickDone,
   onClickEdit }) => (
     <CommandBar>
-      {!!isEditionMode ? (
+      {!!isEdition ? (
         <CommandBarItem
           icon="check"
           title="Done"
