@@ -1,0 +1,12 @@
+.command-bar {
+  min-height: 48px;
+  background-color: $alto;
+
+  display: flex;
+  justify-content: flex-end;
+  flex-shrink: 0;
+
+  > a:last-of-type {
+    width: 48px;
+  }
+}

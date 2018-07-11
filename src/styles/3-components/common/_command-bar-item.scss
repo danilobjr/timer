@@ -1,0 +1,23 @@
+.command-bar-item {
+  width: 68px;
+  color: $scorpion;
+  font-size: 1.4rem;
+  box-sizing: border-box;
+  cursor: default;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: $silver;
+  }
+
+  &:active {
+    background-color: $dark-gray;
+  }
+
+  &[disabled] > svg > g {
+    stroke: $dove-gray !important;
+  }
+}
