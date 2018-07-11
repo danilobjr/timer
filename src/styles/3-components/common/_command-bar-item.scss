@@ -17,6 +17,10 @@
     background-color: $dark-gray;
   }
 
+  &.-narrow {
+    width: 48px;
+  }
+
   &[disabled] > svg > g {
     stroke: $dove-gray !important;
   }

@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { SFC } from 'react';
-import Link, { LinkProps } from 'next/link';
+import classNames from 'classnames';
+import Link from 'next/link';
+import { SFC, HTMLProps } from 'react';
 import {
   IconCheck,
   IconChecklist,
@@ -14,27 +15,28 @@ const icons = {
   checklist: IconChecklist,
   moreHorizontal: IconMoreHorizontal,
   plus: IconPlus,
-  floppy: IconFloppy
+  floppy: IconFloppy,
 };
 
-// TODO: refactor for use HTMLProps
 type CommandBarItemProps = {
-  disabled?: boolean;
   icon: keyof typeof icons;
-  title?: string;
-  onClick?: () => void;
-} & LinkProps;
+  narrow?: boolean;
+} & HTMLProps<HTMLAnchorElement>;
 
-export const CommandBarItem: SFC<Partial<CommandBarItemProps>> = ({ icon, title, onClick, ...otherProps }) => (
-  <Link {...otherProps}>
-    <a className="command-bar-item" title={title} onClick={onClick}>
+export const CommandBarItem: SFC<Partial<CommandBarItemProps>> = ({ href, icon, narrow, ...otherProps }) => (
+  <Link href={href}>
+    <a
+      className={classNames(
+        'command-bar-item',
+        { '-narrow': narrow },
+      )}
+      {...otherProps}
+    >
       {React.createElement(icons[icon])}
     </a>
   </Link>
 );
 
 CommandBarItem.defaultProps = {
-  disabled: false,
-  title: '',
-  onClick: () => null,
+  narrow: false,
 };

@@ -1,3 +1,3 @@
 export * from './CountdownTimer';
-export * from './TimerTabCommandBar';
+export * from './TimersPageCommandBar';
 export * from './TimerNewPage';
