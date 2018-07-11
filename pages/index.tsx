@@ -31,19 +31,19 @@ class TimerPage extends Component<any, TimerTabComponentState> {
   }
 
   render() {
-    const timers = this.renderCountdownTimers();
+    const { timers } = this.props;
 
     return (
       <Fragment>
-         {!timers || !timers.length ? (
+        {!timers || !timers.length ? (
           <p className="timers__no-timers-text">Click + to add a timer</p>
         ) : (
-          <TabContent>
-            <FlexBox wrap justify='center'>
-              {this.renderCountdownTimers()}
-            </FlexBox>
-          </TabContent>
-        )}
+            <TabContent>
+              <FlexBox wrap justify='center'>
+                {this.renderCountdownTimers()}
+              </FlexBox>
+            </TabContent>
+          )}
 
         <TimerTabCommandBar
           isEditionModeEnabled={this.state.isEditionModeEnabled}
