@@ -38,3 +38,12 @@ export const aperture = (howMany: number) => (array: any[]) => {
 
   return result;
 };
+
+export const remove = <T>(item: T) => (array: T[]) => {
+  const index = array.findIndex(a => a === item);
+
+  return [
+    ...array.slice(0, index),
+    ...array.slice(index + 1),
+  ];
+};
