@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Link from 'next/link';
 import { Fragment, SFC } from 'react';
 import { CommandBar, CommandBarItem } from 'components/common';
 
@@ -22,28 +23,26 @@ export const TimersPageCommandBar: SFC<TimersPageCommandBarProps> = ({
           onClick={onClickDone}
         />
       ) : (
-        <Fragment>
-          <CommandBarItem
-            href="/new-timer"
-            icon="plus"
-            title="New"
-          />
+          <Fragment>
+            <Link href="/new-timer">
+              <CommandBarItem icon="plus" title="New" />
+            </Link>
 
-          {!hideEditButton && (
+            {!hideEditButton && (
+              <CommandBarItem
+                icon="checklist"
+                title="Edit"
+                onClick={onClickEdit}
+              />
+            )}
+
             <CommandBarItem
-              icon="checklist"
-              title="Edit"
-              onClick={onClickEdit}
+              icon="moreHorizontal"
+              narrow
+              title="More"
             />
-          )}
-
-          <CommandBarItem
-            icon="moreHorizontal"
-            narrow
-            title="More"
-          />
-        </Fragment>
-      )}
+          </Fragment>
+        )}
     </CommandBar>
   );
 

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import classNames from 'classnames';
-import Link from 'next/link';
 import { SFC, HTMLProps } from 'react';
 import {
   IconCheck,
@@ -21,11 +20,13 @@ const icons = {
 type CommandBarItemProps = {
   icon: keyof typeof icons;
   narrow?: boolean;
-} & HTMLProps<HTMLAnchorElement>;
+} & HTMLProps<HTMLDivElement>;
 
-export const CommandBarItem: SFC<Partial<CommandBarItemProps>> = ({ href, icon, narrow, ...otherProps }) => (
-  <Link href={href}>
-    <a
+export const CommandBarItem: SFC<CommandBarItemProps> = ({
+  icon,
+  narrow,
+  ...otherProps }) => (
+    <div
       className={classNames(
         'command-bar-item',
         narrow && '-narrow',
@@ -33,9 +34,8 @@ export const CommandBarItem: SFC<Partial<CommandBarItemProps>> = ({ href, icon, 
       {...otherProps}
     >
       {React.createElement(icons[icon])}
-    </a>
-  </Link>
-);
+    </div>
+  );
 
 CommandBarItem.defaultProps = {
   narrow: false,
