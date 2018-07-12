@@ -27,11 +27,11 @@ const renderHundredths = (hundredths: number) => (
   </span>
 );
 
-export interface WatchProps extends HTMLProps<HTMLDivElement> {
+export type WatchProps = {
   lightTheme?: boolean;
   showHundredths?: boolean;
   time?: number;
-}
+} & HTMLProps<HTMLDivElement>;
 
 export const Watch: SFC<WatchProps> = ({ showHundredths, time, ...otherProps }) => {
   const [hours, minutes, seconds, hundredths] = toTime(time);

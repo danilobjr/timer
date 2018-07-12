@@ -6,11 +6,11 @@ const getRemainingTime = (props: CountdownWatchProps) => {
   return props.totalTime - props.currentTime;
 };
 
-interface CountdownWatchProps extends WatchProps {
+type CountdownWatchProps = {
   currentTime?: number;
   lightTheme?: boolean;
   totalTime?: number;
-}
+} & WatchProps;
 
 export const CountdownWatch: SFC<CountdownWatchProps> = ({ className, lightTheme, ...otherProps }) => (
   <Watch

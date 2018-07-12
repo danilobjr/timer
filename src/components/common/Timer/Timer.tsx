@@ -10,7 +10,7 @@ import { enableBackButton, disableBackButton, setBackButtonCallback } from 'comp
 import { add, subtract } from 'helpers';
 import { timeToString } from './localHelpers';
 
-interface TimerComponentExternalProps {
+type TimerComponentExternalProps = {
   name?: string;
   isRegressive?: boolean;
   startTime?: number;
@@ -20,21 +20,21 @@ interface TimerComponentExternalProps {
   onStartCounting?: () => void;
   onPause?: () => void;
   onReset?: () => void;
-}
+};
 
-interface TimerComponentInternalProps extends TimerComponentExternalProps {
+type TimerComponentInternalProps =  {
   turnOnLightTheme: () => void;
   turnOffLightTheme: () => void;
   enableBackButton: () => void;
   disableBackButton: () => void;
   setBackButtonCallback: (callback: Function) => void;
-}
+} & TimerComponentExternalProps;
 
-interface TimerComponentState {
+type TimerComponentState = {
   counter: number;
   expanded: boolean;
   paused: boolean;
-}
+};
 
 export class TimerComponent extends Component<TimerComponentInternalProps, TimerComponentState> {
   static defaultProps: TimerComponentExternalProps = {
