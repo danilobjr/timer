@@ -2,8 +2,11 @@ import * as React from 'react';
 import * as classNames from 'classnames';
 import { HTMLProps, SFC } from 'react';
 import {
-  IconCompress, IconExpand, IconFlag,
-  IconReset, IconTrash
+  IconCompress,
+  IconExpand,
+  IconFlag,
+  IconReset,
+  IconTrash,
 } from './../Icons';
 
 const icons = {
@@ -11,7 +14,7 @@ const icons = {
   expand: IconExpand,
   flag: IconFlag,
   reset: IconReset,
-  trash: IconTrash
+  trash: IconTrash,
 };
 
 interface WatchCommandButtonProps extends HTMLProps<HTMLButtonElement> {
@@ -34,7 +37,7 @@ export const WatchCommandButton: SFC<WatchCommandButtonProps> = ({ icon, title, 
       {iconElement}
     </button>
   );
-}
+};
 
 const renderCommonButtonCssClasses = (props: Partial<WatchCommandButtonProps>) => {
   return classNames(
@@ -45,13 +48,13 @@ const renderCommonButtonCssClasses = (props: Partial<WatchCommandButtonProps>) =
       '-lightTheme': props.lightTheme,
       'h-display-none': props.hideButton,
       'h-pull-left': props.position === 'left',
-      'h-pull-right': props.position === 'right'
-    }
+      'h-pull-right': props.position === 'right',
+    },
   );
-}
+};
 
 WatchCommandButton.defaultProps = {
   hideButton: false,
   lightTheme: false,
-  position: 'left'
+  position: 'left',
 };
