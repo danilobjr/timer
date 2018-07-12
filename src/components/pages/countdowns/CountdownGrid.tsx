@@ -14,11 +14,11 @@ export const CountdownGrid: SFC<CountdownGridProps> = ({ isEdition, timers, onCl
 
   return (
     <div className="countdown-grid">
-      {timers.map(({ id, name, time }) => (
+      {timers.map(({ id, name, milliseconds }) => (
         <CountdownTimer
           key={id}
           name={name}
-          time={time}
+          time={milliseconds}
           isEdition={isEdition}
           onClickRemove={remove(id)}
         />

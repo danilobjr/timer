@@ -1,2 +1,2 @@
 export * from './Countdown';
-export * from './Timer';
+export * from './Time';

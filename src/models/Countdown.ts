@@ -1,6 +1,5 @@
-import { Timer } from './Timer';
+import { Time } from './Time';
 
 export type Countdown = {
-  /** Start time in milliseconds */
-  startTime: number;
-} & Timer;
+  startAt: number;
+} & Time;
