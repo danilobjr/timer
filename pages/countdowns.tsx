@@ -24,8 +24,12 @@ const CountdownsPage: SFC<CountdownsPageProps> = (props) => {
       ) : (
           <CountdownGrid
             isEdition={isEdition}
-            timers={countdowns}
+            countdowns={countdowns}
+            onClickPause={console.log}
             onClickRemove={removeCountdown}
+            onClickReset={console.log}
+            onClickStart={console.log}
+            onClickToggleExpand={console.log}
           />
         )}
 

@@ -1,44 +1,50 @@
 import * as React from 'react';
 import { Component } from 'react';
 import { Timer, TimerButton } from 'components/common';
+import { Countdown } from 'models';
 
 type CountdownTimerProps = {
-  name?: string;
-  time: number;
-  isEdition?: boolean;
-  onClickRemove?: () => void;
+  isEdition: boolean;
+  countdown: Countdown;
+  onClickRemove: () => void;
+  onClickPause: () => void;
+  onClickReset: () => void;
+  onClickStart: () => void;
+  onClickToggleExpand: () => void;
 };
 
 // type InternalProps = ExternalProps & MapStateToProps;
-type CountdownTimerState = Readonly<typeof initialState>;
+// type CountdownTimerState = Readonly<typeof initialState>;
 
-const initialState = {
-  hideResetButton: true,
-};
+// const initialState = {
+//   hideResetButton: true,
+// };
 
-export class CountdownTimer extends Component<CountdownTimerProps, CountdownTimerState> {
-  readonly state: CountdownTimerState = initialState;
-
-  static defaultProps: Partial<CountdownTimerProps> = {
-    name: 'Timer',
-    isEdition: false,
-    onClickRemove: () => null,
-  };
+export class CountdownTimer extends Component<CountdownTimerProps> {
+  // readonly state: CountdownTimerState = initialState;
 
   render() {
-    const { name, time, isEdition, onClickRemove } = this.props;
-    const { hideResetButton } = this.state;
+    const {
+      isEdition,
+      countdown,
+      onClickRemove,
+      onClickPause,
+      onClickReset,
+      onClickStart,
+      onClickToggleExpand,
+    } = this.props;
+    // const { hideResetButton } = this.state;
+    const { startAt, ...otherProps } = countdown;
 
     return (
       <Timer
-        // ref="timer"
-        name={name}
-        isRegressive
-        startTime={time}
         disableStartPauseButton={isEdition}
         hideExpandButton={isEdition}
-        onStartCounting={this.showResetButton.bind(this)}
-        onReset={this.hideResetButton.bind(this)}
+        startAt={startAt}
+        time={otherProps}
+        onClickPause={onClickPause}
+        onClickStart={onClickStart}
+        onClickToggleExpand={onClickToggleExpand}
       >
         <TimerButton
           className="remove"
@@ -47,37 +53,30 @@ export class CountdownTimer extends Component<CountdownTimerProps, CountdownTime
           hideButton={!isEdition}
           onClick={onClickRemove}
         />
+
         <TimerButton
           // lightTheme={isLightThemeOn}
           className="reset"
           icon="reset"
           title="Reset"
-          hideButton={hideResetButton || isEdition}
-          onClick={this.resetTimer.bind(this)}
+          hideButton={this.shouldHideResetButton()}
+          onClick={onClickReset}
         />
       </Timer>
     );
   }
 
-  showResetButton() {
-    this.setState({ hideResetButton: false });
+  shouldHideResetButton = () => {
+    const { countdown, isEdition } = this.props;
+    const { milliseconds, paused, startAt } = countdown;
+    return isEdition || (paused && milliseconds === startAt);
   }
 
-  hideResetButton() {
-    this.setState({ hideResetButton: true });
-  }
+  // showResetButton() {
+  //   this.setState({ hideResetButton: false });
+  // }
 
-  resetTimer() {
-    (this.refs.timer as any).getWrappedInstance().reset();
-  }
+  // hideResetButton() {
+  //   this.setState({ hideResetButton: true });
+  // }
 }
-
-// interface MapStateToProps {
-//   isLightThemeOn: boolean;
-// }
-
-// const mapStateToProps = (state: any) => ({
-//   isLightThemeOn: state.isLightThemeOn,
-// });
-
-// export const CountdownTimer = connect(mapStateToProps)(CountdownTimerComponent);

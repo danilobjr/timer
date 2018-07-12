@@ -8,9 +8,7 @@ const renderWatchCssClasses = ({ className, lightTheme }: WatchProps) => (
   classNames(
     'watch',
     className,
-    {
-      '-lighttheme': lightTheme,
-    },
+    { '-lighttheme': lightTheme },
   )
 );
 

@@ -2,35 +2,17 @@ import * as React from 'react';
 import * as classNames from 'classnames';
 import { HTMLProps, SFC } from 'react';
 import { IconPlay, IconPause } from 'components/common/Icons';
-import { validatePercentageProgressProp } from './propValidations';
 
-const renderMainCssClasses = ({ className, lightTheme }: Partial<StartPauseButtonProps>) => (
-  classNames(
-    className,
-    { '-lighttheme': lightTheme }
-  )
-)
-
-const renderHiddenClassWhen = (isHidden: boolean) => (
-  classNames({ 'h-hidden': isHidden })
-)
-
-const calculateStrokeDashoffsetSize = (percentageProgress: number) => (
-  ((1 - percentageProgress) * 100) * 182 / 100 + 'px'
-)
-
-interface StartPauseButtonProps extends HTMLProps<HTMLButtonElement> {
+type StartPauseButtonProps = {
   lightTheme?: boolean;
   showPause?: boolean;
   percentageProgress?: number;
-  onClick: () => void;
-}
+} & HTMLProps<HTMLButtonElement>;
 
-export const StartPauseButton: SFC<StartPauseButtonProps> = ({ showPause, percentageProgress, onClick, ...otherProps }) => (
+export const StartPauseButton: SFC<StartPauseButtonProps> = ({ showPause, percentageProgress, ...otherProps }) => (
   <button
     {...otherProps}
     className={renderMainCssClasses(otherProps)}
-    id="start-pause-button"
     title="Start/Pause"
   >
     <svg
@@ -54,4 +36,26 @@ export const StartPauseButton: SFC<StartPauseButtonProps> = ({ showPause, percen
     <IconPlay className={renderHiddenClassWhen(showPause)} />
     <IconPause className={renderHiddenClassWhen(!showPause)} />
   </button>
+);
+
+StartPauseButton.defaultProps = {
+  lightTheme: false,
+  showPause: false,
+  percentageProgress: 0,
+};
+
+const renderMainCssClasses = ({ className, lightTheme }: Partial<StartPauseButtonProps>) => (
+  classNames(
+    'start-pause-button',
+    { '-lighttheme': lightTheme },
+    className,
+  )
+);
+
+const renderHiddenClassWhen = (isHidden: boolean) => (
+  classNames({ 'h-hidden': isHidden })
+);
+
+const calculateStrokeDashoffsetSize = (percentageProgress: number) => (
+  ((1 - percentageProgress) * 100) * 182 / 100 + 'px'
 );

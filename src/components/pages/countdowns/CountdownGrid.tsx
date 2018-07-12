@@ -5,22 +5,33 @@ import { CountdownTimer } from './CountdownTimer';
 
 type CountdownGridProps = {
   isEdition: boolean;
-  timers: Countdown[];
-  onClickRemove: (id: string) => void;
-};
+  countdowns: Countdown[];
+} & Actions;
 
-export const CountdownGrid: SFC<CountdownGridProps> = ({ isEdition, timers, onClickRemove }) => {
-  const remove = (id: string) => () => onClickRemove(id);
+type Actions = {
+  onClickPause: (id: string) => void;
+  onClickRemove: (id: string) => void;
+  onClickReset: (id: string) => void;
+  onClickStart: (id: string) => void;
+  onClickToggleExpand: (id: string) => void;
+}
+
+export const CountdownGrid: SFC<CountdownGridProps> = ({ isEdition, countdowns, ...otherProps }) => {
+  const bindIdAndPropAction = (id: string, prop: keyof Actions) => () =>
+    otherProps[prop](id);
 
   return (
     <div className="countdown-grid">
-      {timers.map(({ id, name, milliseconds }) => (
+      {countdowns.map(countdown => (
         <CountdownTimer
-          key={id}
-          name={name}
-          time={milliseconds}
+          key={countdown.id}
+          countdown={countdown}
           isEdition={isEdition}
-          onClickRemove={remove(id)}
+          onClickPause={bindIdAndPropAction(countdown.id, 'onClickPause')}
+          onClickRemove={bindIdAndPropAction(countdown.id, 'onClickRemove')}
+          onClickReset={bindIdAndPropAction(countdown.id, 'onClickReset')}
+          onClickStart={bindIdAndPropAction(countdown.id, 'onClickStart')}
+          onClickToggleExpand={bindIdAndPropAction(countdown.id, 'onClickToggleExpand')}
         />
       ))}
     </div>

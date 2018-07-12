@@ -1,250 +1,226 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 import { Component } from 'react';
-import { connect } from 'react-redux';
 import { Watch } from './Watch';
-import { CountdownWatch } from './CountdownWatch';
 import { TimerActions } from './TimerActions';
-import { turnOnLightTheme, turnOffLightTheme } from './actions';
-import { enableBackButton, disableBackButton, setBackButtonCallback } from 'components/common';
-import { add, subtract } from 'helpers';
-import { timeToString } from './localHelpers';
+import { Time } from 'models';
 
-type TimerComponentExternalProps = {
-  name?: string;
-  isRegressive?: boolean;
-  startTime?: number;
+enum TimeInMilliseconds {
+  OneMinute = 60000,
+}
+
+type TimerProps = {
   disableStartPauseButton?: boolean;
   hideExpandButton?: boolean;
   showHundredths?: boolean;
-  onStartCounting?: () => void;
-  onPause?: () => void;
-  onReset?: () => void;
+  startAt?: number;
+  time: Time;
+  onClickPause?: () => void;
+  onClickStart?: () => void;
+  onClickToggleExpand?: () => void;
 };
 
-type TimerComponentInternalProps =  {
-  turnOnLightTheme: () => void;
-  turnOffLightTheme: () => void;
-  enableBackButton: () => void;
-  disableBackButton: () => void;
-  setBackButtonCallback: (callback: Function) => void;
-} & TimerComponentExternalProps;
-
-type TimerComponentState = {
-  counter: number;
-  expanded: boolean;
-  paused: boolean;
-};
-
-export class TimerComponent extends Component<TimerComponentInternalProps, TimerComponentState> {
-  static defaultProps: TimerComponentExternalProps = {
-    name: 'Timer',
-    isRegressive: false,
-    startTime: 0,
+export class Timer extends Component<TimerProps> {
+  static defaultProps: Partial<TimerProps> = {
     disableStartPauseButton: false,
     hideExpandButton: false,
     showHundredths: false,
-    onStartCounting: () => null,
-    onPause: () => null,
-    onReset: () => null,
+    startAt: 0,
+    onClickPause: () => null,
+    onClickStart: () => null,
+    onClickToggleExpand: () => null,
   };
 
-  private interval: any = null;
-  private oneSecond: number = 1000;
-  private oneHundredth: number = 10;
-
-  constructor(props: TimerComponentInternalProps) {
-    super(props);
-
-    this.state = {
-      paused: true,
-      counter: 0,
-      expanded: false,
-    };
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
   render() {
-    const { hideExpandButton } = this.props;
-    const { paused, expanded } = this.state;
+    const {
+      disableStartPauseButton,
+      hideExpandButton,
+      showHundredths,
+      startAt,
+      time,
+      onClickToggleExpand,
+    } = this.props;
+
+    const { expanded, milliseconds, name, paused } = time;
 
     return (
-      <div className={this.renderTimerCssClasses()}>
-        {this.renderWatch()}
+      <div
+        className={classNames(
+          'timer',
+          // TODO: check if this render 'undefined' in DOM tree
+          !!expanded && '-expanded',
+          // !!isRegressive && '-no-info',
+        )}
+      >
+        <Watch
+          time={milliseconds}
+          showHundredths={showHundredths}
+          lightTheme={expanded}
+        />
 
         <TimerActions
           lightTheme={expanded}
-          disableStartPauseButton={this.shouldDisableStartPauseButton()}
+          disableStartPauseButton={disableStartPauseButton}
           showPauseIcon={!paused}
           hideExpandButton={expanded || hideExpandButton}
           hideShrinkButton={!expanded}
           percentageProgress={this.calculatePercentageProgress()}
-          onClickStartPauseButton={this.togglePaused.bind(this)}
-          onClickExpandButton={this.toggleExpanded.bind(this)}
-          onClickShrinkButton={this.toggleExpanded.bind(this)}
+          onClickStartPauseButton={this.togglePause}
+          onClickExpandButton={onClickToggleExpand}
+          onClickShrinkButton={onClickToggleExpand}
         >
           {this.props.children}
         </TimerActions>
 
-        {this.renderInfo()}
+        <div className="info">
+          <span className="name">{name}</span>
+          {/* TODO: remove prefix 'h-' from help CSS classes */}
+          <Watch className={classNames({ 'h-hidden': expanded })} time={startAt} />
+        </div>
       </div>
     );
   }
 
-  renderTimerCssClasses() {
-    return classNames(
-      'timer',
-      {
-        '-no-info': !this.props.isRegressive,
-        '-expanded': this.state.expanded,
-      },
-    );
-  }
+  // renderTimerCssClasses() {
+  //   return classNames(
+  //     'timer',
+  //     {
+  //       // '-no-info': !this.props.isRegressive,
+  //       '-expanded': this.props.expanded,
+  //     },
+  //   );
+  // }
 
-  renderWatch() {
-    const { counter, expanded } = this.state;
-    const { startTime, showHundredths } = this.props;
+  // renderWatch() {
+  //   const { expanded, startAt, showHundredths, time } = this.props;
 
-    if (this.props.isRegressive) {
-      return <CountdownWatch currentTime={counter} totalTime={startTime} lightTheme={expanded} />;
-    }
+  //   if (this.props.isRegressive) {
+  //     return <CountdownWatch currentTime={time} totalTime={startAt} lightTheme={expanded} />;
+  //   }
 
-    return <Watch time={counter} showHundredths={showHundredths} lightTheme={expanded} />;
-  }
+  //   return <Watch time={time} showHundredths={showHundredths} lightTheme={expanded} />;
+  // }
 
-  renderInfo() {
-    const { expanded } = this.state;
-    const { name, startTime, isRegressive } = this.props;
+  // renderInfo() {
+  //   const { expanded } = this.state;
+  //   const { name, startAt, isRegressive } = this.props;
 
-    if (isRegressive) {
-      return (
-        <div className="info">
-          <span className="name">{name}</span>
-          <CountdownWatch className={classNames({ 'h-hidden': expanded })} totalTime={startTime} />
-        </div>
-      );
-    }
+  //   if (isRegressive) {
+  //     return (
+  //       <div className="info">
+  //         <span className="name">{name}</span>
+  //         <CountdownWatch className={classNames({ 'h-hidden': expanded })} totalTime={startAt} />
+  //       </div>
+  //     );
+  //   }
 
-    return null;
-  }
+  //   return null;
+  // }
 
-  shouldHideResetButton() {
-    const { paused, counter } = this.state;
-    return paused && counter === 0;
-  }
+  // shouldHideResetButton() {
+  //   const { paused, counter } = this.state;
+  //   return paused && counter === 0;
+  // }
 
-  shouldDisableStartPauseButton() {
-    const { startTime, disableStartPauseButton, isRegressive } = this.props;
-    const { paused, counter } = this.state;
+  // shouldDisableStartPauseButton() {
+  //   const { startAt, disableStartPauseButton, isRegressive } = this.props;
+  //   const { paused, counter } = this.state;
 
-    if (isRegressive) {
-      return (paused && counter === startTime) || disableStartPauseButton;
-    }
+  //   if (isRegressive) {
+  //     return (paused && counter === startAt) || disableStartPauseButton;
+  //   }
 
-    return disableStartPauseButton;
-  }
+  //   return disableStartPauseButton;
+  // }
 
   calculatePercentageProgress() {
-    const { isRegressive, startTime } = this.props;
-    const { paused, counter } = this.state;
+    const { startAt, time } = this.props;
+    const { paused, milliseconds } = time;
 
-    if (paused && counter === 0) {
+    const doNotStartedYet = paused && (milliseconds === 0 || milliseconds === startAt);
+
+    if (doNotStartedYet) {
       return 0;
     }
 
-    if (isRegressive) {
-      const remainingTime = startTime - counter;
-      return remainingTime / startTime;
-    }
+    // if (isRegressive) {
+      // return remainingTime / startAt;
+      return milliseconds / startAt;
+    // }
 
-    return counter / (this.oneSecond * 60);
+    // return milliseconds / TimeInMilliseconds.OneMinute;
   }
 
-  stopIfTimeIsOver() {
-    const timeIsOver = this.props.startTime === this.state.counter;
-    // tslint:disable-next-line:no-unused-expression
-    timeIsOver && this.setState({ paused: true });
+  // stopIfTimeIsOver() {
+  //   const timeIsOver = this.props.startAt === this.state.counter;
+  //   // tslint:disable-next-line:no-unused-expression
+  //   timeIsOver && this.setState({ paused: true });
 
-    if (timeIsOver) {
-      clearInterval(this.interval);
-      // notify(this.props.name, { body: timeToString(this.props.startTime) });
-      alert(`Finished: ${timeToString(this.props.startTime)}`);
-    }
+  //   if (timeIsOver) {
+  //     clearInterval(this.interval);
+  //     // notify(this.props.name, { body: timeToString(this.props.startTime) });
+  //     alert(`Finished: ${timeToString(this.props.startAt)}`);
+  //   }
+  // }
+
+  // resetCounter() {
+  //   this.setState({ counter: 0 });
+  // }
+
+  // startCounting() {
+  //   this.interval = setInterval(() => {
+  //     this.updateCounter();
+  //     this.stopIfTimeIsOver();
+  //   }, this.oneHundredth);
+
+  //   // tslint:disable-next-line:no-unused-expression
+  //   this.props.onStart && this.props.onStart();
+  // }
+
+  // updateCounter() {
+  //   const { paused, counter } = this.state;
+  //   let updateCounter = this.props.isRegressive ? subtract(counter) : add(counter);
+
+  //   if (!paused) {
+  //     this.setState({ counter: add(counter)(this.oneHundredth) });
+  //   }
+  // }
+
+  togglePause = () => {
+    const { time, onClickPause, onClickStart } = this.props;
+    time.paused ? onClickStart() : onClickPause();
   }
 
-  resetCounter() {
-    this.setState({ counter: 0 });
-  }
+  // toggleExpanded() {
+  //   this.state.expanded ? this.shrink() : this.expand();
+  // }
 
-  startCounting() {
-    this.interval = setInterval(() => {
-      this.updateCounter();
-      this.stopIfTimeIsOver();
-    }, this.oneHundredth);
+  // expand() {
+  //   const { turnOnLightTheme, enableBackButton, setBackButtonCallback } = this.props;
 
-    // tslint:disable-next-line:no-unused-expression
-    this.props.onStartCounting && this.props.onStartCounting();
-  }
+  //   turnOnLightTheme();
+  //   enableBackButton();
+  //   setBackButtonCallback(this.shrink.bind(this));
+  //   this.setState({ expanded: true });
+  // }
 
-  updateCounter() {
-    const { paused, counter } = this.state;
-    let updateCounter = this.props.isRegressive ? subtract(counter) : add(counter);
+  // shrink() {
+  //   const { turnOffLightTheme, disableBackButton } = this.props;
 
-    if (!paused) {
-      this.setState({ counter: add(counter)(this.oneHundredth) });
-    }
-  }
+  //   disableBackButton();
+  //   turnOffLightTheme();
+  //   this.setState({ expanded: false });
+  // }
 
-  togglePaused() {
-    this.state.paused ? this.startCounting() : clearInterval(this.interval);
-    // tslint:disable-next-line:no-unused-expression
-    !this.state.paused && this.props.onPause();
-    this.setState({ paused: !this.state.paused });
-  }
+  // reset() {
+  //   this.setState({ counter: 0 });
 
-  toggleExpanded() {
-    this.state.expanded ? this.shrink() : this.expand();
-  }
+  //   if (this.state.paused) {
+  //     this.props.onReset();
+  //   }
+  // }
 
-  expand() {
-    const { turnOnLightTheme, enableBackButton, setBackButtonCallback } = this.props;
-
-    turnOnLightTheme();
-    enableBackButton();
-    setBackButtonCallback(this.shrink.bind(this));
-    this.setState({ expanded: true });
-  }
-
-  shrink() {
-    const { turnOffLightTheme, disableBackButton } = this.props;
-
-    disableBackButton();
-    turnOffLightTheme();
-    this.setState({ expanded: false });
-  }
-
-  reset() {
-    this.setState({ counter: 0 });
-
-    if (this.state.paused) {
-      this.props.onReset();
-    }
-  }
-
-  getCurrentTime() {
-    return this.state.counter;
-  }
+  // getCurrentTime() {
+  //   return this.state.counter;
+  // }
 }
-
-const mapDispatchToProps = (dispatch: any) => ({
-  turnOnLightTheme: () => dispatch(turnOnLightTheme()),
-  turnOffLightTheme: () => dispatch(turnOffLightTheme()),
-  enableBackButton: () => dispatch(enableBackButton()),
-  disableBackButton: () => dispatch(disableBackButton()),
-  setBackButtonCallback: (callback: any) => dispatch(setBackButtonCallback(callback)),
-});
-
-export const Timer = connect(null, mapDispatchToProps, null, { withRef: true })(TimerComponent);
