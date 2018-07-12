@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SFC } from 'react';
 import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { FlexBox, TabContent, PageContent } from 'components/common';
+import { PageContent } from 'components/common';
 import { CountdownTimer, TimersPageCommandBar } from 'components/pages/timer';
 import { milliseconds, StringKeyValuePair } from 'helpers';
 import { State } from 'src/redux';
