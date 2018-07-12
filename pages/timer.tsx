@@ -9,7 +9,6 @@ import { TimerState, actions } from 'src/redux/modules/timer';
 
 type TimerPageProps = StateToProps & DispatchToProps;
 
-// TODO: fix numbers pad in timers to 00:00:00 format
 // TODO: fix 'edit' and 'exit edit (check)' icons
 // TODO: fix fullscreen height (gap on top)
 // TODO: make timers work
