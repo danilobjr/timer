@@ -1,5 +1,5 @@
-.timers {
-  &__no-timers-text {
+.page-content.-timer {
+  > .no-timers-text {
     display: flex;
     flex: 1;
     justify-content: center;

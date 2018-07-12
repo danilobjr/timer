@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { SFC, Fragment } from 'react';
+import { SFC } from 'react';
 import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { FlexBox, TabContent } from 'components/common';
+import { FlexBox, TabContent, PageContent } from 'components/common';
 import { CountdownTimer, TimersPageCommandBar } from 'components/pages/timer';
 import { milliseconds, StringKeyValuePair } from 'helpers';
 import { State } from 'src/redux';
@@ -17,10 +17,10 @@ const TimerPage: SFC<TimerPageProps> = (props) => {
   const noTimers = !timers || !timers.length;
 
   return (
-    <Fragment>
+    <PageContent className="-timer">
       {noTimers ? (
         // TODO: change this class name for RSCSS pattern
-        <p className="timers__no-timers-text">Click + to add a timer</p>
+        <p className="no-timers-text">Click + to add a timer</p>
       ) : (
           <TabContent>
             {/* TODO: move this style to SASS */}
@@ -36,7 +36,7 @@ const TimerPage: SFC<TimerPageProps> = (props) => {
         onClickEdit={toggleEdition}
         onClickDone={toggleEdition}
       />
-    </Fragment>
+    </PageContent>
   );
 };
 
