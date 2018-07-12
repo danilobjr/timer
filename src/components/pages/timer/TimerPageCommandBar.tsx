@@ -3,14 +3,14 @@ import Link from 'next/link';
 import { Fragment, SFC } from 'react';
 import { CommandBar, CommandBarItem } from 'components/common';
 
-type TimersPageCommandBarProps = {
+type TimerPageCommandBarProps = {
   hideEditButton?: boolean;
   isEdition: boolean;
   onClickEdit?: () => void;
   onClickDone?: () => void;
 };
 
-export const TimersPageCommandBar: SFC<TimersPageCommandBarProps> = ({
+export const TimerPageCommandBar: SFC<TimerPageCommandBarProps> = ({
   hideEditButton,
   isEdition,
   onClickDone,
@@ -46,7 +46,7 @@ export const TimersPageCommandBar: SFC<TimersPageCommandBarProps> = ({
     </CommandBar>
   );
 
-TimersPageCommandBar.defaultProps = {
+TimerPageCommandBar.defaultProps = {
   hideEditButton: true,
   onClickDone: () => null,
   onClickEdit: () => null,
