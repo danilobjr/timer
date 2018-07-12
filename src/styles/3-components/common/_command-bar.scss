@@ -1,6 +1,7 @@
 .command-bar {
   min-height: 48px;
   background-color: $alto;
+  z-index: 1;
 
   display: flex;
   justify-content: flex-end;
