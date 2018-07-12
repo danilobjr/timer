@@ -27,6 +27,7 @@ app.prepare().then(() => {
 
 // TODO: try use this instead of above
 // TODO: when navigate to /, rewrite url to /timer
+// TODO: if above item not work, try to redirect from index.tsx to timer.tsx using next/route
 // const express = require('express')
 // const next = require('next')
 
