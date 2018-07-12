@@ -2,12 +2,11 @@ import * as React from 'react';
 import { SFC } from 'react';
 import { StartPauseButton } from './StartPauseButton';
 import { WatchCommandButton } from './WatchCommandButton';
-// import { validatePercentageProgressProp } from './propValidations';
 
 interface WatchCommandsProps {
   disableStartPauseButton?: boolean;
   hideExpandButton?: boolean;
-  hideShrinkButton?: boolean
+  hideShrinkButton?: boolean;
   lightTheme?: boolean;
   percentageProgress?: number;
   showPauseIcon?: boolean;
@@ -26,7 +25,7 @@ export const WatchCommands: SFC<WatchCommandsProps> = ({
     percentageProgress,
     onClickExpandButton,
     onClickShrinkButton,
-    onClickStartPauseButton
+    onClickStartPauseButton,
   }) => (
     <div className="watch-commands">
       {children}
@@ -57,7 +56,7 @@ export const WatchCommands: SFC<WatchCommandsProps> = ({
         onClick={onClickShrinkButton}
       />
     </div>
-)
+);
 
 WatchCommands.defaultProps = {
   disableStartPauseButton: false,
