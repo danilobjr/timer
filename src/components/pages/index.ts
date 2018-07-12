@@ -1,2 +1,2 @@
 export * from './Chronometer';
-export * from './timer';
+export * from './countdowns';

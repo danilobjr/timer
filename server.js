@@ -15,7 +15,7 @@ app.prepare().then(() => {
     const { pathname, query } = parsedUrl;
 
     if (pathname === '/') {
-      app.render(req, res, '/timer', query);
+      app.render(req, res, '/countdowns', query);
     } else {
       handle(req, res, parsedUrl);
     }

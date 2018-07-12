@@ -1,43 +1,37 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { connect } from 'react-redux';
 import { Timer, TimerButton } from 'components/common';
 
-type ExternalProps = {
+type CountdownTimerProps = {
   name?: string;
   time: number;
   isEdition?: boolean;
   onClickRemove?: () => void;
 };
 
-type InternalProps = ExternalProps & MapStateToProps;
+// type InternalProps = ExternalProps & MapStateToProps;
+type CountdownTimerState = Readonly<typeof initialState>;
 
-type State = {
-  hideResetButton: boolean;
+const initialState = {
+  hideResetButton: true,
 };
 
-class CountdownTimerComponent extends Component<InternalProps, State> {
-  static defaultProps: Partial<ExternalProps> = {
+export class CountdownTimer extends Component<CountdownTimerProps, CountdownTimerState> {
+  readonly state: CountdownTimerState = initialState;
+
+  static defaultProps: Partial<CountdownTimerProps> = {
     name: 'Timer',
     isEdition: false,
     onClickRemove: () => null,
   };
 
-  constructor(props: InternalProps) {
-    super(props);
-
-    this.state = {
-      hideResetButton: true,
-    };
-  }
-
   render() {
-    const { name, time, isEdition, isLightThemeOn, onClickRemove } = this.props;
+    const { name, time, isEdition, onClickRemove } = this.props;
     const { hideResetButton } = this.state;
 
     return (
       <Timer
-        ref="timer"
+        // ref="timer"
         name={name}
         isRegressive
         startTime={time}
@@ -54,7 +48,7 @@ class CountdownTimerComponent extends Component<InternalProps, State> {
           onClick={onClickRemove}
         />
         <TimerButton
-          lightTheme={isLightThemeOn}
+          // lightTheme={isLightThemeOn}
           className="reset"
           icon="reset"
           title="Reset"
@@ -78,12 +72,12 @@ class CountdownTimerComponent extends Component<InternalProps, State> {
   }
 }
 
-interface MapStateToProps {
-  isLightThemeOn: boolean;
-}
+// interface MapStateToProps {
+//   isLightThemeOn: boolean;
+// }
 
-const mapStateToProps = (state: any) => ({
-  isLightThemeOn: state.isLightThemeOn,
-});
+// const mapStateToProps = (state: any) => ({
+//   isLightThemeOn: state.isLightThemeOn,
+// });
 
-export const CountdownTimer = connect(mapStateToProps)(CountdownTimerComponent);
+// export const CountdownTimer = connect(mapStateToProps)(CountdownTimerComponent);

@@ -1,12 +1,12 @@
-.page-content.-timer {
-  > .no-timers-text {
+.page-content.-countdowns {
+  > .no-countdowns-text {
     display: flex;
     flex: 1;
     justify-content: center;
     align-items: center;
   }
 
-  > .timer-grid {
+  > .countdown-grid {
     padding: 12px;
 
     display: flex;

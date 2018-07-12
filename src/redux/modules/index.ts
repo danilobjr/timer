@@ -1,1 +1,1 @@
-export * from './timer';
+export * from './countdowns';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { Tab, TabContent, Timer, WatchCommandButton } from 'components';
+import { Tab, TabContent, Timer, TimerButton } from 'components';
 import { ChronometerResults } from './ChronometerResults';
 
 interface ChronometerTabComponentProps {
@@ -47,14 +47,14 @@ class ChronometerTabComponent extends Component<ChronometerTabComponentProps, Ch
             onPause={this.handleTimerPause.bind(this)}
             onReset={this.hideResetButton.bind(this)}
           >
-            <WatchCommandButton
+            <TimerButton
               icon="reset"
               title="Reset"
               hideButton={isResetButtonHidden}
               lightTheme={isLightThemeOn}
               onClick={this.restartChronometer.bind(this)}
             />
-            <WatchCommandButton
+            <TimerButton
               icon="flag"
               title="Laps"
               hideButton={isLapsButtonHidden}
