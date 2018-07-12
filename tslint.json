@@ -168,7 +168,8 @@
       false
     ],
     "max-classes-per-file": [
-      false
+      true,
+      1
     ],
     "no-parameter-properties": false,
     "object-literal-shorthand": false,
