@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Timer, WatchCommandButton } from 'components/common';
-// import { turnOnLightTheme, turnOffLightTheme } from './actions';
 
 interface ExternalProps {
   name?: string;
@@ -21,8 +20,6 @@ class CountdownTimerComponent extends Component<InternalProps, State> {
   static defaultProps: Partial<ExternalProps> = {
     name: 'Timer',
     isEdition: false,
-    // hideRemoveButton: true,
-    // hideResetButton: true,
     onClickRemoveButton: () => null,
   };
 
