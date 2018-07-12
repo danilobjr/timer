@@ -26,6 +26,7 @@ app.prepare().then(() => {
 });
 
 // TODO: try use this instead of above
+// TODO: when navigate to /, rewrite url to /timer
 // const express = require('express')
 // const next = require('next')
 
