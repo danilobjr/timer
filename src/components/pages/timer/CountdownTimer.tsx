@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { CountdownWatch, StartPauseButton, Timer, WatchCommandButton } from 'components/common';
+import { Timer, WatchCommandButton } from 'components/common';
 // import { turnOnLightTheme, turnOffLightTheme } from './actions';
-// import { notify } from 'native';
 
 interface ExternalProps {
   name?: string;
@@ -25,19 +24,18 @@ class CountdownTimerComponent extends Component<InternalProps, State> {
     // hideRemoveButton: true,
     // hideResetButton: true,
     onClickRemoveButton: () => null,
-  }
+  };
 
   constructor(props: InternalProps) {
     super(props);
 
     this.state = {
-      hideResetButton: true
+      hideResetButton: true,
     };
   }
 
   render() {
-    const { name, time, isEdition, isLightThemeOn,
-      onClickRemoveButton } = this.props;
+    const { name, time, isEdition, isLightThemeOn, onClickRemoveButton } = this.props;
     const { hideResetButton } = this.state;
 
     return (
@@ -88,7 +86,7 @@ interface MapStateToProps {
 }
 
 const mapStateToProps = (state: any) => ({
-  isLightThemeOn: state.isLightThemeOn
-})
+  isLightThemeOn: state.isLightThemeOn,
+});
 
 export const CountdownTimer = connect(mapStateToProps)(CountdownTimerComponent);

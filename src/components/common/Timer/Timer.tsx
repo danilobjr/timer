@@ -7,7 +7,6 @@ import { CountdownWatch } from './CountdownWatch';
 import { WatchCommands } from './WatchCommands';
 import { turnOnLightTheme, turnOffLightTheme } from './actions';
 import { enableBackButton, disableBackButton, setBackButtonCallback } from 'components/common';
-// import { notify } from 'native';
 import { add, subtract } from 'helpers';
 import { timeToString } from './localHelpers';
 
@@ -60,7 +59,7 @@ export class TimerComponent extends Component<TimerComponentInternalProps, Timer
     this.state = {
       paused: true,
       counter: 0,
-      expanded: false
+      expanded: false,
     };
   }
 
@@ -70,11 +69,12 @@ export class TimerComponent extends Component<TimerComponentInternalProps, Timer
 
   render() {
     const { hideExpandButton } = this.props;
-    const { paused, counter, expanded } = this.state;
+    const { paused, expanded } = this.state;
 
     return (
       <div className={this.renderTimerCssClasses()}>
         {this.renderWatch()}
+
         <WatchCommands
           lightTheme={expanded}
           disableStartPauseButton={this.shouldDisableStartPauseButton()}
@@ -99,8 +99,8 @@ export class TimerComponent extends Component<TimerComponentInternalProps, Timer
       'timer',
       {
         '-no-info': !this.props.isRegressive,
-        '-expanded': this.state.expanded
-      }
+        '-expanded': this.state.expanded,
+      },
     );
   }
 
@@ -165,6 +165,7 @@ export class TimerComponent extends Component<TimerComponentInternalProps, Timer
 
   stopIfTimeIsOver() {
     const timeIsOver = this.props.startTime === this.state.counter;
+    // tslint:disable-next-line:no-unused-expression
     timeIsOver && this.setState({ paused: true });
 
     if (timeIsOver) {
@@ -184,6 +185,7 @@ export class TimerComponent extends Component<TimerComponentInternalProps, Timer
       this.stopIfTimeIsOver();
     }, this.oneHundredth);
 
+    // tslint:disable-next-line:no-unused-expression
     this.props.onStartCounting && this.props.onStartCounting();
   }
 
@@ -198,7 +200,8 @@ export class TimerComponent extends Component<TimerComponentInternalProps, Timer
 
   togglePaused() {
     this.state.paused ? this.startCounting() : clearInterval(this.interval);
-    !this.state.paused && this.props.onPause && this.props.onPause();
+    // tslint:disable-next-line:no-unused-expression
+    !this.state.paused && this.props.onPause();
     this.setState({ paused: !this.state.paused });
   }
 
@@ -241,7 +244,7 @@ const mapDispatchToProps = (dispatch: any) => ({
   turnOffLightTheme: () => dispatch(turnOffLightTheme()),
   enableBackButton: () => dispatch(enableBackButton()),
   disableBackButton: () => dispatch(disableBackButton()),
-  setBackButtonCallback: (callback: any) => dispatch(setBackButtonCallback(callback))
-})
+  setBackButtonCallback: (callback: any) => dispatch(setBackButtonCallback(callback)),
+});
 
 export const Timer = connect(null, mapDispatchToProps, null, { withRef: true })(TimerComponent);
