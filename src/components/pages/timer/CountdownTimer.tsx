@@ -8,7 +8,7 @@ import { CountdownWatch, StartPauseButton, Timer, WatchCommandButton } from 'com
 interface ExternalProps {
   name?: string;
   time: number;
-  isEditionModeEnabled?: boolean;
+  isEdition?: boolean;
   onClickRemoveButton?: () => void;
 }
 
@@ -21,7 +21,7 @@ interface State {
 class CountdownTimerComponent extends Component<InternalProps, State> {
   static defaultProps: Partial<ExternalProps> = {
     name: 'Timer',
-    isEditionModeEnabled: false,
+    isEdition: false,
     // hideRemoveButton: true,
     // hideResetButton: true,
     onClickRemoveButton: () => null,
@@ -36,7 +36,7 @@ class CountdownTimerComponent extends Component<InternalProps, State> {
   }
 
   render() {
-    const { name, time, isEditionModeEnabled, isLightThemeOn,
+    const { name, time, isEdition, isLightThemeOn,
       onClickRemoveButton } = this.props;
     const { hideResetButton } = this.state;
 
@@ -46,8 +46,8 @@ class CountdownTimerComponent extends Component<InternalProps, State> {
         name={name}
         isRegressive
         startTime={time}
-        disableStartPauseButton={isEditionModeEnabled}
-        hideExpandButton={isEditionModeEnabled}
+        disableStartPauseButton={isEdition}
+        hideExpandButton={isEdition}
         onStartCounting={this.showResetButton.bind(this)}
         onReset={this.hideResetButton.bind(this)}
       >
@@ -55,7 +55,7 @@ class CountdownTimerComponent extends Component<InternalProps, State> {
           className="remove"
           icon="trash"
           title="Remove"
-          hideButton={!isEditionModeEnabled}
+          hideButton={!isEdition}
           onClick={onClickRemoveButton}
         />
         <WatchCommandButton
@@ -63,7 +63,7 @@ class CountdownTimerComponent extends Component<InternalProps, State> {
           className="reset"
           icon="reset"
           title="Reset"
-          hideButton={hideResetButton || isEditionModeEnabled}
+          hideButton={hideResetButton || isEdition}
           onClick={this.resetTimer.bind(this)}
         />
       </Timer>

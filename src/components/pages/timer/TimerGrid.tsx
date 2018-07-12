@@ -23,8 +23,7 @@ export const TimerGrid: SFC<TimerGridProps> = ({ isEdition, timers, onClickRemov
             key={id}
             name={name}
             time={milliseconds(hours, minutes, seconds)}
-            // TODO: rename this prop to isEdition
-            isEditionModeEnabled={isEdition}
+            isEdition={isEdition}
             onClickRemoveButton={remove(id)}
           />
         );
