@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SFC } from 'react';
 import { StartPauseButton } from './StartPauseButton';
-import { WatchCommandButton } from './WatchCommandButton';
+import { TimerButton } from './TimerButton';
 
-interface TimerActionsProps {
+type TimerActionsProps = {
   disableStartPauseButton?: boolean;
   hideExpandButton?: boolean;
   hideShrinkButton?: boolean;
@@ -13,7 +13,7 @@ interface TimerActionsProps {
   onClickExpandButton: () => void;
   onClickShrinkButton: () => void;
   onClickStartPauseButton: () => void;
-}
+};
 
 export const TimerActions: SFC<TimerActionsProps> = ({
     children,
@@ -37,7 +37,7 @@ export const TimerActions: SFC<TimerActionsProps> = ({
         percentageProgress={percentageProgress}
         onClick={onClickStartPauseButton}
       />
-      <WatchCommandButton
+      <TimerButton
         className="expand"
         icon="expand"
         title="Expand"
@@ -46,7 +46,7 @@ export const TimerActions: SFC<TimerActionsProps> = ({
         lightTheme={lightTheme}
         onClick={onClickExpandButton}
       />
-      <WatchCommandButton
+      <TimerButton
         className="shrink"
         icon="compress"
         title="Shrink"

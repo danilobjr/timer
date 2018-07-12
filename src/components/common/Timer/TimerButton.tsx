@@ -17,15 +17,15 @@ const icons = {
   trash: IconTrash,
 };
 
-interface WatchCommandButtonProps extends HTMLProps<HTMLButtonElement> {
+type TimerButtonProps = {
   icon: keyof typeof icons;
   title: string;
   hideButton?: boolean;
   lightTheme?: boolean;
   position?: 'left' | 'right';
-}
+} & HTMLProps<HTMLButtonElement>;
 
-export const WatchCommandButton: SFC<WatchCommandButtonProps> = ({ icon, title, onClick, ...otherProps }) => {
+export const TimerButton: SFC<TimerButtonProps> = ({ icon, title, onClick, ...otherProps }) => {
   const iconElement = icon ? React.createElement(icons[icon]) : null;
 
   return (
@@ -39,7 +39,7 @@ export const WatchCommandButton: SFC<WatchCommandButtonProps> = ({ icon, title, 
   );
 };
 
-const renderCommonButtonCssClasses = (props: Partial<WatchCommandButtonProps>) => {
+const renderCommonButtonCssClasses = (props: Partial<TimerButtonProps>) => {
   return classNames(
     'watch-command-button',
     props.className,
@@ -53,7 +53,7 @@ const renderCommonButtonCssClasses = (props: Partial<WatchCommandButtonProps>) =
   );
 };
 
-WatchCommandButton.defaultProps = {
+TimerButton.defaultProps = {
   hideButton: false,
   lightTheme: false,
   position: 'left',

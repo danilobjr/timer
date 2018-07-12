@@ -1,20 +1,20 @@
 import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { Timer, WatchCommandButton } from 'components/common';
+import { Timer, TimerButton } from 'components/common';
 
-interface ExternalProps {
+type ExternalProps = {
   name?: string;
   time: number;
   isEdition?: boolean;
   onClickRemoveButton?: () => void;
-}
+};
 
-interface InternalProps extends ExternalProps, MapStateToProps { }
+type InternalProps = ExternalProps & MapStateToProps;
 
-interface State {
+type State = {
   hideResetButton: boolean;
-}
+};
 
 class CountdownTimerComponent extends Component<InternalProps, State> {
   static defaultProps: Partial<ExternalProps> = {
@@ -46,14 +46,14 @@ class CountdownTimerComponent extends Component<InternalProps, State> {
         onStartCounting={this.showResetButton.bind(this)}
         onReset={this.hideResetButton.bind(this)}
       >
-        <WatchCommandButton
+        <TimerButton
           className="remove"
           icon="trash"
           title="Remove"
           hideButton={!isEdition}
           onClick={onClickRemoveButton}
         />
-        <WatchCommandButton
+        <TimerButton
           lightTheme={isLightThemeOn}
           className="reset"
           icon="reset"
