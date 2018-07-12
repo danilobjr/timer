@@ -10,6 +10,10 @@ import { TimerState, actions } from 'src/redux/modules/timer';
 type TimerPageProps = StateToProps & DispatchToProps;
 
 // TODO: move this page to pages/timer.tsx file and try to redirect to it from index.tsx
+// TODO: fix numbers pad in timers to 00:00:00 format
+// TODO: fix edit icon
+// TODO: fix fullscreen height (gap on top)
+// TODO: make timers work
 
 const TimerPage: SFC<TimerPageProps> = (props) => {
   const { isEdition, timers, toggleEdition, removeTimer } = props;
