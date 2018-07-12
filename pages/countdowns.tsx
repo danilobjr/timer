@@ -14,7 +14,14 @@ type CountdownsPageProps = StateToProps & DispatchToProps;
 // TODO: make timers work
 
 const CountdownsPage: SFC<CountdownsPageProps> = (props) => {
-  const { isEdition, countdowns, toggleEdition, removeCountdown } = props;
+  const {
+    countdowns,
+    isEdition,
+    pause,
+    removeCountdown,
+    start,
+    toggleEdition,
+  } = props;
   const noTimers = !countdowns || !countdowns.length;
 
   return (
@@ -25,10 +32,10 @@ const CountdownsPage: SFC<CountdownsPageProps> = (props) => {
           <CountdownGrid
             isEdition={isEdition}
             countdowns={countdowns}
-            onClickPause={console.log}
+            onClickPause={pause}
             onClickRemove={removeCountdown}
             onClickReset={console.log}
-            onClickStart={console.log}
+            onClickStart={start}
             onClickToggleExpand={console.log}
           />
         )}

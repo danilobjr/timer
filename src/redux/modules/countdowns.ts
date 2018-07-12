@@ -1,15 +1,22 @@
-import { createAction, createReducer } from 'redux-act';
+import { call, fork, take, cancel } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
+import { createAction, createReducer, Action } from 'redux-act';
 import { Countdown } from 'models';
 import { combineReducers } from 'redux';
-import { remove } from 'helpers';
+import { remove, StringKeyValuePair } from 'helpers';
 
 const actionType = (name: string) => `timers/${name}`;
+
+type CountdownId = Countdown['id'];
 
 // ACTIONS
 
 export const actions = {
+  // TODO: rename these to only create/remove/start ... so on
   createCountdown: createAction<Countdown>(actionType('CREATE')),
-  removeCountdown: createAction<string>(actionType('REMOVE')),
+  removeCountdown: createAction<CountdownId>(actionType('REMOVE')),
+  start: createAction<CountdownId>(actionType('START')),
+  pause: createAction<CountdownId>(actionType('STOP')),
   toggleEdition: createAction(actionType('TOGGLE_EDITION')),
 };
 
@@ -63,3 +70,36 @@ export default combineReducers({
   isEdition,
   countdowns,
 });
+
+// SAGAS
+
+function* startCountdown(countdownId: CountdownId) {
+  while (true) {
+    yield call(delay, 1000);
+    console.log('counting', countdownId);
+  }
+}
+
+function* countdownFlow() {
+  const tasks: StringKeyValuePair = {};
+
+  while (true) {
+    const action = yield take([actions.start, actions.pause]);
+    const { payload, type } = action;
+    const countdownId = payload;
+
+    if (type.includes('START')) {
+      if (!tasks[countdownId]) {
+        tasks[countdownId] = yield fork(startCountdown, countdownId);
+      }
+    }
+
+    if (type.includes('STOP')) {
+      yield cancel(tasks[countdownId]);
+    }
+  }
+}
+
+export function* countdownsSagas() {
+  yield fork(countdownFlow);
+}

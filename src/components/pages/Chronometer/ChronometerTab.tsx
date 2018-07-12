@@ -44,7 +44,7 @@ class ChronometerTabComponent extends Component<ChronometerTabComponentProps, Ch
             ref="timer"
             showHundredths
             onStartCounting={this.handleTimerStart.bind(this)}
-            onPause={this.handleTimerPause.bind(this)}
+            onClickPause={this.handleTimerPause.bind(this)}
             onReset={this.hideResetButton.bind(this)}
           >
             <TimerButton
