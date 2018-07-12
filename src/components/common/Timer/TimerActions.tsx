@@ -3,7 +3,7 @@ import { SFC } from 'react';
 import { StartPauseButton } from './StartPauseButton';
 import { WatchCommandButton } from './WatchCommandButton';
 
-interface WatchCommandsProps {
+interface TimerActionsProps {
   disableStartPauseButton?: boolean;
   hideExpandButton?: boolean;
   hideShrinkButton?: boolean;
@@ -15,7 +15,7 @@ interface WatchCommandsProps {
   onClickStartPauseButton: () => void;
 }
 
-export const TimerCommands: SFC<WatchCommandsProps> = ({
+export const TimerActions: SFC<TimerActionsProps> = ({
     children,
     hideExpandButton,
     hideShrinkButton,
@@ -58,7 +58,7 @@ export const TimerCommands: SFC<WatchCommandsProps> = ({
     </div>
 );
 
-TimerCommands.defaultProps = {
+TimerActions.defaultProps = {
   disableStartPauseButton: false,
   hideExpandButton: false,
   hideShrinkButton: true,
