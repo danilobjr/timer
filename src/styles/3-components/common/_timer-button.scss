@@ -1,0 +1,29 @@
+.timer-button {
+  display: flex;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-top: 6px;
+  color: $mine-shaft;
+  font-size: 1.8rem;
+
+  &:hover {
+    background-color: $alto;
+  }
+
+  &:active {
+    background-color: $silver;
+  }
+
+  &.-lightTheme > .icon {
+    stroke: $white !important;
+  }
+
+  &.-lightTheme:hover {
+    background-color: $steel-blue;
+  }
+
+  &.-lightTheme:active {
+    background-color: $corn-flower-blue;
+  }
+}

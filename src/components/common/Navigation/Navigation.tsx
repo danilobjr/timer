@@ -5,7 +5,7 @@ import { withRouter, WithRouterProps } from 'next/router';
 import { NavigationItem } from './NavigationItem';
 
 export const Navigation: SFC<{}> = withRouter<WithRouterProps>(({ router }) => (
-  <nav className="navigation-tabs">
+  <nav className="navigation">
     <ul className="list">
       <Link href="/">
         <NavigationItem

@@ -1,0 +1,8 @@
+.navigation {
+  > .list {
+    display: flex;
+    justify-content: center;
+    min-height: 67px;
+    background-color: $alto;
+  }
+}

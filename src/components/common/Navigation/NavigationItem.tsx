@@ -10,7 +10,7 @@ export const icons = {
 
 const renderLiClassNames = (isActive: boolean) => {
   return classNames(
-    'navigation-tab-item',
+    'navigation-item',
     isActive && '-active',
   );
 };

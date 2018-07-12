@@ -27,7 +27,7 @@ export const TimerActions: SFC<TimerActionsProps> = ({
     onClickShrinkButton,
     onClickStartPauseButton,
   }) => (
-    <div className="watch-commands">
+    <div className="timer-actions">
       {children}
 
       <StartPauseButton
@@ -37,6 +37,7 @@ export const TimerActions: SFC<TimerActionsProps> = ({
         percentageProgress={percentageProgress}
         onClick={onClickStartPauseButton}
       />
+
       <TimerButton
         className="expand"
         icon="expand"
@@ -46,6 +47,7 @@ export const TimerActions: SFC<TimerActionsProps> = ({
         lightTheme={lightTheme}
         onClick={onClickExpandButton}
       />
+
       <TimerButton
         className="shrink"
         icon="compress"

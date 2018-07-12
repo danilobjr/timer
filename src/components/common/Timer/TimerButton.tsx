@@ -41,7 +41,7 @@ export const TimerButton: SFC<TimerButtonProps> = ({ icon, title, onClick, ...ot
 
 const renderCommonButtonCssClasses = (props: Partial<TimerButtonProps>) => {
   return classNames(
-    'watch-command-button',
+    'timer-button',
     props.className,
     '-reactive',
     {
