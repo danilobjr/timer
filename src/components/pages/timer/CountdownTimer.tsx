@@ -7,7 +7,7 @@ type ExternalProps = {
   name?: string;
   time: number;
   isEdition?: boolean;
-  onClickRemoveButton?: () => void;
+  onClickRemove?: () => void;
 };
 
 type InternalProps = ExternalProps & MapStateToProps;
@@ -20,7 +20,7 @@ class CountdownTimerComponent extends Component<InternalProps, State> {
   static defaultProps: Partial<ExternalProps> = {
     name: 'Timer',
     isEdition: false,
-    onClickRemoveButton: () => null,
+    onClickRemove: () => null,
   };
 
   constructor(props: InternalProps) {
@@ -32,7 +32,7 @@ class CountdownTimerComponent extends Component<InternalProps, State> {
   }
 
   render() {
-    const { name, time, isEdition, isLightThemeOn, onClickRemoveButton } = this.props;
+    const { name, time, isEdition, isLightThemeOn, onClickRemove } = this.props;
     const { hideResetButton } = this.state;
 
     return (
@@ -51,7 +51,7 @@ class CountdownTimerComponent extends Component<InternalProps, State> {
           icon="trash"
           title="Remove"
           hideButton={!isEdition}
-          onClick={onClickRemoveButton}
+          onClick={onClickRemove}
         />
         <TimerButton
           lightTheme={isLightThemeOn}
