@@ -11,108 +11,109 @@ import { compose, omit, values, all, equals, not } from 'helpers';
 import { createTimer } from './actions';
 import { enableBackButton, disableBackButton, setBackButtonCallback } from 'components/common';
 
-interface TimerNewPageComponentInternalProps {
-  createTimer: (data: any) => void;
-  enableBackButton: () => void;
-  disableBackButton: () => void;
-  setBackButtonCallback: (callback: Function) => void;
-}
+// interface TimerNewPageComponentInternalProps {
+//   createTimer: (data: any) => void;
+//   enableBackButton: () => void;
+//   disableBackButton: () => void;
+//   setBackButtonCallback: (callback: Function) => void;
+// }
 
-interface TimerNewPageComponentState {
-  name: string;
-  hours: number;
-  minutes: number;
-  seconds: number;
-}
+// interface TimerNewPageComponentState {
+//   name: string;
+//   hours: number;
+//   minutes: number;
+//   seconds: number;
+// }
 
-class TimerNewPageComponent extends Component<any, TimerNewPageComponentState> {
-  constructor(props: TimerNewPageComponentInternalProps) {
-    super(props);
+// class TimerNewPageComponent extends Component<any, TimerNewPageComponentState> {
+//   constructor(props: TimerNewPageComponentInternalProps) {
+//     super(props);
 
-    this.state = {
-      name: 'Timer',
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-    };
-  }
+//     this.state = {
+//       name: 'Timer',
+//       hours: 0,
+//       minutes: 0,
+//       seconds: 0,
+//     };
+//   }
 
-  componentWillMount() {
-    const { enableBackButton, setBackButtonCallback, history } = this.props;
+//   componentWillMount() {
+//     const { enableBackButton, setBackButtonCallback, history } = this.props;
 
-    enableBackButton();
-    setBackButtonCallback(() => history.goBack());
-  }
+//     enableBackButton();
+//     setBackButtonCallback(() => history.goBack());
+//   }
 
-  componentWillUnmount() {
-    this.props.disableBackButton();
-  }
+//   componentWillUnmount() {
+//     this.props.disableBackButton();
+//   }
 
-  render() {
-    const { name, hours, minutes, seconds } = this.state;
+//   render() {
+//     const { name, hours, minutes, seconds } = this.state;
 
-    return (
-      <Page className="timer-new-page">
-        <PageContent grow={1}>
-          <PageHeader>New Timer</PageHeader>
+//     return (
+//       <Page className="timer-new-page">
+//         <PageContent grow={1}>
+//           <PageHeader>New Timer</PageHeader>
 
-          <div className="field">
-            <TimeSelector
-              hours={hours}
-              minutes={minutes}
-              seconds={seconds}
-              onChange={(value) => this.updateTime(value)}
-            />
-          </div>
+//           <div className="field">
+//             <TimeSelector
+//               hours={hours}
+//               minutes={minutes}
+//               seconds={seconds}
+//               onChange={(value) => this.updateTime(value)}
+//             />
+//           </div>
 
-          <FieldText
-            label="Timer name"
-            value={name}
-            onChange={(value) => this.updateName(value)}
-          />
-        </PageContent>
-        <CommandBar>
-          <CommandBarItem
-            icon="floppy"
-            title="Save"
-            disabled={!this.isTimeSet()}
-            onClick={this.createNewTimer.bind(this)}
-          />
-          <CommandBarItem icon="moreHorizontal" title="More" />
-        </CommandBar>
-      </Page>
-    );
-  }
+//           <FieldText
+//             label="Timer name"
+//             value={name}
+//             onChange={(value) => this.updateName(value)}
+//           />
+//         </PageContent>
+//         <CommandBar>
+//           <CommandBarItem
+//             icon="floppy"
+//             title="Save"
+//             disabled={!this.isTimeSet()}
+//             onClick={this.createNewTimer.bind(this)}
+//           />
+//           <CommandBarItem icon="moreHorizontal" title="More" />
+//         </CommandBar>
+//       </Page>
+//     );
+//   }
 
-  updateTime(value: any) {
-    const newState = Object.assign({}, this.state, value);
-    this.setState(newState);
-  }
+//   updateTime(value: any) {
+//     const newState = Object.assign({}, this.state, value);
+//     this.setState(newState);
+//   }
 
-  updateName(value: any) {
-    const newState = Object.assign({}, this.state, { name: value });
-    this.setState(newState);
-  }
+//   updateName(value: any) {
+//     const newState = Object.assign({}, this.state, { name: value });
+//     this.setState(newState);
+//   }
 
-  createNewTimer() {
-    this.props.createTimer(this.state);
-  }
+//   createNewTimer() {
+//     this.props.createTimer(this.state);
+//   }
 
-  isTimeSet() {
-    return compose(
-      not,
-      all(equals(0)),
-      values,
-      omit(['name'])
-    )(this.state);
-  }
-}
+//   isTimeSet() {
+//     return compose(
+//       not,
+//       all(equals(0)),
+//       values,
+//       omit(['name'])
+//     )(this.state);
+//   }
+// }
 
-const mapDispatchToProps = (dispatch: any) => ({
-  createTimer: (data: any) => dispatch(createTimer(data)),
-  enableBackButton: () => dispatch(enableBackButton()),
-  disableBackButton: () => dispatch(disableBackButton()),
-  setBackButtonCallback: (callback: Function) => dispatch(setBackButtonCallback(callback))
-})
+// const mapDispatchToProps = (dispatch: any) => ({
+//   createTimer: (data: any) => dispatch(createTimer(data)),
+//   enableBackButton: () => dispatch(enableBackButton()),
+//   disableBackButton: () => dispatch(disableBackButton()),
+//   setBackButtonCallback: (callback: Function) => dispatch(setBackButtonCallback(callback))
+// })
 
-export const TimerNewPage = connect(null, mapDispatchToProps)(TimerNewPageComponent);
+// export const TimerNewPage = connect(null, mapDispatchToProps)(TimerNewPageComponent);
+export const TimerNewPage = () => <h1>New timer</h1>;
