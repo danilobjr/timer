@@ -10,16 +10,16 @@ const renderWatchCssClasses = ({ className, lightTheme }: WatchProps) => (
     className,
     {
       '-lighttheme': lightTheme,
-    }
+    },
   )
-)
+);
 
 const renderUnitCssClasses = (time: number, value: number) => (
   classNames(
     'unit',
-    { '-active': time >= value }
+    { '-active': time >= value },
   )
-)
+);
 
 const renderHundredths = (hundredths: number) => (
   <span className="unit -hundredths -active" title="Hundredths">
@@ -52,7 +52,7 @@ export const Watch: SFC<WatchProps> = ({ showHundredths, time, ...otherProps }) 
       {!!showHundredths && renderHundredths(hundredths)}
     </div>
   );
-}
+};
 
 Watch.defaultProps = {
   lightTheme: false,

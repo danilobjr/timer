@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { SFC } from 'react';
 import { Watch, WatchProps } from './Watch';
-// import { time, milliseconds } from 'helpers';
-// import { padLeftWithZero } from './localHelpers';
 
 const getRemainingTime = (props: CountdownWatchProps) => {
   return props.totalTime - props.currentTime;
-}
+};
 
 interface CountdownWatchProps extends WatchProps {
   currentTime?: number;
@@ -20,10 +18,10 @@ export const CountdownWatch: SFC<CountdownWatchProps> = ({ className, lightTheme
     time={getRemainingTime(otherProps)}
     lightTheme={lightTheme}
   />
-)
+);
 
 CountdownWatch.defaultProps = {
   currentTime: 0,
   lightTheme: false,
-  totalTime: 0
+  totalTime: 0,
 };
