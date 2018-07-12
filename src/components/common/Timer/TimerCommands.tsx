@@ -15,7 +15,7 @@ interface WatchCommandsProps {
   onClickStartPauseButton: () => void;
 }
 
-export const WatchCommands: SFC<WatchCommandsProps> = ({
+export const TimerCommands: SFC<WatchCommandsProps> = ({
     children,
     hideExpandButton,
     hideShrinkButton,
@@ -58,7 +58,7 @@ export const WatchCommands: SFC<WatchCommandsProps> = ({
     </div>
 );
 
-WatchCommands.defaultProps = {
+TimerCommands.defaultProps = {
   disableStartPauseButton: false,
   hideExpandButton: false,
   hideShrinkButton: true,

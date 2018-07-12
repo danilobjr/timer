@@ -4,7 +4,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Watch } from './Watch';
 import { CountdownWatch } from './CountdownWatch';
-import { WatchCommands } from './WatchCommands';
+import { TimerCommands } from './TimerCommands';
 import { turnOnLightTheme, turnOffLightTheme } from './actions';
 import { enableBackButton, disableBackButton, setBackButtonCallback } from 'components/common';
 import { add, subtract } from 'helpers';
@@ -75,7 +75,7 @@ export class TimerComponent extends Component<TimerComponentInternalProps, Timer
       <div className={this.renderTimerCssClasses()}>
         {this.renderWatch()}
 
-        <WatchCommands
+        <TimerCommands
           lightTheme={expanded}
           disableStartPauseButton={this.shouldDisableStartPauseButton()}
           showPauseIcon={!paused}
@@ -87,7 +87,7 @@ export class TimerComponent extends Component<TimerComponentInternalProps, Timer
           onClickShrinkButton={this.toggleExpanded.bind(this)}
         >
           {this.props.children}
-        </WatchCommands>
+        </TimerCommands>
 
         {this.renderInfo()}
       </div>
