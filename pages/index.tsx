@@ -19,15 +19,12 @@ const TimerPage: SFC<TimerPageProps> = (props) => {
   return (
     <PageContent className="-timer">
       {noTimers ? (
-        // TODO: change this class name for RSCSS pattern
         <p className="no-timers-text">Click + to add a timer</p>
       ) : (
-          <TabContent>
-            {/* TODO: move this style to SASS */}
-            <FlexBox wrap justify="center">
-              {renderCountdownTimers(props)}
-            </FlexBox>
-          </TabContent>
+          // TODO: extract this to its own file
+          <div className="timers-grid">
+            {renderCountdownTimers(props)}
+          </div>
         )}
 
       <TimersPageCommandBar

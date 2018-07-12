@@ -20,6 +20,16 @@ const initialState = {
     {
       id: '13231231323123123',
       name: 'Break',
+      minutes: 33,
+    },
+    {
+      id: '3543534534534534',
+      name: 'Lunch',
+      hours: 1,
+    },
+    {
+      id: '75675656765756756',
+      name: 'Stop',
       seconds: 3,
     },
   ] as Timer[],
