@@ -28,6 +28,8 @@ type NewTimerPageState = {
   seconds: number;
 };
 
+// TODO: save button should be always enabled. When no time set, show a message: Please, set a time first.
+
 export default class NewTimerPage extends Component<any, NewTimerPageState> {
   constructor(props: NewTimerPageInternalProps) {
     super(props);
