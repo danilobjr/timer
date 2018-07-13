@@ -14,9 +14,9 @@ type CountdownId = Countdown['id'];
 
 export const actions = {
   // TODO: rename these to only create/remove/start ... so on
-  createCountdown: createAction<Countdown>(actionType('CREATE')),
-  removeCountdown: createAction<CountdownId>(actionType('REMOVE')),
-  updateCountdown: createAction<CountdownId, Partial<Countdown>, Countdown>(
+  create: createAction<Countdown>(actionType('CREATE')),
+  remove: createAction<CountdownId>(actionType('REMOVE')),
+  update: createAction<CountdownId, Partial<Countdown>, Countdown>(
     actionType('UPDATE_COUNTDOWN'),
     (id: CountdownId, updatedProps: Countdown) => ({ id, ...updatedProps }),
   ),
@@ -65,14 +65,14 @@ const isEdition = createReducer({}, initialState.isEdition)
   .on(actions.toggleEdition, state => !state);
 
 const countdowns = createReducer({}, initialState.countdowns)
-  .on(actions.createCountdown, (state, payload) => [...state, payload])
-  .on(actions.removeCountdown, (state, payload) => {
+  .on(actions.create, (state, payload) => [...state, payload])
+  .on(actions.remove, (state, payload) => {
     const countdowns = state;
     const id = payload;
     const countdownToRemove = countdowns.find(c => c.id === id);
     return remove(countdownToRemove)(countdowns);
   })
-  .on(actions.updateCountdown, (state, payload) => {
+  .on(actions.update, (state, payload) => {
     const countdowns = state;
     const countdownPropsToUpdate = payload;
     const originalCountdown = countdowns.find(c => c.id === countdownPropsToUpdate.id);
@@ -100,11 +100,11 @@ function* startCountdown(id: CountdownId) {
       yield put(actions.pause(id));
     }
 
-    yield put(actions.updateCountdown(id, { paused: false }));
+    yield put(actions.update(id, { paused: false }));
 
     yield call(delay, 1000);
 
-    yield put(actions.updateCountdown(id, {
+    yield put(actions.update(id, {
       milliseconds: foundCountdown.milliseconds - TimeInMilliseconds.Second,
     }));
   }
@@ -124,7 +124,7 @@ function* countdownFlow() {
 
     if (type.includes('PAUSE')) {
       yield cancel(tasks[countdownId]);
-      yield put(actions.updateCountdown(countdownId, { paused: true }));
+      yield put(actions.update(countdownId, { paused: true }));
     }
   }
 }

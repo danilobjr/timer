@@ -11,14 +11,13 @@ type CountdownsPageProps = StateToProps & DispatchToProps;
 
 // TODO: fix 'edit' and 'exit edit (check)' icons
 // TODO: fix fullscreen height (gap on top)
-// TODO: make timers work
 
 const CountdownsPage: SFC<CountdownsPageProps> = (props) => {
   const {
     countdowns,
     isEdition,
     pause,
-    removeCountdown,
+    remove,
     start,
     toggleEdition,
   } = props;
@@ -33,7 +32,7 @@ const CountdownsPage: SFC<CountdownsPageProps> = (props) => {
             isEdition={isEdition}
             countdowns={countdowns}
             onClickPause={pause}
-            onClickRemove={removeCountdown}
+            onClickRemove={remove}
             onClickReset={console.log}
             onClickStart={start}
             onClickToggleExpand={console.log}
