@@ -13,16 +13,8 @@ type CountdownTimerProps = {
   onClickToggleExpand: () => void;
 };
 
-// type InternalProps = ExternalProps & MapStateToProps;
-// type CountdownTimerState = Readonly<typeof initialState>;
-
-// const initialState = {
-//   hideResetButton: true,
-// };
-
+// TODO: refactor this to a SFC
 export class CountdownTimer extends Component<CountdownTimerProps> {
-  // readonly state: CountdownTimerState = initialState;
-
   render() {
     const {
       isEdition,
@@ -33,12 +25,12 @@ export class CountdownTimer extends Component<CountdownTimerProps> {
       onClickStart,
       onClickToggleExpand,
     } = this.props;
-    // const { hideResetButton } = this.state;
+
     const { startAt, ...otherProps } = countdown;
 
     return (
       <Timer
-        disableStartPauseButton={isEdition}
+        disableStartPauseButton={this.isStartPauseButtonDisabled()}
         hideExpandButton={isEdition}
         startAt={startAt}
         time={otherProps}
@@ -59,24 +51,21 @@ export class CountdownTimer extends Component<CountdownTimerProps> {
           className="reset"
           icon="reset"
           title="Reset"
-          hideButton={this.shouldHideResetButton()}
+          hideButton={this.isHideResetButton()}
           onClick={onClickReset}
         />
       </Timer>
     );
   }
 
-  shouldHideResetButton = () => {
+  isHideResetButton = () => {
     const { countdown, isEdition } = this.props;
     const { milliseconds, paused, startAt } = countdown;
     return isEdition || (paused && milliseconds === startAt);
   }
 
-  // showResetButton() {
-  //   this.setState({ hideResetButton: false });
-  // }
-
-  // hideResetButton() {
-  //   this.setState({ hideResetButton: true });
-  // }
+  isStartPauseButtonDisabled = () => {
+    const { countdown, isEdition } = this.props;
+    return isEdition || countdown.milliseconds === 0;
+  }
 }
