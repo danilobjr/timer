@@ -36,11 +36,11 @@ export const CountdownsPageCommandBar: SFC<CountdownsPageCommandBarProps> = ({
               />
             )}
 
-            <CommandBarItem
+            {/* <CommandBarItem
               icon="moreHorizontal"
               narrow
               title="More"
-            />
+            /> */}
           </Fragment>
         )}
     </CommandBar>
