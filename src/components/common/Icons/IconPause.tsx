@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SFC } from 'react';
 import { Icon, IconProps } from './Icon';
 
-type IconPauseProps = IconProps;
+type IconPauseProps = Partial<IconProps>;
 
 export const IconPause: SFC<IconPauseProps> = (props) => (
   <Icon name="icon-pause" width={8} height={16} {...props}>
