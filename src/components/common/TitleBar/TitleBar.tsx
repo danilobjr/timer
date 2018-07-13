@@ -15,7 +15,7 @@ const TitleBarComponent: SFC<any> = ({
   isLightThemeOn,
   backButtonEnabled,
   backButtonCallback,
-  windowIsMaximized
+  windowIsMaximized,
 }: TitleBarComponentInternalProps) => (
   <div className={renderCssClasses(isLightThemeOn)}>
     <TitleBarButton
@@ -35,20 +35,20 @@ const TitleBarComponent: SFC<any> = ({
       <TitleBarButton className="btn-close" icon="remove" red lightTheme={isLightThemeOn} />
     </div>
   </div>
-)
+);
 
 const renderCssClasses = (isLightThemeOn: boolean) => (
   classNames(
     'title-bar',
-    { '-lighttheme': isLightThemeOn }
+    { '-lighttheme': isLightThemeOn },
   )
-)
+);
 
 const mapStateToProps = (state: any) => ({
   backButtonEnabled: state.backButtonEnabled,
   backButtonCallback: state.backButtonCallback,
   isLightThemeOn: state.isLightThemeOn,
-  windowIsMaximized: state.windowIsMaximized
-})
+  windowIsMaximized: state.windowIsMaximized,
+});
 
 export const TitleBar = connect(mapStateToProps)(TitleBarComponent);

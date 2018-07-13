@@ -2,8 +2,11 @@ import * as React from 'react';
 import * as classNames from 'classnames';
 import { HTMLProps, SFC } from 'react';
 import {
-  IconArrowLeft, IconMinus, IconRemove,
-  IconSquare, IconSquareDouble
+  IconArrowLeft,
+  IconMinus,
+  IconRemove,
+  IconSquare,
+  IconSquareDouble,
 } from 'components/common';
 
 const icons = {
@@ -11,7 +14,7 @@ const icons = {
   minus: IconMinus,
   remove: IconRemove,
   square: IconSquare,
-  squareDouble: IconSquareDouble
+  squareDouble: IconSquareDouble,
 };
 
 const renderCssClasses = (props: TitleBarButtonProps) => (
@@ -20,10 +23,10 @@ const renderCssClasses = (props: TitleBarButtonProps) => (
     props.className,
     {
       '-red': props.red,
-      '-lighttheme': props.lightTheme
-    }
+      '-lighttheme': props.lightTheme,
+    },
   )
-)
+);
 
 interface TitleBarButtonProps extends HTMLProps<HTMLButtonElement> {
   icon: keyof typeof icons;
@@ -34,10 +37,17 @@ interface TitleBarButtonProps extends HTMLProps<HTMLButtonElement> {
 
 export const TitleBarButton: SFC<TitleBarButtonProps> = (props) => {
   const icon = props.icon ? React.createElement(icons[props.icon]) : null;
-  const lightTheme = props.lightTheme ? '-lighttheme' : '';
+  // const lightTheme = props.lightTheme ? '-lighttheme' : '';
 
-  return <button className={renderCssClasses(props)} onClick={props.onClick}>{icon}</button>;
-}
+  return (
+    <button
+      className={renderCssClasses(props)}
+      onClick={props.onClick}
+    >
+      {icon}
+    </button>
+  );
+};
 
 TitleBarButton.defaultProps = {
   red: false,
