@@ -88,7 +88,7 @@ export default combineReducers({
 
 // SAGAS
 
-function* startCountdown(id: CountdownId) {
+function* countdownInterval(id: CountdownId) {
   while (true) {
     const countdowns: Countdown[] = yield select((state: State) => state.countdowns.countdowns);
     const foundCountdown = countdowns.find(c => c.id === id);
@@ -116,7 +116,7 @@ function* countdownFlow() {
     const countdownId = payload;
 
     if (type.includes('START')) {
-      tasks[countdownId] = yield fork(startCountdown, countdownId);
+      tasks[countdownId] = yield fork(countdownInterval, countdownId);
     }
 
     if (type.includes('PAUSE')) {
