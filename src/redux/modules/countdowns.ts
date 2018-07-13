@@ -1,6 +1,6 @@
 import { call, fork, take, cancel, select, put } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
-import { createAction, createReducer, Action } from 'redux-act';
+import { createAction, createReducer } from 'redux-act';
 import { Countdown, TimeInMilliseconds } from 'models';
 import { combineReducers } from 'redux';
 import { remove, StringKeyValuePair, updateAt } from 'helpers';
@@ -16,9 +16,12 @@ export const actions = {
   // TODO: rename these to only create/remove/start ... so on
   createCountdown: createAction<Countdown>(actionType('CREATE')),
   removeCountdown: createAction<CountdownId>(actionType('REMOVE')),
-  setCountdowns: createAction<Countdown[]>(actionType('SET_COUNTDOWNS')),
+  updateCountdown: createAction<CountdownId, Partial<Countdown>, Countdown>(
+    actionType('UPDATE_COUNTDOWN'),
+    (id: CountdownId, updatedProps: Countdown) => ({ id, ...updatedProps }),
+  ),
   start: createAction<CountdownId>(actionType('START')),
-  pause: createAction<CountdownId>(actionType('STOP')),
+  pause: createAction<CountdownId>(actionType('PAUSE')),
   toggleEdition: createAction(actionType('TOGGLE_EDITION')),
 };
 
@@ -63,11 +66,23 @@ const isEdition = createReducer({}, initialState.isEdition)
 
 const countdowns = createReducer({}, initialState.countdowns)
   .on(actions.createCountdown, (state, payload) => [...state, payload])
-  .on(actions.removeCountdown, (timers, id) => {
-    const timerToRemove = timers.find(timer => timer.id === id);
-    return remove(timerToRemove)(timers);
+  .on(actions.removeCountdown, (state, payload) => {
+    const countdowns = state;
+    const id = payload;
+    const countdownToRemove = countdowns.find(c => c.id === id);
+    return remove(countdownToRemove)(countdowns);
   })
-  .on(actions.setCountdowns, (_, payload) => [...payload]);
+  .on(actions.updateCountdown, (state, payload) => {
+    const countdowns = state;
+    const countdownPropsToUpdate = payload;
+    const originalCountdown = countdowns.find(c => c.id === countdownPropsToUpdate.id);
+    const index = countdowns.findIndex(c => c.id === countdownPropsToUpdate.id);
+    const updated = {
+      ...originalCountdown,
+      ...countdownPropsToUpdate,
+    };
+    return updateAt<Countdown>(index)(updated)(countdowns);
+  });
 
 export default combineReducers({
   isEdition,
@@ -78,8 +93,6 @@ export default combineReducers({
 
 function* startCountdown(id: CountdownId) {
   while (true) {
-    yield call(delay, 1000);
-
     const countdowns: Countdown[] = yield select((state: State) => state.countdowns.countdowns);
     const foundCountdown = countdowns.find(c => c.id === id);
 
@@ -87,17 +100,13 @@ function* startCountdown(id: CountdownId) {
       yield put(actions.pause(id));
     }
 
-    const updatedCountdown = {
-      ...foundCountdown,
+    yield put(actions.updateCountdown(id, { paused: false }));
+
+    yield call(delay, 1000);
+
+    yield put(actions.updateCountdown(id, {
       milliseconds: foundCountdown.milliseconds - TimeInMilliseconds.Second,
-      paused: false,
-    };
-
-    const index = countdowns.findIndex(c => c.id === foundCountdown.id);
-    const updatedCountdowns = updateAt<Countdown>(index)(updatedCountdown)(countdowns);
-
-    // TODO: create a updateCountdown action
-    yield put(actions.setCountdowns(updatedCountdowns));
+    }));
   }
 }
 
@@ -110,13 +119,12 @@ function* countdownFlow() {
     const countdownId = payload;
 
     if (type.includes('START')) {
-      if (!tasks[countdownId]) {
-        tasks[countdownId] = yield fork(startCountdown, countdownId);
-      }
+      tasks[countdownId] = yield fork(startCountdown, countdownId);
     }
 
-    if (type.includes('STOP')) {
+    if (type.includes('PAUSE')) {
       yield cancel(tasks[countdownId]);
+      yield put(actions.updateCountdown(countdownId, { paused: true }));
     }
   }
 }
