@@ -19,12 +19,14 @@
   > .unit.-hundredths:before {
     content: ',';
   }
+}
 
-  &.-lighttheme > .unit {
+.-expanded .watch {
+  > .unit {
     color: $corn-flower-blue;
   }
 
-  &.-lighttheme > .unit.-active {
+  > .unit.-active {
     color: $white !important;
   }
 }

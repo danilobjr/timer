@@ -80,28 +80,6 @@
     stroke: hsl(0, 0%, 71%); /* ??? */
   }
 
-  &.-lighttheme > .icon-play > polygon,
-  &.-lighttheme > .icon-pause > line {
-    stroke: $lavender;
-  }
-
-  &.-lighttheme > .border > circle {
-    stroke: $havelock-blue;
-  }
-
-  &.-lighttheme > .time-progress > circle {
-    stroke: $light-blue;
-  }
-
-  &.-lighttheme:hover > .border > circle {
-    fill: $steel-blue;
-    stroke: $corn-flower-blue;
-  }
-
-  &.-lighttheme:active > .border > circle {
-    fill: $havelock-blue;
-    stroke: lighten($havelock-blue, 3%);
-  }
 }
 
 .start-pause-button[disabled] {
@@ -123,10 +101,37 @@
     fill: transparent;
     stroke: $alto;
   }
+}
 
-  &.-lighttheme > .icon-play > polygon,
-  &.-lighttheme:hover .border > circle,
-  &.-lighttheme:active .border > circle {
+.-expanded .start-pause-button[disabled] {
+  > .icon-play > polygon,
+  &:hover .border > circle,
+  &:active .border > circle {
     stroke: $havelock-blue;
+  }
+}
+
+.-expanded .start-pause-button {
+  > .icon-play > polygon,
+  > .icon-pause > line {
+    stroke: $lavender;
+  }
+
+  > .border > circle {
+    stroke: $havelock-blue;
+  }
+
+  > .time-progress > circle {
+    stroke: $light-blue;
+  }
+
+  &:hover > .border > circle {
+    fill: $steel-blue;
+    stroke: $corn-flower-blue;
+  }
+
+  &:active > .border > circle {
+    fill: $havelock-blue;
+    stroke: lighten($havelock-blue, 3%);
   }
 }

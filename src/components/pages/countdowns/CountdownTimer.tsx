@@ -47,7 +47,6 @@ export class CountdownTimer extends Component<CountdownTimerProps> {
         />
 
         <TimerButton
-          // lightTheme={isLightThemeOn}
           className="reset"
           icon="reset"
           title="Reset"

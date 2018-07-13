@@ -7,7 +7,6 @@ type TimerActionsProps = {
   disableStartPauseButton?: boolean;
   hideExpandButton?: boolean;
   hideShrinkButton?: boolean;
-  lightTheme?: boolean;
   percentageProgress?: number;
   showPauseIcon?: boolean;
   onClickExpandButton: () => void;
@@ -19,7 +18,6 @@ export const TimerActions: SFC<TimerActionsProps> = ({
     children,
     hideExpandButton,
     hideShrinkButton,
-    lightTheme,
     disableStartPauseButton,
     showPauseIcon,
     percentageProgress,
@@ -31,7 +29,6 @@ export const TimerActions: SFC<TimerActionsProps> = ({
       {children}
 
       <StartPauseButton
-        lightTheme={lightTheme}
         disabled={disableStartPauseButton}
         showPause={showPauseIcon}
         percentageProgress={percentageProgress}
@@ -44,7 +41,6 @@ export const TimerActions: SFC<TimerActionsProps> = ({
         title="Expand"
         hideButton={hideExpandButton}
         position="right"
-        lightTheme={lightTheme}
         onClick={onClickExpandButton}
       />
 
@@ -54,7 +50,6 @@ export const TimerActions: SFC<TimerActionsProps> = ({
         title="Shrink"
         hideButton={hideShrinkButton}
         position="right"
-        lightTheme={lightTheme}
         onClick={onClickShrinkButton}
       />
     </div>
@@ -64,7 +59,6 @@ TimerActions.defaultProps = {
   disableStartPauseButton: false,
   hideExpandButton: false,
   hideShrinkButton: true,
-  lightTheme: false,
   percentageProgress: 0,
   showPauseIcon: false,
 };

@@ -21,7 +21,6 @@ type TimerButtonProps = {
   icon: keyof typeof icons;
   title: string;
   hideButton?: boolean;
-  lightTheme?: boolean;
   position?: 'left' | 'right';
 } & HTMLProps<HTMLButtonElement>;
 
@@ -45,7 +44,6 @@ const renderCommonButtonCssClasses = (props: Partial<TimerButtonProps>) => {
     props.className,
     '-reactive',
     {
-      '-lightTheme': props.lightTheme,
       'h-display-none': props.hideButton,
       'h-pull-left': props.position === 'left',
       'h-pull-right': props.position === 'right',
@@ -55,6 +53,5 @@ const renderCommonButtonCssClasses = (props: Partial<TimerButtonProps>) => {
 
 TimerButton.defaultProps = {
   hideButton: false,
-  lightTheme: false,
   position: 'left',
 };

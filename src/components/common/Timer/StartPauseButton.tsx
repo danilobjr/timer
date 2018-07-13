@@ -4,7 +4,6 @@ import { HTMLProps, SFC } from 'react';
 import { IconPlay, IconPause } from 'components/common/Icons';
 
 type StartPauseButtonProps = {
-  lightTheme?: boolean;
   showPause?: boolean;
   percentageProgress?: number;
 } & HTMLProps<HTMLButtonElement>;
@@ -39,15 +38,13 @@ export const StartPauseButton: SFC<StartPauseButtonProps> = ({ showPause, percen
 );
 
 StartPauseButton.defaultProps = {
-  lightTheme: false,
   showPause: false,
   percentageProgress: 0,
 };
 
-const renderMainCssClasses = ({ className, lightTheme }: Partial<StartPauseButtonProps>) => (
+const renderMainCssClasses = ({ className }: Partial<StartPauseButtonProps>) => (
   classNames(
     'start-pause-button',
-    { '-lighttheme': lightTheme },
     className,
   )
 );

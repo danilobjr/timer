@@ -4,19 +4,8 @@ import { HTMLProps, SFC } from 'react';
 import { time as toTime, milliseconds } from 'helpers';
 import { padLeftWithZero } from './localHelpers';
 
-const renderWatchCssClasses = ({ className, lightTheme }: WatchProps) => (
-  classNames(
-    'watch',
-    className,
-    { '-lighttheme': lightTheme },
-  )
-);
-
 const renderUnitCssClasses = (time: number, value: number) => (
-  classNames(
-    'unit',
-    { '-active': time >= value },
-  )
+  classNames('unit', { '-active': time >= value })
 );
 
 const renderHundredths = (hundredths: number) => (
@@ -26,18 +15,17 @@ const renderHundredths = (hundredths: number) => (
 );
 
 export type WatchProps = {
-  lightTheme?: boolean;
   showHundredths?: boolean;
   time?: number;
 } & HTMLProps<HTMLDivElement>;
 
-export const Watch: SFC<WatchProps> = ({ showHundredths, time, ...otherProps }) => {
+export const Watch: SFC<WatchProps> = ({ className, showHundredths, time, ...otherProps }) => {
   const [hours, minutes, seconds, hundredths] = toTime(time);
   const oneMinute = milliseconds(0, 1);
   const oneHour = milliseconds(1);
 
   return (
-    <div className={renderWatchCssClasses(otherProps)}>
+    <div className={classNames('watch', className)} {...otherProps}>
       <span className={renderUnitCssClasses(time, oneHour)} title="Hours">
         {padLeftWithZero(hours)}
       </span>
@@ -53,7 +41,6 @@ export const Watch: SFC<WatchProps> = ({ showHundredths, time, ...otherProps }) 
 };
 
 Watch.defaultProps = {
-  lightTheme: false,
   showHundredths: false,
   time: 0,
 };

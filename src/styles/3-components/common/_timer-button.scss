@@ -14,16 +14,18 @@
   &:active {
     background-color: $silver;
   }
+}
 
-  &.-lightTheme > .icon {
+.-expanded .timer-button {
+  > .icon {
     stroke: $white !important;
   }
 
-  &.-lightTheme:hover {
+  &:hover {
     background-color: $steel-blue;
   }
 
-  &.-lightTheme:active {
+  &:active {
     background-color: $corn-flower-blue;
   }
 }
