@@ -1,9 +1,10 @@
-import { call, fork, take, cancel } from 'redux-saga/effects';
+import { call, fork, take, cancel, select, put } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import { createAction, createReducer, Action } from 'redux-act';
-import { Countdown } from 'models';
+import { Countdown, TimeInMilliseconds } from 'models';
 import { combineReducers } from 'redux';
-import { remove, StringKeyValuePair } from 'helpers';
+import { remove, StringKeyValuePair, updateAt } from 'helpers';
+import { State } from 'src/redux/State';
 
 const actionType = (name: string) => `timers/${name}`;
 
@@ -15,6 +16,7 @@ export const actions = {
   // TODO: rename these to only create/remove/start ... so on
   createCountdown: createAction<Countdown>(actionType('CREATE')),
   removeCountdown: createAction<CountdownId>(actionType('REMOVE')),
+  setCountdowns: createAction<Countdown[]>(actionType('SET_COUNTDOWNS')),
   start: createAction<CountdownId>(actionType('START')),
   pause: createAction<CountdownId>(actionType('STOP')),
   toggleEdition: createAction(actionType('TOGGLE_EDITION')),
@@ -44,7 +46,7 @@ const initialState = {
       id: '75675656765756756',
       name: 'Stop',
       startAt: 3000,
-      milliseconds: 1000,
+      milliseconds: 3000,
       expanded: false,
       paused: true,
     },
@@ -64,7 +66,8 @@ const countdowns = createReducer({}, initialState.countdowns)
   .on(actions.removeCountdown, (timers, id) => {
     const timerToRemove = timers.find(timer => timer.id === id);
     return remove(timerToRemove)(timers);
-  });
+  })
+  .on(actions.setCountdowns, (_, payload) => [...payload]);
 
 export default combineReducers({
   isEdition,
@@ -73,10 +76,28 @@ export default combineReducers({
 
 // SAGAS
 
-function* startCountdown(countdownId: CountdownId) {
+function* startCountdown(id: CountdownId) {
   while (true) {
     yield call(delay, 1000);
-    console.log('counting', countdownId);
+
+    const countdowns: Countdown[] = yield select((state: State) => state.countdowns.countdowns);
+    const foundCountdown = countdowns.find(c => c.id === id);
+
+    if (foundCountdown.milliseconds === 0) {
+      yield put(actions.pause(id));
+    }
+
+    const updatedCountdown = {
+      ...foundCountdown,
+      milliseconds: foundCountdown.milliseconds - TimeInMilliseconds.Second,
+      paused: false,
+    };
+
+    const index = countdowns.findIndex(c => c.id === foundCountdown.id);
+    const updatedCountdowns = updateAt<Countdown>(index)(updatedCountdown)(countdowns);
+
+    // TODO: create a updateCountdown action
+    yield put(actions.setCountdowns(updatedCountdowns));
   }
 }
 

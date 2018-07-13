@@ -5,10 +5,6 @@ import { Watch } from './Watch';
 import { TimerActions } from './TimerActions';
 import { Time } from 'models';
 
-enum TimeInMilliseconds {
-  OneMinute = 60000,
-}
-
 type TimerProps = {
   disableStartPauseButton?: boolean;
   hideExpandButton?: boolean;

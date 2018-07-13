@@ -47,3 +47,11 @@ export const remove = <T>(item: T) => (array: T[]) => {
     ...array.slice(index + 1),
   ];
 };
+
+export const updateAt = <T>(index: number) => (item: T) => (array: T[]) => {
+  return [
+    ...array.slice(0, index),
+    item,
+    ...array.slice(index + 1),
+  ];
+};
