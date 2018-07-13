@@ -9,6 +9,7 @@ import { CountdownsState, actions } from 'src/redux/modules/countdowns';
 
 type CountdownsPageProps = StateToProps & DispatchToProps;
 
+// FIXME: error on remove unpaused countdown
 // TODO: remove all lightTheme reference from components and styles
 // TODO: set page/tab Title (in redux-saga or in _app using Helmet?)
 // TODO: set theme in <head> when expanded
