@@ -17,10 +17,9 @@ body {
     position: absolute;
     left: 0;
     top: 0;
-    width: 100vw !important;
-    height: calc(100vh - 31px) !important;
-    margin-top: 31px;
-    z-index: 1;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1000;
   }
 
   &:not(input) {
