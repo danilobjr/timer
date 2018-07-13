@@ -20,6 +20,7 @@ const CountdownsPage: SFC<CountdownsPageProps> = (props) => {
     remove,
     start,
     toggleEdition,
+    toggleExpand,
   } = props;
   const noTimers = !countdowns || !countdowns.length;
 
@@ -35,7 +36,7 @@ const CountdownsPage: SFC<CountdownsPageProps> = (props) => {
             onClickRemove={remove}
             onClickReset={console.log}
             onClickStart={start}
-            onClickToggleExpand={console.log}
+            onClickToggleExpand={toggleExpand}
           />
         )}
 

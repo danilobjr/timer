@@ -6,14 +6,13 @@ import { combineReducers } from 'redux';
 import { remove, StringKeyValuePair, updateAt } from 'helpers';
 import { State } from 'src/redux/State';
 
-const actionType = (name: string) => `timers/${name}`;
-
 type CountdownId = Countdown['id'];
 
 // ACTIONS
 
+const actionType = (name: string) => `countdowns/${name}`;
+
 export const actions = {
-  // TODO: rename these to only create/remove/start ... so on
   create: createAction<Countdown>(actionType('CREATE')),
   remove: createAction<CountdownId>(actionType('REMOVE')),
   update: createAction<CountdownId, Partial<Countdown>, Countdown>(
@@ -23,6 +22,7 @@ export const actions = {
   start: createAction<CountdownId>(actionType('START')),
   pause: createAction<CountdownId>(actionType('PAUSE')),
   toggleEdition: createAction(actionType('TOGGLE_EDITION')),
+  toggleExpand: createAction<CountdownId>(actionType('TOGGLE_EXPAND')),
 };
 
 // STATE
@@ -72,16 +72,12 @@ const countdowns = createReducer({}, initialState.countdowns)
     const countdownToRemove = countdowns.find(c => c.id === id);
     return remove(countdownToRemove)(countdowns);
   })
-  .on(actions.update, (state, payload) => {
+  .on(actions.update, updateCountdown)
+  .on(actions.toggleExpand, (state, payload) => {
     const countdowns = state;
-    const countdownPropsToUpdate = payload;
-    const originalCountdown = countdowns.find(c => c.id === countdownPropsToUpdate.id);
-    const index = countdowns.findIndex(c => c.id === countdownPropsToUpdate.id);
-    const updated = {
-      ...originalCountdown,
-      ...countdownPropsToUpdate,
-    };
-    return updateAt<Countdown>(index)(updated)(countdowns);
+    const id = payload;
+    const original = countdowns.find(countdown => countdown.id === id);
+    return updateCountdown(state, { ...original, expanded: !original.expanded });
   });
 
 export default combineReducers({
@@ -131,4 +127,18 @@ function* countdownFlow() {
 
 export function* countdownsSagas() {
   yield fork(countdownFlow);
+}
+
+// UTILS
+
+function updateCountdown(originalCountdowns: Countdown[], countdownWithIdToUpdate: Countdown) {
+  const original = originalCountdowns.find(c => c.id === countdownWithIdToUpdate.id);
+  const index = originalCountdowns.findIndex(c => c.id === countdownWithIdToUpdate.id);
+
+  const updated = {
+    ...original,
+    ...countdownWithIdToUpdate,
+  };
+
+  return updateAt<Countdown>(index)(updated)(originalCountdowns);
 }
