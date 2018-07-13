@@ -111,7 +111,7 @@ function* countdownFlow() {
   const tasks: StringKeyValuePair = {};
 
   while (true) {
-    const action = yield take([actions.start, actions.pause]);
+    const action = yield take([actions.start, actions.pause, actions.reset]);
     const { payload, type } = action;
     const countdownId = payload;
 
@@ -122,6 +122,16 @@ function* countdownFlow() {
     if (type.includes('PAUSE')) {
       yield cancel(tasks[countdownId]);
       yield put(actions.update(countdownId, { paused: true }));
+    }
+
+    if (type.includes('RESET')) {
+      yield cancel(tasks[countdownId]);
+      const countdown: Countdown = yield select((state: State) =>
+        state.countdowns.countdowns.find(c => c.id === countdownId),
+      );
+      if (!countdown.paused) {
+        tasks[countdownId] = yield fork(countdownInterval, countdownId);
+      }
     }
   }
 }
