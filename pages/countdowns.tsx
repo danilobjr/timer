@@ -10,7 +10,6 @@ import { CountdownsState, actions } from 'src/redux/modules/countdowns';
 type CountdownsPageProps = StateToProps & DispatchToProps;
 
 // TODO: fix 'edit' and 'exit edit (check)' icons
-// TODO: fix fullscreen height (gap on top)
 
 const CountdownsPage: SFC<CountdownsPageProps> = (props) => {
   const {
