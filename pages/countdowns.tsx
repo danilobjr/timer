@@ -26,20 +26,22 @@ const CountdownsPage: SFC<CountdownsPageProps> = (props) => {
   const noTimers = !countdowns || !countdowns.length;
 
   return (
-    <PageContent className="-countdowns">
-      {noTimers ? (
-        <p className="no-countdowns-text">Click + to add a countdown</p>
-      ) : (
-          <CountdownGrid
-            isEdition={isEdition}
-            countdowns={countdowns}
-            onClickPause={pause}
-            onClickRemove={remove}
-            onClickReset={reset}
-            onClickStart={start}
-            onClickToggleExpand={toggleExpand}
-          />
-        )}
+    <>
+      <PageContent className="-countdowns">
+        {noTimers ? (
+          <p className="no-countdowns-text">Click + to add a countdown</p>
+        ) : (
+            <CountdownGrid
+              isEdition={isEdition}
+              countdowns={countdowns}
+              onClickPause={pause}
+              onClickRemove={remove}
+              onClickReset={reset}
+              onClickStart={start}
+              onClickToggleExpand={toggleExpand}
+            />
+          )}
+      </PageContent>
 
       <CountdownsPageCommandBar
         isEdition={isEdition}
@@ -47,7 +49,7 @@ const CountdownsPage: SFC<CountdownsPageProps> = (props) => {
         onClickEdit={toggleEdition}
         onClickDone={toggleEdition}
       />
-    </PageContent>
+    </>
   );
 };
 
