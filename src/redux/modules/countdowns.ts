@@ -5,23 +5,24 @@ import { Countdown, TimeInMilliseconds } from 'models';
 import { combineReducers } from 'redux';
 import { remove, StringKeyValuePair, updateAt } from 'helpers';
 import { State } from 'src/redux/State';
+import { createActionDescription } from '../utils';
 
 type CountdownId = Countdown['id'];
 
 // ACTIONS
 
-const actionType = (name: string) => `countdowns/${name}`;
+const actionDescription = createActionDescription('countdowns');
 
 export const actions = {
-  create: createAction<Countdown>(actionType('CREATE')),
-  pause: createAction<CountdownId>(actionType('PAUSE')),
-  remove: createAction<CountdownId>(actionType('REMOVE')),
-  reset: createAction<CountdownId>(actionType('RESET')),
-  start: createAction<CountdownId>(actionType('START')),
-  toggleEdition: createAction(actionType('TOGGLE_EDITION')),
-  toggleExpand: createAction<CountdownId>(actionType('TOGGLE_EXPAND')),
+  create: createAction<Countdown>(actionDescription('CREATE')),
+  pause: createAction<CountdownId>(actionDescription('PAUSE')),
+  remove: createAction<CountdownId>(actionDescription('REMOVE')),
+  reset: createAction<CountdownId>(actionDescription('RESET')),
+  start: createAction<CountdownId>(actionDescription('START')),
+  toggleEdition: createAction(actionDescription('TOGGLE_EDITION')),
+  toggleExpand: createAction<CountdownId>(actionDescription('TOGGLE_EXPAND')),
   update: createAction<CountdownId, Partial<Countdown>, Countdown>(
-    actionType('UPDATE_COUNTDOWN'),
+    actionDescription('UPDATE_COUNTDOWN'),
     (id: CountdownId, updatedProps: Countdown) => ({ id, ...updatedProps }),
   ),
 };
