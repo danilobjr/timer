@@ -1,2 +1,2 @@
 export * from './CommandBar';
-export * from './CommandBarItem';
+export * from './CommandBarButton';

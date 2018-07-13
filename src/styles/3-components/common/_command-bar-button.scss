@@ -1,4 +1,4 @@
-.command-bar-item {
+.command-bar-button {
   width: 68px;
   color: $scorpion;
   font-size: 1.4rem;
@@ -21,7 +21,13 @@
     width: 48px;
   }
 
-  &[disabled] > svg > g {
-    stroke: $dove-gray !important;
+  &[disabled] {
+    &, &:hover {
+      background-color: transparent;
+    }
+
+    > svg > g {
+      stroke: $dove-gray !important;
+    }
   }
 }

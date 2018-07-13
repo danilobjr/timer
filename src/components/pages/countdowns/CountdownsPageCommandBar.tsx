@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { Fragment, SFC } from 'react';
-import { CommandBar, CommandBarItem } from 'components/common';
+import { CommandBar, CommandBarButton } from 'components/common';
 
 type CountdownsPageCommandBarProps = {
   hideEditButton?: boolean;
@@ -17,7 +17,7 @@ export const CountdownsPageCommandBar: SFC<CountdownsPageCommandBarProps> = ({
   onClickEdit }) => (
     <CommandBar>
       {!!isEdition ? (
-        <CommandBarItem
+        <CommandBarButton
           icon="check"
           title="Done"
           onClick={onClickDone}
@@ -25,18 +25,18 @@ export const CountdownsPageCommandBar: SFC<CountdownsPageCommandBarProps> = ({
       ) : (
           <Fragment>
             <Link href="/new-countdown">
-              <CommandBarItem icon="plus" title="New" />
+              <CommandBarButton icon="plus" title="New" />
             </Link>
 
             {!hideEditButton && (
-              <CommandBarItem
+              <CommandBarButton
                 icon="checklist"
                 title="Edit"
                 onClick={onClickEdit}
               />
             )}
 
-            {/* <CommandBarItem
+            {/* <CommandBarButton
               icon="moreHorizontal"
               narrow
               title="More"

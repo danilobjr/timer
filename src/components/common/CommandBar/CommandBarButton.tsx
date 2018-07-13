@@ -22,21 +22,25 @@ type CommandBarItemProps = {
   narrow?: boolean;
 } & HTMLProps<HTMLDivElement>;
 
-export const CommandBarItem: SFC<CommandBarItemProps> = ({
-  icon,
-  narrow,
-  ...otherProps }) => (
-    <div
-      className={classNames(
-        'command-bar-item',
-        narrow && '-narrow',
-      )}
-      {...otherProps}
-    >
-      {React.createElement(icons[icon])}
-    </div>
-  );
+export const CommandBarButton: SFC<CommandBarItemProps> = ({ icon, narrow, ...otherProps }) => (
+  <div
+    className={classNames(
+      'command-bar-button',
+      narrow && '-narrow',
+    )}
+    {...otherProps}
+    onClick={handleClick(otherProps)}
+  >
+    {React.createElement(icons[icon])}
+  </div>
+);
 
-CommandBarItem.defaultProps = {
+CommandBarButton.defaultProps = {
   narrow: false,
 };
+
+function handleClick({ disabled, onClick }: Partial<CommandBarItemProps>) {
+  return disabled
+    ? () => { return; }
+    : onClick;
+}
