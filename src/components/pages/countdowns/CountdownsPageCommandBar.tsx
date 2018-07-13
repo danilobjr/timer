@@ -24,7 +24,7 @@ export const CountdownsPageCommandBar: SFC<CountdownsPageCommandBarProps> = ({
         />
       ) : (
           <Fragment>
-            <Link href="/new-timer">
+            <Link href="/new-countdown">
               <CommandBarItem icon="plus" title="New" />
             </Link>
 
