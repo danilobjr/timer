@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { Icon } from './Icon';
+import { Icon, IconProps } from './Icon';
 
 const styles = {
   fill: 'none',
@@ -9,8 +9,10 @@ const styles = {
   transform: 'rotateZ(45deg) translate(2px, 7px)',
 };
 
-export const IconCheck: SFC<{}> = () => (
-  <Icon name="icon-check" width={20} height={16}>
+type IconCheckProps = IconProps;
+
+export const IconCheck: SFC<IconCheckProps> = (props) => (
+  <Icon name="icon-check" width={20} height={16} {...props}>
     <polyline points="0,18 8,18 8,0" style={styles} />
   </Icon>
 );

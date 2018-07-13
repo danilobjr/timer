@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { Icon } from './Icon';
+import { Icon, IconProps } from './Icon';
 import { iconStyles } from './styles';
 
 const styles = Object.assign(
@@ -8,12 +8,14 @@ const styles = Object.assign(
   iconStyles.base,
   iconStyles.timerCommandButton.base,
   {
-    fill: 'none'
-  }
+    fill: 'none',
+  },
 );
 
-export const IconFloppy: SFC<{}> = () => (
-  <Icon name="icon-floppy" width={18} height={18}>
+type IconFloppyProps = IconProps;
+
+export const IconFloppy: SFC<IconFloppyProps> = (props) => (
+  <Icon name="icon-floppy" width={18} height={18} {...props}>
     <g style={styles}>
       <rect x="0.5" y="0.5" width="17" height="17" rx="2" ry="2" />
       <g style={{ strokeWidth: 1 }}>
@@ -23,4 +25,4 @@ export const IconFloppy: SFC<{}> = () => (
       </g>
     </g>
   </Icon>
-)
+);

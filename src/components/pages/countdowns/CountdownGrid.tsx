@@ -14,7 +14,7 @@ type Actions = {
   onClickReset: (id: string) => void;
   onClickStart: (id: string) => void;
   onClickToggleExpand: (id: string) => void;
-}
+};
 
 export const CountdownGrid: SFC<CountdownGridProps> = ({ isEdition, countdowns, ...otherProps }) => {
   const bindIdAndPropAction = (id: string, prop: keyof Actions) => () =>

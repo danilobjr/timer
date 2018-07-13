@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { Icon } from './Icon';
+import { Icon, IconProps } from './Icon';
 import { iconStyles } from './styles';
 
 const styles = {
@@ -15,8 +15,10 @@ const styles = {
   },
 };
 
-export const IconChecklist: SFC<{}> = () => (
-  <Icon name="icon-checklist" width={20} height={15}>
+type IconChecklistProps = IconProps;
+
+export const IconChecklist: SFC<IconChecklistProps> = (props) => (
+  <Icon name="icon-checklist" width={20} height={15} {...props}>
     <defs>
       <polyline id="checkmark" points="0.5,5 3,5 3,1" style={styles.checkmark} />
       <line id="phrase" x1="1" y1="0.5" x2="14" y2="0.5" style={styles.phrase} />

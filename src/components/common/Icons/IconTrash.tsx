@@ -2,10 +2,10 @@ import * as React from 'react';
 import { SFC } from 'react';
 import { Icon, IconProps } from './Icon';
 
-interface IconTrashProps extends IconProps { }
+type IconTrashProps = IconProps;
 
 export const IconTrash: SFC<IconTrashProps> = (props) => (
-  <Icon {...props} name="icon-trash" width={17} height={20}>
+  <Icon name="icon-trash" width={17} height={20} {...props}>
     <g fill="none" >
       <rect x="5.2" y="0.65" rx="1.3" ry="1.3" width="6.6" height="2.6" />
       <line x1="0" y1="3.25" x2="17" y2="3.25" />
@@ -15,4 +15,4 @@ export const IconTrash: SFC<IconTrashProps> = (props) => (
       <line x1="11.8" y1="6.5" x2="11.8" y2="16.25" />
     </g>
   </Icon>
-)
+);

@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { Icon } from './Icon';
+import { Icon, IconProps } from './Icon';
 import { iconStyles } from './styles';
 
-export const IconExpand: SFC<{}> = () => (
-  <Icon name="icon-expand" width={18} height={18}>
+type IconExpandProps = IconProps;
+
+export const IconExpand: SFC<IconExpandProps> = (props) => (
+  <Icon name="icon-expand" width={18} height={18} {...props}>
     <g style={iconStyles.timerCommandButton.base}>
       <line x1="0" y1="18" x2="18" y2="0" />
       <line x1="0.6" y1="11" x2="0.6" y2="18" />
@@ -13,4 +15,4 @@ export const IconExpand: SFC<{}> = () => (
       <line x1="11" y1="0.6" x2="18" y2="0.6" />
     </g>
   </Icon>
-)
+);

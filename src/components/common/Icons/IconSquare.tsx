@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { Icon } from './Icon';
+import { Icon, IconProps } from './Icon';
 
-export const IconSquare: SFC<{}> = () => (
-  <Icon name="icon-square" width={10} height={10}>
+type IconSquareProps = IconProps;
+
+export const IconSquare: SFC<IconSquareProps> = (props) => (
+  <Icon name="icon-square" width={10} height={10} {...props}>
     <rect x="0.5" y="0.5" width="9" height="9" fill="none" />
   </Icon>
-)
+);

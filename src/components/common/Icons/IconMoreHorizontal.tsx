@@ -1,13 +1,15 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { Icon } from './Icon';
+import { Icon, IconProps } from './Icon';
 
 const styles = {
-  stroke: 'none'
+  stroke: 'none',
 };
 
-export const IconMoreHorizontal: SFC<{}> = () => (
-  <Icon name="icon-more-horizontal" width={14} height={2}>
+type IconMoreHorizontalProps = IconProps;
+
+export const IconMoreHorizontal: SFC<IconMoreHorizontalProps> = (props) => (
+  <Icon name="icon-more-horizontal" width={14} height={2} {...props}>
     <defs>
       <rect id="dot" x="0" y="0" width="2" height="2" style={styles} />
     </defs>
@@ -15,4 +17,4 @@ export const IconMoreHorizontal: SFC<{}> = () => (
     <use xlinkHref="#dot" x="6" y="0" />
     <use xlinkHref="#dot" x="12" y="0" />
   </Icon>
-)
+);

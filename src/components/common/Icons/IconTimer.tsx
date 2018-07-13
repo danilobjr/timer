@@ -7,19 +7,19 @@ const styles = Object.assign({},
   { crispEdges: iconStyles.crispEdges },
   {
     insideCircle: {
-      strokeDasharray: 21
+      strokeDasharray: 21,
     },
     watchButton: {
       transformOrigin: 'bottom',
-      transform: 'rotateZ(45deg)'
-    }
-  }
+      transform: 'rotateZ(45deg)',
+    },
+  },
 );
 
-interface IconTimerProps extends IconProps { }
+type IconTimerProps = IconProps;
 
 export const IconTimer: SFC<IconTimerProps> = (props) => (
-  <Icon {...props} name="icon-timer" width={14} height={16}>
+  <Icon name="icon-timer" width={14} height={16} {...props}>
     <g fill="none">
       <line x1="4.5" y1="0.5" x2="9.5" y2="0.5" />
       <line x1="7" y1="0" x2="7" y2="2" />
@@ -32,4 +32,4 @@ export const IconTimer: SFC<IconTimerProps> = (props) => (
       <line x1="11" y1="1.5" x2="11" y2="4.5" style={styles.watchButton}></line>
     </g>
   </Icon>
-)
+);

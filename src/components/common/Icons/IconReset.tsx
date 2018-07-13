@@ -1,15 +1,17 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { Icon } from './Icon';
+import { Icon, IconProps } from './Icon';
 import { iconStyles } from './styles';
 
 const styles = Object.assign({},
   iconStyles.timerCommandButton.base,
-  iconStyles.timerCommandButton.reset
+  iconStyles.timerCommandButton.reset,
 );
 
-export const IconReset: SFC<{}> = () => (
-  <Icon name="icon-reset" width={20} height={20}>
+type IconResetProps = IconProps;
+
+export const IconReset: SFC<IconResetProps> = (props) => (
+  <Icon name="icon-reset" width={20} height={20} {...props}>
     <g>
       <circle className="arc" cx="10" cy="10" r="9.4" style={styles} />
       <g>
@@ -18,4 +20,4 @@ export const IconReset: SFC<{}> = () => (
       </g>
     </g>
   </Icon>
-)
+);
