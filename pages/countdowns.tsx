@@ -18,6 +18,7 @@ const CountdownsPage: SFC<CountdownsPageProps> = (props) => {
     isEdition,
     pause,
     remove,
+    reset,
     start,
     toggleEdition,
     toggleExpand,
@@ -34,7 +35,7 @@ const CountdownsPage: SFC<CountdownsPageProps> = (props) => {
             countdowns={countdowns}
             onClickPause={pause}
             onClickRemove={remove}
-            onClickReset={console.log}
+            onClickReset={reset}
             onClickStart={start}
             onClickToggleExpand={toggleExpand}
           />

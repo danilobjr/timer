@@ -14,15 +14,16 @@ const actionType = (name: string) => `countdowns/${name}`;
 
 export const actions = {
   create: createAction<Countdown>(actionType('CREATE')),
+  pause: createAction<CountdownId>(actionType('PAUSE')),
   remove: createAction<CountdownId>(actionType('REMOVE')),
+  reset: createAction<CountdownId>(actionType('RESET')),
+  start: createAction<CountdownId>(actionType('START')),
+  toggleEdition: createAction(actionType('TOGGLE_EDITION')),
+  toggleExpand: createAction<CountdownId>(actionType('TOGGLE_EXPAND')),
   update: createAction<CountdownId, Partial<Countdown>, Countdown>(
     actionType('UPDATE_COUNTDOWN'),
     (id: CountdownId, updatedProps: Countdown) => ({ id, ...updatedProps }),
   ),
-  start: createAction<CountdownId>(actionType('START')),
-  pause: createAction<CountdownId>(actionType('PAUSE')),
-  toggleEdition: createAction(actionType('TOGGLE_EDITION')),
-  toggleExpand: createAction<CountdownId>(actionType('TOGGLE_EXPAND')),
 };
 
 // STATE
@@ -62,23 +63,23 @@ export type CountdownsState = typeof initialState;
 // REDUCERS
 
 const isEdition = createReducer({}, initialState.isEdition)
-  .on(actions.toggleEdition, state => !state);
+  .on(actions.toggleEdition, isEdition => !isEdition);
 
 const countdowns = createReducer({}, initialState.countdowns)
-  .on(actions.create, (state, payload) => [...state, payload])
-  .on(actions.remove, (state, payload) => {
-    const countdowns = state;
-    const id = payload;
+  .on(actions.create, (countdowns, newCountdown) => [...countdowns, newCountdown])
+  .on(actions.remove, (countdowns, id) => {
     const countdownToRemove = countdowns.find(c => c.id === id);
     return remove(countdownToRemove)(countdowns);
   })
-  .on(actions.update, updateCountdown)
-  .on(actions.toggleExpand, (state, payload) => {
-    const countdowns = state;
-    const id = payload;
+  .on(actions.reset, (countdowns, id) => {
     const original = countdowns.find(countdown => countdown.id === id);
-    return updateCountdown(state, { ...original, expanded: !original.expanded });
-  });
+    return updateCountdown(countdowns, { ...original, milliseconds: original.startAt });
+  })
+  .on(actions.toggleExpand, (countdowns, id) => {
+    const original = countdowns.find(countdown => countdown.id === id);
+    return updateCountdown(countdowns, { ...original, expanded: !original.expanded });
+  })
+  .on(actions.update, updateCountdown);
 
 export default combineReducers({
   isEdition,
