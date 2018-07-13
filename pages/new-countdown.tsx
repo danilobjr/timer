@@ -3,9 +3,8 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   CommandBar,
-  CommandBarItem,
+  CommandBarButton,
   // NavigationBar,
-  Page,
   PageHeader,
   PageContent,
   FieldText,
@@ -45,33 +44,41 @@ export default class NewTimerPage extends Component<any, NewTimerPageState> {
     const { name, hours, minutes, seconds } = this.state;
 
     return (
-      <PageContent className="new-countdown">
-        <PageHeader>New Countdown</PageHeader>
+      <>
+        <PageContent className="new-countdown">
+          <PageHeader>New Countdown</PageHeader>
 
-        <div className="field">
-          <TimeSelector
-            hours={hours}
-            minutes={minutes}
-            seconds={seconds}
-            onChange={(value) => this.updateTime(value)}
+          <div className="field">
+            <TimeSelector
+              hours={hours}
+              minutes={minutes}
+              seconds={seconds}
+              onChange={(value) => this.updateTime(value)}
+            />
+          </div>
+
+          <FieldText
+            label="Timer name"
+            value={name}
+            onChange={(value) => this.updateName(value)}
           />
-        </div>
+        </PageContent>
 
-        <FieldText
-          label="Timer name"
-          value={name}
-          onChange={(value) => this.updateName(value)}
-        />
         <CommandBar>
-          <CommandBarItem
+          <CommandBarButton
             icon="floppy"
             title="Save"
             disabled={!this.isTimeSet()}
-            onClick={this.createNewTimer.bind(this)}
+            onClick={console.log}
           />
-          <CommandBarItem icon="moreHorizontal" title="More" />
+
+          {/* <CommandBarItem
+            icon="moreHorizontal"
+            narrow
+            title="More"
+          /> */}
         </CommandBar>
-      </PageContent>
+      </>
     );
   }
 
