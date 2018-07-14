@@ -1,9 +1,13 @@
-import { compose, range, map, flatten, reverse, replace, padLeft, inc, dec, last } from 'utils';
+import { compose, range, map, flatten, reverse, replace, padLeft, inc, dec, last, splitAt } from 'utils';
 
-export const createArrayOfNumbers = (startsWith: number) => compose(range(startsWith), inc);
+export const createArrayOfNumbers = compose(range, inc);
+
 export const padLeftWithZero = map(compose(replace(' ')('0'), padLeft(2)));
-export const rearrangeNumbersToDisplayThemInScroller = compose(flatten, reverse);
-export const generateRangeOfNumbers = (startsWith: number) => compose(padLeftWithZero, createArrayOfNumbers(startsWith));
+
+export const rearrangeNumbersToDisplayThemInScroller = (indexToSplit: number) =>
+  compose(flatten, reverse, splitAt(indexToSplit));
+
+export const generateRangeOfNumbers = compose(padLeftWithZero, createArrayOfNumbers);
 
 export const select = (array: any[], selected: any, operation: Function) => {
   const indexOfSelected = array.indexOf(selected);

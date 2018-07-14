@@ -9,7 +9,6 @@ interface NumberSelectorProps {
   label: string;
   offset?: number;
   rangeSize: number;
-  startsWith?: number;
   value: number;
   onChange: (number: number) => void;
 }
@@ -19,7 +18,6 @@ interface NumberSelectorProps {
 export class NumberSelector extends Component<NumberSelectorProps> {
   static defaultProps: Partial<NumberSelectorProps> = {
     offset: 5,
-    startsWith: 0,
   };
 
   render() {
@@ -51,13 +49,12 @@ export class NumberSelector extends Component<NumberSelectorProps> {
   ));
 
   renderListItems = () => {
-    const { offset, rangeSize, startsWith, value } = this.props;
+    const { offset, rangeSize, value } = this.props;
 
     return compose(
       this.mapNumberToListItem,
-      rearrangeNumbersToDisplayThemInScroller,
-      splitAt(value - offset),
-      generateRangeOfNumbers(startsWith),
+      rearrangeNumbersToDisplayThemInScroller(value - offset),
+      generateRangeOfNumbers,
     )(rangeSize);
   }
 
