@@ -2,11 +2,8 @@ import * as React from 'react';
 import * as classNames from 'classnames';
 import { Component } from 'react';
 import { IconAngleUp, IconAngleDown } from 'components/common';
-import {
-  compose, splitAt, reverse, map, flatten,
-  padLeft, replace, inc
-} from 'utils';
-import { createArrayOfNumbers, formatNumbers, rearrangeNumbers } from './localUtils';
+import { createArrayOfNumbers, padLeftWithZero, rearrangeNumbers } from './localUtils';
+import { compose, splitAt, map } from 'utils';
 
 interface NumberSelectorProps {
   label?: string;
@@ -21,9 +18,9 @@ export class NumberSelector extends Component<NumberSelectorProps> {
   private static listOfNumbersStartsWith: number = 0;
   private static offset: number = 5;
 
-  static defaultProps = {
+  static defaultProps: Partial<NumberSelectorProps> = {
     label: 'numbers',
-    selected: 0
+    selected: 0,
   };
 
   private numbers: number[];
@@ -31,11 +28,11 @@ export class NumberSelector extends Component<NumberSelectorProps> {
   constructor(props: NumberSelectorProps) {
     super(props);
 
-    const { selected, lastNumber } = this.props;
+    const { lastNumber } = this.props;
 
     this.numbers = compose(
-      formatNumbers,
-      createArrayOfNumbers(NumberSelector.listOfNumbersStartsWith)
+      padLeftWithZero,
+      createArrayOfNumbers(NumberSelector.listOfNumbersStartsWith),
     )(lastNumber);
   }
 
@@ -60,7 +57,7 @@ export class NumberSelector extends Component<NumberSelectorProps> {
     return compose(
       this.renderListItems.bind(this),
       rearrangeNumbers,
-      splitAt(this.props.selected - NumberSelector.offset)
+      splitAt(this.props.selected - NumberSelector.offset),
     )(this.numbers);
   }
 
@@ -88,4 +85,3 @@ export class NumberSelector extends Component<NumberSelectorProps> {
     this.props.onSelectExactly(Number(number));
   }
 }
-
