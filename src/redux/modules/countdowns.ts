@@ -5,9 +5,8 @@ import { Countdown, TimeInMilliseconds } from 'models';
 import { combineReducers } from 'redux';
 import { remove, StringKeyValuePair, updateAt } from 'helpers';
 import { State } from 'src/redux/State';
+import { CountdownId } from 'src/redux/models';
 import { createActionDescription } from '../utils';
-
-type CountdownId = Countdown['id'];
 
 // ACTIONS
 
@@ -30,32 +29,7 @@ export const actions = {
 // STATE
 
 const initialState = {
-  countdowns: [
-    {
-      id: '13231231323123123',
-      name: 'Break',
-      startAt: 1980000,
-      milliseconds: 1980000,
-      expanded: false,
-      paused: true,
-    },
-    {
-      id: '3543534534534534',
-      name: 'Lunch',
-      startAt: 3600000,
-      milliseconds: 3600000,
-      expanded: false,
-      paused: true,
-    },
-    {
-      id: '75675656765756756',
-      name: 'Stop',
-      startAt: 3000,
-      milliseconds: 3000,
-      expanded: false,
-      paused: true,
-    },
-  ] as Countdown[],
+  countdowns: [] as Countdown[],
   isEdition: false,
 };
 
