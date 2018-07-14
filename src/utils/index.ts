@@ -1,6 +1,6 @@
 export * from './array';
 export * from './date';
-export * from './functions';
+export * from './functional';
 export * from './logic';
 export * from './math';
 export * from './object';
