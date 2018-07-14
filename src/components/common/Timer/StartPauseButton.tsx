@@ -8,6 +8,8 @@ type StartPauseButtonProps = {
   percentageProgress?: number;
 } & HTMLProps<HTMLButtonElement>;
 
+// FIXME: button should not respond when disabled
+
 export const StartPauseButton: SFC<StartPauseButtonProps> = ({ showPause, percentageProgress, ...otherProps }) => (
   <button
     {...otherProps}
