@@ -5,7 +5,7 @@ import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actions as newCountdownActions } from 'src/redux/modules/countdowns';
 import { actions as globalActions } from 'src/redux/modules/global';
-import { compose, omit, values, all, equals, not, toMilliseconds } from 'utils';
+import { compose, omit, values, all, equals, toMilliseconds } from 'utils';
 import { Countdown } from 'models';
 import { v1 as uuid } from 'uuid';
 import {
@@ -24,13 +24,13 @@ const initialState = {
   seconds: 0,
 };
 
-type NewTimerPageState = Readonly<typeof initialState>;
-type NewTimerPageProps = DispatchToProps & WithRouterProps;
+type NewCountdownPageState = Readonly<typeof initialState>;
+type NewCountdownPageProps = DispatchToProps & WithRouterProps;
 
 // TODO: save button should be always enabled. When no time set, show a message: Please, set a time first.
 
-class NewCountdownPage extends Component<NewTimerPageProps, NewTimerPageState> {
-  readonly state: NewTimerPageState = initialState;
+class NewCountdownPage extends Component<NewCountdownPageProps, NewCountdownPageState> {
+  readonly state: NewCountdownPageState = initialState;
 
   render() {
     const { name, hours, minutes, seconds } = this.state;
@@ -60,7 +60,7 @@ class NewCountdownPage extends Component<NewTimerPageProps, NewTimerPageState> {
           <CommandBarButton
             icon="floppy"
             title="Save"
-            disabled={!this.isTimeSet()}
+            disabled={this.isTimeNotSet(this.state)}
             onClick={this.create}
           />
 
@@ -74,17 +74,12 @@ class NewCountdownPage extends Component<NewTimerPageProps, NewTimerPageState> {
     );
   }
 
-  updateTime = (value: any) => {
-    const newState = Object.assign({}, this.state, value);
-    this.setState(newState);
-  }
+  private updateTime = (value: Partial<NewCountdownPageState>) => this.setState({ ...this.state, ...value });
+  private updateName = (value: string) => this.setState({ ...this.state, name: value });
+  // tslint:disable-next-line:typedef
+  private isTimeNotSet = compose(all(equals(0)), values, omit(['name']));
 
-  updateName = (value: any) => {
-    const newState = Object.assign({}, this.state, { name: value });
-    this.setState(newState);
-  }
-
-  create = () => {
+  private create = () => {
     const { name, hours, minutes, seconds } = this.state;
     const milliseconds = toMilliseconds(hours, minutes, seconds);
 
@@ -100,15 +95,6 @@ class NewCountdownPage extends Component<NewTimerPageProps, NewTimerPageState> {
 
     this.props.create(countdown);
     this.props.navigateToRoute('/countdowns');
-  }
-
-  isTimeSet() {
-    return compose(
-      not,
-      all(equals(0)),
-      values,
-      omit(['name']),
-    )(this.state);
   }
 }
 
