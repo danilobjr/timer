@@ -119,7 +119,10 @@ function* countdownFlow() {
     }
 
     if (type.includes('REMOVE')) {
-      yield cancel(tasks[countdownId]);
+      if (tasks[countdownId]) {
+        yield cancel(tasks[countdownId]);
+      }
+
       yield put(actions.remove(countdownId));
 
       const countdowns = yield select(({ countdowns }: State) => countdowns.countdowns);
