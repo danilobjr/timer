@@ -8,6 +8,8 @@ import { State } from 'src/redux/State';
 import { CountdownId } from 'src/redux/models';
 import { createActionDescription } from '../utils';
 
+// TODO: save redux state to localStorage
+
 // ACTIONS
 
 const actionDescription = createActionDescription('countdowns');
