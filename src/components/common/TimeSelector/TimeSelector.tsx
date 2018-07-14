@@ -3,7 +3,7 @@ import { SFC } from 'react';
 import { NumberSelector } from 'components/common';
 import { inc, dec } from 'utils';
 import { StringKeyValuePair } from 'models';
-import { createArrayOfNumbers, select } from './localHelpers';
+import { createArrayOfNumbers, select } from './localUtils';
 
 type TimeSelectorProps = {
   hours?: number;

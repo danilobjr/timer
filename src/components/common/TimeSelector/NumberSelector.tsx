@@ -6,7 +6,7 @@ import {
   compose, splitAt, reverse, map, flatten,
   padLeft, replace, inc
 } from 'utils';
-import { createArrayOfNumbersOf, formatNumbers, rearrangeNumbers } from './localHelpers';
+import { createArrayOfNumbers, formatNumbers, rearrangeNumbers } from './localUtils';
 
 interface NumberSelectorProps {
   label?: string;
@@ -35,7 +35,7 @@ export class NumberSelector extends Component<NumberSelectorProps> {
 
     this.numbers = compose(
       formatNumbers,
-      createArrayOfNumbersOf(NumberSelector.listOfNumbersStartsWith)
+      createArrayOfNumbers(NumberSelector.listOfNumbersStartsWith)
     )(lastNumber);
   }
 

@@ -4,7 +4,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Watch } from 'components/common';
 import { compose, prepend, head } from 'utils';
-import { differenceBetweenResults, mapResults } from './localHelpers';
+import { differenceBetweenResults, mapResults } from './localUtils';
 
 interface ChronometerResultsComponentProps {
   isLightThemeOn: boolean;

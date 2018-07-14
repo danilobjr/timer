@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as classNames from 'classnames';
 import { HTMLProps, SFC } from 'react';
 import { time as toTime, toMilliseconds } from 'utils';
-import { padLeftWithZero } from './localHelpers';
+import { padLeftWithZero } from './localUtils';
 
 const renderUnitCssClasses = (time: number, value: number) => (
   classNames('unit', { '-active': time >= value })
