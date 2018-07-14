@@ -121,6 +121,12 @@ function* countdownFlow() {
     if (type.includes('REMOVE')) {
       yield cancel(tasks[countdownId]);
       yield put(actions.remove(countdownId));
+
+      const countdowns = yield select(({ countdowns }: State) => countdowns.countdowns);
+
+      if (countdowns.length === 0) {
+        yield put(actions.toggleEdition());
+      }
     }
   }
 }
