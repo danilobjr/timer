@@ -24,10 +24,6 @@ export const CountdownsPageCommandBar: SFC<CountdownsPageCommandBarProps> = ({
         />
       ) : (
           <Fragment>
-            <Link href="/new-countdown">
-              <CommandBarButton icon="plus" title="New" />
-            </Link>
-
             {!hideEditButton && (
               <CommandBarButton
                 icon="checklist"
@@ -36,11 +32,9 @@ export const CountdownsPageCommandBar: SFC<CountdownsPageCommandBarProps> = ({
               />
             )}
 
-            {/* <CommandBarButton
-              icon="moreHorizontal"
-              narrow
-              title="More"
-            /> */}
+            <Link href="/new-countdown">
+              <CommandBarButton icon="plus" title="New" />
+            </Link>
           </Fragment>
         )}
     </CommandBar>
