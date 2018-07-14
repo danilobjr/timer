@@ -63,12 +63,6 @@ class NewCountdownPage extends Component<NewCountdownPageProps, NewCountdownPage
             disabled={this.isTimeNotSet(this.state)}
             onClick={this.create}
           />
-
-          {/* <CommandBarItem
-            icon="moreHorizontal"
-            narrow
-            title="More"
-          /> */}
         </CommandBar>
       </>
     );
