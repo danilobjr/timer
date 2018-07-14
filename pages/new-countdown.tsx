@@ -28,8 +28,6 @@ type NewTimerPageState = Readonly<typeof initialState>;
 type NewTimerPageProps = DispatchToProps & WithRouterProps;
 
 // TODO: save button should be always enabled. When no time set, show a message: Please, set a time first.
-// TODO: save redux state to localStorage
-// TODO: move local state to redux?
 
 class NewCountdownPage extends Component<NewTimerPageProps, NewTimerPageState> {
   readonly state: NewTimerPageState = initialState;
@@ -39,7 +37,7 @@ class NewCountdownPage extends Component<NewTimerPageProps, NewTimerPageState> {
 
     return (
       <>
-        <PageContent className="new-countdown">
+        <PageContent>
           <PageHeader>New Countdown</PageHeader>
 
           <div className="field">
