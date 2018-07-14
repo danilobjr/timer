@@ -13,25 +13,8 @@ type TimeSelectorProps = {
 };
 
 export class TimeSelector extends Component<TimeSelectorProps> {
-  private time: StringKeyValuePair;
-
-  constructor(props: TimeSelectorProps) {
-    super(props);
-
-    this.time = {
-      hours: props.hours,
-      minutes: props.minutes,
-      seconds: props.seconds,
-    };
-  }
-
-  componentWillReceiveProps(newProps: TimeSelectorProps) {
-    const { hours, minutes, seconds } = newProps;
-    this.time = { hours, minutes, seconds };
-  }
-
   render() {
-    const { hours, minutes, seconds } = this.time;
+    const { hours, minutes, seconds } = this.props;
 
     return (
       <div className="time-selector">
@@ -64,24 +47,22 @@ export class TimeSelector extends Component<TimeSelectorProps> {
   }
 
   updateData = (property: string) => (number: number) => {
-    const updatedData = Object.assign(
-      {},
-      this.time,
-      { [property]: number },
-    );
+    const updatedData = {
+      ...this.props,
+      [property]: number,
+    };
 
     this.props.onChange(updatedData);
   }
 
   updateDataByProperty = (property: string, lastNumber: number, operation: typeof inc) => () => {
-    const selectedNumber = this.time[property];
+    const selectedNumber = (this.props as StringKeyValuePair)[property];
     const update = { [property]: select(createArrayOfNumbersOf(0)(lastNumber), selectedNumber, operation) };
 
-    const updatedData = Object.assign(
-      {},
-      this.time,
-      update,
-    );
+    const updatedData = {
+      ...this.props,
+      ...update,
+    };
 
     this.props.onChange(updatedData);
   }
