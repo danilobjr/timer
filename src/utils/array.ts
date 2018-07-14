@@ -1,4 +1,4 @@
-export const map = (func: Function) => (array: any[]) => array.reduce((accu, curr) => accu.concat(func(curr)), []);
+export const map = <T, R>(func: (item: T) => R) => (array: T[]) => array.reduce((accu, curr) => accu.concat(func(curr)), [] as R[]);
 
 export const range = (from: number) => (to: number) => new Array(to).join(',').split(',').map((item, index) => index);
 
