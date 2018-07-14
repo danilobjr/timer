@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 import { HTMLProps, SFC } from 'react';
-import { time as toTime, toMilliseconds } from 'helpers';
+import { time as toTime, toMilliseconds } from 'utils';
 import { padLeftWithZero } from './localHelpers';
 
 const renderUnitCssClasses = (time: number, value: number) => (

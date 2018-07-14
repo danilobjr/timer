@@ -1,4 +1,4 @@
-import { compose, range, map, flatten, reverse, replace, padLeft, inc, dec, last } from 'helpers';
+import { compose, range, map, flatten, reverse, replace, padLeft, inc, dec, last } from 'utils';
 
 export const createArrayOfNumbersOf = (startsWith: number) => compose(range(startsWith), inc);
 export const formatNumbers = map(compose(replace(' ')('0'), padLeft(2)));
@@ -14,4 +14,4 @@ export const select = (array: any[], selected: any, operation: Function) => {
   } else {
     return array[operation(indexOfSelected)];
   }
-}
+};

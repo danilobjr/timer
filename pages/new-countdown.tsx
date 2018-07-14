@@ -5,7 +5,7 @@ import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actions as newCountdownActions } from 'src/redux/modules/countdowns';
 import { actions as globalActions } from 'src/redux/modules/global';
-import { compose, omit, values, all, equals, not, toMilliseconds } from 'helpers';
+import { compose, omit, values, all, equals, not, toMilliseconds } from 'utils';
 import { Countdown } from 'models';
 import { v1 as uuid } from 'uuid';
 import {

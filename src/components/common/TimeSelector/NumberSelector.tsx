@@ -5,7 +5,7 @@ import { IconAngleUp, IconAngleDown } from 'components/common';
 import {
   compose, splitAt, reverse, map, flatten,
   padLeft, replace, inc
-} from 'helpers';
+} from 'utils';
 import { createArrayOfNumbersOf, formatNumbers, rearrangeNumbers } from './localHelpers';
 
 interface NumberSelectorProps {

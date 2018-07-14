@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { Component } from 'react';
 import { NumberSelector } from 'components/common';
-import { inc, dec, StringKeyValuePair } from 'helpers';
+import { inc, dec, StringKeyValuePair } from 'utils';
 import { createArrayOfNumbersOf, select } from './localHelpers';
 
-interface TimeSelectorProps {
+type TimeSelectorProps = {
   hours?: number;
   minutes?: number;
   seconds?: number;
   onChange?: (time: StringKeyValuePair) => void;
-}
+};
 
 export class TimeSelector extends Component<TimeSelectorProps> {
   private time: StringKeyValuePair;
@@ -20,7 +20,7 @@ export class TimeSelector extends Component<TimeSelectorProps> {
     this.time = {
       hours: props.hours,
       minutes: props.minutes,
-      seconds: props.seconds
+      seconds: props.seconds,
     };
   }
 
@@ -66,7 +66,7 @@ export class TimeSelector extends Component<TimeSelectorProps> {
     const updatedData = Object.assign(
       {},
       this.time,
-      { [property]: number }
+      { [property]: number },
     );
 
     this.props.onChange(updatedData);
@@ -79,7 +79,7 @@ export class TimeSelector extends Component<TimeSelectorProps> {
     const updatedData = Object.assign(
       {},
       this.time,
-      update
+      update,
     );
 
     this.props.onChange(updatedData);
