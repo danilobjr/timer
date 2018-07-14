@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Component } from 'react';
 import { NumberSelector } from 'components/common';
-import { inc, dec, StringKeyValuePair } from 'utils';
+import { inc, dec } from 'utils';
+import { StringKeyValuePair } from 'models';
 import { createArrayOfNumbersOf, select } from './localHelpers';
 
 type TimeSelectorProps = {

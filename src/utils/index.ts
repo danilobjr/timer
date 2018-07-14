@@ -6,4 +6,3 @@ export * from './math';
 export * from './object';
 export * from './relation';
 export * from './string';
-export * from './types';

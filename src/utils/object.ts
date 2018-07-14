@@ -1,23 +1,23 @@
-import { StringKeyValuePair } from './types';
+import { StringKeyValuePair } from 'models';
 
 export const values = (object: StringKeyValuePair) => {
   const result = [];
 
-  for (var key in object) {
+  for (let key in object) {
     result.push(object[key]);
   }
 
   return result;
-}
+};
 
 export const omit = (props: string[]) => (object: StringKeyValuePair) => {
   const result: StringKeyValuePair = {};
 
-  for (var key in object) {
+  for (let key in object) {
     if (!props.includes(key)) {
       result[key] = object[key];
     }
   }
 
   return result;
-}
+};
