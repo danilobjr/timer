@@ -3,7 +3,7 @@ import { SFC } from 'react';
 import { NumberSelector } from 'components/common';
 import { inc, dec } from 'utils';
 import { StringKeyValuePair } from 'models';
-import { createArrayOfNumbersOf, select } from './localHelpers';
+import { createArrayOfNumbers, select } from './localHelpers';
 
 type TimeSelectorProps = {
   hours?: number;
@@ -52,9 +52,10 @@ const updateData = (props: TimeSelectorProps, property: string) => (number: numb
   props.onChange(updatedData);
 };
 
+// TODO: refactor
 const updateDataByProperty = (props: TimeSelectorProps, property: string, lastNumber: number, operation: typeof inc) => () => {
   const selectedNumber = (props as StringKeyValuePair)[property];
-  const update = { [property]: select(createArrayOfNumbersOf(0)(lastNumber), selectedNumber, operation) };
+  const update = { [property]: select(createArrayOfNumbers(0)(lastNumber), selectedNumber, operation) };
 
   const updatedData = {
     ...props,

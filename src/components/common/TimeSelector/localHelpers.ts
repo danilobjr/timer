@@ -1,6 +1,6 @@
 import { compose, range, map, flatten, reverse, replace, padLeft, inc, dec, last } from 'utils';
 
-export const createArrayOfNumbersOf = (startsWith: number) => compose(range(startsWith), inc);
+export const createArrayOfNumbers = (startsWith: number) => compose(range(startsWith), inc);
 export const formatNumbers = map(compose(replace(' ')('0'), padLeft(2)));
 export const rearrangeNumbers = compose(flatten, reverse);
 
