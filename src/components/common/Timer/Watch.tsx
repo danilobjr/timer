@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 import { HTMLProps, SFC } from 'react';
-import { time as toTime, milliseconds } from 'helpers';
+import { time as toTime, toMilliseconds } from 'helpers';
 import { padLeftWithZero } from './localHelpers';
 
 const renderUnitCssClasses = (time: number, value: number) => (
@@ -21,8 +21,8 @@ export type WatchProps = {
 
 export const Watch: SFC<WatchProps> = ({ className, showHundredths, time, ...otherProps }) => {
   const [hours, minutes, seconds, hundredths] = toTime(time);
-  const oneMinute = milliseconds(0, 1);
-  const oneHour = milliseconds(1);
+  const oneMinute = toMilliseconds(0, 1);
+  const oneHour = toMilliseconds(1);
 
   return (
     <div className={classNames('watch', className)} {...otherProps}>
