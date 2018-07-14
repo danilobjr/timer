@@ -74,8 +74,8 @@ class NewCountdownPage extends Component<NewCountdownPageProps, NewCountdownPage
     );
   }
 
-  private updateTime = (value: Partial<NewCountdownPageState>) => this.setState({ ...this.state, ...value });
-  private updateName = (value: string) => this.setState({ ...this.state, name: value });
+  private updateTime = (time: Partial<NewCountdownPageState>) => this.setState({ ...this.state, ...time });
+  private updateName = (name: string) => this.setState({ ...this.state, name });
   // tslint:disable-next-line:typedef
   private isTimeNotSet = compose(all(equals(0)), values, omit(['name']));
 
