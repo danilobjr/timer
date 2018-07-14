@@ -4,6 +4,10 @@
   height: 60px;
   padding: 0;
 
+  &, * {
+    cursor: pointer;
+  }
+
   &:hover,
   &:active {
     background: none;

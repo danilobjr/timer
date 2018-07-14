@@ -3,11 +3,14 @@
   color: $scorpion;
   font-size: 1.4rem;
   box-sizing: border-box;
-  cursor: default;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &, * {
+    cursor: pointer;
+  }
 
   &:hover {
     background-color: $silver;
