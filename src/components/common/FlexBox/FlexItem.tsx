@@ -14,6 +14,7 @@ export interface FlexItemProps extends HTMLProps<HTMLDivElement> {
   grow?: number;
 }
 
+// TODO: remove this
 export const FlexItem: SFC<FlexItemProps> = (props) => <div className={renderClassNames(props)}>{props.children}</div>;
 
 FlexItem.defaultProps = {

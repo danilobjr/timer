@@ -7,6 +7,10 @@
   color: $mine-shaft;
   font-size: 1.8rem;
 
+  &, * {
+    cursor: pointer;
+  }
+
   &:hover {
     background-color: $alto;
   }

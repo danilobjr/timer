@@ -1,4 +1,4 @@
-import { compose, join, map, padLeft, replace, time } from 'helpers';
+import { compose, join, map, padLeft, replace, time } from 'utils';
 
 export const timeToString = (milliseconds: number) =>
   compose(join(':'), map(padLeftWithZero), time)(milliseconds);

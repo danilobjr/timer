@@ -3,25 +3,29 @@ import { delay } from 'redux-saga';
 import { createAction, createReducer } from 'redux-act';
 import { Countdown, TimeInMilliseconds } from 'models';
 import { combineReducers } from 'redux';
-import { remove, StringKeyValuePair, updateAt } from 'helpers';
+import { StringKeyValuePair } from 'models';
+import { remove, updateAt } from 'utils';
 import { State } from 'src/redux/State';
+import { CountdownId } from 'src/redux/models';
+import { createActionDescription } from '../utils';
 
-type CountdownId = Countdown['id'];
+// TODO: save redux state to localStorage
 
 // ACTIONS
 
-const actionType = (name: string) => `countdowns/${name}`;
+const actionDescription = createActionDescription('countdowns');
 
+// TODO: segregate these actions. Some are to use in component other just internally in this module
 export const actions = {
-  create: createAction<Countdown>(actionType('CREATE')),
-  pause: createAction<CountdownId>(actionType('PAUSE')),
-  remove: createAction<CountdownId>(actionType('REMOVE')),
-  reset: createAction<CountdownId>(actionType('RESET')),
-  start: createAction<CountdownId>(actionType('START')),
-  toggleEdition: createAction(actionType('TOGGLE_EDITION')),
-  toggleExpand: createAction<CountdownId>(actionType('TOGGLE_EXPAND')),
+  create: createAction<Countdown>(actionDescription('CREATE')),
+  pause: createAction<CountdownId>(actionDescription('PAUSE')),
+  remove: createAction<CountdownId>(actionDescription('REMOVE')),
+  reset: createAction<CountdownId>(actionDescription('RESET')),
+  start: createAction<CountdownId>(actionDescription('START')),
+  toggleEdition: createAction(actionDescription('TOGGLE_EDITION')),
+  toggleExpand: createAction<CountdownId>(actionDescription('TOGGLE_EXPAND')),
   update: createAction<CountdownId, Partial<Countdown>, Countdown>(
-    actionType('UPDATE_COUNTDOWN'),
+    actionDescription('UPDATE_COUNTDOWN'),
     (id: CountdownId, updatedProps: Countdown) => ({ id, ...updatedProps }),
   ),
 };
@@ -29,32 +33,7 @@ export const actions = {
 // STATE
 
 const initialState = {
-  countdowns: [
-    {
-      id: '13231231323123123',
-      name: 'Break',
-      startAt: 1980000,
-      milliseconds: 1980000,
-      expanded: false,
-      paused: true,
-    },
-    {
-      id: '3543534534534534',
-      name: 'Lunch',
-      startAt: 3600000,
-      milliseconds: 3600000,
-      expanded: false,
-      paused: true,
-    },
-    {
-      id: '75675656765756756',
-      name: 'Stop',
-      startAt: 3000,
-      milliseconds: 3000,
-      expanded: false,
-      paused: true,
-    },
-  ] as Countdown[],
+  countdowns: [] as Countdown[],
   isEdition: false,
 };
 
@@ -111,7 +90,13 @@ function* countdownFlow() {
   const tasks: StringKeyValuePair = {};
 
   while (true) {
-    const action = yield take([actions.start, actions.pause, actions.reset]);
+    const action = yield take([
+      actions.start,
+      actions.pause,
+      actions.reset,
+      actions.remove,
+    ]);
+
     const { payload, type } = action;
     const countdownId = payload;
 
@@ -126,11 +111,25 @@ function* countdownFlow() {
 
     if (type.includes('RESET')) {
       yield cancel(tasks[countdownId]);
-      const countdown: Countdown = yield select((state: State) =>
-        state.countdowns.countdowns.find(c => c.id === countdownId),
+
+      const countdown: Countdown = yield select(({ countdowns }: State) =>
+        countdowns.countdowns.find(c => c.id === countdownId),
       );
+
       if (!countdown.paused) {
         tasks[countdownId] = yield fork(countdownInterval, countdownId);
+      }
+    }
+
+    if (type.includes('REMOVE')) {
+      if (tasks[countdownId]) {
+        yield cancel(tasks[countdownId]);
+      }
+
+      const countdowns = yield select(({ countdowns }: State) => countdowns.countdowns);
+
+      if (countdowns.length === 0) {
+        yield put(actions.toggleEdition());
       }
     }
   }

@@ -7,7 +7,7 @@ import { NavigationItem } from './NavigationItem';
 export const Navigation: SFC<{}> = withRouter<WithRouterProps>(({ router }) => (
   <nav className="navigation">
     <ul className="list">
-      <Link href="/">
+      <Link href="/countdowns">
         <NavigationItem
           text="Timer"
           icon="timer"

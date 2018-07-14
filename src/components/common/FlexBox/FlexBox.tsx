@@ -24,6 +24,7 @@ export interface FlexBoxProps extends ChangedProps {
   wrap?: boolean;
 }
 
+// TODO: remove this
 export const FlexBox: SFC<FlexBoxProps> = (props) => <div className={renderClassNames(props)}>{props.children}</div>
 
 FlexBox.defaultProps = {

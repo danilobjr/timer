@@ -1,5 +1,5 @@
-export const milliseconds = (h?: number, m?: number, s?: number) =>
-  (h || 0) * 60 * 60 * 1000 + (m || 0) * 60 * 1000 + (s || 0) * 1000
+export const toMilliseconds = (h?: number, m?: number, s?: number) =>
+  (h || 0) * 60 * 60 * 1000 + (m || 0) * 60 * 1000 + (s || 0) * 1000;
 
 export const time = (milliseconds: number) => {
   const oneHourInMilliseconds = 60 * 60 * 1000;
@@ -28,6 +28,6 @@ export const time = (milliseconds: number) => {
     hoursResult,
     minutesResult,
     secondsResult,
-    hundredthsResult
+    hundredthsResult,
   ];
-}
+};

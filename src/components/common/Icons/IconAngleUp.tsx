@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SFC } from 'react';
 import { Icon, IconProps } from './Icon';
 
-type IconAngleUpProps = IconProps;
+type IconAngleUpProps = Partial<IconProps>;
 
 export const IconAngleUp: SFC<IconAngleUpProps> = (props) => (
   <Icon name="icon-angle-up" width={9} height={4.5} {...props}>

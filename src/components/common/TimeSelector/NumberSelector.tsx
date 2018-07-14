@@ -2,42 +2,23 @@ import * as React from 'react';
 import * as classNames from 'classnames';
 import { Component } from 'react';
 import { IconAngleUp, IconAngleDown } from 'components/common';
-import {
-  compose, splitAt, reverse, map, flatten,
-  padLeft, replace, inc
-} from 'helpers';
-import { createArrayOfNumbersOf, formatNumbers, rearrangeNumbers } from './localHelpers';
+import { rearrangeNumbersToDisplayThemInScroller, generateRangeOfNumbers } from './localUtils';
+import { compose, splitAt, map } from 'utils';
 
 interface NumberSelectorProps {
-  label?: string;
-  selected?: number;
-  lastNumber: number;
-  onSelectNext: () => void;
-  onSelectPrevious: () => void;
-  onSelectExactly: (number: number) => void;
+  label: string;
+  offset?: number;
+  rangeSize: number;
+  value: number;
+  onChange: (number: number) => void;
 }
 
+// TODO: check if it needs to re-render in shouldComponentUpdate
+
 export class NumberSelector extends Component<NumberSelectorProps> {
-  private static listOfNumbersStartsWith: number = 0;
-  private static offset: number = 5;
-
-  static defaultProps = {
-    label: 'numbers',
-    selected: 0
+  static defaultProps: Partial<NumberSelectorProps> = {
+    offset: 5,
   };
-
-  private numbers: number[];
-
-  constructor(props: NumberSelectorProps) {
-    super(props);
-
-    const { selected, lastNumber } = this.props;
-
-    this.numbers = compose(
-      formatNumbers,
-      createArrayOfNumbersOf(NumberSelector.listOfNumbersStartsWith)
-    )(lastNumber);
-  }
 
   render() {
     return (
@@ -45,47 +26,59 @@ export class NumberSelector extends Component<NumberSelectorProps> {
         <div className="slider">
           <div className="scroller">
             <ul className="numbers">
-              {this.renderNumbers()}
+              {this.renderListItems()}
             </ul>
           </div>
-          <button className="btn -up" onClick={this.selectPrevious}><IconAngleUp /></button>
-          <button className="btn -down" onClick={this.selectNext}><IconAngleDown /></button>
+          <button className="btn -up" onClick={this.handleClickPrevious}><IconAngleUp /></button>
+          <button className="btn -down" onClick={this.handleClickNext}><IconAngleDown /></button>
         </div>
         <span className="label">{this.props.label}</span>
       </div>
     );
   }
 
-  renderNumbers() {
+  // tslint:disable-next-line:typedef
+  mapNumberToListItem = map((number: string) => (
+    <li
+      key={number}
+      className={classNames('number', { 'selected': Number(number) === this.props.value })}
+      onClick={this.handleClick(number)}
+    >
+      {number}
+    </li>
+  ));
+
+  renderListItems = () => {
+    const { offset, rangeSize, value } = this.props;
+
     return compose(
-      this.renderListItems.bind(this),
-      rearrangeNumbers,
-      splitAt(this.props.selected - NumberSelector.offset)
-    )(this.numbers);
+      this.mapNumberToListItem,
+      rearrangeNumbersToDisplayThemInScroller(value - offset),
+      generateRangeOfNumbers,
+    )(rangeSize);
   }
 
-  renderListItems = (numbers: number[]) => {
-    return map((n: number) => (
-        <li
-          key={n}
-          className={classNames('number', { 'selected': Number(n) === this.props.selected })}
-          onClick={this.selectExactly(n)}
-        >
-          {n}
-        </li>
-      ))(numbers);
+  handleClickPrevious = () => {
+    const { rangeSize, value, onChange } = this.props;
+    const lastNumberOnList = rangeSize;
+
+    const changedValue = value === 0
+      ? lastNumberOnList
+      : value - 1;
+
+    onChange(changedValue);
   }
 
-  selectNext = () => {
-    this.props.onSelectNext();
+  handleClickNext = () => {
+    const { rangeSize, value, onChange } = this.props;
+    const lastNumberOnList = rangeSize;
+
+    const changedValue = value === lastNumberOnList
+      ? 0
+      : value + 1;
+
+    onChange(changedValue);
   }
 
-  selectPrevious = () => {
-    this.props.onSelectPrevious();
-  }
-
-  selectExactly = (number: number) => () => {
-    this.props.onSelectExactly(Number(number));
-  }
+  handleClick = (number: string) => () => this.props.onChange(Number(number));
 }
-
