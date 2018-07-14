@@ -1,0 +1,24 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+
+  > label {
+    margin-bottom: 6px;
+  }
+
+  > .value {
+    width: fit-content;
+    color: $mariner;
+    cursor: pointer;
+  }
+
+  > .value:hover {
+    color: $dove-gray;
+  }
+
+  &.-text > input {
+    border: 2px solid $mariner;
+    padding: 2px 4px 4px;
+  }
+}
