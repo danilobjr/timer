@@ -3,7 +3,8 @@ import { withRouter, WithRouterProps } from 'next/router';
 import { Component } from 'react';
 import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { actions } from 'src/redux';
+import { actions as newCountdownActions } from 'src/redux/modules/countdowns';
+import { actions as globalActions } from 'src/redux/modules/global';
 import { compose, omit, values, all, equals, not, toMilliseconds } from 'helpers';
 import { Countdown } from 'models';
 import { v1 as uuid } from 'uuid';
@@ -101,7 +102,7 @@ class NewCountdownPage extends Component<NewTimerPageProps, NewTimerPageState> {
 
     this.props.create(countdown);
     // TODO: move this to an app level saga
-    this.props.router.push('/countdowns');
+    this.props.navigateToRoute('/countdowns');
   }
 
   isTimeSet() {
@@ -114,7 +115,13 @@ class NewCountdownPage extends Component<NewTimerPageProps, NewTimerPageState> {
   }
 }
 
-type DispatchToProps = Pick<typeof actions, 'create'>;
+const actions = {
+  ...newCountdownActions,
+  ...globalActions,
+};
+
+// TODO: maybe Pick is not a good practice
+type DispatchToProps = Pick<typeof actions, 'create' | 'navigateToRoute'>;
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(actions, dispatch);
 
