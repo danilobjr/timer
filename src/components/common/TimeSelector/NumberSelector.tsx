@@ -8,7 +8,7 @@ import { compose, splitAt, map } from 'utils';
 interface NumberSelectorProps {
   label?: string;
   selected?: number;
-  lastNumber: number;
+  rangeSize: number;
   onSelectNext: () => void;
   onSelectPrevious: () => void;
   onSelectExactly: (number: number) => void;
@@ -28,12 +28,12 @@ export class NumberSelector extends Component<NumberSelectorProps> {
   constructor(props: NumberSelectorProps) {
     super(props);
 
-    const { lastNumber } = this.props;
+    const { rangeSize } = this.props;
 
     this.numbers = compose(
       padLeftWithZero,
       createArrayOfNumbers(NumberSelector.listOfNumbersStartsWith),
-    )(lastNumber);
+    )(rangeSize);
   }
 
   render() {
