@@ -1,46 +1,37 @@
 import * as React from 'react';
+import { withRouter, WithRouterProps } from 'next/router';
 import { Component } from 'react';
+import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { actions } from 'src/redux';
+import { compose, omit, values, all, equals, not, toMilliseconds } from 'helpers';
+import { Countdown } from 'models';
+import { v1 as uuid } from 'uuid';
 import {
   CommandBar,
   CommandBarButton,
-  // NavigationBar,
   PageHeader,
   PageContent,
   FieldText,
   TimeSelector,
 } from 'components/common';
-import { compose, omit, values, all, equals, not } from 'helpers';
-// import { createTimer } from './actions';
-// import { enableBackButton, disableBackButton, setBackButtonCallback } from 'components/common';
 
-type NewTimerPageInternalProps = {
-  createTimer: (data: any) => void;
-  enableBackButton: () => void;
-  disableBackButton: () => void;
-  setBackButtonCallback: (callback: Function) => void;
+const initialState = {
+  name: 'Timer',
+  hours: 0,
+  minutes: 0,
+  seconds: 0,
 };
 
-type NewTimerPageState = {
-  name: string;
-  hours: number;
-  minutes: number;
-  seconds: number;
-};
+type NewTimerPageState = Readonly<typeof initialState>;
+type NewTimerPageProps = DispatchToProps & WithRouterProps;
 
 // TODO: save button should be always enabled. When no time set, show a message: Please, set a time first.
+// TODO: save redux state to localStorage
+// TODO: move local state to redux?
 
-export default class NewTimerPage extends Component<any, NewTimerPageState> {
-  constructor(props: NewTimerPageInternalProps) {
-    super(props);
-
-    this.state = {
-      name: 'Timer',
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-    };
-  }
+class NewCountdownPage extends Component<NewTimerPageProps, NewTimerPageState> {
+  readonly state: NewTimerPageState = initialState;
 
   render() {
     const { name, hours, minutes, seconds } = this.state;
@@ -55,14 +46,14 @@ export default class NewTimerPage extends Component<any, NewTimerPageState> {
               hours={hours}
               minutes={minutes}
               seconds={seconds}
-              onChange={(value) => this.updateTime(value)}
+              onChange={this.updateTime}
             />
           </div>
 
           <FieldText
             label="Timer name"
             value={name}
-            onChange={(value) => this.updateName(value)}
+            onChange={this.updateName}
           />
         </PageContent>
 
@@ -71,7 +62,7 @@ export default class NewTimerPage extends Component<any, NewTimerPageState> {
             icon="floppy"
             title="Save"
             disabled={!this.isTimeSet()}
-            onClick={console.log}
+            onClick={this.create}
           />
 
           {/* <CommandBarItem
@@ -84,18 +75,33 @@ export default class NewTimerPage extends Component<any, NewTimerPageState> {
     );
   }
 
-  updateTime(value: any) {
+  updateTime = (value: any) => {
     const newState = Object.assign({}, this.state, value);
     this.setState(newState);
   }
 
-  updateName(value: any) {
+  updateName = (value: any) => {
     const newState = Object.assign({}, this.state, { name: value });
     this.setState(newState);
   }
 
-  createNewTimer() {
-    this.props.createTimer(this.state);
+  create = () => {
+    const { name, hours, minutes, seconds } = this.state;
+    const milliseconds = toMilliseconds(hours, minutes, seconds);
+
+    // TODO: change uuid package to nanoid
+    const countdown: Countdown = {
+      id: uuid(),
+      name,
+      milliseconds,
+      startAt: milliseconds,
+      paused: true,
+      expanded: false,
+    };
+
+    this.props.create(countdown);
+    // TODO: move this to an app level saga
+    this.props.router.push('/countdowns');
   }
 
   isTimeSet() {
@@ -108,11 +114,8 @@ export default class NewTimerPage extends Component<any, NewTimerPageState> {
   }
 }
 
-// const mapDispatchToProps = (dispatch: any) => ({
-//   createTimer: (data: any) => dispatch(createTimer(data)),
-//   enableBackButton: () => dispatch(enableBackButton()),
-//   disableBackButton: () => dispatch(disableBackButton()),
-//   setBackButtonCallback: (callback: Function) => dispatch(setBackButtonCallback(callback))
-// });
+type DispatchToProps = Pick<typeof actions, 'create'>;
 
-// export const TimerNewPage = connect(null, mapDispatchToProps)(TimerNewPageComponent);
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(actions, dispatch);
+
+export default withRouter(connect(null, mapDispatchToProps)(NewCountdownPage));
