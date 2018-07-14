@@ -101,7 +101,6 @@ class NewCountdownPage extends Component<NewTimerPageProps, NewTimerPageState> {
     };
 
     this.props.create(countdown);
-    // TODO: move this to an app level saga
     this.props.navigateToRoute('/countdowns');
   }
 
