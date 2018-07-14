@@ -12,6 +12,7 @@ import { createActionDescription } from '../utils';
 
 const actionDescription = createActionDescription('countdowns');
 
+// TODO: segregate these actions. Some are to use in component other just internally in this module
 export const actions = {
   create: createAction<Countdown>(actionDescription('CREATE')),
   pause: createAction<CountdownId>(actionDescription('PAUSE')),
