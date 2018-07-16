@@ -68,7 +68,7 @@ class CountdownsPage extends Component<CountdownsPageProps, CountdownsPageState>
 type StateToProps = CountdownsState;
 type DispatchToProps = typeof actions;
 
-const mapStateToProps = (state: State) => ({ ...state.countdowns } as CountdownsState);
+const mapStateToProps = (state: State) => ({ ...state } as CountdownsState);
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(actions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(CountdownsPage);

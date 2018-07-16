@@ -33,7 +33,6 @@ export const actions = {
 
 const initialState = {
   countdowns: [] as Countdown[],
-  isEdition: false,
 };
 
 export type CountdownsState = typeof initialState;
@@ -56,15 +55,18 @@ const countdowns = createReducer({}, initialState.countdowns)
   })
   .on(actions.update, updateCountdown);
 
-export default combineReducers({
+// export default combineReducers({
+//   countdowns,
+// });
+export default {
   countdowns,
-});
+};
 
 // SAGAS
 
 function* countdownInterval(id: CountdownId) {
   while (true) {
-    const countdowns: Countdown[] = yield select((state: State) => state.countdowns.countdowns);
+    const countdowns: Countdown[] = yield select((state: State) => state.countdowns);
     const foundCountdown = countdowns.find(c => c.id === id);
 
     if (foundCountdown.milliseconds === 0) {
@@ -108,7 +110,7 @@ function* countdownFlow() {
       yield cancel(tasks[countdownId]);
 
       const countdown: Countdown = yield select(({ countdowns }: State) =>
-        countdowns.countdowns.find(c => c.id === countdownId),
+        countdowns.find(c => c.id === countdownId),
       );
 
       if (!countdown.paused) {
