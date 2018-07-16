@@ -67,6 +67,7 @@
     left: 0;
   }
 
+  // TODO: use linear transition
   > .time-progress > circle {
     stroke: $mariner;
     stroke-dasharray: 182px;
