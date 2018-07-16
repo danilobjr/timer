@@ -13,7 +13,7 @@ const initialState = {
 // type ChronometerPageProps = { isLightThemeOn: boolean };
 type ChronometerPageState = Readonly<typeof initialState>;
 
-export default class ChronometerTab extends Component<{}, ChronometerPageState> {
+export default class ChronometerPage extends Component<{}, ChronometerPageState> {
   // private timer: any = null;
   readonly state: ChronometerPageState = initialState;
 
