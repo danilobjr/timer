@@ -14,7 +14,7 @@ export const Navigation: SFC<{}> = withRouter<WithRouterProps>(({ router }) => (
           active={router.pathname.includes('/')}
         />
       </Link>
-      <Link href="/chronometer">
+      <Link href="/chronometer" prefetch>
         <NavigationItem
           text="Chronometer"
           icon="stopwatch"

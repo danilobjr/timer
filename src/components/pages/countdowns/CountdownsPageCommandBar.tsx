@@ -32,7 +32,7 @@ export const CountdownsPageCommandBar: SFC<CountdownsPageCommandBarProps> = ({
               />
             )}
 
-            <Link href="/new-countdown">
+            <Link href="/new-countdown" prefetch>
               <CommandBarButton icon="plus" title="New" />
             </Link>
           </Fragment>
