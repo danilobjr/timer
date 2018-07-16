@@ -27,7 +27,6 @@ export default class ChronometerTab extends Component<{}, ChronometerPageState> 
     const time: Time = {
       id: '',
       paused: true,
-      expanded: false,
       milliseconds: 0,
     };
 
@@ -39,7 +38,6 @@ export default class ChronometerTab extends Component<{}, ChronometerPageState> 
           time={time}
           onClickStart={this.handleClickStart}
           onClickPause={this.handleClickPause}
-          onClickToggleExpand={console.log}
         // onClickReset={this.hideResetButton}
         >
           <TimerButton
