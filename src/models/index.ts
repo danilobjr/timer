@@ -1,3 +1,5 @@
+export type Chronometer = Pick<Time, 'milliseconds' | 'paused'>;
+
 export type Countdown = {
   startAt: number;
 } & Time;
