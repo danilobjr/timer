@@ -12,7 +12,7 @@ type TimerProps = {
   hideExpandButton?: boolean;
   showHundredths?: boolean;
   startAt?: number;
-  time: Time;
+  time: Partial<Time>;
   onClickPause?: () => void;
   onClickStart?: () => void;
 };
