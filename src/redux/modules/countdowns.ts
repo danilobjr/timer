@@ -2,7 +2,6 @@ import { call, fork, take, cancel, select, put } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import { createAction, createReducer } from 'redux-act';
 import { Countdown, TimeInMilliseconds } from 'models';
-import { combineReducers } from 'redux';
 import { StringKeyValuePair } from 'models';
 import { remove, updateAt } from 'utils';
 import { State } from 'src/redux/State';
