@@ -22,8 +22,6 @@ type CommandBarItemProps = {
   narrow?: boolean;
 } & HTMLProps<HTMLDivElement>;
 
-// TODO: use cursor pointer in command bar buttons
-
 export const CommandBarButton: SFC<CommandBarItemProps> = ({ icon, narrow, ...otherProps }) => (
   <div
     className={classNames(
