@@ -1,5 +1,7 @@
 .page-content {
   padding: $content-spacing;
+  overflow-y: auto;
+
   display: flex;
   flex-grow: 1;
   flex-direction: column;
