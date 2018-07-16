@@ -72,7 +72,6 @@ export class Timer extends Component<TimerProps, TimerState> {
 
         <div className="info">
           <span className="name">{name}</span>
-          {/* TODO: remove prefix 'h-' from help CSS classes */}
           <Watch className={classNames({ 'h-hidden': expanded })} time={startAt} />
         </div>
       </div>
