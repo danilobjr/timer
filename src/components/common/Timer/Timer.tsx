@@ -16,6 +16,8 @@ type TimerProps = {
   onClickToggleExpand?: () => void;
 };
 
+// TODO: bring toggleExpand from redux to local state
+
 export class Timer extends Component<TimerProps> {
   static defaultProps: Partial<TimerProps> = {
     disableStartPauseButton: false,
