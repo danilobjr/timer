@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { ChronometerResults, Tab, TabContent, Timer, TimerButton } from 'components';
+import { ChronometerResults, Timer, TimerButton, PageContent } from 'components';
 import { Time } from 'models';
 
 const initialState = {
@@ -13,7 +13,7 @@ const initialState = {
 // type ChronometerPageProps = { isLightThemeOn: boolean };
 type ChronometerPageState = Readonly<typeof initialState>;
 
-export default class ChronometerPage extends Component<{}, ChronometerPageState> {
+export default class ChronometerTab extends Component<{}, ChronometerPageState> {
   // private timer: any = null;
   readonly state: ChronometerPageState = initialState;
 
@@ -32,35 +32,33 @@ export default class ChronometerPage extends Component<{}, ChronometerPageState>
     };
 
     return (
-      <Tab className="chronometer-tab">
-        <TabContent>
-          <Timer
-            // ref="timer"
-            showHundredths
-            time={time}
-            onClickStart={this.handleClickStart}
-            onClickPause={this.handleClickPause}
-            onClickToggleExpand={console.log}
-          // onClickReset={this.hideResetButton}
-          >
-            <TimerButton
-              icon="reset"
-              title="Reset"
-              hideButton={isResetButtonHidden}
-              onClick={this.restartChronometer.bind(this)}
-            />
+      <PageContent className="-chronometer">
+        <Timer
+          // ref="timer"
+          showHundredths
+          time={time}
+          onClickStart={this.handleClickStart}
+          onClickPause={this.handleClickPause}
+          onClickToggleExpand={console.log}
+        // onClickReset={this.hideResetButton}
+        >
+          <TimerButton
+            icon="reset"
+            title="Reset"
+            hideButton={isResetButtonHidden}
+            onClick={this.restartChronometer.bind(this)}
+          />
 
-            <TimerButton
-              icon="flag"
-              title="Laps"
-              hideButton={isLapsButtonHidden}
-              onClick={this.registerLapTime.bind(this)}
-            />
-          </Timer>
+          <TimerButton
+            icon="flag"
+            title="Laps"
+            hideButton={isLapsButtonHidden}
+            onClick={this.registerLapTime.bind(this)}
+          />
+        </Timer>
 
-          <ChronometerResults results={results} />
-        </TabContent>
-      </Tab>
+        <ChronometerResults results={results} />
+      </PageContent>
     );
   }
 
