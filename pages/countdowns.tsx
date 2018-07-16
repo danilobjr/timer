@@ -65,7 +65,9 @@ class CountdownsPage extends Component<CountdownsPageProps, CountdownsPageState>
   isEdition = () => this.state.isEdition && this.props.countdowns.length > 0;
 }
 
+// TODO: refactor this to ReturnType<typeof mapStateToProps>
 type StateToProps = CountdownsState;
+// TODO: refactor this to ReturnType<typeof mapDispatchToProps>
 type DispatchToProps = typeof actions;
 
 const mapStateToProps = (state: State) => ({ ...state } as CountdownsState);
