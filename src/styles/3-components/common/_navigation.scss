@@ -1,7 +1,8 @@
 .navigation {
   > .list {
+    padding: 0 $content-spacing;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     min-height: 67px;
     background-color: $alto;
   }

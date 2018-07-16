@@ -1,27 +1,25 @@
 .title-bar {
-    & {
-        display: flex;
-        height: 31px;
-        background-color: $alto;       
-    }
-    
-    > .title {
-        flex: 1;
-        padding: 6px 0 0 12px;
-        margin: 0;
-        font-size: 0.75rem;
-        font-weight: 500;
+  display: flex;
+  height: 31px;
+  background-color: $alto;
 
-        -webkit-app-region: drag;
-    }
-    
-    > .buttons {
-        display: flex;
-        flex-basis: 138px;
-    }
+  > .title {
+    flex: 1;
+    padding: 6px 0 0 $content-spacing;
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: 500;
 
-    &.-lighttheme {
-        color: $white;
-        background-color: $mariner;
-    }
+    -webkit-app-region: drag;
+  }
+
+  > .buttons {
+    display: flex;
+    flex-basis: 138px;
+  }
+
+  &.-lighttheme {
+    color: $white;
+    background-color: $mariner;
+  }
 }
