@@ -22,7 +22,6 @@ export const actions = {
   remove: createAction<CountdownId>(actionDescription('REMOVE')),
   reset: createAction<CountdownId>(actionDescription('RESET')),
   start: createAction<CountdownId>(actionDescription('START')),
-  toggleEdition: createAction(actionDescription('TOGGLE_EDITION')),
   toggleExpand: createAction<CountdownId>(actionDescription('TOGGLE_EXPAND')),
   update: createAction<CountdownId, Partial<Countdown>, Countdown>(
     actionDescription('UPDATE_COUNTDOWN'),
@@ -41,9 +40,6 @@ export type CountdownsState = typeof initialState;
 
 // REDUCERS
 
-const isEdition = createReducer({}, initialState.isEdition)
-  .on(actions.toggleEdition, isEdition => !isEdition);
-
 const countdowns = createReducer({}, initialState.countdowns)
   .on(actions.create, (countdowns, newCountdown) => [...countdowns, newCountdown])
   .on(actions.remove, (countdowns, id) => {
@@ -61,7 +57,6 @@ const countdowns = createReducer({}, initialState.countdowns)
   .on(actions.update, updateCountdown);
 
 export default combineReducers({
-  isEdition,
   countdowns,
 });
 
@@ -124,12 +119,6 @@ function* countdownFlow() {
     if (type.includes('REMOVE')) {
       if (tasks[countdownId]) {
         yield cancel(tasks[countdownId]);
-      }
-
-      const countdowns = yield select(({ countdowns }: State) => countdowns.countdowns);
-
-      if (countdowns.length === 0) {
-        yield put(actions.toggleEdition());
       }
     }
   }
