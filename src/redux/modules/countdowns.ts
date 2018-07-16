@@ -22,7 +22,6 @@ export const actions = {
   remove: createAction<CountdownId>(actionDescription('REMOVE')),
   reset: createAction<CountdownId>(actionDescription('RESET')),
   start: createAction<CountdownId>(actionDescription('START')),
-  toggleExpand: createAction<CountdownId>(actionDescription('TOGGLE_EXPAND')),
   update: createAction<CountdownId, Partial<Countdown>, Countdown>(
     actionDescription('UPDATE_COUNTDOWN'),
     (id: CountdownId, updatedProps: Countdown) => ({ id, ...updatedProps }),
@@ -48,10 +47,6 @@ const countdowns = createReducer({}, initialState.countdowns)
   .on(actions.reset, (countdowns, id) => {
     const original = countdowns.find(countdown => countdown.id === id);
     return updateCountdown(countdowns, { ...original, milliseconds: original.startAt });
-  })
-  .on(actions.toggleExpand, (countdowns, id) => {
-    const original = countdowns.find(countdown => countdown.id === id);
-    return updateCountdown(countdowns, { ...original, expanded: !original.expanded });
   })
   .on(actions.update, updateCountdown);
 

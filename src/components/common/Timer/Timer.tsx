@@ -5,6 +5,8 @@ import { Watch } from './Watch';
 import { TimerActions } from './TimerActions';
 import { Time } from 'models';
 
+const initialState = { expanded: false };
+
 type TimerProps = {
   disableStartPauseButton?: boolean;
   hideExpandButton?: boolean;
@@ -13,12 +15,15 @@ type TimerProps = {
   time: Time;
   onClickPause?: () => void;
   onClickStart?: () => void;
-  onClickToggleExpand?: () => void;
 };
+
+type TimerState = Readonly<typeof initialState>;
 
 // TODO: bring toggleExpand from redux to local state
 
-export class Timer extends Component<TimerProps> {
+export class Timer extends Component<TimerProps, TimerState> {
+  readonly state: TimerState = initialState;
+
   static defaultProps: Partial<TimerProps> = {
     disableStartPauseButton: false,
     hideExpandButton: false,
@@ -26,7 +31,6 @@ export class Timer extends Component<TimerProps> {
     startAt: 0,
     onClickPause: () => null,
     onClickStart: () => null,
-    onClickToggleExpand: () => null,
   };
 
   render() {
@@ -36,10 +40,10 @@ export class Timer extends Component<TimerProps> {
       showHundredths,
       startAt,
       time,
-      onClickToggleExpand,
     } = this.props;
 
-    const { expanded, milliseconds, name, paused } = time;
+    const { milliseconds, name, paused } = time;
+    const { expanded } = this.state;
 
     return (
       <div
@@ -61,8 +65,8 @@ export class Timer extends Component<TimerProps> {
           hideShrinkButton={!expanded}
           percentageProgress={this.calculatePercentageProgress()}
           onClickStartPauseButton={this.togglePause}
-          onClickExpandButton={onClickToggleExpand}
-          onClickShrinkButton={onClickToggleExpand}
+          onClickExpandButton={this.toggleExpanded}
+          onClickShrinkButton={this.toggleExpanded}
         >
           {this.props.children}
         </TimerActions>
@@ -87,8 +91,8 @@ export class Timer extends Component<TimerProps> {
     }
 
     // if (isRegressive) {
-      // return remainingTime / startAt;
-      return milliseconds / startAt;
+    // return remainingTime / startAt;
+    return milliseconds / startAt;
     // }
 
     // return milliseconds / TimeInMilliseconds.OneMinute;
@@ -98,4 +102,6 @@ export class Timer extends Component<TimerProps> {
     const { time, onClickPause, onClickStart } = this.props;
     time.paused ? onClickStart() : onClickPause();
   }
+
+  toggleExpanded = () => this.setState(prevState => ({ expanded: !prevState.expanded }));
 }

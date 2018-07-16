@@ -13,7 +13,6 @@ type Actions = {
   onClickRemove: (id: string) => void;
   onClickReset: (id: string) => void;
   onClickStart: (id: string) => void;
-  onClickToggleExpand: (id: string) => void;
 };
 
 export const CountdownGrid: SFC<CountdownGridProps> = ({ isEdition, countdowns, ...otherProps }) => {
@@ -31,7 +30,6 @@ export const CountdownGrid: SFC<CountdownGridProps> = ({ isEdition, countdowns, 
           onClickRemove={bindIdAndPropAction(countdown.id, 'onClickRemove')}
           onClickReset={bindIdAndPropAction(countdown.id, 'onClickReset')}
           onClickStart={bindIdAndPropAction(countdown.id, 'onClickStart')}
-          onClickToggleExpand={bindIdAndPropAction(countdown.id, 'onClickToggleExpand')}
         />
       ))}
     </div>

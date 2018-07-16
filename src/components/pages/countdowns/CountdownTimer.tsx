@@ -10,7 +10,6 @@ type CountdownTimerProps = {
   onClickPause: () => void;
   onClickReset: () => void;
   onClickStart: () => void;
-  onClickToggleExpand: () => void;
 };
 
 // TODO: refactor this to a SFC
@@ -23,7 +22,6 @@ export class CountdownTimer extends Component<CountdownTimerProps> {
       onClickPause,
       onClickReset,
       onClickStart,
-      onClickToggleExpand,
     } = this.props;
 
     const { startAt, ...otherProps } = countdown;
@@ -36,7 +34,6 @@ export class CountdownTimer extends Component<CountdownTimerProps> {
         time={otherProps}
         onClickPause={onClickPause}
         onClickStart={onClickStart}
-        onClickToggleExpand={onClickToggleExpand}
       >
         <TimerButton
           className="remove"
