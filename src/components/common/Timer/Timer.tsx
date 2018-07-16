@@ -65,8 +65,7 @@ export class Timer extends Component<TimerProps, TimerState> {
           hideShrinkButton={!expanded}
           percentageProgress={this.calculatePercentageProgress()}
           onClickStartPauseButton={this.togglePause}
-          onClickExpandButton={this.toggleExpanded}
-          onClickShrinkButton={this.toggleExpanded}
+          onToggleExpandButton={this.toggleExpanded}
         >
           {this.props.children}
         </TimerActions>

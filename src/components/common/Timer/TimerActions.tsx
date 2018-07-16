@@ -9,8 +9,7 @@ type TimerActionsProps = {
   hideShrinkButton?: boolean;
   percentageProgress?: number;
   showPauseIcon?: boolean;
-  onClickExpandButton: () => void;
-  onClickShrinkButton: () => void;
+  onToggleExpandButton: () => void;
   onClickStartPauseButton: () => void;
 };
 
@@ -21,8 +20,7 @@ export const TimerActions: SFC<TimerActionsProps> = ({
     disableStartPauseButton,
     showPauseIcon,
     percentageProgress,
-    onClickExpandButton,
-    onClickShrinkButton,
+    onToggleExpandButton,
     onClickStartPauseButton,
   }) => (
     <div className="timer-actions">
@@ -41,7 +39,7 @@ export const TimerActions: SFC<TimerActionsProps> = ({
         title="Expand"
         hideButton={hideExpandButton}
         position="right"
-        onClick={onClickExpandButton}
+        onClick={onToggleExpandButton}
       />
 
       <TimerButton
@@ -50,7 +48,7 @@ export const TimerActions: SFC<TimerActionsProps> = ({
         title="Shrink"
         hideButton={hideShrinkButton}
         position="right"
-        onClick={onClickShrinkButton}
+        onClick={onToggleExpandButton}
       />
     </div>
 );
