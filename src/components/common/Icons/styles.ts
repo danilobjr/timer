@@ -2,7 +2,7 @@ import { CSSProperties } from 'react';
 
 export const iconStyles = {
   base: {
-    stroke: 'black',
+    stroke: 'hsl(0, 0%, 34%)',
   },
   timerCommandButton: {
     base: {
@@ -13,7 +13,7 @@ export const iconStyles = {
       strokeDasharray: '52px',
       transform: 'rotateZ(-159deg)',
       transformOrigin: '50%',
-    }
+    },
   },
   crispEdges: {
     shapeRendering: 'crispEdges',
