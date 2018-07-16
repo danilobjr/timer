@@ -3,15 +3,15 @@ import * as classNames from 'classnames';
 import { Field } from './Field';
 import { ChangeEvent, Component } from 'react';
 
-interface FieldTextProps {
+const initialState = { inputIsVisible: false };
+
+type FieldTextProps = {
   label: string;
   value?: string;
   onChange?: (value: string) => void;
-}
+};
 
-interface FieldTextState {
-  inputIsVisible: boolean;
-}
+type FieldTextState = Readonly<typeof initialState>;
 
 export class FieldText extends Component<FieldTextProps, FieldTextState> {
   static defaultProps: Partial<FieldTextProps> = {
@@ -19,13 +19,7 @@ export class FieldText extends Component<FieldTextProps, FieldTextState> {
     onChange: () => null,
   };
 
-  constructor(props: FieldTextProps) {
-    super(props);
-
-    this.state = {
-      inputIsVisible: false
-    };
-  }
+  readonly state: FieldTextState = initialState;
 
   componentDidUpdate() {
     (this.refs.input as any).focus();
@@ -56,13 +50,7 @@ export class FieldText extends Component<FieldTextProps, FieldTextState> {
     );
   }
 
-  onChange = (e: ChangeEvent<HTMLInputElement>) => this.props.onChange(e.currentTarget.value)
-
-  showInput = () => {
-    this.setState({ inputIsVisible: true });
-  }
-
-  hideInput = () => {
-    this.setState({ inputIsVisible: false });
-  }
+  onChange = (e: ChangeEvent<HTMLInputElement>) => this.props.onChange(e.currentTarget.value);
+  showInput = () => this.setState({ inputIsVisible: true });
+  hideInput = () => this.setState({ inputIsVisible: false });
 }
