@@ -28,6 +28,7 @@ type NewCountdownPageState = Readonly<typeof initialState>;
 type NewCountdownPageProps = DispatchToProps & WithRouterProps;
 
 // TODO: save button should be always enabled. When no time set, show a message: Please, set a time first.
+// TODO: add a back button
 
 class NewCountdownPage extends Component<NewCountdownPageProps, NewCountdownPageState> {
   readonly state: NewCountdownPageState = initialState;
