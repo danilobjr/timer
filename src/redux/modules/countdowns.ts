@@ -91,6 +91,7 @@ function* countdownFlow() {
     const { payload, type } = action;
     const countdownId = payload;
 
+    // TODO: refactor. See chronometer redux module
     if (type.includes('START')) {
       tasks[countdownId] = yield fork(countdownInterval, countdownId);
     }
