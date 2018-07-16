@@ -7,7 +7,7 @@ import { CountdownsPageCommandBar, CountdownGrid } from 'components/pages/countd
 import { State } from 'src/redux';
 import { CountdownsState, actions } from 'src/redux/modules/countdowns';
 
-// TODO: get all components from 'components'; withou "namespaces".
+// TODO: get all components from 'components'; without "namespaces".
 
 const initialState = {
   isEdition: false,
