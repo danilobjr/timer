@@ -41,18 +41,9 @@
     font-size: 15vw;
   }
 
-  &.-expanded > .watch-commands {
-    order: 1;
-    margin: 0 0 7vh 0;
-  }
-
   &.-expanded > .timer-actions {
     margin-bottom: 47px;
     order: 2;
-  }
-
-  &.-expanded > .info {
-    order: 1;
   }
 
   &.-expanded > .info > .name {
