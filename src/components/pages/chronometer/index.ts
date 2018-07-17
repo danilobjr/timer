@@ -1,2 +1,2 @@
-export * from './ChronometerResults';
+export * from './ChronometerLaps';
 export * from './localUtils';

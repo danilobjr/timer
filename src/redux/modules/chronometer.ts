@@ -4,12 +4,14 @@ import { Chronometer } from 'models';
 import { fork, take, call, cancel, put, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import { State } from 'src/redux';
+import { Lap } from 'src/redux/models';
 
 const actionDescription = createActionDescription('chronometer');
 
 // ACTIONS
 
 export const actions = {
+  registerLap: createAction<Lap>(actionDescription('REGISTER_LAP')),
   reset: createAction(actionDescription('RESET')),
   start: createAction(actionDescription('START')),
   stop: createAction(actionDescription('STOP')),
@@ -37,8 +39,12 @@ const chronometer = createReducer({}, initialState.chronometer)
     ...updatedChronometerProps,
   }));
 
+const laps = createReducer({}, initialState.laps)
+  .on(actions.registerLap, (laps, newLap) => [...laps, newLap]);
+
 export default {
   chronometer,
+  laps,
 };
 
 // SAGAS
@@ -62,7 +68,6 @@ function* chronometerFlow() {
 
   while (true) {
     const action: Action<void> = yield take([
-      actions.reset,
       actions.start,
       actions.stop,
     ]);

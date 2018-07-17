@@ -32,7 +32,7 @@ export class ChronometerPage extends Component<ChronometerPageProps> {
             icon="flag"
             title="Laps"
             hideButton={this.isLapsHidden()}
-            onClick={console.log}
+            onClick={this.registerLap}
           />
         </Timer>
 
@@ -47,6 +47,11 @@ export class ChronometerPage extends Component<ChronometerPageProps> {
   }
 
   isLapsHidden = () => this.props.chronometer.paused;
+
+  registerLap = () => {
+    const { chronometer, registerLap } = this.props;
+    registerLap(chronometer.milliseconds);
+  }
 }
 
 type StateToProps = ReturnType<typeof mapStateToProps>;
