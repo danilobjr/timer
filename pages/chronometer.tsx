@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { ChronometerLaps, Timer, TimerButton, PageContent } from 'components';
+import { ChronometerLaps, Timer, TimerButton, PageContent, Toggleable } from 'components';
 import { State } from 'src/redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { actions } from 'src/redux/modules/chronometer';
@@ -14,29 +14,37 @@ export class ChronometerPage extends Component<ChronometerPageProps> {
 
     return (
       <PageContent className="-chronometer">
-        <Timer
-          noInfo
-          showHundredths
-          time={chronometer}
-          onClickStart={start}
-          onClickPause={stop}
-        >
-          <TimerButton
-            icon="reset"
-            title="Reset"
-            hideButton={this.isResetHidden()}
-            onClick={reset}
-          />
+        <Toggleable>
+          {({ active, toggle }) => (
+            <>
+              <Timer
+                expanded={active}
+                noInfo
+                showHundredths
+                time={chronometer}
+                onClickStart={start}
+                onClickPause={stop}
+                onClickToggleExpansion={toggle}
+              >
+                <TimerButton
+                  icon="reset"
+                  title="Reset"
+                  hideButton={this.isResetHidden()}
+                  onClick={reset}
+                />
 
-          <TimerButton
-            icon="flag"
-            title="Laps"
-            hideButton={this.isLapsHidden()}
-            onClick={this.registerLap}
-          />
-        </Timer>
+                <TimerButton
+                  icon="flag"
+                  title="Laps"
+                  hideButton={this.isLapsHidden()}
+                  onClick={this.registerLap}
+                />
+              </Timer>
 
-        <ChronometerLaps laps={laps} />
+              <ChronometerLaps laps={laps} />
+            </>
+          )}
+        </Toggleable>
       </PageContent>
     );
   }

@@ -6,10 +6,9 @@ import { TimerActions } from './TimerActions';
 import { Time } from 'models';
 import { FlexSpace } from 'components';
 
-const initialState = { expanded: false };
-
 type TimerProps = {
   disableStartPauseButton?: boolean;
+  expanded?: boolean;
   hideExpandButton?: boolean;
   noInfo?: boolean;
   showHundredths?: boolean;
@@ -17,37 +16,35 @@ type TimerProps = {
   time: Partial<Time>;
   onClickPause?: () => void;
   onClickStart?: () => void;
+  onClickToggleExpansion?: () => void;
 };
 
-type TimerState = Readonly<typeof initialState>;
-
-// TODO: bring toggleExpand from redux to local state
-
-export class Timer extends Component<TimerProps, TimerState> {
-  readonly state: TimerState = initialState;
-
+export class Timer extends Component<TimerProps> {
   static defaultProps: Partial<TimerProps> = {
     disableStartPauseButton: false,
+    expanded: false,
     hideExpandButton: false,
     noInfo: false,
     showHundredths: false,
     startAt: 0,
     onClickPause: () => null,
     onClickStart: () => null,
+    onClickToggleExpansion: () => null,
   };
 
   render() {
     const {
       disableStartPauseButton,
+      expanded,
       hideExpandButton,
       noInfo,
       showHundredths,
       startAt,
       time,
+      onClickToggleExpansion,
     } = this.props;
 
     const { milliseconds, name, paused } = time;
-    const { expanded } = this.state;
 
     return (
       <div
@@ -74,7 +71,7 @@ export class Timer extends Component<TimerProps, TimerState> {
           hideShrinkButton={!expanded}
           percentageProgress={this.calculatePercentageProgress()}
           onClickStartPauseButton={this.togglePause}
-          onToggleExpandButton={this.toggleExpanded}
+          onToggleExpandButton={onClickToggleExpansion}
         >
           {this.props.children}
         </TimerActions>
@@ -111,6 +108,4 @@ export class Timer extends Component<TimerProps, TimerState> {
     const { time, onClickPause, onClickStart } = this.props;
     time.paused ? onClickStart() : onClickPause();
   }
-
-  toggleExpanded = () => this.setState(prevState => ({ expanded: !prevState.expanded }));
 }
