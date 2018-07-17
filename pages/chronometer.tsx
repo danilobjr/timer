@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { ChronometerResults, Timer, TimerButton, PageContent } from 'components';
+import { ChronometerLaps, Timer, TimerButton, PageContent } from 'components';
 import { State } from 'src/redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { actions } from 'src/redux/modules/chronometer';
@@ -36,7 +36,7 @@ export class ChronometerPage extends Component<ChronometerPageProps> {
           />
         </Timer>
 
-        <ChronometerResults results={laps} />
+        <ChronometerLaps laps={laps} />
       </PageContent>
     );
   }

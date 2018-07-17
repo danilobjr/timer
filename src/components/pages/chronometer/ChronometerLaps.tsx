@@ -1,31 +1,29 @@
 import * as React from 'react';
-import * as classNames from 'classnames';
 import { Component } from 'react';
-import { connect } from 'react-redux';
 import { Watch } from 'components/common';
 import { compose, prepend, head } from 'utils';
 import { differenceBetweenResults, mapResults } from './localUtils';
 
-interface ChronometerResultsComponentProps {
-  isLightThemeOn: boolean;
-  results: number[];
+interface ChronometerLapsProps {
+  laps: number[];
 }
 
-export class ChronometerResultsComponent extends Component<ChronometerResultsComponentProps> {
+export class ChronometerLaps extends Component<ChronometerLapsProps> {
   render() {
-    const { results, isLightThemeOn } = this.props;
-    const hasNoResults = !results || results.length === 0;
+    const { laps } = this.props;
+    const hasNoResults = !laps || laps.length === 0;
 
     if (hasNoResults) {
       return null;
     }
 
     return (
-      <div className={classNames('chronometer-results', { '-lighttheme': isLightThemeOn })}>
+      <div className="chronometer-results">
         <header className="header">
           <h4 className="title">Laps</h4>
           <span>Partials</span>
         </header>
+
         <div className="scroller">
           <ol className="laps">
             {this.renderLaps()}
@@ -36,10 +34,10 @@ export class ChronometerResultsComponent extends Component<ChronometerResultsCom
   }
 
   renderLaps() {
-    const { results } = this.props;
+    const { laps } = this.props;
 
-    const partials = compose(prepend(head(results)), differenceBetweenResults)(results);
-    const mappedResults = mapResults(results)(partials);
+    const partials = compose(prepend(head(laps)), differenceBetweenResults)(laps);
+    const mappedResults = mapResults(laps)(partials);
 
     return mappedResults.map(result => {
       return (
@@ -55,9 +53,3 @@ export class ChronometerResultsComponent extends Component<ChronometerResultsCom
     });
   }
 }
-
-const mapStateToProps = (state: any) => ({
-  isLightThemeOn: state.isLightThemeOn
-})
-
-export const ChronometerResults = connect(mapStateToProps)(ChronometerResultsComponent);
