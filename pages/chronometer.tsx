@@ -12,7 +12,8 @@ export class ChronometerPage extends Component<ChronometerPageProps> {
   render() {
     const { chronometer, laps, start, stop } = this.props;
 
-    // TODO: move reset to Timer and expose some props related to it
+    // TODO: move reset button to Timer and expose some props related to it
+    // TODO: fix StartPause button percentage
 
     return (
       <PageContent className="-chronometer">
