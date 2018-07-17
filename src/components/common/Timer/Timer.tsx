@@ -10,6 +10,7 @@ const initialState = { expanded: false };
 type TimerProps = {
   disableStartPauseButton?: boolean;
   hideExpandButton?: boolean;
+  noInfo?: boolean;
   showHundredths?: boolean;
   startAt?: number;
   time: Partial<Time>;
@@ -27,6 +28,7 @@ export class Timer extends Component<TimerProps, TimerState> {
   static defaultProps: Partial<TimerProps> = {
     disableStartPauseButton: false,
     hideExpandButton: false,
+    noInfo: false,
     showHundredths: false,
     startAt: 0,
     onClickPause: () => null,
@@ -37,6 +39,7 @@ export class Timer extends Component<TimerProps, TimerState> {
     const {
       disableStartPauseButton,
       hideExpandButton,
+      noInfo,
       showHundredths,
       startAt,
       time,
@@ -70,10 +73,12 @@ export class Timer extends Component<TimerProps, TimerState> {
           {this.props.children}
         </TimerActions>
 
-        <div className="info">
-          <span className="name">{name}</span>
-          <Watch className={classNames({ 'h-hidden': expanded })} time={startAt} />
-        </div>
+        {!noInfo && (
+          <div className="info">
+            <span className="name">{name}</span>
+            <Watch className={classNames({ 'h-hidden': expanded })} time={startAt} />
+          </div>
+        )}
       </div>
     );
   }

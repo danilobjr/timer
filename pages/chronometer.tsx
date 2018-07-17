@@ -15,6 +15,7 @@ export class ChronometerPage extends Component<ChronometerPageProps> {
     return (
       <PageContent className="-chronometer">
         <Timer
+          noInfo
           showHundredths
           time={chronometer}
           onClickStart={start}
