@@ -34,23 +34,26 @@ export class CountdownTimer extends Component<CountdownTimerProps> {
         time={otherProps}
         onClickPause={onClickPause}
         onClickStart={onClickStart}
-      >
-        <TimerButton
-          className="remove"
-          icon="trash"
-          title="Remove"
-          hideButton={!isEdition}
-          onClick={onClickRemove}
-        />
+        renderActions={() => (
+          <>
+            <TimerButton
+              className="remove"
+              icon="trash"
+              title="Remove"
+              hideButton={!isEdition}
+              onClick={onClickRemove}
+            />
 
-        <TimerButton
-          className="reset"
-          icon="reset"
-          title="Reset"
-          hideButton={this.isHideResetButton()}
-          onClick={onClickReset}
-        />
-      </ExpandableTimer>
+            <TimerButton
+              className="reset"
+              icon="reset"
+              title="Reset"
+              hideButton={this.isHideResetButton()}
+              onClick={onClickReset}
+            />
+          </>
+        )}
+      />
     );
   }
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
-import { Component } from 'react';
+import { Component, ReactNode } from 'react';
 import { Watch } from './Watch';
 import { TimerActions } from './TimerActions';
 import { Time } from 'models';
@@ -11,6 +11,7 @@ export type TimerProps = {
   expanded?: boolean;
   hideExpandButton?: boolean;
   noInfo?: boolean;
+  renderActions?: () => ReactNode;
   showHundredths?: boolean;
   startAt?: number;
   time: Partial<Time>;
@@ -25,6 +26,7 @@ export class Timer extends Component<TimerProps> {
     expanded: false,
     hideExpandButton: false,
     noInfo: false,
+    renderActions: () => null,
     showHundredths: false,
     startAt: 0,
     onClickPause: () => null,
@@ -34,10 +36,12 @@ export class Timer extends Component<TimerProps> {
 
   render() {
     const {
+      children,
       disableStartPauseButton,
       expanded,
       hideExpandButton,
       noInfo,
+      renderActions,
       showHundredths,
       startAt,
       time,
@@ -73,7 +77,7 @@ export class Timer extends Component<TimerProps> {
           onClickStartPauseButton={this.togglePause}
           onToggleExpandButton={onClickToggleExpansion}
         >
-          {this.props.children}
+          {renderActions()}
         </TimerActions>
 
         {!noInfo && (
@@ -82,6 +86,8 @@ export class Timer extends Component<TimerProps> {
             <Watch className={classNames({ 'h-hidden': expanded })} time={startAt} />
           </div>
         )}
+
+        {children}
       </div>
     );
   }

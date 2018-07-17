@@ -12,36 +12,43 @@ export class ChronometerPage extends Component<ChronometerPageProps> {
   render() {
     const { chronometer, laps, reset, start, stop } = this.props;
 
+    // TODO: move reset to Timer and expose some props related to it
+
     return (
       <PageContent className="-chronometer">
         <Toggleable>
-          {({ active, toggle }) => (
+          {({ active: expanded, toggle }) => (
             <>
               <Timer
-                expanded={active}
+                expanded={expanded}
                 noInfo
                 showHundredths
                 time={chronometer}
                 onClickStart={start}
                 onClickPause={stop}
                 onClickToggleExpansion={toggle}
-              >
-                <TimerButton
-                  icon="reset"
-                  title="Reset"
-                  hideButton={this.isResetHidden()}
-                  onClick={reset}
-                />
+                renderActions={() => (
+                  <>
+                    <TimerButton
+                      icon="reset"
+                      title="Reset"
+                      hideButton={this.isResetHidden()}
+                      onClick={reset}
+                    />
 
-                <TimerButton
-                  icon="flag"
-                  title="Laps"
-                  hideButton={this.isLapsHidden()}
-                  onClick={this.registerLap}
-                />
+                    <TimerButton
+                      icon="flag"
+                      title="Laps"
+                      hideButton={this.isLapsHidden()}
+                      onClick={this.registerLap}
+                    />
+                  </>
+                )}
+              >
+                {!!expanded && <ChronometerLaps laps={laps} />}
               </Timer>
 
-              <ChronometerLaps laps={laps} />
+              {!expanded && <ChronometerLaps laps={laps} />}
             </>
           )}
         </Toggleable>
