@@ -1,4 +1,5 @@
 export * from './CommandBar';
+export * from './FlexSpace';
 export * from './Form';
 export * from './Icons';
 export * from './Navigation';
