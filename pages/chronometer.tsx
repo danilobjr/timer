@@ -10,12 +10,11 @@ type ChronometerPageProps = StateToProps & DispatchToProps;
 
 export class ChronometerPage extends Component<ChronometerPageProps> {
   render() {
-    const { chronometer, laps, start, stop } = this.props;
+    const { chronometer, laps, reset, start, stop } = this.props;
 
     return (
       <PageContent className="-chronometer">
         <Timer
-          // ref="timer"
           showHundredths
           time={chronometer}
           onClickStart={start}
@@ -25,7 +24,7 @@ export class ChronometerPage extends Component<ChronometerPageProps> {
             icon="reset"
             title="Reset"
             hideButton={this.isResetHidden()}
-            onClick={console.log}
+            onClick={reset}
           />
 
           <TimerButton

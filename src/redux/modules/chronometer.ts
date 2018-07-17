@@ -10,6 +10,7 @@ const actionDescription = createActionDescription('chronometer');
 // ACTIONS
 
 export const actions = {
+  reset: createAction(actionDescription('RESET')),
   start: createAction(actionDescription('START')),
   stop: createAction(actionDescription('STOP')),
   update: createAction<Partial<Chronometer>>(actionDescription('UPDATE')),
@@ -28,6 +29,7 @@ const initialState = {
 export type ChronometerState = typeof initialState;
 
 const chronometer = createReducer({}, initialState.chronometer)
+  .on(actions.reset, (chronometer, _) => ({ ...chronometer, milliseconds: 0 }))
   .on(actions.start, (chronometer, _) => ({ ...chronometer, paused: false }))
   .on(actions.stop, (chronometer, _) => ({ ...chronometer, paused: true }))
   .on(actions.update, (originalChronometer, updatedChronometerProps) => ({
@@ -59,7 +61,11 @@ function* chronometerFlow() {
   let task = null;
 
   while (true) {
-    const action: Action<void> = yield take([actions.start, actions.stop]);
+    const action: Action<void> = yield take([
+      actions.reset,
+      actions.start,
+      actions.stop,
+    ]);
 
     // TODO: refactor
     if (action.type.includes(actions.start.getType())) {
