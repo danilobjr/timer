@@ -52,6 +52,7 @@ export class Timer extends Component<TimerProps, TimerState> {
       <div
         className={classNames(
           'timer',
+          !!noInfo && '-no-info',
           !!expanded && '-expanded',
           // !!isRegressive && '-no-info',
         )}

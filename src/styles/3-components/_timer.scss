@@ -28,7 +28,11 @@
   }
 
   &.-no-info {
-    height: 170px;
+    height: 164px;
+  }
+
+  &.-expanded.-no-info > .timer-actions {
+    margin-bottom: 47px;
   }
 
   &.-expanded {

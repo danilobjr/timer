@@ -1,8 +1,10 @@
 .watch {
-  display: flex;
-  justify-content: space-between;
   color: $scorpion;
   font-weight: 700;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 
   > .unit.-active {
     color: black !important;
