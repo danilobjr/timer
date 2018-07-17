@@ -37,10 +37,10 @@
     margin-bottom: 8px;
   }
 
-  > .scroller > .laps > .lap:before {
+  > .scroller > .laps > .lap > .number {
     position: absolute;
-    left: -25px;
-    top: 4px;
+    left: -28px;
+    top: 2px;
     color: $silver;
     font-size: 0.8rem;
   }
@@ -59,12 +59,16 @@
 }
 
 .-expanded .chronometer-laps {
+  position: absolute;
+  bottom: 142px;
   align-items: center;
 
-  > .scroller > .laps > .lap:before {
-    top: 2px;
-    font-size: 0.9rem;
-    font-weight: 700;
+  > .scroller > .laps > .lap {
+    display: none;
+  }
+
+  > .scroller > .laps > .lap:last-child {
+    display: flex;
   }
 
   > .scroller > .laps > .lap > .partial {
@@ -75,7 +79,7 @@
     font-size: 1.1rem;
   }
 
-  > .scroller > .laps > .lap:before,
+  > .scroller > .laps > .lap > .number,
   > .scroller > .laps .watch > .unit {
     color: $corn-flower-blue;
   }

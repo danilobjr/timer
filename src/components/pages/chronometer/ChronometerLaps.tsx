@@ -1,7 +1,8 @@
 import * as React from 'react';
+import classNames from 'classnames';
 import { Component } from 'react';
 import { Watch } from 'components/common';
-import { compose, prepend, head, when, last, log, flatten } from 'utils';
+import { compose, prepend, head } from 'utils';
 import { differenceBetweenResults, mapResults } from './localUtils';
 
 type ChronometerLapsProps = {
@@ -17,7 +18,7 @@ export class ChronometerLaps extends Component<ChronometerLapsProps> {
   };
 
   render() {
-    const { laps, noHeader } = this.props;
+    const { laps, noHeader, showOnlyLastLap } = this.props;
     const hasNoResults = !laps || laps.length === 0;
 
     if (hasNoResults) {
@@ -25,7 +26,12 @@ export class ChronometerLaps extends Component<ChronometerLapsProps> {
     }
 
     return (
-      <div className="chronometer-laps">
+      <div
+        className={classNames(
+          'chronometer-laps',
+          showOnlyLastLap && '-show-only-last-lap',
+        )}
+      >
         {!noHeader && (
           <header className="header">
             <h4 className="title">Laps</h4>
@@ -34,9 +40,9 @@ export class ChronometerLaps extends Component<ChronometerLapsProps> {
         )}
 
         <div className="scroller">
-          <ol className="laps">
+          <ul className="laps">
             {this.renderLaps()}
-          </ol>
+          </ul>
         </div>
       </div>
     );
@@ -44,9 +50,7 @@ export class ChronometerLaps extends Component<ChronometerLapsProps> {
 
   // TODO: refactor
   renderLaps() {
-    const maybeLast = when<number[], number>(() => this.props.showOnlyLastLap)(last);
-
-    const laps = flatten([maybeLast(this.props.laps)]);
+    const { laps } = this.props;
 
     const partials = compose(
       prepend(head(laps)),
@@ -55,9 +59,10 @@ export class ChronometerLaps extends Component<ChronometerLapsProps> {
 
     const mappedResults = mapResults(laps)(partials);
 
-    return mappedResults.map(result => {
+    return mappedResults.map((result, index) => {
       return (
         <li key={result.total} className="lap">
+          <span className="number">{index + 1}</span>
           <div className="partial">
             <Watch time={result.partial} showHundredths />
           </div>
