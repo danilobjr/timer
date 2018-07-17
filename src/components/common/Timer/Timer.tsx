@@ -4,6 +4,7 @@ import { Component } from 'react';
 import { Watch } from './Watch';
 import { TimerActions } from './TimerActions';
 import { Time } from 'models';
+import { FlexSpace } from 'components';
 
 const initialState = { expanded: false };
 
@@ -57,10 +58,14 @@ export class Timer extends Component<TimerProps, TimerState> {
           // !!isRegressive && '-no-info',
         )}
       >
+        {!!expanded && <FlexSpace />}
+
         <Watch
           time={milliseconds}
           showHundredths={showHundredths}
         />
+
+        {!!expanded && <FlexSpace />}
 
         <TimerActions
           disableStartPauseButton={disableStartPauseButton}
