@@ -12,6 +12,7 @@ const actionDescription = createActionDescription('chronometer');
 
 export const actions = {
   registerLap: createAction<Lap>(actionDescription('REGISTER_LAP')),
+  removeLaps: createAction(actionDescription('REMOVE_LAPS')),
   reset: createAction(actionDescription('RESET')),
   start: createAction(actionDescription('START')),
   stop: createAction(actionDescription('STOP')),
@@ -40,7 +41,8 @@ const chronometer = createReducer({}, initialState.chronometer)
   }));
 
 const laps = createReducer({}, initialState.laps)
-  .on(actions.registerLap, (laps, newLap) => [...laps, newLap]);
+  .on(actions.registerLap, (laps, newLap) => [...laps, newLap])
+  .on(actions.removeLaps, () => []);
 
 export default {
   chronometer,

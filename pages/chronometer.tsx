@@ -33,7 +33,7 @@ export class ChronometerPage extends Component<ChronometerPageProps> {
                       icon="reset"
                       title="Reset"
                       hideButton={this.isResetHidden()}
-                      onClick={reset}
+                      onClick={this.reset}
                     />
 
                     <TimerButton
@@ -66,6 +66,11 @@ export class ChronometerPage extends Component<ChronometerPageProps> {
   registerLap = () => {
     const { chronometer, registerLap } = this.props;
     registerLap(chronometer.milliseconds);
+  }
+
+  reset = () => {
+    this.props.reset();
+    this.props.removeLaps();
   }
 }
 
