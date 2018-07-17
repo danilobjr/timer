@@ -18,6 +18,10 @@
     font-size: 0.82em;
   }
 
+  > .unit.-hundredths {
+    font-size: .8rem;
+  }
+
   > .unit.-hundredths:before {
     content: ',';
   }
