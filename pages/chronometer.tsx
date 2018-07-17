@@ -45,7 +45,13 @@ export class ChronometerPage extends Component<ChronometerPageProps> {
                   </>
                 )}
               >
-                {!!expanded && <ChronometerLaps laps={laps} />}
+                {!!expanded && (
+                  <ChronometerLaps
+                    noHeader
+                    laps={laps}
+                    showOnlyLastLap
+                  />
+                )}
               </Timer>
 
               {!expanded && <ChronometerLaps laps={laps} />}

@@ -42,8 +42,9 @@ export const prepend = (value: any) => (array: any) =>
 
 export const zipWith = (func: Function) => (firstArray: any[]) => (secondArray: any[]) => {
   const result = [];
+  const smallerArray = firstArray.length < secondArray.length ? firstArray : secondArray;
 
-  for (let i = 0; i < firstArray.length; i++) {
+  for (let i = 0; i < smallerArray.length; i++) {
     result.push(func(firstArray[i], secondArray[i]));
   }
 

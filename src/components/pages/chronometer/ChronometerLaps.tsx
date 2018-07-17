@@ -1,16 +1,23 @@
 import * as React from 'react';
 import { Component } from 'react';
 import { Watch } from 'components/common';
-import { compose, prepend, head } from 'utils';
+import { compose, prepend, head, when, last, log, flatten } from 'utils';
 import { differenceBetweenResults, mapResults } from './localUtils';
 
-interface ChronometerLapsProps {
+type ChronometerLapsProps = {
   laps: number[];
-}
+  noHeader?: boolean;
+  showOnlyLastLap?: boolean;
+};
 
 export class ChronometerLaps extends Component<ChronometerLapsProps> {
+  static defaultProps: Partial<ChronometerLapsProps> = {
+    noHeader: false,
+    showOnlyLastLap: false,
+  };
+
   render() {
-    const { laps } = this.props;
+    const { laps, noHeader } = this.props;
     const hasNoResults = !laps || laps.length === 0;
 
     if (hasNoResults) {
@@ -19,10 +26,12 @@ export class ChronometerLaps extends Component<ChronometerLapsProps> {
 
     return (
       <div className="chronometer-laps">
-        <header className="header">
-          <h4 className="title">Laps</h4>
-          <span>Partials</span>
-        </header>
+        {!noHeader && (
+          <header className="header">
+            <h4 className="title">Laps</h4>
+            <span>Partials</span>
+          </header>
+        )}
 
         <div className="scroller">
           <ol className="laps">
@@ -33,10 +42,17 @@ export class ChronometerLaps extends Component<ChronometerLapsProps> {
     );
   }
 
+  // TODO: refactor
   renderLaps() {
-    const { laps } = this.props;
+    const maybeLast = when<number[], number>(() => this.props.showOnlyLastLap)(last);
 
-    const partials = compose(prepend(head(laps)), differenceBetweenResults)(laps);
+    const laps = flatten([maybeLast(this.props.laps)]);
+
+    const partials = compose(
+      prepend(head(laps)),
+      differenceBetweenResults,
+    )(laps);
+
     const mappedResults = mapResults(laps)(partials);
 
     return mappedResults.map(result => {
