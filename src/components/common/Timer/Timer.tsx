@@ -3,7 +3,7 @@ import * as classNames from 'classnames';
 import { Component, ReactNode } from 'react';
 import { Watch } from './Watch';
 import { TimerActions } from './TimerActions';
-import { Time } from 'models';
+import { Time, TimeInMilliseconds } from 'models';
 import { FlexSpace } from 'components';
 
 export type TimerProps = {
@@ -11,13 +11,14 @@ export type TimerProps = {
   expanded?: boolean;
   hideExpandButton?: boolean;
   noInfo?: boolean;
-  renderActions?: () => ReactNode;
+  regressive?: boolean;
   showHundredths?: boolean;
   startAt?: number;
   time: Partial<Time>;
   onClickPause?: () => void;
   onClickStart?: () => void;
   onClickToggleExpansion?: () => void;
+  renderActions?: () => ReactNode;
 };
 
 export class Timer extends Component<TimerProps> {
@@ -26,12 +27,13 @@ export class Timer extends Component<TimerProps> {
     expanded: false,
     hideExpandButton: false,
     noInfo: false,
-    renderActions: () => null,
+    regressive: false,
     showHundredths: false,
     startAt: 0,
     onClickPause: () => null,
     onClickStart: () => null,
     onClickToggleExpansion: () => null,
+    renderActions: () => null,
   };
 
   render() {
@@ -56,7 +58,6 @@ export class Timer extends Component<TimerProps> {
           'timer',
           !!noInfo && '-no-info',
           !!expanded && '-expanded',
-          // !!isRegressive && '-no-info',
         )}
       >
         {!!expanded && <FlexSpace />}
@@ -93,7 +94,7 @@ export class Timer extends Component<TimerProps> {
   }
 
   calculatePercentageProgress() {
-    const { startAt, time } = this.props;
+    const { regressive, startAt, time } = this.props;
     const { paused, milliseconds } = time;
 
     const doNotStartedYet = paused && (milliseconds === 0 || milliseconds === startAt);
@@ -102,12 +103,11 @@ export class Timer extends Component<TimerProps> {
       return 0;
     }
 
-    // if (isRegressive) {
-    // return remainingTime / startAt;
-    return milliseconds / startAt;
-    // }
+    if (regressive) {
+      return milliseconds / startAt;
+    }
 
-    // return milliseconds / TimeInMilliseconds.OneMinute;
+    return milliseconds / TimeInMilliseconds.Minute;
   }
 
   togglePause = () => {

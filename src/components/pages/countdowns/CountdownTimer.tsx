@@ -30,6 +30,7 @@ export class CountdownTimer extends Component<CountdownTimerProps> {
       <ExpandableTimer
         disableStartPauseButton={this.isStartPauseButtonDisabled()}
         hideExpandButton={isEdition}
+        regressive
         startAt={startAt}
         time={otherProps}
         onClickPause={onClickPause}
