@@ -14,15 +14,15 @@ type TimerActionsProps = {
 };
 
 export const TimerActions: SFC<TimerActionsProps> = ({
-    children,
-    hideExpandButton,
-    hideShrinkButton,
-    disableStartPauseButton,
-    showPauseIcon,
-    percentageProgress,
-    onToggleExpandButton,
-    onClickStartPauseButton,
-  }) => (
+  children,
+  hideExpandButton,
+  hideShrinkButton,
+  disableStartPauseButton,
+  showPauseIcon,
+  percentageProgress,
+  onToggleExpandButton,
+  onClickStartPauseButton,
+}) => (
     <div className="timer-actions">
       {children}
 
@@ -51,7 +51,7 @@ export const TimerActions: SFC<TimerActionsProps> = ({
         onClick={onToggleExpandButton}
       />
     </div>
-);
+  );
 
 TimerActions.defaultProps = {
   disableStartPauseButton: false,
