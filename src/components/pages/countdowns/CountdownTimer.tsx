@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { Timer, TimerButton, Toggleable } from 'components';
+import { TimerButton, ExpandableTimer } from 'components';
 import { Countdown } from 'models';
 
 type CountdownTimerProps = {
@@ -27,36 +27,30 @@ export class CountdownTimer extends Component<CountdownTimerProps> {
     const { startAt, ...otherProps } = countdown;
 
     return (
-      <Toggleable>
-        {({ active, toggle }) => (
-          <Timer
-            disableStartPauseButton={this.isStartPauseButtonDisabled()}
-            expanded={active}
-            hideExpandButton={isEdition}
-            startAt={startAt}
-            time={otherProps}
-            onClickPause={onClickPause}
-            onClickStart={onClickStart}
-            onClickToggleExpansion={toggle}
-          >
-            <TimerButton
-              className="remove"
-              icon="trash"
-              title="Remove"
-              hideButton={!isEdition}
-              onClick={onClickRemove}
-            />
+      <ExpandableTimer
+        disableStartPauseButton={this.isStartPauseButtonDisabled()}
+        hideExpandButton={isEdition}
+        startAt={startAt}
+        time={otherProps}
+        onClickPause={onClickPause}
+        onClickStart={onClickStart}
+      >
+        <TimerButton
+          className="remove"
+          icon="trash"
+          title="Remove"
+          hideButton={!isEdition}
+          onClick={onClickRemove}
+        />
 
-            <TimerButton
-              className="reset"
-              icon="reset"
-              title="Reset"
-              hideButton={this.isHideResetButton()}
-              onClick={onClickReset}
-            />
-          </Timer>
-        )}
-      </Toggleable>
+        <TimerButton
+          className="reset"
+          icon="reset"
+          title="Reset"
+          hideButton={this.isHideResetButton()}
+          onClick={onClickReset}
+        />
+      </ExpandableTimer>
     );
   }
 
