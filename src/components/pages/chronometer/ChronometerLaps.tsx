@@ -18,7 +18,7 @@ export class ChronometerLaps extends Component<ChronometerLapsProps> {
     }
 
     return (
-      <div className="chronometer-results">
+      <div className="chronometer-laps">
         <header className="header">
           <h4 className="title">Laps</h4>
           <span>Partials</span>
