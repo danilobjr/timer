@@ -6,25 +6,11 @@ import { State } from 'src/redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { actions } from 'src/redux/modules/chronometer';
 
-const initialState = {
-  isLapsButtonHidden: true,
-  isResetButtonHidden: true,
-};
-
 type ChronometerPageProps = StateToProps & DispatchToProps;
-type ChronometerPageState = Readonly<typeof initialState>;
 
-export class ChronometerPage extends Component<ChronometerPageProps, ChronometerPageState> {
-  // private timer: any = null;
-  readonly state: ChronometerPageState = initialState;
-
-  // componentDidUpdate() {
-  //   this.timer = (this.refs.timer as any).getWrappedInstance();
-  // }
-
+export class ChronometerPage extends Component<ChronometerPageProps> {
   render() {
     const { chronometer, laps, start, stop } = this.props;
-    const { isResetButtonHidden, isLapsButtonHidden } = this.state;
 
     return (
       <PageContent className="-chronometer">
@@ -34,19 +20,18 @@ export class ChronometerPage extends Component<ChronometerPageProps, Chronometer
           time={chronometer}
           onClickStart={start}
           onClickPause={stop}
-        // onClickReset={this.hideResetButton}
         >
           <TimerButton
             icon="reset"
             title="Reset"
-            hideButton={isResetButtonHidden}
+            hideButton={this.isResetHidden()}
             onClick={console.log}
           />
 
           <TimerButton
             icon="flag"
             title="Laps"
-            hideButton={isLapsButtonHidden}
+            hideButton={this.isLapsHidden()}
             onClick={console.log}
           />
         </Timer>
@@ -56,41 +41,12 @@ export class ChronometerPage extends Component<ChronometerPageProps, Chronometer
     );
   }
 
-  // handleClickStart = () => this.setState({
-  //   isResetButtonHidden: true,
-  //   isLapsButtonHidden: false,
-  // });
-
-  // handleClickPause = () => this.setState({
-  //   isResetButtonHidden: false,
-  //   isLapsButtonHidden: true,
-  // });
-
-  // restartChronometer = () => {
-  //   // this.timer.reset();
-
-  //   const updatedState = {
-  //     ...this.state,
-  //     results: [] as number[],
-  //   };
-
-  //   this.setState(updatedState);
-  // }
-
-  hideResetButton() {
-    this.setState({ isResetButtonHidden: true });
+  isResetHidden = () => {
+    const { milliseconds, paused } = this.props.chronometer;
+    return !paused || milliseconds === 0;
   }
 
-  // registerLapTime() {
-  //   const { results } = this.state;
-
-  //   const updatedState = {
-  //     ...this.state,
-  //     ...{ results: [...results, 3000] },
-  //   };
-
-  //   this.setState(updatedState);
-  // }
+  isLapsHidden = () => this.props.chronometer.paused;
 }
 
 type StateToProps = ReturnType<typeof mapStateToProps>;
