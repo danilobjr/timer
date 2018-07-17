@@ -1,8 +1,12 @@
-export const map = <T, R>(func: (item: T) => R) => (array: T[]) =>
-  array.reduce((accu, curr) =>
-    accu.concat(func(curr)),
-    [] as R[],
-  );
+export const map = <T, R = any>(transform: (item: T, index?: number) => R) => (array: T[]) => {
+  const result = [];
+
+  for (let index = 0; index < array.length; index++) {
+    result.push(transform(array[index], index));
+  }
+
+  return result;
+};
 
 export const range = (length: number) =>
   new Array(length)
