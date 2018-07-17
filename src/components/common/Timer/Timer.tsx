@@ -6,7 +6,7 @@ import { TimerActions } from './TimerActions';
 import { Time } from 'models';
 import { FlexSpace } from 'components';
 
-type TimerProps = {
+export type TimerProps = {
   disableStartPauseButton?: boolean;
   expanded?: boolean;
   hideExpandButton?: boolean;
