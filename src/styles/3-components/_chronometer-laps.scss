@@ -1,8 +1,8 @@
 .chronometer-laps {
-  display: flex;
-  flex-direction: column;
   width: 310px;
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
 
   > .header {
     margin-bottom: 6px;
@@ -59,13 +59,7 @@
 }
 
 .-expanded .chronometer-laps {
-  // > .scroller > .laps > .lap:last-of-type {
-  //   position: absolute;
-  //   left: 50%;
-  //   bottom: 20vh;
-  //   margin-left: -50px;
-  //   z-index: 1;
-  // }
+  align-items: center;
 
   > .scroller > .laps > .lap:before {
     top: 2px;
