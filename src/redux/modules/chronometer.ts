@@ -67,7 +67,7 @@ function* chronometerFlow() {
       actions.stop,
     ]);
 
-    // TODO: refactor
+    // TODO: refactor this IF condition
     if (action.type.includes(actions.start.getType())) {
       task = yield fork(chronometerInterval);
     }
