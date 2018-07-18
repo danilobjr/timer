@@ -59,6 +59,8 @@ export default {
 // SAGAS
 
 function* countdownInterval(id: CountdownId) {
+  yield put(actions.update(id, { paused: false }));
+
   while (true) {
     const countdowns: Countdown[] = yield select((state: State) => state.countdowns);
     const foundCountdown = countdowns.find(c => c.id === id);
@@ -66,8 +68,6 @@ function* countdownInterval(id: CountdownId) {
     if (foundCountdown.milliseconds === 0) {
       yield put(actions.pause(id));
     }
-
-    yield put(actions.update(id, { paused: false }));
 
     yield call(delay, 1000);
 
