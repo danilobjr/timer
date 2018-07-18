@@ -1,10 +1,11 @@
 const path = require('path');
 const withTypescript = require('@zeit/next-typescript');
-const withSass = require('@zeit/next-sass')
+const withSass = require('@zeit/next-sass');
+const withManifest = require('next-manifest');
 
 const resolvePath = value => path.resolve(__dirname, value);
 
-module.exports = withTypescript(withSass({
+module.exports = withManifest(withTypescript(withSass({
   webpack(config, options) {
     return {
       ...config,
@@ -20,4 +21,14 @@ module.exports = withTypescript(withSass({
       },
     };
   },
-}));
+  manifest: {
+    name: 'Timer',
+    'short_name': 'Timer',
+    'start_url': '/countdowns',
+    'background_color': '#297acb',
+    'theme_color': '#297acb',
+    icons: {
+      src: './static/timer-icon.png',
+    },
+  },
+})));
