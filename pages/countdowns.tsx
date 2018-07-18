@@ -7,6 +7,8 @@ import { CountdownsPageCommandBar, CountdownGrid } from 'components/pages/countd
 import { State } from 'src/redux';
 import { CountdownsState, actions } from 'src/redux/modules/countdowns';
 
+// TODO: get all components from 'components'; without "namespaces".
+
 const initialState = {
   isEdition: false,
 };
@@ -27,7 +29,6 @@ class CountdownsPage extends Component<CountdownsPageProps, CountdownsPageState>
       remove,
       reset,
       start,
-      toggleExpand,
     } = this.props;
 
     const isEdition = this.isEdition();
@@ -46,7 +47,6 @@ class CountdownsPage extends Component<CountdownsPageProps, CountdownsPageState>
                 onClickRemove={remove}
                 onClickReset={reset}
                 onClickStart={start}
-                onClickToggleExpand={toggleExpand}
               />
             )}
         </PageContent>
@@ -65,7 +65,9 @@ class CountdownsPage extends Component<CountdownsPageProps, CountdownsPageState>
   isEdition = () => this.state.isEdition && this.props.countdowns.length > 0;
 }
 
+// TODO: refactor this to ReturnType<typeof mapStateToProps>
 type StateToProps = CountdownsState;
+// TODO: refactor this to ReturnType<typeof mapDispatchToProps>
 type DispatchToProps = typeof actions;
 
 const mapStateToProps = (state: State) => ({ ...state } as CountdownsState);

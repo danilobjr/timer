@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Link from 'next/link';
-import { Fragment, SFC } from 'react';
+import { SFC } from 'react';
 import { CommandBar, CommandBarButton } from 'components/common';
 
 type CountdownsPageCommandBarProps = {
@@ -23,7 +23,7 @@ export const CountdownsPageCommandBar: SFC<CountdownsPageCommandBarProps> = ({
           onClick={onClickDone}
         />
       ) : (
-          <Fragment>
+          <>
             {!hideEditButton && (
               <CommandBarButton
                 icon="checklist"
@@ -35,7 +35,7 @@ export const CountdownsPageCommandBar: SFC<CountdownsPageCommandBarProps> = ({
             <Link href="/new-countdown" prefetch>
               <CommandBarButton icon="plus" title="New" />
             </Link>
-          </Fragment>
+          </>
         )}
     </CommandBar>
   );

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { Timer, TimerButton } from 'components/common';
+import { TimerButton, ExpandableTimer } from 'components';
 import { Countdown } from 'models';
 
 type CountdownTimerProps = {
@@ -10,7 +10,6 @@ type CountdownTimerProps = {
   onClickPause: () => void;
   onClickReset: () => void;
   onClickStart: () => void;
-  onClickToggleExpand: () => void;
 };
 
 // TODO: refactor this to a SFC
@@ -23,37 +22,39 @@ export class CountdownTimer extends Component<CountdownTimerProps> {
       onClickPause,
       onClickReset,
       onClickStart,
-      onClickToggleExpand,
     } = this.props;
 
     const { startAt, ...otherProps } = countdown;
 
     return (
-      <Timer
+      <ExpandableTimer
         disableStartPauseButton={this.isStartPauseButtonDisabled()}
         hideExpandButton={isEdition}
+        regressive
         startAt={startAt}
         time={otherProps}
         onClickPause={onClickPause}
         onClickStart={onClickStart}
-        onClickToggleExpand={onClickToggleExpand}
-      >
-        <TimerButton
-          className="remove"
-          icon="trash"
-          title="Remove"
-          hideButton={!isEdition}
-          onClick={onClickRemove}
-        />
+        renderActions={() => (
+          <>
+            <TimerButton
+              className="remove"
+              icon="trash"
+              title="Remove"
+              hideButton={!isEdition}
+              onClick={onClickRemove}
+            />
 
-        <TimerButton
-          className="reset"
-          icon="reset"
-          title="Reset"
-          hideButton={this.isHideResetButton()}
-          onClick={onClickReset}
-        />
-      </Timer>
+            <TimerButton
+              className="reset"
+              icon="reset"
+              title="Reset"
+              hideButton={this.isHideResetButton()}
+              onClick={onClickReset}
+            />
+          </>
+        )}
+      />
     );
   }
 

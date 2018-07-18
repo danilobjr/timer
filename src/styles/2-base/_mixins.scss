@@ -1,11 +1,11 @@
 @mixin make-transition($property: all, $speed: normal, $ease: $ease-out, $delay: 0s) {
-    @if ($speed == slow) {
-        $speed: 0.3s;
-    } @else if ($speed == normal) {
-        $speed: 0.5s;
-    } @else {
-        $speed: 0.75s;
-    }
-    
-    transition: $property $speed $ease $delay;
+  @if ($speed == slow) {
+    $speed: 0.3s;
+  } @else if ($speed == normal) {
+    $speed: 0.5s;
+  } @else {
+    $speed: 0.75s;
+  }
+
+  transition: $property $speed $ease $delay;
 }

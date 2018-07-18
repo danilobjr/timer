@@ -1,8 +1,8 @@
-.chronometer-results {
-  display: flex;
-  flex-direction: column;
+.chronometer-laps {
   width: 310px;
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
 
   > .header {
     margin-bottom: 6px;
@@ -37,10 +37,10 @@
     margin-bottom: 8px;
   }
 
-  > .scroller > .laps > .lap:before {
+  > .scroller > .laps > .lap > .number {
     position: absolute;
-    left: -25px;
-    top: 4px;
+    left: -28px;
+    top: 2px;
     color: $silver;
     font-size: 0.8rem;
   }
@@ -56,35 +56,35 @@
   > .scroller > .laps > .lap .watch > .unit {
     color: $dusty-gray;
   }
+}
 
-  &.-lighttheme > .scroller > .laps > .lap:last-of-type {
-    position: absolute;
-    left: 50%;
-    bottom: 20vh;
-    margin-left: -50px;
-    z-index: 1;
+.-expanded .chronometer-laps {
+  position: absolute;
+  bottom: 142px;
+  align-items: center;
+
+  > .scroller > .laps > .lap {
+    display: none;
   }
 
-  &.-lighttheme > .scroller > .laps > .lap:before {
-    top: 2px;
-    font-size: 0.9rem;
-    font-weight: 700;
+  > .scroller > .laps > .lap:last-child {
+    display: flex;
   }
 
-  &.-lighttheme > .scroller > .laps > .lap > .partial {
+  > .scroller > .laps > .lap > .partial {
     font-size: 1.3rem;
   }
 
-  &.-lighttheme > .scroller > .laps > .lap > .total {
+  > .scroller > .laps > .lap > .total {
     font-size: 1.1rem;
   }
 
-  &.-lighttheme > .scroller > .laps > .lap:before,
-  &.-lighttheme > .scroller > .laps .watch > .unit {
+  > .scroller > .laps > .lap > .number,
+  > .scroller > .laps .watch > .unit {
     color: $corn-flower-blue;
   }
 
-  &.-lighttheme > .scroller > .laps .watch > .unit.-active {
+  > .scroller > .laps .watch > .unit.-active {
     color: $white !important;
   }
 }

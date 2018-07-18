@@ -1,56 +1,73 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
-import { Component } from 'react';
+import { Component, ReactNode } from 'react';
 import { Watch } from './Watch';
 import { TimerActions } from './TimerActions';
-import { Time } from 'models';
+import { Time, TimeInMilliseconds } from 'models';
+import { FlexSpace } from 'components';
 
-type TimerProps = {
+export type TimerProps = {
   disableStartPauseButton?: boolean;
+  expanded?: boolean;
   hideExpandButton?: boolean;
+  noInfo?: boolean;
+  regressive?: boolean;
   showHundredths?: boolean;
   startAt?: number;
-  time: Time;
+  time: Partial<Time>;
   onClickPause?: () => void;
   onClickStart?: () => void;
-  onClickToggleExpand?: () => void;
+  onClickToggleExpansion?: () => void;
+  renderActions?: () => ReactNode;
 };
 
 export class Timer extends Component<TimerProps> {
   static defaultProps: Partial<TimerProps> = {
     disableStartPauseButton: false,
+    expanded: false,
     hideExpandButton: false,
+    noInfo: false,
+    regressive: false,
     showHundredths: false,
     startAt: 0,
     onClickPause: () => null,
     onClickStart: () => null,
-    onClickToggleExpand: () => null,
+    onClickToggleExpansion: () => null,
+    renderActions: () => null,
   };
 
   render() {
     const {
+      children,
       disableStartPauseButton,
+      expanded,
       hideExpandButton,
+      noInfo,
+      renderActions,
       showHundredths,
       startAt,
       time,
-      onClickToggleExpand,
+      onClickToggleExpansion,
     } = this.props;
 
-    const { expanded, milliseconds, name, paused } = time;
+    const { milliseconds, name, paused } = time;
 
     return (
       <div
         className={classNames(
           'timer',
+          !!noInfo && '-no-info',
           !!expanded && '-expanded',
-          // !!isRegressive && '-no-info',
         )}
       >
+        {!!expanded && <FlexSpace />}
+
         <Watch
           time={milliseconds}
           showHundredths={showHundredths}
         />
+
+        {!!expanded && <FlexSpace />}
 
         <TimerActions
           disableStartPauseButton={disableStartPauseButton}
@@ -59,23 +76,25 @@ export class Timer extends Component<TimerProps> {
           hideShrinkButton={!expanded}
           percentageProgress={this.calculatePercentageProgress()}
           onClickStartPauseButton={this.togglePause}
-          onClickExpandButton={onClickToggleExpand}
-          onClickShrinkButton={onClickToggleExpand}
+          onToggleExpandButton={onClickToggleExpansion}
         >
-          {this.props.children}
+          {renderActions()}
         </TimerActions>
 
-        <div className="info">
-          <span className="name">{name}</span>
-          {/* TODO: remove prefix 'h-' from help CSS classes */}
-          <Watch className={classNames({ 'h-hidden': expanded })} time={startAt} />
-        </div>
+        {!noInfo && (
+          <div className="info">
+            <span className="name">{name}</span>
+            <Watch className={classNames({ 'h-hidden': expanded })} time={startAt} />
+          </div>
+        )}
+
+        {children}
       </div>
     );
   }
 
   calculatePercentageProgress() {
-    const { startAt, time } = this.props;
+    const { regressive, startAt, time } = this.props;
     const { paused, milliseconds } = time;
 
     const doNotStartedYet = paused && (milliseconds === 0 || milliseconds === startAt);
@@ -84,12 +103,11 @@ export class Timer extends Component<TimerProps> {
       return 0;
     }
 
-    // if (isRegressive) {
-      // return remainingTime / startAt;
+    if (regressive) {
       return milliseconds / startAt;
-    // }
+    }
 
-    // return milliseconds / TimeInMilliseconds.OneMinute;
+    return milliseconds / TimeInMilliseconds.Minute;
   }
 
   togglePause = () => {

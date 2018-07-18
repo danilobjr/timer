@@ -1,8 +1,12 @@
-export const map = <T, R>(func: (item: T) => R) => (array: T[]) =>
-  array.reduce((accu, curr) =>
-    accu.concat(func(curr)),
-    [] as R[],
-  );
+export const map = <T, R = any>(transform: (item: T, index?: number) => R) => (array: T[]) => {
+  const result = [];
+
+  for (let index = 0; index < array.length; index++) {
+    result.push(transform(array[index], index));
+  }
+
+  return result;
+};
 
 export const range = (length: number) =>
   new Array(length)
@@ -42,8 +46,9 @@ export const prepend = (value: any) => (array: any) =>
 
 export const zipWith = (func: Function) => (firstArray: any[]) => (secondArray: any[]) => {
   const result = [];
+  const smallerArray = firstArray.length < secondArray.length ? firstArray : secondArray;
 
-  for (let i = 0; i < firstArray.length; i++) {
+  for (let i = 0; i < smallerArray.length; i++) {
     result.push(func(firstArray[i], secondArray[i]));
   }
 

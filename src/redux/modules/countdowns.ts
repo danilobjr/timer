@@ -2,7 +2,6 @@ import { call, fork, take, cancel, select, put } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import { createAction, createReducer } from 'redux-act';
 import { Countdown, TimeInMilliseconds } from 'models';
-import { combineReducers } from 'redux';
 import { StringKeyValuePair } from 'models';
 import { remove, updateAt } from 'utils';
 import { State } from 'src/redux/State';
@@ -22,7 +21,6 @@ export const actions = {
   remove: createAction<CountdownId>(actionDescription('REMOVE')),
   reset: createAction<CountdownId>(actionDescription('RESET')),
   start: createAction<CountdownId>(actionDescription('START')),
-  toggleExpand: createAction<CountdownId>(actionDescription('TOGGLE_EXPAND')),
   update: createAction<CountdownId, Partial<Countdown>, Countdown>(
     actionDescription('UPDATE_COUNTDOWN'),
     (id: CountdownId, updatedProps: Countdown) => ({ id, ...updatedProps }),
@@ -49,10 +47,6 @@ const countdowns = createReducer({}, initialState.countdowns)
     const original = countdowns.find(countdown => countdown.id === id);
     return updateCountdown(countdowns, { ...original, milliseconds: original.startAt });
   })
-  .on(actions.toggleExpand, (countdowns, id) => {
-    const original = countdowns.find(countdown => countdown.id === id);
-    return updateCountdown(countdowns, { ...original, expanded: !original.expanded });
-  })
   .on(actions.update, updateCountdown);
 
 // export default combineReducers({
@@ -65,6 +59,8 @@ export default {
 // SAGAS
 
 function* countdownInterval(id: CountdownId) {
+  yield put(actions.update(id, { paused: false }));
+
   while (true) {
     const countdowns: Countdown[] = yield select((state: State) => state.countdowns);
     const foundCountdown = countdowns.find(c => c.id === id);
@@ -72,8 +68,6 @@ function* countdownInterval(id: CountdownId) {
     if (foundCountdown.milliseconds === 0) {
       yield put(actions.pause(id));
     }
-
-    yield put(actions.update(id, { paused: false }));
 
     yield call(delay, 1000);
 
@@ -97,6 +91,7 @@ function* countdownFlow() {
     const { payload, type } = action;
     const countdownId = payload;
 
+    // TODO: refactor. See chronometer redux module
     if (type.includes('START')) {
       tasks[countdownId] = yield fork(countdownInterval, countdownId);
     }

@@ -28,7 +28,7 @@
   }
 
   &.-no-info {
-    height: 170px;
+    height: 164px;
   }
 
   &.-expanded {
@@ -37,16 +37,13 @@
   }
 
   &.-expanded > .watch {
-    flex: 1;
     display: flex;
-    align-items: center;
-    margin-top: 14vh;
     font-size: 15vw;
   }
 
-  &.-expanded > .watch-commands {
-    order: 1;
-    margin: 0 0 7vh 0;
+  &.-expanded > .timer-actions {
+    margin-bottom: 47px;
+    order: 2;
   }
 
   &.-expanded > .info > .name {

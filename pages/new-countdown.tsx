@@ -85,7 +85,6 @@ class NewCountdownPage extends Component<NewCountdownPageProps, NewCountdownPage
       milliseconds,
       startAt: milliseconds,
       paused: true,
-      expanded: false,
     };
 
     this.props.create(countdown);
