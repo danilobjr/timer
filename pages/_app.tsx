@@ -8,8 +8,6 @@ import { Provider } from 'react-redux';
 import { store } from 'src/redux';
 import { Page, Navigation } from 'components';
 
-// TODO: change folder name from src/helpers to src/utils
-
 export default class MyApp extends App {
   static async getInitialProps({ Component, ctx }: AppComponentContext) {
     let pageProps = {};
