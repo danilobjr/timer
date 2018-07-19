@@ -28,7 +28,7 @@ module.exports = withManifest(withTypescript(withSass(withOffline({
   manifest: {
     name: 'Timer',
     'short_name': 'Timer',
-    'start_url': '/countdowns',
+    'start_url': '/',
     'background_color': '#297acb',
     'theme_color': '#297acb',
     icons: {
