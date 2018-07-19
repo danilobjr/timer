@@ -2,11 +2,14 @@ const path = require('path');
 const withTypescript = require('@zeit/next-typescript');
 const withSass = require('@zeit/next-sass');
 const withManifest = require('next-manifest');
-const withWorkbox = require('next-workbox');
+const withOffline = require('next-offline');
 
 const resolvePath = value => path.resolve(__dirname, value);
 
-module.exports = withWorkbox(withManifest(withTypescript(withSass({
+module.exports = withManifest(withTypescript(withSass(withOffline({
+  exportPathMap: async () => ({
+    '/': { page: '/countdowns' },
+  }),
   webpack(config, options) {
     return {
       ...config,
