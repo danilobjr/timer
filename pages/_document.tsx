@@ -2,8 +2,6 @@ import * as React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import Manifest from 'next-manifest/manifest';
 
-// TODO: set head/theme color
-
 export default class MyDocument extends Document {
   render() {
     return (
