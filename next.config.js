@@ -6,10 +6,11 @@ const withOffline = require('next-offline');
 
 const resolvePath = value => path.resolve(__dirname, value);
 
+  // TODO: set this dynamically
+  // exportPathMap: async () => ({
+  //   '/': { page: '/countdowns' },
+  // }),
 module.exports = withManifest(withTypescript(withSass(withOffline({
-  exportPathMap: async () => ({
-    '/': { page: '/countdowns' },
-  }),
   webpack(config, options) {
     return {
       ...config,
@@ -30,7 +31,6 @@ module.exports = withManifest(withTypescript(withSass(withOffline({
     'short_name': 'Timer',
     'start_url': '/',
     'background_color': '#297acb',
-    'theme_color': '#297acb',
     icons: {
       src: './static/timer-icon.png',
     },
