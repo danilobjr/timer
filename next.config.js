@@ -2,10 +2,11 @@ const path = require('path');
 const withTypescript = require('@zeit/next-typescript');
 const withSass = require('@zeit/next-sass');
 const withManifest = require('next-manifest');
+const withWorkbox = require('next-workbox');
 
 const resolvePath = value => path.resolve(__dirname, value);
 
-module.exports = withManifest(withTypescript(withSass({
+module.exports = withWorkbox(withManifest(withTypescript(withSass({
   webpack(config, options) {
     return {
       ...config,
@@ -31,4 +32,4 @@ module.exports = withManifest(withTypescript(withSass({
       src: './static/timer-icon.png',
     },
   },
-})));
+}))));

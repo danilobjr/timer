@@ -14,7 +14,13 @@ app.prepare().then(() => {
     const parsedUrl = parse(req.url, true);
     const { pathname, query } = parsedUrl;
 
-    if (pathname === '/') {
+    if (req.url.startsWith('/static/')) {
+      if (req.url.endsWith('/sw.js')) {
+        res.setHeader('Service-Worker-Allowed', '/');
+      }
+
+      app.serveStatic(req, res, `./${req.url}`);
+    } else if (pathname === '/') {
       app.render(req, res, '/countdowns', query);
     } else {
       handle(req, res, parsedUrl);
