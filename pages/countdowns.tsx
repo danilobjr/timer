@@ -17,8 +17,6 @@ type CountdownsPageProps = StateToProps & DispatchToProps;
 type CountdownsPageState = Readonly<typeof initialState>;
 
 // TODO: remove all lightTheme reference from components and styles
-// TODO: set page/tab Title (in redux-saga or in _app using Helmet?)
-// TODO: set theme in <head> when expanded
 class CountdownsPage extends Component<CountdownsPageProps, CountdownsPageState> {
   readonly state: CountdownsPageState = initialState;
 
@@ -65,12 +63,10 @@ class CountdownsPage extends Component<CountdownsPageProps, CountdownsPageState>
   isEdition = () => this.state.isEdition && this.props.countdowns.length > 0;
 }
 
-// TODO: refactor this to ReturnType<typeof mapStateToProps>
-type StateToProps = CountdownsState;
-// TODO: refactor this to ReturnType<typeof mapDispatchToProps>
-type DispatchToProps = typeof actions;
+type StateToProps = ReturnType<typeof mapStateToProps>;
+type DispatchToProps = ReturnType<typeof mapDispatchToProps>;
 
-const mapStateToProps = (state: State) => ({ ...state } as CountdownsState);
+const mapStateToProps = ({ countdowns }: State) => ({ countdowns });
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(actions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(CountdownsPage);
