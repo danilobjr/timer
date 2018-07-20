@@ -2,19 +2,23 @@ import * as React from 'react';
 import * as classNames from 'classnames';
 import { SFC, HTMLProps } from 'react';
 import {
+  IconArrowLeft,
   IconCheck,
   IconChecklist,
+  IconFloppy,
   IconMoreHorizontal,
   IconPlus,
-  IconFloppy,
+  IconRemove,
 } from 'icons';
 
 const icons = {
+  arrowLeft: IconArrowLeft,
   check: IconCheck,
   checklist: IconChecklist,
+  floppy: IconFloppy,
   moreHorizontal: IconMoreHorizontal,
   plus: IconPlus,
-  floppy: IconFloppy,
+  remove: IconRemove,
 };
 
 type CommandBarItemProps = {

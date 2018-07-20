@@ -15,6 +15,7 @@ import {
   PageContent,
   FieldText,
   TimeSelector,
+  FlexSpace,
 } from 'components';
 
 const initialState = {
@@ -28,7 +29,6 @@ type NewCountdownPageState = Readonly<typeof initialState>;
 type NewCountdownPageProps = DispatchToProps & WithRouterProps;
 
 // TODO: save button should be always enabled. When no time set, show a message: Please, set a time first.
-// TODO: add a back button
 
 class NewCountdownPage extends Component<NewCountdownPageProps, NewCountdownPageState> {
   readonly state: NewCountdownPageState = initialState;
@@ -59,6 +59,14 @@ class NewCountdownPage extends Component<NewCountdownPageProps, NewCountdownPage
 
         <CommandBar>
           <CommandBarButton
+            icon="arrowLeft"
+            title="Back"
+            onClick={this.backToCountdownsPage}
+          />
+
+          <FlexSpace />
+
+          <CommandBarButton
             icon="floppy"
             title="Save"
             disabled={this.isTimeNotSet(this.state)}
@@ -73,6 +81,7 @@ class NewCountdownPage extends Component<NewCountdownPageProps, NewCountdownPage
   private updateName = (name: string) => this.setState({ ...this.state, name });
   // tslint:disable-next-line:typedef
   private isTimeNotSet = compose(all(equals(0)), values, omit(['name']));
+  private backToCountdownsPage = () => this.props.navigateToRoute('/countdowns');
 
   private create = () => {
     const { name, hours, minutes, seconds } = this.state;
