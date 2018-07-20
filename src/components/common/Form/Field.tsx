@@ -2,8 +2,6 @@ import * as React from 'react';
 import * as classNames from 'classnames';
 import { HTMLProps, SFC } from 'react';
 
-// const onClickValue = (props: FieldProps) => props.onClickValue()
-
 interface FieldProps extends HTMLProps<HTMLDivElement> {
   label: string;
   showValue?: boolean;

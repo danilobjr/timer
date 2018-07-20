@@ -49,9 +49,6 @@ const countdowns = createReducer({}, initialState.countdowns)
   })
   .on(actions.update, updateCountdown);
 
-// export default combineReducers({
-//   countdowns,
-// });
 export default {
   countdowns,
 };

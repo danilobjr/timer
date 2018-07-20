@@ -1,17 +1,9 @@
 import * as React from 'react';
+// TODO: import * as classNames or import classNames? Check this out.
 import * as classNames from 'classnames';
 import { SFC, HTMLProps } from 'react';
-// import { FlexItem, FlexItemProps } from 'components/common';
 
-// interface PageContentProps extends FlexItemProps { }
-
-// export const PageContent: SFC<PageContentProps> = ({ children, className, ...otherProps }) => (
-//   <FlexItem {...otherProps} className={classNames('page-content', className, 'h-overflowauto')}>
-//     {children}
-//   </FlexItem>
-// )
-
-interface PageContentProps extends HTMLProps<HTMLDivElement> { }
+type PageContentProps = HTMLProps<HTMLDivElement>;
 
 export const PageContent: SFC<PageContentProps> = ({ children, className, ...otherProps }) => (
   <div {...otherProps} className={classNames('page-content', className)}>
