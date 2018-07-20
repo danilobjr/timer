@@ -87,7 +87,6 @@ class NewCountdownPage extends Component<NewCountdownPageProps, NewCountdownPage
     const { name, hours, minutes, seconds } = this.state;
     const milliseconds = toMilliseconds(hours, minutes, seconds);
 
-    // TODO: change uuid package to nanoid
     const countdown: Countdown = {
       id: uuid(),
       name,
