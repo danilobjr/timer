@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { SFC, SVGAttributes } from 'react';
 
-interface SvgProps extends SVGAttributes<{}> {
+type SvgProps = {
   height: number;
   width: number;
-}
+} & SVGAttributes<{}>;
 
 export const Svg: SFC<SvgProps> = ({ children, height, width, ...otherProps }) => (
   <svg

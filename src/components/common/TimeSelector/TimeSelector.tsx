@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { NumberSelector } from 'components/common';
+import { NumberSelector } from './NumberSelector';
 import { StringKeyValuePair } from 'models';
 
 type TimeSelectorProps = {
