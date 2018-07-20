@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Component } from 'react';
+import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { ChronometerLaps, Timer, TimerButton, PageContent, Toggleable } from 'components';
 import { State } from 'src/redux';
-import { bindActionCreators, Dispatch } from 'redux';
 import { actions } from 'src/redux/modules/chronometer';
 
 type ChronometerPageProps = StateToProps & DispatchToProps;
