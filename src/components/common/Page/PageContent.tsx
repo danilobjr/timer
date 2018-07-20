@@ -1,5 +1,4 @@
 import * as React from 'react';
-// TODO: import * as classNames or import classNames? Check this out.
 import * as classNames from 'classnames';
 import { SFC, HTMLProps } from 'react';
 
