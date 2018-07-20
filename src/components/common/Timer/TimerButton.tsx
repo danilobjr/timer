@@ -7,7 +7,7 @@ import {
   IconFlag,
   IconReset,
   IconTrash,
-} from './../Icons';
+} from 'icons';
 
 const icons = {
   compress: IconCompress,

@@ -17,6 +17,7 @@ module.exports = withManifest(withTypescript(withSass(withOffline({
       resolve: {
         alias: {
           components: resolvePath('src/components'),
+          icons: resolvePath('src/components/common/Icons'),
           models: resolvePath('src/models'),
           src: resolvePath('src'),
           styles: resolvePath('src/styles'),

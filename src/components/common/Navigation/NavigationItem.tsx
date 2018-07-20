@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 import { SFC, HTMLProps } from 'react';
-import { IconStopwatch, IconTimer } from 'components/common';
+import { IconStopwatch, IconTimer } from 'icons';
 
 export const icons = {
   stopwatch: IconStopwatch,

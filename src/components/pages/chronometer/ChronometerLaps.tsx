@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { Watch } from 'components/common';
+import { Watch } from 'components';
 import { compose, prepend, head, when, last, flatten, map } from 'utils';
 import { differenceBetweenResults, mapResults } from './localUtils';
 import { StringKeyValuePair } from 'models';

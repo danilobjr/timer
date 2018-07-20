@@ -2,12 +2,9 @@ import * as React from 'react';
 import { Component } from 'react';
 import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { PageContent } from 'components/common';
-import { CountdownsPageCommandBar, CountdownGrid } from 'components/pages/countdowns';
+import { PageContent, CountdownGrid, CountdownsPageCommandBar } from 'components';
 import { State } from 'src/redux';
-import { CountdownsState, actions } from 'src/redux/modules/countdowns';
-
-// TODO: get all components from 'components'; without "namespaces".
+import { actions } from 'src/redux/modules/countdowns';
 
 const initialState = {
   isEdition: false,
@@ -16,7 +13,6 @@ const initialState = {
 type CountdownsPageProps = StateToProps & DispatchToProps;
 type CountdownsPageState = Readonly<typeof initialState>;
 
-// TODO: remove all lightTheme reference from components and styles
 class CountdownsPage extends Component<CountdownsPageProps, CountdownsPageState> {
   readonly state: CountdownsPageState = initialState;
 

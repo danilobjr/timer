@@ -36,6 +36,7 @@
     "paths": {
       "components": ["src/components/index.ts"],
       "components/*": ["src/components/*"],
+      "icons": ["src/components/common/Icons/index.ts"],
       "models": ["src/models/index.ts"],
       "src/*": ["src/*"],
       "utils": ["src/utils/index.ts"]

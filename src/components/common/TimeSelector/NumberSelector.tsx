@@ -1,17 +1,17 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 import { Component } from 'react';
-import { IconAngleUp, IconAngleDown } from 'components/common';
+import { IconAngleUp, IconAngleDown } from 'icons';
 import { rearrangeNumbersToDisplayThemInScroller, generateRangeOfNumbers } from './localUtils';
-import { compose, splitAt, map } from 'utils';
+import { compose, map } from 'utils';
 
-interface NumberSelectorProps {
+type NumberSelectorProps = {
   label: string;
   offset?: number;
   rangeSize: number;
   value: number;
   onChange: (number: number) => void;
-}
+};
 
 // TODO: check if it needs to re-render in shouldComponentUpdate
 

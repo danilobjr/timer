@@ -15,7 +15,7 @@ import {
   PageContent,
   FieldText,
   TimeSelector,
-} from 'components/common';
+} from 'components';
 
 const initialState = {
   name: 'Timer',

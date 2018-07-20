@@ -7,7 +7,7 @@ import {
   IconMoreHorizontal,
   IconPlus,
   IconFloppy,
-} from 'components/common/Icons';
+} from 'icons';
 
 const icons = {
   check: IconCheck,

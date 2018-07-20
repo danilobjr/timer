@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 import { HTMLProps, SFC } from 'react';
-import { IconPlay, IconPause } from 'components/common/Icons';
+import { IconPlay, IconPause } from 'icons';
 
 type StartPauseButtonProps = {
   showPause?: boolean;

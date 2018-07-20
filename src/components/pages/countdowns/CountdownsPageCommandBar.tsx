@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { SFC } from 'react';
-import { CommandBar, CommandBarButton } from 'components/common';
+import { CommandBar, CommandBarButton } from 'components';
 
 type CountdownsPageCommandBarProps = {
   hideEditButton?: boolean;
