@@ -97,8 +97,7 @@ const actions = {
   ...globalActions,
 };
 
-// TODO: maybe Pick is not a good practice
-type DispatchToProps = Pick<typeof actions, 'create' | 'navigateToRoute'>;
+type DispatchToProps = ReturnType<typeof mapDispatchToProps>;
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(actions, dispatch);
 
