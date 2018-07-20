@@ -38,11 +38,11 @@
 
   > .slider > .btn {
     position: absolute;
-    display: none;
+    display: flex;
     justify-content: center;
     width: 100%;
     min-height: 16px;
-    background-color: $gallery;
+    background-color: $alto;
   }
 
   > .slider > .btn.-up {
@@ -51,10 +51,6 @@
 
   > .slider > .btn.-down {
     bottom: 0;
-  }
-
-  > .slider:hover > .btn {
-    display: flex;
   }
 
   > .slider:hover > .btn:active {
@@ -80,7 +76,10 @@
     box-sizing: border-box;
   }
 
-  > .slider > .btn:hover,
+  > .slider > .btn:hover {
+    background-color: darken($alto, 5%);
+  }
+
   > .slider > .scroller > .numbers > .number:hover {
     background-color: $alto;
   }
