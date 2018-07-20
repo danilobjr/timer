@@ -84,7 +84,7 @@ export const remove = <T>(item: T) => (array: T[]) => {
   ];
 };
 
-export const updateAt = <T>(index: number) => (item: T) => (array: T[]) => {
+export const replaceAt = <T>(index: number) => (item: T) => (array: T[]) => {
   return [
     ...array.slice(0, index),
     item,
@@ -97,5 +97,5 @@ export const updateWhere = <T>(array: T[]) => (findPredicate: (item: T) => boole
   const index = array.findIndex(findPredicate);
 
   const updated = Object.assign({}, originalItem, updatedItemProps);
-  return updateAt<T>(index)(updated)(array);
+  return replaceAt<T>(index)(updated)(array);
 };

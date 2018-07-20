@@ -3,7 +3,7 @@ import { delay } from 'redux-saga';
 import { createAction, createReducer } from 'redux-act';
 import { Countdown, TimeInMilliseconds } from 'models';
 import { StringKeyValuePair } from 'models';
-import { remove, updateAt } from 'utils';
+import { remove, replaceAt } from 'utils';
 import { State } from 'src/redux/State';
 import { CountdownId } from 'src/redux/models';
 import { createActionDescription } from '../utils';
@@ -14,7 +14,7 @@ import { createActionDescription } from '../utils';
 
 const actionDescription = createActionDescription('countdowns');
 
-// TODO: segregate these actions. Some are to use in component other just internally in this module
+// TODO: segregate these actions. Some are to use in component (externally) other just internally in this module
 export const actions = {
   create: createAction<Countdown>(actionDescription('CREATE')),
   pause: createAction<CountdownId>(actionDescription('PAUSE')),
@@ -124,14 +124,14 @@ export function* countdownsSagas() {
 
 // UTILS
 
-function updateCountdown(originalCountdowns: Countdown[], countdownWithIdToUpdate: Countdown) {
-  const original = originalCountdowns.find(c => c.id === countdownWithIdToUpdate.id);
-  const index = originalCountdowns.findIndex(c => c.id === countdownWithIdToUpdate.id);
+function updateCountdown(countdowns: Countdown[], countdownWithIdToUpdate: Countdown) {
+  const original = countdowns.find(c => c.id === countdownWithIdToUpdate.id);
+  const index = countdowns.findIndex(c => c.id === countdownWithIdToUpdate.id);
 
-  const updated = {
+  const updatedItem = {
     ...original,
     ...countdownWithIdToUpdate,
   };
 
-  return updateAt<Countdown>(index)(updated)(originalCountdowns);
+  return replaceAt<Countdown>(index)(updatedItem)(countdowns);
 }
