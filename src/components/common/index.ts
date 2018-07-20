@@ -6,4 +6,5 @@ export * from './Navigation';
 export * from './Page';
 export * from './Timer';
 export * from './TimeSelector';
+export * from './Toaster';
 export * from './Toggleable';

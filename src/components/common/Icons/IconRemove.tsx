@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SFC } from 'react';
 import { Icon, IconProps } from './Icon';
 
-type IconRemoveProps = IconProps;
+type IconRemoveProps = Partial<IconProps>;
 
 export const IconRemove: SFC<IconRemoveProps> = (props) => (
   <Icon name="icon-remove" width={10} height={10} {...props}>
