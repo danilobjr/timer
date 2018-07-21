@@ -3,7 +3,7 @@ import { delay } from 'redux-saga';
 import { createAction, createReducer } from 'redux-act';
 import { Countdown, TimeInMilliseconds } from 'models';
 import { StringKeyValuePair } from 'models';
-import { remove, replaceAt } from 'utils';
+import { remove, updateWhere } from 'utils';
 import { State } from 'src/redux/State';
 import { CountdownId } from 'src/redux/models';
 import { createActionDescription } from '../utils';
@@ -14,7 +14,6 @@ import { createActionDescription } from '../utils';
 
 const actionDescription = createActionDescription('countdowns');
 
-// TODO: segregate these actions. Some are to use in component (externally) other just internally in this module
 export const actions = {
   create: createAction<Countdown>(actionDescription('CREATE')),
   pause: createAction<CountdownId>(actionDescription('PAUSE')),
@@ -45,9 +44,11 @@ const countdowns = createReducer({}, initialState.countdowns)
   })
   .on(actions.reset, (countdowns, id) => {
     const original = countdowns.find(countdown => countdown.id === id);
-    return updateCountdown(countdowns, { ...original, milliseconds: original.startAt });
+    return updateWhere(countdowns)(c => c.id === id)({ ...original, milliseconds: original.startAt });
   })
-  .on(actions.update, updateCountdown);
+  .on(actions.update, (countdowns, countdown) =>
+    updateWhere(countdowns)(c => c.id === countdown.id)(countdown),
+  );
 
 export default {
   countdowns,
@@ -88,17 +89,16 @@ function* countdownFlow() {
     const { payload, type } = action;
     const countdownId = payload;
 
-    // TODO: refactor. See chronometer redux module
-    if (type.includes('START')) {
+    if (type.includes(actions.start.getType())) {
       tasks[countdownId] = yield fork(countdownInterval, countdownId);
     }
 
-    if (type.includes('PAUSE')) {
+    if (type.includes(actions.pause.getType())) {
       yield cancel(tasks[countdownId]);
       yield put(actions.update(countdownId, { paused: true }));
     }
 
-    if (type.includes('RESET')) {
+    if (type.includes(actions.reset.getType())) {
       yield cancel(tasks[countdownId]);
 
       const countdown: Countdown = yield select(({ countdowns }: State) =>
@@ -110,7 +110,7 @@ function* countdownFlow() {
       }
     }
 
-    if (type.includes('REMOVE')) {
+    if (type.includes(actions.remove.getType())) {
       if (tasks[countdownId]) {
         yield cancel(tasks[countdownId]);
       }
@@ -120,18 +120,4 @@ function* countdownFlow() {
 
 export function* countdownsSagas() {
   yield fork(countdownFlow);
-}
-
-// UTILS
-
-function updateCountdown(countdowns: Countdown[], countdownWithIdToUpdate: Countdown) {
-  const original = countdowns.find(c => c.id === countdownWithIdToUpdate.id);
-  const index = countdowns.findIndex(c => c.id === countdownWithIdToUpdate.id);
-
-  const updatedItem = {
-    ...original,
-    ...countdownWithIdToUpdate,
-  };
-
-  return replaceAt<Countdown>(index)(updatedItem)(countdowns);
 }
