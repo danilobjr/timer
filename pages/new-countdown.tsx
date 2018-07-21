@@ -30,13 +30,11 @@ const initialState = {
 type NewCountdownPageState = Readonly<typeof initialState>;
 type NewCountdownPageProps = StateToProps & DispatchToProps & WithRouterProps;
 
-// TODO: save button should be always enabled. When no time set, show a message: Please, set a time first.
-
 class NewCountdownPage extends Component<NewCountdownPageProps, NewCountdownPageState> {
   readonly state: NewCountdownPageState = initialState;
 
   render() {
-    const { toasts } = this.props;
+    const { toast, hideToast } = this.props;
     const { name, hours, minutes, seconds } = this.state;
 
     return (
@@ -59,18 +57,14 @@ class NewCountdownPage extends Component<NewCountdownPageProps, NewCountdownPage
             onChange={this.updateName}
           />
 
-          {/* TODO: extract this to its own component */}
-          <div className="toasters">
-            {toasts.map(({ id, message, show }) => (
-              <Toaster
-                key={id}
-                show={show}
-                onClickClose={this.hideToast(id)}
-              >
-                {message}
-              </Toaster>
-            ))}
-          </div>
+          {!!toast && (
+            <Toaster
+              show={toast.show}
+              onClickClose={hideToast}
+            >
+              {toast.message}
+            </Toaster>
+          )}
         </PageContent>
 
         <CommandBar>
@@ -95,7 +89,6 @@ class NewCountdownPage extends Component<NewCountdownPageProps, NewCountdownPage
   private updateTime = (time: Partial<NewCountdownPageState>) => this.setState({ ...this.state, ...time });
   private updateName = (name: string) => this.setState({ ...this.state, name });
   private backToCountdownsPage = () => this.props.navigateToRoute('/countdowns');
-  private hideToast = (toastId: string) => () => this.props.hideToast(toastId);
 
   // TODO: move this to redux?
   private create = () => {
@@ -128,7 +121,7 @@ const actions = {
 type StateToProps = ReturnType<typeof mapStateToProps>;
 type DispatchToProps = ReturnType<typeof mapDispatchToProps>;
 
-const mapStateToProps = (state: State) => ({ toasts: state.toasts });
+const mapStateToProps = (state: State) => ({ toast: state.toast });
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(actions, dispatch);
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewCountdownPage));
