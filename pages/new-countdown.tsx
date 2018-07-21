@@ -108,6 +108,7 @@ class NewCountdownPage extends Component<NewCountdownPageProps, NewCountdownPage
       paused: true,
     };
 
+    this.props.hideToast();
     this.props.create(countdown);
     this.props.navigateToRoute('/countdowns');
   }
