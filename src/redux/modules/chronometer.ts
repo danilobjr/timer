@@ -1,10 +1,10 @@
-import { createActionDescription } from 'src/redux/utils';
 import { createAction, createReducer, Action } from 'redux-act';
 import { Chronometer } from 'models';
 import { fork, take, call, cancel, put, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import { State } from 'src/redux';
 import { Lap } from 'src/redux/models';
+import { createActionDescription, hasSameActionType } from 'src/redux/utils';
 
 const actionDescription = createActionDescription('chronometer');
 
@@ -74,12 +74,11 @@ function* chronometerFlow() {
       actions.stop,
     ]);
 
-    // TODO: refactor this IF condition
-    if (action.type.includes(actions.start.getType())) {
+    if (hasSameActionType(action, actions.start)) {
       task = yield fork(chronometerInterval);
     }
 
-    if (action.type.includes(actions.stop.getType())) {
+    if (hasSameActionType(action, actions.stop)) {
       yield cancel(task);
     }
   }

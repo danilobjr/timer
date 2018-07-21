@@ -6,7 +6,7 @@ import { StringKeyValuePair } from 'models';
 import { remove, updateWhere } from 'utils';
 import { State } from 'src/redux/State';
 import { CountdownId } from 'src/redux/models';
-import { createActionDescription } from '../utils';
+import { createActionDescription, hasSameActionType } from '../utils';
 
 // TODO: save redux state to localStorage
 
@@ -86,19 +86,18 @@ function* countdownFlow() {
       actions.remove,
     ]);
 
-    const { payload, type } = action;
-    const countdownId = payload;
+    const countdownId = action.payload;
 
-    if (type.includes(actions.start.getType())) {
+    if (hasSameActionType(action, actions.start)) {
       tasks[countdownId] = yield fork(countdownInterval, countdownId);
     }
 
-    if (type.includes(actions.pause.getType())) {
+    if (hasSameActionType(action, actions.pause)) {
       yield cancel(tasks[countdownId]);
       yield put(actions.update(countdownId, { paused: true }));
     }
 
-    if (type.includes(actions.reset.getType())) {
+    if (hasSameActionType(action, actions.reset)) {
       yield cancel(tasks[countdownId]);
 
       const countdown: Countdown = yield select(({ countdowns }: State) =>
@@ -110,7 +109,7 @@ function* countdownFlow() {
       }
     }
 
-    if (type.includes(actions.remove.getType())) {
+    if (hasSameActionType(action, actions.remove)) {
       if (tasks[countdownId]) {
         yield cancel(tasks[countdownId]);
       }
