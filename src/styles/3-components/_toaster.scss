@@ -1,19 +1,12 @@
 // TODO: use colors from _variables
-
-.toasters {
-  position: absolute;
-
-  display: flex;
-  flex-direction: column;
-}
-
 .toaster {
+  position: absolute;
   padding: 16px;
   margin-top: 12px;
   background-color: #242424;
 
   opacity: 0;
-  transform: scale(.9) translateY(4px);
+  transform: scale(.9) translate(4px, 4px);
   transform-origin: bottom right;
   transition: all 150ms cubic-bezier(0, 0, .2, 1);
 
@@ -25,7 +18,7 @@
   }
 
   > .body {
-    color: rgba(255,255,255,.5);
+    color: rgba(255,255,255,.7);
   }
 
   // TODO: move this to its own style file
