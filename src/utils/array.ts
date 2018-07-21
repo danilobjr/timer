@@ -65,24 +65,20 @@ export const aperture = (howMany: number) => (array: any[]) => {
   return result;
 };
 
-// TODO: refactor duplication in removeWhere() and remove()
-export const removeWhere = <T>(predicate: (item: T) => boolean) => (array: T[]) => {
+const privateRemove = <T>(predicate: (item: T) => boolean) => (array: T[]) => {
   const index = array.findIndex(predicate);
 
   return [
     ...array.slice(0, index),
     ...array.slice(index + 1),
   ];
-}
-
-export const remove = <T>(item: T) => (array: T[]) => {
-  const index = array.findIndex(a => a === item);
-
-  return [
-    ...array.slice(0, index),
-    ...array.slice(index + 1),
-  ];
 };
+
+export const removeWhere = <T>(predicate: (item: T) => boolean) => (array: T[]) =>
+  privateRemove<T>(predicate)(array);
+
+export const remove = <T>(item: T) => (array: T[]) =>
+  privateRemove<T>(a => a === item)(array);
 
 export const replaceAt = <T>(index: number) => (item: T) => (array: T[]) => {
   return [
