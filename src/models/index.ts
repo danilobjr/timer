@@ -16,4 +16,10 @@ export enum TimeInMilliseconds {
   Minute = 60000,
 }
 
+export type Toast = {
+  id: string,
+  message: string;
+  show: boolean;
+};
+
 export type StringKeyValuePair = { [key: string]: any };

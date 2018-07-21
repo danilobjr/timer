@@ -5,6 +5,8 @@ import { call, takeLatest, put, race, take } from 'redux-saga/effects';
 import { createActionDescription } from 'src/redux/utils';
 import { v1 as uuid } from 'uuid';
 import { delay } from 'redux-saga';
+import { ToastMessage } from 'src/redux/models';
+import { Toast } from 'models';
 
 // ACTIONS
 
@@ -22,15 +24,6 @@ export const actions = {
 };
 
 // STATE
-
-type ToastMessage = string;
-type ToastId = string;
-
-type Toast = {
-  id: ToastId,
-  message: ToastMessage;
-  show: boolean;
-};
 
 const initialState = {
   toast: null as Toast,
