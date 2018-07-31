@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Component } from 'react';
+import { SFC } from 'react';
 import { TimerButton, ExpandableTimer } from 'components';
 import { Countdown } from 'models';
 
@@ -12,52 +12,41 @@ type CountdownTimerProps = {
   onClickStart: () => void;
 };
 
-// TODO: refactor this to a SFC
-export class CountdownTimer extends Component<CountdownTimerProps> {
-  render() {
-    const {
-      isEdition,
-      countdown,
-      onClickRemove,
-      onClickPause,
-      onClickReset,
-      onClickStart,
-    } = this.props;
+export const CountdownTimer: SFC<CountdownTimerProps> = (props) => {
+  const {
+    isEdition,
+    countdown,
+    onClickRemove,
+    onClickPause,
+    onClickReset,
+    onClickStart,
+  } = props;
 
-    const { startAt, ...otherProps } = countdown;
+  const { milliseconds, paused, startAt } = countdown;
 
-    return (
-      <ExpandableTimer
-        disableStartPauseButton={this.isStartPauseButtonDisabled()}
-        hideExpandButton={isEdition}
-        hideResetButton={this.isHideResetButton()}
-        regressive
-        startAt={startAt}
-        time={otherProps}
-        onClickPause={onClickPause}
-        onClickReset={onClickReset}
-        onClickStart={onClickStart}
-        renderActions={() => (
-          <TimerButton
-            className="remove"
-            icon="trash"
-            title="Remove"
-            hideButton={!isEdition}
-            onClick={onClickRemove}
-          />
-        )}
-      />
-    );
-  }
+  const resetButtonHidden = isEdition || (paused && milliseconds === startAt);
+  const startPauseButtonDisabled = isEdition || countdown.milliseconds === 0;
 
-  isHideResetButton = () => {
-    const { countdown, isEdition } = this.props;
-    const { milliseconds, paused, startAt } = countdown;
-    return isEdition || (paused && milliseconds === startAt);
-  }
-
-  isStartPauseButtonDisabled = () => {
-    const { countdown, isEdition } = this.props;
-    return isEdition || countdown.milliseconds === 0;
-  }
-}
+  return (
+    <ExpandableTimer
+      disableStartPauseButton={startPauseButtonDisabled}
+      hideExpandButton={isEdition}
+      hideResetButton={resetButtonHidden}
+      regressive
+      startAt={startAt}
+      time={countdown}
+      onClickPause={onClickPause}
+      onClickReset={onClickReset}
+      onClickStart={onClickStart}
+      renderActions={() => (
+        <TimerButton
+          className="remove"
+          icon="trash"
+          title="Remove"
+          hideButton={!isEdition}
+          onClick={onClickRemove}
+        />
+      )}
+    />
+  );
+};
