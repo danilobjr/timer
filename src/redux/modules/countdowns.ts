@@ -117,6 +117,6 @@ function* countdownFlow() {
   }
 }
 
-export function* countdownsSagas() {
-  yield fork(countdownFlow);
-}
+export const countdownsSagas = [
+  fork(countdownFlow),
+];

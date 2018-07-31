@@ -73,7 +73,7 @@ function* toastFlow(action: Action<ToastMessage>) {
   yield put(actions.removeToast());
 }
 
-export function* globalSagas() {
-  yield takeLatest(actions.navigateToRoute, navigateToRoute);
-  yield takeLatest(actions.showMessage, toastFlow);
-}
+export const globalSagas = [
+  takeLatest(actions.navigateToRoute, navigateToRoute),
+  takeLatest(actions.showMessage, toastFlow),
+];

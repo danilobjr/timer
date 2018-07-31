@@ -84,6 +84,6 @@ function* chronometerFlow() {
   }
 }
 
-export function* chronometerSagas() {
-  yield fork(chronometerFlow);
-}
+export const chronometerSagas = [
+  fork(chronometerFlow),
+];
