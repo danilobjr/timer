@@ -1,14 +1,13 @@
-// TODO: use colors from _variables
 .toaster {
   position: absolute;
   padding: 16px;
   margin-top: 12px;
-  background-color: #242424;
+  background-color: $mine-shaft;
 
   opacity: 0;
   transform: scale(.9) translate(4px, 4px);
   transform-origin: bottom right;
-  transition: all 150ms cubic-bezier(0, 0, .2, 1);
+  transition: all 150ms $ease-out;
 
   display: flex;
 
@@ -18,10 +17,9 @@
   }
 
   > .body {
-    color: rgba(255,255,255,.7);
+    color: $light-gray;
   }
 
-  // TODO: move this to its own style file
   > .button {
     width: 20px;
     height: 20px;
@@ -36,16 +34,16 @@
     }
 
     &:hover {
-      background-color: rgba(255,255,255,.1);
+      background-color: lighten($mine-shaft, 10%);
     }
 
     &:active {
-      background-color: rgba(255,255,255,.2);
+      background-color: lighten($mine-shaft, 18%);
     }
   }
 
   > .button > .icon {
-    stroke: rgba(255, 255, 255, .6) !important;
+    stroke: $light-gray !important;
     transform: scale(1.2);
   }
 }
