@@ -1,2 +1,2 @@
-export * from './NumberSelector'
-export * from './TimeSelector'
+export * from './NumberSelector';
+export * from './TimeSelector';
