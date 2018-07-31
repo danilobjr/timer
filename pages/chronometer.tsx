@@ -12,9 +12,6 @@ export class ChronometerPage extends Component<ChronometerPageProps> {
   render() {
     const { chronometer, laps, start, stop } = this.props;
 
-    // TODO: move reset button to Timer and expose some props related to it
-    // TODO: fix StartPause button percentage
-
     return (
       <PageContent className="-chronometer">
         <Toggleable>
@@ -22,28 +19,21 @@ export class ChronometerPage extends Component<ChronometerPageProps> {
             <>
               <Timer
                 expanded={expanded}
+                hideResetButton={this.isResetHidden()}
                 noInfo
                 showHundredths
                 time={chronometer}
-                onClickStart={start}
                 onClickPause={stop}
+                onClickReset={this.reset}
+                onClickStart={start}
                 onClickToggleExpansion={toggle}
                 renderActions={() => (
-                  <>
-                    <TimerButton
-                      icon="reset"
-                      title="Reset"
-                      hideButton={this.isResetHidden()}
-                      onClick={this.reset}
-                    />
-
-                    <TimerButton
-                      icon="flag"
-                      title="Laps"
-                      hideButton={this.isLapsHidden()}
-                      onClick={this.registerLap}
-                    />
-                  </>
+                  <TimerButton
+                    icon="flag"
+                    title="Laps"
+                    hideButton={this.isLapsHidden()}
+                    onClick={this.registerLap}
+                  />
                 )}
               >
                 {!!expanded && (

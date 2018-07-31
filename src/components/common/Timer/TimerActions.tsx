@@ -6,25 +6,37 @@ import { TimerButton } from './TimerButton';
 type TimerActionsProps = {
   disableStartPauseButton?: boolean;
   hideExpandButton?: boolean;
+  hideResetButton?: boolean;
   hideShrinkButton?: boolean;
   percentageProgress?: number;
   showPauseIcon?: boolean;
-  onToggleExpandButton: () => void;
+  onClickResetButton: () => void;
   onClickStartPauseButton: () => void;
+  onToggleExpandButton: () => void;
 };
 
 export const TimerActions: SFC<TimerActionsProps> = ({
   children,
-  hideExpandButton,
-  hideShrinkButton,
   disableStartPauseButton,
-  showPauseIcon,
+  hideExpandButton,
+  hideResetButton,
+  hideShrinkButton,
   percentageProgress,
-  onToggleExpandButton,
+  showPauseIcon,
+  onClickResetButton,
   onClickStartPauseButton,
+  onToggleExpandButton,
 }) => (
     <div className="timer-actions">
       {children}
+
+      <TimerButton
+        className="reset"
+        icon="reset"
+        title="Reset"
+        hideButton={hideResetButton}
+        onClick={onClickResetButton}
+      />
 
       <StartPauseButton
         disabled={disableStartPauseButton}

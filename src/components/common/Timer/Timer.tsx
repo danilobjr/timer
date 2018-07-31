@@ -10,12 +10,14 @@ export type TimerProps = {
   disableStartPauseButton?: boolean;
   expanded?: boolean;
   hideExpandButton?: boolean;
+  hideResetButton?: boolean;
   noInfo?: boolean;
   regressive?: boolean;
   showHundredths?: boolean;
   startAt?: number;
   time: Partial<Time>;
   onClickPause?: () => void;
+  onClickReset?: () => void;
   onClickStart?: () => void;
   onClickToggleExpansion?: () => void;
   renderActions?: () => ReactNode;
@@ -26,11 +28,13 @@ export class Timer extends Component<TimerProps> {
     disableStartPauseButton: false,
     expanded: false,
     hideExpandButton: false,
+    hideResetButton: false,
     noInfo: false,
     regressive: false,
     showHundredths: false,
     startAt: 0,
     onClickPause: () => null,
+    onClickReset: () => null,
     onClickStart: () => null,
     onClickToggleExpansion: () => null,
     renderActions: () => null,
@@ -42,11 +46,13 @@ export class Timer extends Component<TimerProps> {
       disableStartPauseButton,
       expanded,
       hideExpandButton,
+      hideResetButton,
       noInfo,
       renderActions,
       showHundredths,
       startAt,
       time,
+      onClickReset,
       onClickToggleExpansion,
     } = this.props;
 
@@ -73,8 +79,10 @@ export class Timer extends Component<TimerProps> {
           disableStartPauseButton={disableStartPauseButton}
           showPauseIcon={!paused}
           hideExpandButton={expanded || hideExpandButton}
+          hideResetButton={hideResetButton}
           hideShrinkButton={!expanded}
           percentageProgress={this.calculatePercentageProgress()}
+          onClickResetButton={onClickReset}
           onClickStartPauseButton={this.togglePause}
           onToggleExpandButton={onClickToggleExpansion}
         >
