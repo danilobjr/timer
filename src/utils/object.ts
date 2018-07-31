@@ -1,14 +1,7 @@
 import { StringKeyValuePair } from 'models';
 
-export const values = (object: StringKeyValuePair) => {
-  const result = [];
-
-  for (let key in object) {
-    result.push(object[key]);
-  }
-
-  return result;
-};
+export const values = (object: StringKeyValuePair) =>
+  Object.values(object);
 
 export const omit = (props: string[]) => (object: StringKeyValuePair) => {
   const result: StringKeyValuePair = {};
