@@ -10,7 +10,7 @@ const resolvePath = value => path.resolve(__dirname, value);
   // exportPathMap: async () => ({
   //   '/': { page: '/countdowns' },
   // }),
-module.exports = withManifest(withTypescript(withSass(withOffline({
+module.exports = withTypescript(withSass(withOffline({
   webpack(config, options) {
     return {
       ...config,
@@ -27,13 +27,4 @@ module.exports = withManifest(withTypescript(withSass(withOffline({
       },
     };
   },
-  manifest: {
-    name: 'Timer',
-    'short_name': 'Timer',
-    'start_url': '/',
-    'background_color': '#297acb',
-    icons: {
-      src: './static/timer-icon.png',
-    },
-  },
-}))));
+})));
