@@ -1,48 +1,50 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { StartPauseButton } from './StartPauseButton';
+import { TimerMainButton, TimerMainButtonProps } from './TimerMainButton';
 import { TimerButton } from './TimerButton';
 
 type TimerActionsProps = {
-  disableStartPauseButton?: boolean;
+  disableMainButton?: boolean;
   hideExpandButton?: boolean;
   hideResetButton?: boolean;
   hideShrinkButton?: boolean;
   percentageProgress?: number;
-  showPauseIcon?: boolean;
+  showWhichMainButton: TimerMainButtonProps['showWhichButton'];
   onClickResetButton: () => void;
-  onClickStartPauseButton: () => void;
+  onClickMainButton: () => void;
   onToggleExpandButton: () => void;
 };
 
 export const TimerActions: SFC<TimerActionsProps> = ({
   children,
-  disableStartPauseButton,
+  disableMainButton,
   hideExpandButton,
   hideResetButton,
   hideShrinkButton,
   percentageProgress,
-  showPauseIcon,
+  showWhichMainButton,
   onClickResetButton,
-  onClickStartPauseButton,
+  onClickMainButton,
   onToggleExpandButton,
 }) => (
     <div className="timer-actions">
       {children}
 
-      <TimerButton
-        className="reset"
-        icon="reset"
-        title="Reset"
-        hideButton={hideResetButton}
-        onClick={onClickResetButton}
-      />
+      {showWhichMainButton !== 'stop' && (
+        <TimerButton
+          className="reset"
+          icon="reset"
+          title="Reset"
+          hideButton={hideResetButton}
+          onClick={onClickResetButton}
+        />
+      )}
 
-      <StartPauseButton
-        disabled={disableStartPauseButton}
-        showPause={showPauseIcon}
+      <TimerMainButton
+        disabled={disableMainButton}
+        showWhichButton={showWhichMainButton}
         percentageProgress={percentageProgress}
-        onClick={onClickStartPauseButton}
+        onClick={onClickMainButton}
       />
 
       <TimerButton
@@ -66,9 +68,8 @@ export const TimerActions: SFC<TimerActionsProps> = ({
   );
 
 TimerActions.defaultProps = {
-  disableStartPauseButton: false,
+  disableMainButton: false,
   hideExpandButton: false,
   hideShrinkButton: true,
   percentageProgress: 0,
-  showPauseIcon: false,
 };

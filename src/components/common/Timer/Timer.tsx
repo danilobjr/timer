@@ -5,15 +5,17 @@ import { Watch } from './Watch';
 import { TimerActions } from './TimerActions';
 import { Time, TimeInMilliseconds } from 'models';
 import { FlexSpace } from 'components';
+import { TimerMainButtonProps } from 'components/common/Timer/TimerMainButton';
 
 export type TimerProps = {
-  disableStartPauseButton?: boolean;
+  disableMainButton?: boolean;
   expanded?: boolean;
   hideExpandButton?: boolean;
   hideResetButton?: boolean;
   noInfo?: boolean;
   regressive?: boolean;
   showHundredths?: boolean;
+  showWhichMainButton: TimerMainButtonProps['showWhichButton'];
   startAt?: number;
   time: Partial<Time>;
   onClickPause?: () => void;
@@ -25,7 +27,7 @@ export type TimerProps = {
 
 export class Timer extends Component<TimerProps> {
   static defaultProps: Partial<TimerProps> = {
-    disableStartPauseButton: false,
+    disableMainButton: false,
     expanded: false,
     hideExpandButton: false,
     hideResetButton: false,
@@ -43,12 +45,13 @@ export class Timer extends Component<TimerProps> {
   render() {
     const {
       children,
-      disableStartPauseButton,
+      disableMainButton,
       expanded,
       hideExpandButton,
       hideResetButton,
       noInfo,
       renderActions,
+      showWhichMainButton,
       showHundredths,
       startAt,
       time,
@@ -56,7 +59,7 @@ export class Timer extends Component<TimerProps> {
       onClickToggleExpansion,
     } = this.props;
 
-    const { milliseconds, name, paused } = time;
+    const { milliseconds, name } = time;
 
     return (
       <div
@@ -76,14 +79,14 @@ export class Timer extends Component<TimerProps> {
         {!!expanded && <FlexSpace />}
 
         <TimerActions
-          disableStartPauseButton={disableStartPauseButton}
-          showPauseIcon={!paused}
+          disableMainButton={disableMainButton}
+          showWhichMainButton={showWhichMainButton}
           hideExpandButton={expanded || hideExpandButton}
           hideResetButton={hideResetButton}
           hideShrinkButton={!expanded}
           percentageProgress={this.calculatePercentageProgress()}
           onClickResetButton={onClickReset}
-          onClickStartPauseButton={this.togglePause}
+          onClickMainButton={this.togglePause}
           onToggleExpandButton={onClickToggleExpansion}
         >
           {renderActions()}

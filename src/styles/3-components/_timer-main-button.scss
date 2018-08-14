@@ -1,4 +1,4 @@
-.start-pause-button {
+.timer-main-button {
   position: relative;
   width: 60px;
   height: 60px;
@@ -31,6 +31,11 @@
   > .icon-pause {
     margin-left: -4px;
     margin-top: -8px;
+  }
+
+  > .icon-stop {
+    left: calc(50% - 8px);
+    top: calc(50% - 8px);
   }
 
   > .icon-play > polygon {
@@ -87,7 +92,7 @@
 
 }
 
-.start-pause-button[disabled] {
+.timer-main-button[disabled] {
   &:active {
     transform: none;
   }
@@ -108,7 +113,7 @@
   }
 }
 
-.-expanded .start-pause-button[disabled] {
+.-expanded .timer-main-button[disabled] {
   > .icon-play > polygon,
   &:hover .border > circle,
   &:active .border > circle {
@@ -116,7 +121,7 @@
   }
 }
 
-.-expanded .start-pause-button {
+.-expanded .timer-main-button {
   > .icon-play > polygon,
   > .icon-pause > line {
     stroke: $lavender;

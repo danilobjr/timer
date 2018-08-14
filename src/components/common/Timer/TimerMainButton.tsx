@@ -1,18 +1,19 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 import { HTMLProps, SFC } from 'react';
-import { IconPlay, IconPause } from 'icons';
+import { IconPlay, IconPause, IconStop } from 'icons';
+import { capitalize } from 'utils';
 
-type StartPauseButtonProps = {
-  showPause?: boolean;
+export type TimerMainButtonProps = {
+  showWhichButton: 'pause' | 'play' | 'stop';
   percentageProgress?: number;
 } & HTMLProps<HTMLButtonElement>;
 
-export const StartPauseButton: SFC<StartPauseButtonProps> = ({ showPause, percentageProgress, ...otherProps }) => (
+export const TimerMainButton: SFC<TimerMainButtonProps> = ({ showWhichButton, percentageProgress, ...otherProps }) => (
   <button
     {...otherProps}
     className={renderMainCssClasses(otherProps)}
-    title="Start/Pause"
+    title={capitalize(showWhichButton)}
   >
     <svg
       className="border"
@@ -32,25 +33,21 @@ export const StartPauseButton: SFC<StartPauseButtonProps> = ({ showPause, percen
       />
     </svg>
 
-    <IconPlay className={renderHiddenClassWhen(showPause)} />
-    <IconPause className={renderHiddenClassWhen(!showPause)} />
+    {showWhichButton === 'play' && <IconPlay />}
+    {showWhichButton === 'pause' && <IconPause />}
+    {showWhichButton === 'stop' && <IconStop />}
   </button>
 );
 
-StartPauseButton.defaultProps = {
-  showPause: false,
+TimerMainButton.defaultProps = {
   percentageProgress: 0,
 };
 
-const renderMainCssClasses = ({ className }: Partial<StartPauseButtonProps>) => (
+const renderMainCssClasses = ({ className }: Partial<TimerMainButtonProps>) => (
   classNames(
-    'start-pause-button',
+    'timer-main-button',
     className,
   )
-);
-
-const renderHiddenClassWhen = (isHidden: boolean) => (
-  classNames({ 'h-hidden': isHidden })
 );
 
 const calculateStrokeDashoffsetSize = (percentageProgress: number) => (
