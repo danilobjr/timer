@@ -1,5 +1,7 @@
 import { createAction, createReducer } from 'redux-act';
 import { createActionDescription } from 'src/redux/utils';
+import { take, call, fork } from 'redux-saga/effects';
+import { audioWrapper } from 'utils';
 
 // ACTIONS
 
@@ -10,7 +12,7 @@ export const actions = {
   stopAlarm: createAction(createDescription('STOP')),
 };
 
-// INITIAL STATE
+// STATE
 
 const initialState = {
   alarmStopped: true,
@@ -27,3 +29,20 @@ const alarmStopped = createReducer({}, initialState.alarmStopped)
 export default {
   alarmStopped,
 };
+
+// SAGAS
+
+function* alarmFlow() {
+  const alarm = audioWrapper('/static/alarm.mp3');
+
+  while (true) {
+    yield take(actions.playAlarm);
+    yield call(alarm.play);
+    yield take(actions.stopAlarm);
+    yield call(alarm.stop);
+  }
+}
+
+export const alarmSagas = [
+  fork(alarmFlow),
+];
