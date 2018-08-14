@@ -94,7 +94,15 @@ function* countdownFlow() {
 
     if (hasSameActionType(action, actions.pause)) {
       yield cancel(tasks[countdownId]);
-      yield put(actions.update(countdownId, { paused: true }));
+
+      const countdown: Countdown = yield select(({ countdowns }: State) =>
+        countdowns.find((c: Countdown) => c.id === countdownId),
+      );
+
+      yield put(actions.update(countdownId, {
+        paused: true,
+        alarmSound: countdown.milliseconds === 0,
+      }));
     }
 
     if (hasSameActionType(action, actions.reset)) {

@@ -6,6 +6,14 @@ export const audioWrapper = (function () {
     path = audioFilePath;
   };
 
+  const isPaused = () => {
+    if (!!audio) {
+      return audio.paused;
+    }
+
+    return true;
+  };
+
   const play = () => {
     tryInstantiate();
     audio.currentTime = 0;
@@ -26,6 +34,6 @@ export const audioWrapper = (function () {
 
   return (audioFilePath: string) => {
     init(audioFilePath);
-    return { play, stop };
+    return { isPaused, play, stop };
   };
 }());
