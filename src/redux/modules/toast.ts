@@ -10,7 +10,7 @@ import { Toast } from 'models';
 
 // ACTIONS
 
-const actionDescription = createActionDescription('global');
+const actionDescription = createActionDescription('toast');
 
 export const actions = {
   navigateToRoute: createAction<string | UrlLike>(actionDescription('NAVIGATE_TO_ROUTE')),
@@ -29,7 +29,7 @@ const initialState = {
   toast: null as Toast,
 };
 
-export type GlobalState = typeof initialState;
+export type ToastState = typeof initialState;
 
 // REDUCER
 
@@ -73,7 +73,7 @@ function* toastFlow(action: Action<ToastMessage>) {
   yield put(actions.removeToast());
 }
 
-export const globalSagas = [
+export const toastSagas = [
   takeLatest(actions.navigateToRoute, navigateToRoute),
   takeLatest(actions.showMessage, toastFlow),
 ];

@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import chronometer from './modules/chronometer';
 import countdowns from './modules/countdowns';
-import global from './modules/global';
+import toast from './modules/toast';
 
 export const rootReducer = combineReducers({
   ...chronometer,
   ...countdowns,
-  ...global,
+  ...toast,
 });
