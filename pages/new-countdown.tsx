@@ -106,6 +106,7 @@ class NewCountdownPage extends Component<NewCountdownPageProps, NewCountdownPage
       milliseconds,
       startAt: milliseconds,
       paused: true,
+      alarmSound: false,
     };
 
     this.props.hideToast();

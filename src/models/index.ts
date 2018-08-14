@@ -1,6 +1,7 @@
 export type Chronometer = Pick<Time, 'milliseconds' | 'paused'>;
 
 export type Countdown = {
+  alarmSound: boolean;
   startAt: number;
 } & Time;
 
