@@ -101,7 +101,7 @@ function* countdownFlow() {
       yield cancel(tasks[countdownId]);
 
       const countdown: Countdown = yield select(({ countdowns }: State) =>
-        countdowns.find(c => c.id === countdownId),
+        countdowns.find((c: Countdown) => c.id === countdownId),
       );
 
       if (!countdown.paused) {
