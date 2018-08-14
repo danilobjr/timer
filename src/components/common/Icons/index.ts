@@ -16,6 +16,7 @@ export * from './IconRemove';
 export * from './IconReset';
 export * from './IconSquare';
 export * from './IconSquareDouble';
+export * from './IconStop';
 export * from './IconStopwatch';
 export * from './IconTimer';
 export * from './IconTrash';
