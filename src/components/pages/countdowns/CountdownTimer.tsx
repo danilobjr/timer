@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SFC } from 'react';
 import { TimerButton, ExpandableTimer } from 'components';
 import { Countdown } from 'models';
-import { TimerMainButtonType } from 'components';
+import { IconName } from 'icons';
 
 type CountdownTimerProps = {
   isEdition: boolean;
@@ -28,7 +28,7 @@ export const CountdownTimer: SFC<CountdownTimerProps> = (props) => {
   const resetButtonHidden = isEdition || (paused && milliseconds === startAt);
   const timerMainButtonDisabled = (isEdition || countdown.milliseconds === 0) && !alarmSoundEnabled;
   // TODO: move this to an util for reuse
-  const mainButton: TimerMainButtonType = !!alarmSoundEnabled ? 'stop' : !!paused ? 'play' : 'pause';
+  const mainButton: IconName = !!alarmSoundEnabled ? 'stop' : !!paused ? 'play' : 'pause';
 
   return (
     <ExpandableTimer

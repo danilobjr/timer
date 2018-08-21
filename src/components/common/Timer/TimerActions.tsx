@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SFC } from 'react';
 import { TimerMainButton } from './TimerMainButton';
-import { TimerMainButtonType } from './TimerMainButtonType';
 import { TimerButton } from './TimerButton';
+import { IconName } from 'icons';
 
 type TimerActionsProps = {
   disableMainButton?: boolean;
@@ -10,7 +10,7 @@ type TimerActionsProps = {
   hideResetButton?: boolean;
   hideShrinkButton?: boolean;
   percentageProgress?: number;
-  mainButton: TimerMainButtonType;
+  mainButton: IconName;
   onClickResetButton: () => void;
   onClickMainButton: () => void;
   onToggleExpandButton: () => void;
