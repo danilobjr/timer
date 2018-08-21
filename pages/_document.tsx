@@ -12,6 +12,7 @@ export default class MyDocument extends Document {
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link rel="stylesheet" href="/_next/static/style.css" />
           <title>Timer</title>
+          {/* TODO: remove this and its package */}
           <Manifest themeColor="#297acb" />
         </Head>
         <body>
