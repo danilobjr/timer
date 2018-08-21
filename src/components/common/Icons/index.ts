@@ -20,3 +20,6 @@ export * from './IconStop';
 export * from './IconStopwatch';
 export * from './IconTimer';
 export * from './IconTrash';
+
+export * from './Icons';
+export * from './models';

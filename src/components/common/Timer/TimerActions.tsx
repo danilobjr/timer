@@ -43,7 +43,7 @@ export const TimerActions: SFC<TimerActionsProps> = ({
 
       <TimerMainButton
         disabled={disableMainButton}
-        button={mainButton}
+        icon={mainButton}
         percentageProgress={percentageProgress}
         onClick={onClickMainButton}
       />
