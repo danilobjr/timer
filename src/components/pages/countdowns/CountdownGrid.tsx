@@ -16,8 +16,7 @@ type Actions = {
 };
 
 export const CountdownGrid: SFC<CountdownGridProps> = ({ isEdition, countdowns, ...otherProps }) => {
-  const bindIdAndPropAction = (id: string, prop: keyof Actions) => () =>
-    otherProps[prop](id);
+  const bindIdAndPropAction = (id: string, prop: keyof Actions) => () => otherProps[prop](id);
 
   return (
     <div className="countdown-grid">
