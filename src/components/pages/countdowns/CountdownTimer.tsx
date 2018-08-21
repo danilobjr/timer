@@ -23,12 +23,12 @@ export const CountdownTimer: SFC<CountdownTimerProps> = (props) => {
     onClickStart,
   } = props;
 
-  const { milliseconds, paused, startAt, alarmSound } = countdown;
+  const { milliseconds, paused, startAt, alarmSoundEnabled } = countdown;
 
   const resetButtonHidden = isEdition || (paused && milliseconds === startAt);
   const timerMainButtonDisabled = isEdition || countdown.milliseconds === 0;
   // TODO: move this to an util for reuse
-  const showWhichMainButton: TimerMainButtonProps['showWhichButton'] = !!alarmSound ? 'stop' : !!paused ? 'play' : 'pause';
+  const showWhichMainButton: TimerMainButtonProps['showWhichButton'] = !!alarmSoundEnabled ? 'stop' : !!paused ? 'play' : 'pause';
 
   return (
     <ExpandableTimer

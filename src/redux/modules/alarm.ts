@@ -14,7 +14,7 @@ function* alarmFlow() {
 
     const countdowns: Countdown[] = yield select(({ countdowns }: State) => countdowns);
 
-    if (countdowns.some(c => c.alarmSound)) {
+    if (countdowns.some(c => c.alarmSoundEnabled)) {
       if (alarm.isPaused()) {
         yield call(alarm.play);
       }

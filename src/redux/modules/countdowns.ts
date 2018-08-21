@@ -101,7 +101,7 @@ function* countdownFlow() {
 
       yield put(actions.update(countdownId, {
         paused: true,
-        alarmSound: countdown.milliseconds === 0,
+        alarmSoundEnabled: countdown.milliseconds === 0,
       }));
     }
 
