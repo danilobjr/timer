@@ -10,7 +10,7 @@ type TimerActionsProps = {
   hideResetButton?: boolean;
   hideShrinkButton?: boolean;
   percentageProgress?: number;
-  showWhichMainButton: TimerMainButtonType;
+  mainButton: TimerMainButtonType;
   onClickResetButton: () => void;
   onClickMainButton: () => void;
   onToggleExpandButton: () => void;
@@ -23,7 +23,7 @@ export const TimerActions: SFC<TimerActionsProps> = ({
   hideResetButton,
   hideShrinkButton,
   percentageProgress,
-  showWhichMainButton,
+  mainButton,
   onClickResetButton,
   onClickMainButton,
   onToggleExpandButton,
@@ -31,7 +31,7 @@ export const TimerActions: SFC<TimerActionsProps> = ({
     <div className="timer-actions">
       {children}
 
-      {showWhichMainButton !== 'stop' && (
+      {mainButton !== 'stop' && (
         <TimerButton
           className="reset"
           icon="reset"
@@ -43,7 +43,7 @@ export const TimerActions: SFC<TimerActionsProps> = ({
 
       <TimerMainButton
         disabled={disableMainButton}
-        button={showWhichMainButton}
+        button={mainButton}
         percentageProgress={percentageProgress}
         onClick={onClickMainButton}
       />
