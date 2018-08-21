@@ -26,7 +26,7 @@ export const CountdownTimer: SFC<CountdownTimerProps> = (props) => {
   const { milliseconds, paused, startAt, alarmSoundEnabled } = countdown;
 
   const resetButtonHidden = isEdition || (paused && milliseconds === startAt);
-  const timerMainButtonDisabled = isEdition || countdown.milliseconds === 0;
+  const timerMainButtonDisabled = (isEdition || countdown.milliseconds === 0) && !alarmSoundEnabled;
   // TODO: move this to an util for reuse
   const showWhichMainButton: TimerMainButtonType = !!alarmSoundEnabled ? 'stop' : !!paused ? 'play' : 'pause';
 
