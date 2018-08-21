@@ -1,7 +1,6 @@
 const path = require('path');
 const withTypescript = require('@zeit/next-typescript');
 const withSass = require('@zeit/next-sass');
-const withManifest = require('next-manifest');
 const withOffline = require('next-offline');
 
 const resolvePath = value => path.resolve(__dirname, value);
