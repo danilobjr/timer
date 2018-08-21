@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { TimerMainButton, TimerMainButtonProps } from './TimerMainButton';
+import { TimerMainButton } from './TimerMainButton';
+import { TimerMainButtonType } from './TimerMainButtonType';
 import { TimerButton } from './TimerButton';
 
 type TimerActionsProps = {
@@ -9,7 +10,7 @@ type TimerActionsProps = {
   hideResetButton?: boolean;
   hideShrinkButton?: boolean;
   percentageProgress?: number;
-  showWhichMainButton: TimerMainButtonProps['showWhichButton'];
+  showWhichMainButton: TimerMainButtonType;
   onClickResetButton: () => void;
   onClickMainButton: () => void;
   onToggleExpandButton: () => void;
@@ -42,7 +43,7 @@ export const TimerActions: SFC<TimerActionsProps> = ({
 
       <TimerMainButton
         disabled={disableMainButton}
-        showWhichButton={showWhichMainButton}
+        button={showWhichMainButton}
         percentageProgress={percentageProgress}
         onClick={onClickMainButton}
       />

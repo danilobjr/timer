@@ -3,17 +3,18 @@ import * as classNames from 'classnames';
 import { HTMLProps, SFC } from 'react';
 import { IconPlay, IconPause, IconStop } from 'icons';
 import { capitalize } from 'utils';
+import { TimerMainButtonType } from 'components/common/Timer/TimerMainButtonType';
 
 export type TimerMainButtonProps = {
-  showWhichButton: 'pause' | 'play' | 'stop';
+  button: TimerMainButtonType;
   percentageProgress?: number;
 } & HTMLProps<HTMLButtonElement>;
 
-export const TimerMainButton: SFC<TimerMainButtonProps> = ({ showWhichButton, percentageProgress, ...otherProps }) => (
+export const TimerMainButton: SFC<TimerMainButtonProps> = ({ button, percentageProgress, ...otherProps }) => (
   <button
     {...otherProps}
     className={renderMainCssClasses(otherProps)}
-    title={capitalize(showWhichButton)}
+    title={capitalize(button)}
   >
     <svg
       className="border"
@@ -33,9 +34,9 @@ export const TimerMainButton: SFC<TimerMainButtonProps> = ({ showWhichButton, pe
       />
     </svg>
 
-    {showWhichButton === 'play' && <IconPlay />}
-    {showWhichButton === 'pause' && <IconPause />}
-    {showWhichButton === 'stop' && <IconStop />}
+    {button === 'play' && <IconPlay />}
+    {button === 'pause' && <IconPause />}
+    {button === 'stop' && <IconStop />}
   </button>
 );
 

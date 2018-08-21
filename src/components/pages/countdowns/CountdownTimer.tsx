@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SFC } from 'react';
 import { TimerButton, ExpandableTimer } from 'components';
 import { Countdown } from 'models';
-import { TimerMainButtonProps } from 'components/common/Timer/TimerMainButton';
+import { TimerMainButtonType } from 'components';
 
 type CountdownTimerProps = {
   isEdition: boolean;
@@ -28,7 +28,7 @@ export const CountdownTimer: SFC<CountdownTimerProps> = (props) => {
   const resetButtonHidden = isEdition || (paused && milliseconds === startAt);
   const timerMainButtonDisabled = isEdition || countdown.milliseconds === 0;
   // TODO: move this to an util for reuse
-  const showWhichMainButton: TimerMainButtonProps['showWhichButton'] = !!alarmSoundEnabled ? 'stop' : !!paused ? 'play' : 'pause';
+  const showWhichMainButton: TimerMainButtonType = !!alarmSoundEnabled ? 'stop' : !!paused ? 'play' : 'pause';
 
   return (
     <ExpandableTimer
@@ -36,7 +36,7 @@ export const CountdownTimer: SFC<CountdownTimerProps> = (props) => {
       hideExpandButton={isEdition}
       hideResetButton={resetButtonHidden}
       regressive
-      showWhichMainButton={showWhichMainButton}
+      mainButton={showWhichMainButton}
       startAt={startAt}
       time={countdown}
       onClickPause={onClickPause}

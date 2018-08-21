@@ -5,17 +5,17 @@ import { Watch } from './Watch';
 import { TimerActions } from './TimerActions';
 import { Time, TimeInMilliseconds } from 'models';
 import { FlexSpace } from 'components';
-import { TimerMainButtonProps } from 'components/common/Timer/TimerMainButton';
+import { TimerMainButtonType } from './TimerMainButtonType';
 
 export type TimerProps = {
   disableMainButton?: boolean;
   expanded?: boolean;
   hideExpandButton?: boolean;
   hideResetButton?: boolean;
+  mainButton: TimerMainButtonType;
   noInfo?: boolean;
   regressive?: boolean;
   showHundredths?: boolean;
-  showWhichMainButton: TimerMainButtonProps['showWhichButton'];
   startAt?: number;
   time: Partial<Time>;
   onClickPause?: () => void;
@@ -51,7 +51,7 @@ export class Timer extends Component<TimerProps> {
       hideResetButton,
       noInfo,
       renderActions,
-      showWhichMainButton,
+      mainButton,
       showHundredths,
       startAt,
       time,
@@ -80,7 +80,7 @@ export class Timer extends Component<TimerProps> {
 
         <TimerActions
           disableMainButton={disableMainButton}
-          showWhichMainButton={showWhichMainButton}
+          showWhichMainButton={mainButton}
           hideExpandButton={expanded || hideExpandButton}
           hideResetButton={hideResetButton}
           hideShrinkButton={!expanded}
