@@ -3,16 +3,16 @@ import * as classNames from 'classnames';
 import { Component, ReactNode } from 'react';
 import { Watch } from './Watch';
 import { TimerActions } from './TimerActions';
-import { Time, TimeInMilliseconds } from 'models';
+import { Time, TimeInMilliseconds, Countdown } from 'models';
 import { FlexSpace } from 'components';
-import { TimerMainButtonType } from './TimerMainButtonType';
+import { IconName } from 'icons';
 
 export type TimerProps = {
   disableMainButton?: boolean;
   expanded?: boolean;
   hideExpandButton?: boolean;
   hideResetButton?: boolean;
-  mainButton: TimerMainButtonType;
+  mainButtonIcon: IconName;
   noInfo?: boolean;
   regressive?: boolean;
   showHundredths?: boolean;
@@ -21,6 +21,7 @@ export type TimerProps = {
   onClickPause?: () => void;
   onClickReset?: () => void;
   onClickStart?: () => void;
+  onClickStop?: () => void;
   onClickToggleExpansion?: () => void;
   renderActions?: () => ReactNode;
 };
@@ -38,6 +39,7 @@ export class Timer extends Component<TimerProps> {
     onClickPause: () => null,
     onClickReset: () => null,
     onClickStart: () => null,
+    onClickStop: () => null,
     onClickToggleExpansion: () => null,
     renderActions: () => null,
   };
@@ -51,7 +53,7 @@ export class Timer extends Component<TimerProps> {
       hideResetButton,
       noInfo,
       renderActions,
-      mainButton,
+      mainButtonIcon,
       showHundredths,
       startAt,
       time,
@@ -80,13 +82,13 @@ export class Timer extends Component<TimerProps> {
 
         <TimerActions
           disableMainButton={disableMainButton}
-          showWhichMainButton={mainButton}
+          mainButton={mainButtonIcon}
           hideExpandButton={expanded || hideExpandButton}
           hideResetButton={hideResetButton}
           hideShrinkButton={!expanded}
           percentageProgress={this.calculatePercentageProgress()}
           onClickResetButton={onClickReset}
-          onClickMainButton={this.togglePause}
+          onClickMainButton={this.handleMainButtonClick}
           onToggleExpandButton={onClickToggleExpansion}
         >
           {renderActions()}
@@ -121,8 +123,15 @@ export class Timer extends Component<TimerProps> {
     return milliseconds / TimeInMilliseconds.Minute;
   }
 
-  togglePause = () => {
-    const { time, onClickPause, onClickStart } = this.props;
+  handleMainButtonClick = () => {
+    const { time, onClickPause, onClickStart, onClickStop } = this.props;
+
+    // TODO: move all props from Countdown model to Time model
+    if ((time as Countdown).alarmSoundEnabled) {
+      onClickStop();
+      return;
+    }
+
     time.paused ? onClickStart() : onClickPause();
   }
 }

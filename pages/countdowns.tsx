@@ -41,6 +41,7 @@ class CountdownsPage extends Component<CountdownsPageProps, CountdownsPageState>
                 onClickRemove={remove}
                 onClickReset={reset}
                 onClickStart={start}
+                onClickStop={console.log}
               />
             )}
         </PageContent>

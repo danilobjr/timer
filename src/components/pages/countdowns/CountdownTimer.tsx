@@ -11,6 +11,7 @@ type CountdownTimerProps = {
   onClickPause: () => void;
   onClickReset: () => void;
   onClickStart: () => void;
+  onClickStop: () => void;
 };
 
 export const CountdownTimer: SFC<CountdownTimerProps> = (props) => {
@@ -21,6 +22,7 @@ export const CountdownTimer: SFC<CountdownTimerProps> = (props) => {
     onClickPause,
     onClickReset,
     onClickStart,
+    onClickStop,
   } = props;
 
   const { milliseconds, paused, startAt, alarmSoundEnabled } = countdown;
@@ -28,7 +30,7 @@ export const CountdownTimer: SFC<CountdownTimerProps> = (props) => {
   const resetButtonHidden = isEdition || (paused && milliseconds === startAt);
   const timerMainButtonDisabled = (isEdition || countdown.milliseconds === 0) && !alarmSoundEnabled;
   // TODO: move this to an util for reuse
-  const mainButton: IconName = !!alarmSoundEnabled ? 'stop' : !!paused ? 'play' : 'pause';
+  const mainButtonIcon: IconName = !!alarmSoundEnabled ? 'stop' : !!paused ? 'play' : 'pause';
 
   return (
     <ExpandableTimer
@@ -36,13 +38,14 @@ export const CountdownTimer: SFC<CountdownTimerProps> = (props) => {
       hideExpandButton={isEdition}
       hideResetButton={resetButtonHidden}
       regressive
-      mainButton={mainButton}
+      mainButtonIcon={mainButtonIcon}
       startAt={startAt}
       time={countdown}
       onClickPause={onClickPause}
       onClickReset={onClickReset}
       onClickStart={onClickStart}
-      renderActions={() => mainButton !== 'stop' && (
+      onClickStop={onClickStop}
+      renderActions={() => mainButtonIcon !== 'stop' && (
         <TimerButton
           className="remove"
           icon="trash"
