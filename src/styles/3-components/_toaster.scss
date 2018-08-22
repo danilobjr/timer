@@ -1,0 +1,49 @@
+.toaster {
+  position: absolute;
+  padding: 16px;
+  margin-top: 12px;
+  background-color: $mine-shaft;
+
+  opacity: 0;
+  transform: scale(.9) translate(4px, 4px);
+  transform-origin: bottom right;
+  transition: all 150ms $ease-out;
+
+  display: flex;
+
+  &.-show {
+    opacity: 1;
+    transform: scale(1) translate(0);
+  }
+
+  > .body {
+    color: $light-gray;
+  }
+
+  > .button {
+    width: 20px;
+    height: 20px;
+    margin-left: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &, * {
+      cursor: pointer;
+    }
+
+    &:hover {
+      background-color: lighten($mine-shaft, 10%);
+    }
+
+    &:active {
+      background-color: lighten($mine-shaft, 18%);
+    }
+  }
+
+  > .button > .icon {
+    stroke: $light-gray !important;
+    transform: scale(1.2);
+  }
+}

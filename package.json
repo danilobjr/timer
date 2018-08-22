@@ -1,49 +1,56 @@
 {
-  "name": "pomodoro-timer",
-  "version": "0.1.0",
-  "description": "",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron main.js",
-    "watch": "webpack-dev-server",
-    "dist:win64": "electron-packager . --platform=win32 --arch=x64 --ignore=\"(node_modules|src|mockups|demo)\" --out=dist"
-  },
+  "name": "timer",
+  "version": "1.0.0",
+  "description": "PWA version of Timer (Windows 10 clone)",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/danilojrr/ElectronTimer.git"
   },
   "keywords": [
-    "electron",
     "react",
-    "webpack",
-    "es6"
+    "timer"
   ],
-  "author": "Danilo Barros <danilobjr@gmail.com>",
+  "author": {
+    "name": "Danilo Barros",
+    "email": "danilobjr@gmail.com"
+  },
   "license": "MIT",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "export": "next build && next export"
+  },
   "dependencies": {
-    "classnames": "^2.2.5",
-    "electron-prebuilt": "^1.2.0",
-    "node-uuid": "^1.4.7",
-    "react": "^15.1.0",
-    "react-dom": "^15.1.0",
-    "react-redux": "^4.4.5",
-    "react-router": "^2.4.1",
-    "react-router-redux": "^4.0.4",
-    "redux": "^3.5.2"
+    "classnames": "2.2.6",
+    "lodash-es": "4.17.10",
+    "next": "6.1.1",
+    "react": "16.4.2",
+    "react-dom": "16.4.1",
+    "react-redux": "5.0.7",
+    "redux": "4.0.0",
+    "redux-act": "1.7.4",
+    "redux-saga": "0.16.0",
+    "uuid": "3.3.2"
   },
   "devDependencies": {
-    "babel-core": "^6.9.1",
-    "babel-loader": "^6.2.4",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-preset-react": "^6.5.0",
-    "css-loader": "^0.23.1",
-    "electron-packager": "^7.2.0",
-    "file-loader": "^0.8.5",
-    "node-sass": "^3.7.0",
-    "normalize.css": "^4.1.1",
-    "sass-loader": "^3.2.0",
-    "style-loader": "^0.13.1",
-    "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1"
+    "@types/lodash-es": "4.17.1",
+    "@types/next": "file:custom_types/next",
+    "@types/next-manifest": "file:custom_types/next-manifest",
+    "@types/react": "16.4.11",
+    "@types/react-dom": "16.0.7",
+    "@types/react-redux": "6.0.6",
+    "@types/uuid": "3.4.3",
+    "@zeit/next-sass": "0.2.0",
+    "@zeit/next-typescript": "1.1.0",
+    "chalk": "2.4.1",
+    "next-manifest": "1.6.0",
+    "next-offline": "2.9.0",
+    "node-sass": "4.9.3",
+    "normalize.css": "8.0.0",
+    "tslib": "1.9.3",
+    "tslint": "5.11.0",
+    "typescript": "3.0.1"
   }
 }

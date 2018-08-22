@@ -1,0 +1,38 @@
+.watch {
+  color: $scorpion;
+  font-weight: 700;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+  > .unit.-active {
+    color: black !important;
+  }
+
+  > .unit:nth-child(-n+2):after {
+    content: ':';
+    position: relative;
+    top: -0.15em;
+    margin: 0 0.09em;
+    font-size: 0.82em;
+  }
+
+  > .unit.-hundredths {
+    font-size: .8rem;
+  }
+
+  > .unit.-hundredths:before {
+    content: '.';
+  }
+}
+
+.-expanded .watch {
+  > .unit {
+    color: $corn-flower-blue;
+  }
+
+  > .unit.-active {
+    color: $white !important;
+  }
+}

@@ -1,0 +1,12 @@
+.timer-actions {
+  position: relative;
+  width: 240px;
+  height: 60px;
+  margin: 10px 0;
+
+  > .timer-main-button {
+    position: absolute;
+    left: 50%;
+    margin-left: -30px;
+  }
+}

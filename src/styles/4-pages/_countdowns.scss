@@ -1,0 +1,16 @@
+.page-content.-countdowns {
+  > .no-countdowns-text {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+  }
+
+  > .countdown-grid {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-content: flex-start;
+    flex-wrap: wrap;
+  }
+}

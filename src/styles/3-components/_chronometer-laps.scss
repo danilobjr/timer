@@ -1,0 +1,90 @@
+.chronometer-laps {
+  width: 310px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+
+  > .header {
+    margin-bottom: 6px;
+    color: $dove-gray;
+  }
+
+  > .header,
+  > .scroller {
+    padding-left: 30px;
+  }
+
+  > .scroller {
+    overflow-y: auto;
+  }
+
+  > .header > .title {
+    margin: 0;
+  }
+
+  > .scroller > .laps {
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 0;
+    margin: 0;
+  }
+
+  > .scroller > .laps > .lap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+
+  > .scroller > .laps > .lap > .number {
+    position: absolute;
+    left: -28px;
+    top: 2px;
+    color: $silver;
+    font-size: 0.8rem;
+  }
+
+  > .scroller > .laps > .lap > .partial {
+    font-size: 1.2rem;
+  }
+
+  > .scroller > .laps > .lap > .total > .watch {
+    font-weight: 500;
+  }
+
+  > .scroller > .laps > .lap .watch > .unit {
+    color: $dusty-gray;
+  }
+}
+
+.-expanded .chronometer-laps {
+  position: absolute;
+  bottom: 142px;
+  align-items: center;
+
+  > .scroller > .laps > .lap {
+    display: none;
+  }
+
+  > .scroller > .laps > .lap:last-child {
+    display: flex;
+  }
+
+  > .scroller > .laps > .lap > .partial {
+    font-size: 1.3rem;
+  }
+
+  > .scroller > .laps > .lap > .total {
+    font-size: 1.1rem;
+  }
+
+  > .scroller > .laps > .lap > .number,
+  > .scroller > .laps .watch > .unit {
+    color: $corn-flower-blue;
+  }
+
+  > .scroller > .laps .watch > .unit.-active {
+    color: $white !important;
+  }
+}

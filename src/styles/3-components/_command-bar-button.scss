@@ -1,0 +1,40 @@
+.command-bar-button {
+  width: 68px;
+  color: $scorpion;
+  font-size: 1.4rem;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &, * {
+    cursor: pointer;
+  }
+
+  &:hover {
+    background-color: $silver;
+  }
+
+  &:active {
+    background-color: $dark-gray;
+  }
+
+  &.-narrow {
+    width: 48px;
+  }
+
+  &[disabled] {
+    &, * {
+      cursor: not-allowed;
+    }
+
+    &, &:hover {
+      background-color: transparent;
+    }
+
+    > svg > g {
+      stroke: $dove-gray !important;
+    }
+  }
+}

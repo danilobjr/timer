@@ -1,0 +1,147 @@
+.timer-main-button {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  padding: 0;
+
+  &, * {
+    cursor: pointer;
+  }
+
+  &:hover,
+  &:active {
+    background: none;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  > .icon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+  }
+
+  > .icon-play {
+    margin-left: -5px;
+    margin-top: -9px;
+  }
+
+  > .icon-pause {
+    margin-left: -4px;
+    margin-top: -8px;
+  }
+
+  > .icon-stop {
+    left: calc(50% - 8px);
+    top: calc(50% - 8px);
+  }
+
+  > .icon-play > polygon {
+    fill: transparent;
+    stroke: $mine-shaft;
+    stroke-width: 1.2px;
+  }
+
+  > .icon-pause > line {
+    stroke: $mine-shaft;
+    stroke-width: 1.5px;
+    stroke-linecap: round;
+  }
+
+  > .border {
+    width: 100%;
+    height: 100%;
+  }
+
+  > .border > circle,
+  > .time-progress > circle {
+    fill: transparent;
+    stroke-width: 2px;
+  }
+
+  > .border > circle {
+    stroke: $alto;
+  }
+
+  > .time-progress {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    left: 0;
+  }
+
+  // TODO: use linear transition
+  > .time-progress > circle {
+    stroke: $mariner;
+    stroke-dasharray: 182px;
+    transform: rotateZ(-90deg);
+    transform-origin: center center;
+  }
+
+  &:hover .border > circle {
+    fill: $alto;
+    stroke: $silver;
+  }
+
+  &:active .border > circle {
+    fill: $silver;
+    stroke: hsl(0, 0%, 71%); /* ??? */
+  }
+
+}
+
+.timer-main-button[disabled] {
+  &:active {
+    transform: none;
+  }
+
+  > .icon-play > polygon,
+  > .icon-pause > line {
+    stroke: $silver;
+  }
+
+  > .time-progress > circle {
+    stroke: transparent;
+  }
+
+  &:hover .border > circle,
+  &:active .border > circle {
+    fill: transparent;
+    stroke: $alto;
+  }
+}
+
+.-expanded .timer-main-button[disabled] {
+  > .icon-play > polygon,
+  &:hover .border > circle,
+  &:active .border > circle {
+    stroke: $havelock-blue;
+  }
+}
+
+.-expanded .timer-main-button {
+  > .icon-play > polygon,
+  > .icon-pause > line {
+    stroke: $lavender;
+  }
+
+  > .border > circle {
+    stroke: $havelock-blue;
+  }
+
+  > .time-progress > circle {
+    stroke: $light-blue;
+  }
+
+  &:hover > .border > circle {
+    fill: $steel-blue;
+    stroke: $corn-flower-blue;
+  }
+
+  &:active > .border > circle {
+    fill: $havelock-blue;
+    stroke: lighten($havelock-blue, 3%);
+  }
+}

@@ -1,0 +1,35 @@
+.timer-button {
+  display: flex;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-top: 6px;
+  color: $mine-shaft;
+  font-size: 1.8rem;
+
+  &, * {
+    cursor: pointer;
+  }
+
+  &:hover {
+    background-color: $alto;
+  }
+
+  &:active {
+    background-color: $silver;
+  }
+}
+
+.-expanded .timer-button {
+  > .icon {
+    stroke: $white !important;
+  }
+
+  &:hover {
+    background-color: $steel-blue;
+  }
+
+  &:active {
+    background-color: $corn-flower-blue;
+  }
+}

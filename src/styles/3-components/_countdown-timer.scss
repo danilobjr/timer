@@ -1,0 +1,52 @@
+.countdown-timer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 344px;
+  height: 205px;
+  box-sizing: border-box;
+
+
+  &:hover {
+    border: 2px solid $alto;
+  }
+
+  > .watch {
+    color: $dusty-gray;
+    font-size: 2.7rem;
+  }
+
+  > .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  > .info > .name {
+    color: $scorpion;
+    font-size: 0.95rem;
+  }
+
+  &.-expanded {
+    background-color: $mariner;
+    border: none;
+  }
+
+  &.-expanded > .watch {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    margin-top: 14vh;
+    font-size: 15vw;
+  }
+
+  &.-expanded > .countdown-timer-commands {
+    order: 1;
+    margin: 0 0 7vh 0;
+  }
+
+  &.-expanded > .info > .name {
+    color: $light-blue;
+  }
+}

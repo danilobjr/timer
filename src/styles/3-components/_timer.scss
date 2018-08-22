@@ -1,0 +1,52 @@
+.timer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 344px;
+  height: 205px;
+  box-sizing: border-box;
+
+  &:hover {
+    border: 2px solid $alto;
+  }
+
+  > .watch {
+    color: $dusty-gray;
+    font-size: 2.7rem;
+  }
+
+  > .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  > .info > .name {
+    color: $scorpion;
+    font-size: 0.95rem;
+  }
+
+  &.-no-info {
+    height: 164px;
+  }
+
+  &.-expanded {
+    background-color: $mariner;
+    border: none;
+  }
+
+  &.-expanded > .watch {
+    display: flex;
+    font-size: 15vw;
+  }
+
+  &.-expanded > .timer-actions {
+    margin-bottom: 47px;
+    order: 2;
+  }
+
+  &.-expanded > .info > .name {
+    color: $light-blue;
+  }
+}
