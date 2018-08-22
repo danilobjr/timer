@@ -23,6 +23,7 @@ class CountdownsPage extends Component<CountdownsPageProps, CountdownsPageState>
       remove,
       reset,
       start,
+      stop,
     } = this.props;
 
     const isEdition = this.isEdition();
@@ -41,7 +42,7 @@ class CountdownsPage extends Component<CountdownsPageProps, CountdownsPageState>
                 onClickRemove={remove}
                 onClickReset={reset}
                 onClickStart={start}
-                onClickStop={console.log}
+                onClickStop={stop}
               />
             )}
         </PageContent>

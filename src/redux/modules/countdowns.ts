@@ -20,6 +20,7 @@ export const actions = {
   remove: createAction<CountdownId>(actionDescription('REMOVE')),
   reset: createAction<CountdownId>(actionDescription('RESET')),
   start: createAction<CountdownId>(actionDescription('START')),
+  stop: createAction<CountdownId>(actionDescription('STOP')),
   update: createAction<CountdownId, Partial<Countdown>, Countdown>(
     actionDescription('UPDATE_COUNTDOWN'),
     (id: CountdownId, updatedProps: Countdown) => ({ id, ...updatedProps }),
@@ -80,17 +81,14 @@ function* countdownFlow() {
 
   while (true) {
     const action = yield take([
-      actions.start,
       actions.pause,
-      actions.reset,
       actions.remove,
+      actions.reset,
+      actions.start,
+      actions.stop,
     ]);
 
     const countdownId = action.payload;
-
-    if (hasSameActionType(action, actions.start)) {
-      tasks[countdownId] = yield fork(countdownInterval, countdownId);
-    }
 
     if (hasSameActionType(action, actions.pause)) {
       yield cancel(tasks[countdownId]);
@@ -105,6 +103,12 @@ function* countdownFlow() {
       }));
     }
 
+    if (hasSameActionType(action, actions.remove)) {
+      if (tasks[countdownId]) {
+        yield cancel(tasks[countdownId]);
+      }
+    }
+
     if (hasSameActionType(action, actions.reset)) {
       yield cancel(tasks[countdownId]);
 
@@ -117,10 +121,12 @@ function* countdownFlow() {
       }
     }
 
-    if (hasSameActionType(action, actions.remove)) {
-      if (tasks[countdownId]) {
-        yield cancel(tasks[countdownId]);
-      }
+    if (hasSameActionType(action, actions.start)) {
+      tasks[countdownId] = yield fork(countdownInterval, countdownId);
+    }
+
+    if (hasSameActionType(action, actions.stop)) {
+      yield put(actions.update(countdownId, { alarmSoundEnabled: false }));
     }
   }
 }
