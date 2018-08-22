@@ -1,4 +1,4 @@
-export * from './audioWrapper';
+export * from './audio';
 export * from './array';
 export * from './date';
 export * from './functional';

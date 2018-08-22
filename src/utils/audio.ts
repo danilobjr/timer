@@ -1,4 +1,4 @@
-export const audioWrapper = (function () {
+export const audio = (function () {
   let audio: HTMLAudioElement = null;
   let path: string = '';
 

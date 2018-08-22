@@ -1,5 +1,5 @@
 import { take, call, fork, select } from 'redux-saga/effects';
-import { audioWrapper } from 'utils';
+import { audio } from 'utils';
 import { actions as countdownsActions } from 'src/redux/modules/countdowns';
 import { State } from 'src/redux';
 import { Countdown } from 'models';
@@ -7,7 +7,7 @@ import { Countdown } from 'models';
 // SAGAS
 
 function* alarmFlow() {
-  const alarm = audioWrapper('/static/alarm.mp3');
+  const alarm = audio('/static/alarm.mp3');
 
   while (true) {
     yield take(countdownsActions.update);
