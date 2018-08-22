@@ -8,13 +8,13 @@ import { FlexSpace } from 'components';
 import { IconName } from 'icons';
 
 export type TimerProps = {
-  disableMainButton?: boolean;
+  expandButtonHidden?: boolean;
   expanded?: boolean;
-  hideExpandButton?: boolean;
-  hideResetButton?: boolean;
+  mainButtonDisabled?: boolean;
   mainButtonIcon: IconName;
   noInfo?: boolean;
   regressive?: boolean;
+  resetButtonHidden?: boolean;
   showHundredths?: boolean;
   startAt?: number;
   time: Partial<Time>;
@@ -28,10 +28,10 @@ export type TimerProps = {
 
 export class Timer extends Component<TimerProps> {
   static defaultProps: Partial<TimerProps> = {
-    disableMainButton: false,
+    mainButtonDisabled: false,
     expanded: false,
-    hideExpandButton: false,
-    hideResetButton: false,
+    expandButtonHidden: false,
+    resetButtonHidden: false,
     noInfo: false,
     regressive: false,
     showHundredths: false,
@@ -47,10 +47,10 @@ export class Timer extends Component<TimerProps> {
   render() {
     const {
       children,
-      disableMainButton,
+      mainButtonDisabled,
       expanded,
-      hideExpandButton,
-      hideResetButton,
+      expandButtonHidden,
+      resetButtonHidden,
       noInfo,
       renderActions,
       mainButtonIcon,
@@ -81,10 +81,10 @@ export class Timer extends Component<TimerProps> {
         {!!expanded && <FlexSpace />}
 
         <TimerActions
-          disableMainButton={disableMainButton}
+          disableMainButton={mainButtonDisabled}
           mainButton={mainButtonIcon}
-          hideExpandButton={expanded || hideExpandButton}
-          hideResetButton={hideResetButton}
+          hideExpandButton={expanded || expandButtonHidden}
+          hideResetButton={resetButtonHidden}
           hideShrinkButton={!expanded}
           percentageProgress={this.calculatePercentageProgress()}
           onClickResetButton={onClickReset}

@@ -34,11 +34,11 @@ export const CountdownTimer: SFC<CountdownTimerProps> = (props) => {
 
   return (
     <ExpandableTimer
-      disableMainButton={timerMainButtonDisabled}
-      hideExpandButton={isEdition}
-      hideResetButton={resetButtonHidden}
-      regressive
+      expandButtonHidden={isEdition}
+      mainButtonDisabled={timerMainButtonDisabled}
       mainButtonIcon={mainButtonIcon}
+      regressive
+      resetButtonHidden={resetButtonHidden}
       startAt={startAt}
       time={countdown}
       onClickPause={onClickPause}
