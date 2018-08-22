@@ -3,6 +3,7 @@ import { Component } from 'react';
 import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { ChronometerLaps, Timer, TimerButton, PageContent, Toggleable } from 'components';
+import { IconName } from 'icons';
 import { State } from 'src/redux';
 import { actions } from 'src/redux/modules/chronometer';
 
@@ -11,6 +12,7 @@ type ChronometerPageProps = StateToProps & DispatchToProps;
 export class ChronometerPage extends Component<ChronometerPageProps> {
   render() {
     const { chronometer, laps, start, stop } = this.props;
+    const mainButtonIcon: IconName = !!chronometer.paused ? 'play' : 'pause';
 
     return (
       <PageContent className="-chronometer">
@@ -19,8 +21,9 @@ export class ChronometerPage extends Component<ChronometerPageProps> {
             <>
               <Timer
                 expanded={expanded}
-                hideResetButton={this.isResetHidden()}
+                mainButtonIcon={mainButtonIcon}
                 noInfo
+                resetButtonHidden={this.isResetHidden()}
                 showHundredths
                 time={chronometer}
                 onClickPause={stop}
