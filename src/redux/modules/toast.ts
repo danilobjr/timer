@@ -13,7 +13,6 @@ import { Toast } from 'models';
 const actionDescription = createActionDescription('toast');
 
 export const actions = {
-  navigateToRoute: createAction<string | UrlLike>(actionDescription('NAVIGATE_TO_ROUTE')),
   showMessage: createAction<ToastMessage>(actionDescription('SHOW_MESSAGE')),
 
   // INTERNAL
@@ -45,10 +44,6 @@ export default {
 
 // SAGAS
 
-function* navigateToRoute(action: Action<string | UrlLike>) {
-  yield call(Router.push, action.payload);
-}
-
 function* toastFlow(action: Action<ToastMessage>) {
   const toast = {
     id: uuid(),
@@ -74,6 +69,5 @@ function* toastFlow(action: Action<ToastMessage>) {
 }
 
 export const toastSagas = [
-  takeLatest(actions.navigateToRoute, navigateToRoute),
   takeLatest(actions.showMessage, toastFlow),
 ];

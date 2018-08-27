@@ -3,6 +3,7 @@ import { withRouter, WithRouterProps } from 'next/router';
 import { Component } from 'react';
 import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { actions as navigationActions } from 'src/redux/modules/navigation';
 import { actions as newCountdownActions } from 'src/redux/modules/countdowns';
 import { actions as toastActions } from 'src/redux/modules/toast';
 import { toMilliseconds } from 'utils';
@@ -116,6 +117,7 @@ class NewCountdownPage extends Component<NewCountdownPageProps, NewCountdownPage
 }
 
 const actions = {
+  ...navigationActions,
   ...newCountdownActions,
   ...toastActions,
 };
