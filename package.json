@@ -20,7 +20,7 @@
     "dev": "node server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
-    "export": "next build && next export"
+    "export": "next build && next export -o docs"
   },
   "dependencies": {
     "classnames": "2.2.6",
@@ -45,7 +45,6 @@
     "@zeit/next-sass": "0.2.0",
     "@zeit/next-typescript": "1.1.0",
     "chalk": "2.4.1",
-    "next-manifest": "1.6.0",
     "next-offline": "2.9.0",
     "node-sass": "4.9.3",
     "normalize.css": "8.0.0",
