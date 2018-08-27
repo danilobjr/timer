@@ -1,4 +1,4 @@
-self.__precacheManifest = [{"url":"/_next/819b29ab-3d65-40d7-9e31-4122dc60cc33/page/_app.js","revision":"819b29ab-3d65-40d7-9e31-4122dc60cc33"},{"url":"/_next/819b29ab-3d65-40d7-9e31-4122dc60cc33/page/_document.js","revision":"819b29ab-3d65-40d7-9e31-4122dc60cc33"},{"url":"/_next/819b29ab-3d65-40d7-9e31-4122dc60cc33/page/_error.js","revision":"819b29ab-3d65-40d7-9e31-4122dc60cc33"},{"url":"/_next/819b29ab-3d65-40d7-9e31-4122dc60cc33/page/chronometer.js","revision":"819b29ab-3d65-40d7-9e31-4122dc60cc33"},{"url":"/_next/819b29ab-3d65-40d7-9e31-4122dc60cc33/page/countdowns.js","revision":"819b29ab-3d65-40d7-9e31-4122dc60cc33"},{"url":"/_next/819b29ab-3d65-40d7-9e31-4122dc60cc33/page/new-countdown.js","revision":"819b29ab-3d65-40d7-9e31-4122dc60cc33"}];
+self.__precacheManifest = [{"url":"/_next/69d5316d-9b02-42be-9600-651a9225ad3a/page/_app.js","revision":"69d5316d-9b02-42be-9600-651a9225ad3a"},{"url":"/_next/69d5316d-9b02-42be-9600-651a9225ad3a/page/_document.js","revision":"69d5316d-9b02-42be-9600-651a9225ad3a"},{"url":"/_next/69d5316d-9b02-42be-9600-651a9225ad3a/page/_error.js","revision":"69d5316d-9b02-42be-9600-651a9225ad3a"},{"url":"/_next/69d5316d-9b02-42be-9600-651a9225ad3a/page/chronometer.js","revision":"69d5316d-9b02-42be-9600-651a9225ad3a"},{"url":"/_next/69d5316d-9b02-42be-9600-651a9225ad3a/page/countdowns.js","revision":"69d5316d-9b02-42be-9600-651a9225ad3a"},{"url":"/_next/69d5316d-9b02-42be-9600-651a9225ad3a/page/new-countdown.js","revision":"69d5316d-9b02-42be-9600-651a9225ad3a"}];
 /**
  * Welcome to your Workbox-powered service worker!
  *
@@ -22,5 +22,3 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.2.0/workbox
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
-
-workbox.routing.registerRoute(/^https?.*/, workbox.strategies.networkFirst(), 'GET');
