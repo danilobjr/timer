@@ -5,11 +5,13 @@ const withOffline = require('next-offline');
 
 const resolvePath = value => path.resolve(__dirname, value);
 
+module.exports = withTypescript(withSass(withOffline({
   // TODO: set this dynamically
   // exportPathMap: async () => ({
   //   '/': { page: '/countdowns' },
   // }),
-module.exports = withTypescript(withSass(withOffline({
+  // assetPrefix: process.env.NODE_ENV === 'production' ? '/timer' : '',
+  // dontAutoRegisterSw: true,
   webpack(config, options) {
     return {
       ...config,
