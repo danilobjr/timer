@@ -13,7 +13,7 @@
 			"type": "image/png"
 		}
 	],
-	"start_url": "/",
+	"start_url": "/timer/countdowns",
 	"display": "standalone",
 	"orientation": "natural",
 	"background_color": "#297acb",
