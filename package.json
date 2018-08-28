@@ -1,7 +1,7 @@
 {
   "name": "timer",
   "version": "1.0.0",
-  "description": "PWA version of Timer (Windows 10 clone)",
+  "description": "Alarms & Clock clone from Windows 10 built as a PWA",
   "private": true,
   "repository": {
     "type": "git",
