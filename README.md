@@ -1,6 +1,6 @@
 # Timer
 
-An Alarms & Clock clone from Windows 10 built as a PWA.
+Alarms & Clock clone from Windows 10 built as a PWA.
 
 <p align="center"><img src="/demo/demo-v0.1.gif"></p>
 
