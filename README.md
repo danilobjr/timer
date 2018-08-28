@@ -1,6 +1,6 @@
 # Timer
 
-Alarms & Clock clone from Windows 10 built as a PWA.
+Alarms & Clock clone from Windows 10 built as a PWA. Just for fun.
 
 <p align="center"><img src="/demo/demo-v0.1.gif"></p>
 
@@ -67,4 +67,4 @@ now
 
 ## License
 
-MIT © [Danilo Barros](https://danilobjr.mit-license.org/)
+MIT © Made with <strike>love</strike> _a keyboard_ by [Danilo Barros](https://danilobjr.mit-license.org/)
