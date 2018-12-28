@@ -59,7 +59,7 @@ Navigate to project folder.
 cd timer
 ```
 
-Deploy to zeit cloud by just running:
+Deploy to Zeit cloud by just running:
 
 ```
 now
